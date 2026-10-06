@@ -1,0 +1,2624 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Café Lyria — Owner Admin Portal</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --ink:#141210;
+      --bg:#1a1715;
+      --panel:#221e1a;
+      --card:#2a2520;
+      --card-hover:#312c26;
+      --line:rgba(255,255,255,0.09);
+      --cream:#f7f1e7;
+      --muted:#9e958b;
+      --accent:#c97545;
+      --accent2:#e3a469;
+      --green:#2e8b57;
+      --green-bg:rgba(46,139,87,0.18);
+      --amber:#d97736;
+      --amber-bg:rgba(217,119,54,0.18);
+      --blue:#4a8fe7;
+      --blue-bg:rgba(74,143,231,0.18);
+      --red:#d64545;
+      --red-bg:rgba(214,69,69,0.18);
+      --radius:16px;
+      --shadow:0 18px 45px rgba(0,0,0,0.35);
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      background:var(--bg);
+      color:var(--cream);
+      font-family:"DM Sans",sans-serif;
+      min-height:100vh;
+      display:flex;
+      flex-direction:column;
+    }
+    a{color:inherit;text-decoration:none}
+    button,input,select,textarea{font:inherit}
+
+    /* Top Navigation */
+    .topbar{
+      background:var(--ink);
+      border-bottom:1px solid var(--line);
+      padding:16px 4vw;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      position:sticky;
+      top:0;
+      z-index:90;
+      backdrop-filter:blur(10px);
+    }
+    .brand{display:flex;align-items:center;gap:14px}
+    .brand-logo{font:700 1.35rem "Playfair Display";letter-spacing:.02em;color:#fff}
+    .brand-logo em{font-style:normal;color:var(--accent2)}
+    .badge-admin{
+      background:rgba(201,117,69,0.2);
+      color:var(--accent2);
+      border:1px solid rgba(201,117,69,0.35);
+      font-size:.72rem;
+      font-weight:700;
+      text-transform:uppercase;
+      letter-spacing:.1em;
+      padding:4px 10px;
+      border-radius:999px;
+    }
+    .topbar-actions{display:flex;align-items:center;gap:12px}
+    .live-pulse{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      font-size:.82rem;
+      color:var(--muted);
+      margin-right:8px;
+    }
+    .pulse-dot{
+      width:8px;
+      height:8px;
+      border-radius:50%;
+      background:#3ddc84;
+      box-shadow:0 0 10px #3ddc84;
+      animation:pulse 2s infinite;
+    }
+    @keyframes pulse{0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.4;transform:scale(.8)}}
+
+    /* Site Live / Offline Toggle Widget */
+    .site-status-widget{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      background:rgba(255,255,255,0.04);
+      border:1px solid var(--line);
+      border-radius:999px;
+      padding:6px 14px 6px 12px;
+      cursor:pointer;
+      user-select:none;
+      transition:all .25s cubic-bezier(.2,.8,.2,1);
+      outline:none;
+    }
+    .site-status-widget:hover{
+      transform:translateY(-1px);
+      box-shadow:0 6px 16px rgba(0,0,0,0.35);
+    }
+    .site-status-widget:active{
+      transform:scale(0.98);
+    }
+    .site-status-widget:focus-visible{
+      outline:2px solid var(--accent);
+      outline-offset:2px;
+    }
+    .site-status-widget.is-live{
+      border-color:rgba(61,220,132,0.4);
+      background:rgba(61,220,132,0.08);
+    }
+    .site-status-widget.is-offline{
+      border-color:rgba(235,87,87,0.4);
+      background:rgba(235,87,87,0.1);
+    }
+    .status-dot-indicator{
+      width:10px;
+      height:10px;
+      border-radius:50%;
+      flex-shrink:0;
+      transition:all .3s ease;
+      pointer-events:none;
+    }
+    .status-dot-indicator.live{
+      background:#3ddc84;
+      box-shadow:0 0 10px #3ddc84;
+      animation:pulse 2s infinite;
+    }
+    .status-dot-indicator.offline{
+      background:#eb5757;
+      box-shadow:0 0 8px #eb5757;
+      animation:none;
+    }
+    .status-info{
+      display:flex;
+      flex-direction:column;
+      line-height:1.2;
+      pointer-events:none;
+    }
+    .status-title{
+      font-size:.78rem;
+      font-weight:600;
+      color:#fff;
+      display:flex;
+      align-items:center;
+      gap:4px;
+    }
+    .status-title strong{letter-spacing:.04em}
+    .status-sub{
+      font-size:.66rem;
+      color:var(--muted);
+      letter-spacing:.02em;
+    }
+    
+    /* Toggle Pill Switch inside Widget */
+    .live-toggle-switch{
+      position:relative;
+      width:56px;
+      height:28px;
+      border-radius:999px;
+      background:#2e7d32;
+      transition:background .25s ease;
+      box-shadow:inset 0 2px 4px rgba(0,0,0,0.35);
+      display:flex;
+      align-items:center;
+      padding:0 7px;
+      flex-shrink:0;
+      pointer-events:none;
+    }
+    .site-status-widget.is-offline .live-toggle-switch{
+      background:#c93b3b;
+    }
+    .toggle-thumb{
+      position:absolute;
+      top:3px;
+      left:3px;
+      width:22px;
+      height:22px;
+      border-radius:50%;
+      background:#ffffff;
+      box-shadow:0 2px 6px rgba(0,0,0,0.45);
+      transition:transform .25s cubic-bezier(.2,.8,.2,1);
+    }
+    .site-status-widget.is-live .toggle-thumb{
+      transform:translateX(28px);
+    }
+    .site-status-widget.is-offline .toggle-thumb{
+      transform:translateX(0);
+    }
+    .toggle-label-on{
+      color:#fff;
+      font-size:.65rem;
+      font-weight:800;
+      letter-spacing:.06em;
+      opacity:1;
+      transition:opacity .2s;
+    }
+    .toggle-label-off{
+      color:#fff;
+      font-size:.65rem;
+      font-weight:800;
+      letter-spacing:.06em;
+      margin-left:auto;
+      opacity:0;
+      transition:opacity .2s;
+    }
+    .site-status-widget.is-live .toggle-label-on{opacity:1}
+    .site-status-widget.is-live .toggle-label-off{opacity:0}
+    .site-status-widget.is-offline .toggle-label-on{opacity:0}
+    .site-status-widget.is-offline .toggle-label-off{opacity:1}
+
+    /* Offline Alert Banner in Admin */
+    .offline-banner{
+      background:linear-gradient(90deg, rgba(235,87,87,0.18), rgba(201,117,69,0.15));
+      border:1px solid rgba(235,87,87,0.45);
+      border-radius:18px;
+      padding:16px 22px;
+      margin-bottom:24px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:16px;
+      flex-wrap:wrap;
+      animation:pop .3s cubic-bezier(.2,.8,.2,1);
+    }
+    .offline-badge{
+      display:inline-block;
+      font-size:.72rem;
+      font-weight:800;
+      letter-spacing:.1em;
+      text-transform:uppercase;
+      color:#ff7878;
+      background:rgba(235,87,87,0.25);
+      border:1px solid rgba(235,87,87,0.4);
+      padding:4px 10px;
+      border-radius:999px;
+      margin-bottom:6px;
+    }
+    .offline-banner p{
+      margin:0;
+      color:#e2dad1;
+      font-size:.88rem;
+      line-height:1.5;
+    }
+    .offline-banner-actions{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      flex-shrink:0;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      border:0;
+      border-radius:999px;
+      padding:10px 18px;
+      font-size:.85rem;
+      font-weight:600;
+      cursor:pointer;
+      transition:.25s ease;
+    }
+    .btn.primary{background:var(--accent);color:#fff}
+    .btn.primary:hover{background:#dc824f;transform:translateY(-1px);box-shadow:0 6px 18px rgba(201,117,69,0.3)}
+    .btn.ghost{background:rgba(255,255,255,0.06);color:var(--cream);border:1px solid var(--line)}
+    .btn.ghost:hover{background:rgba(255,255,255,0.12);border-color:rgba(255,255,255,0.2)}
+    .btn.sm{padding:7px 13px;font-size:.78rem}
+
+    /* Main Container */
+    .main-wrap{
+      max-width:1400px;
+      width:100%;
+      margin:0 auto;
+      padding:32px 4vw 60px;
+      flex:1;
+    }
+
+    /* Header Bar */
+    .dash-head{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-end;
+      margin-bottom:28px;
+      flex-wrap:wrap;
+      gap:16px;
+    }
+    .dash-head h1{
+      font:600 2.2rem "Playfair Display";
+      margin:0 0 6px;
+      letter-spacing:-.02em;
+    }
+    .dash-head p{
+      color:var(--muted);
+      margin:0;
+      font-size:.95rem;
+    }
+
+    /* Metric Cards */
+    .metrics-grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:18px;
+      margin-bottom:34px;
+    }
+    .metric-card{
+      background:var(--panel);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      padding:22px 24px;
+      position:relative;
+      overflow:hidden;
+      transition:.3s ease;
+    }
+    .metric-card:hover{
+      transform:translateY(-2px);
+      border-color:rgba(201,117,69,0.35);
+      box-shadow:var(--shadow);
+    }
+    .metric-card::after{
+      content:"";
+      position:absolute;
+      top:0;
+      left:0;
+      right:0;
+      height:3px;
+      background:transparent;
+    }
+    .metric-card.m-today::after{background:var(--accent)}
+    .metric-card.m-guests::after{background:var(--blue)}
+    .metric-card.m-seated::after{background:var(--green)}
+    .metric-card.m-total::after{background:var(--amber)}
+
+    .metric-label{
+      color:var(--muted);
+      font-size:.76rem;
+      font-weight:700;
+      text-transform:uppercase;
+      letter-spacing:.12em;
+      margin-bottom:8px;
+    }
+    .metric-value{
+      font:600 2.4rem "Playfair Display";
+      color:#fff;
+      line-height:1;
+      margin-bottom:8px;
+    }
+    .metric-sub{
+      font-size:.82rem;
+      color:var(--muted);
+    }
+
+    /* Action & Filter Toolbar */
+    .toolbar{
+      background:var(--panel);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      padding:16px 20px;
+      margin-bottom:22px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:16px;
+      flex-wrap:wrap;
+    }
+    .search-box{
+      display:flex;
+      align-items:center;
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:999px;
+      padding:4px 16px;
+      flex:1;
+      min-width:260px;
+      max-width:420px;
+    }
+    .search-box input{
+      background:transparent;
+      border:0;
+      color:#fff;
+      padding:8px 6px;
+      outline:none;
+      width:100%;
+      font-size:.9rem;
+    }
+    .search-box input::placeholder{color:var(--muted)}
+    .filter-pills{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+    .pill-btn{
+      border:1px solid var(--line);
+      background:var(--card);
+      color:var(--muted);
+      padding:7px 15px;
+      border-radius:999px;
+      font-size:.82rem;
+      font-weight:600;
+      cursor:pointer;
+      transition:.2s;
+    }
+    .pill-btn:hover{color:#fff;border-color:rgba(255,255,255,0.25)}
+    .pill-btn.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+    .pill-count{
+      background:rgba(255,255,255,0.18);
+      font-size:.72rem;
+      padding:1px 6px;
+      border-radius:999px;
+      margin-left:4px;
+    }
+
+    /* Table Container */
+    .table-card{
+      background:var(--panel);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      overflow:hidden;
+      box-shadow:var(--shadow);
+    }
+    .table-wrap{overflow-x:auto}
+    table{
+      width:100%;
+      border-collapse:collapse;
+      text-align:left;
+      font-size:.9rem;
+    }
+    thead{
+      background:rgba(255,255,255,0.025);
+      border-bottom:1px solid var(--line);
+    }
+    th{
+      padding:16px 20px;
+      font-size:.75rem;
+      font-weight:700;
+      color:var(--muted);
+      text-transform:uppercase;
+      letter-spacing:.1em;
+      white-space:nowrap;
+    }
+    tbody tr{
+      border-bottom:1px solid var(--line);
+      transition:background .2s;
+    }
+    tbody tr:hover{background:var(--card)}
+    td{
+      padding:18px 20px;
+      vertical-align:middle;
+      white-space:nowrap;
+    }
+    .code-tag{
+      font-family:monospace;
+      font-weight:700;
+      color:var(--accent2);
+      font-size:.86rem;
+      background:rgba(201,117,69,0.12);
+      padding:4px 8px;
+      border-radius:6px;
+      display:inline-block;
+    }
+    .guest-info b{display:block;color:#fff;font-size:.94rem}
+    .guest-info span{color:var(--muted);font-size:.8rem}
+    .date-badge{color:#fff;font-weight:500}
+    .time-badge{color:var(--accent2);font-weight:600;display:block;font-size:.85rem}
+    .party-chip{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      background:rgba(255,255,255,0.06);
+      padding:5px 10px;
+      border-radius:8px;
+      font-weight:600;
+      font-size:.82rem;
+    }
+    .seating-chip{
+      display:inline-block;
+      color:var(--muted);
+      font-size:.84rem;
+    }
+
+    /* Status Badges */
+    .status-select{
+      appearance:none;
+      -webkit-appearance:none;
+      border:0;
+      border-radius:999px;
+      padding:6px 28px 6px 14px;
+      font-size:.78rem;
+      font-weight:700;
+      letter-spacing:.03em;
+      cursor:pointer;
+      background-position:right 10px center;
+      background-repeat:no-repeat;
+      background-size:8px;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ffffff'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    }
+    .status-select.Confirmed{background-color:var(--green-bg);color:#3ddc84;border:1px solid rgba(61,220,132,0.3)}
+    .status-select.Seated{background-color:var(--blue-bg);color:#70b0ff;border:1px solid rgba(112,176,255,0.3)}
+    .status-select.Completed{background-color:rgba(255,255,255,0.08);color:#dcd5cb;border:1px solid rgba(255,255,255,0.18)}
+    .status-select.Cancelled{background-color:var(--red-bg);color:#ff7878;border:1px solid rgba(255,120,120,0.3)}
+
+    .notes-preview{
+      max-width:200px;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      color:var(--muted);
+      font-size:.82rem;
+    }
+
+    .row-actions{display:flex;align-items:center;gap:8px}
+    .icon-btn{
+      background:transparent;
+      border:1px solid var(--line);
+      color:var(--muted);
+      width:32px;
+      height:32px;
+      border-radius:8px;
+      display:grid;
+      place-items:center;
+      cursor:pointer;
+      transition:.2s;
+    }
+    .icon-btn:hover{background:rgba(255,255,255,0.1);color:#fff}
+    .icon-btn.delete:hover{background:var(--red-bg);color:var(--red);border-color:var(--red)}
+
+    /* Notification Center Bell & Dropdown */
+    .notif-wrapper{position:relative}
+    .notif-badge{
+      position:absolute;
+      top:-4px;
+      right:-4px;
+      background:#ef4444;
+      color:#fff;
+      font-size:.65rem;
+      font-weight:800;
+      padding:2px 5px;
+      border-radius:999px;
+      line-height:1;
+      border:2px solid #181614;
+      box-shadow:0 0 10px rgba(239,68,68,0.6);
+      animation:pulseBadge 1.8s infinite;
+    }
+    @keyframes pulseBadge{
+      0%, 100%{transform:scale(1)}
+      50%{transform:scale(1.2)}
+    }
+    .notif-dropdown{
+      display:none;
+      position:absolute;
+      top:calc(100% + 10px);
+      right:0;
+      width:340px;
+      background:#1f1b18;
+      border:1px solid var(--line);
+      border-radius:16px;
+      box-shadow:0 14px 35px rgba(0,0,0,0.65);
+      z-index:9999;
+      padding:16px;
+    }
+    .notif-dropdown.open{display:block;animation:pop .25s ease}
+    .notif-item{
+      padding:10px 12px;
+      border-radius:10px;
+      background:rgba(255,255,255,0.04);
+      border:1px solid rgba(255,255,255,0.06);
+      font-size:.82rem;
+      cursor:pointer;
+      transition:all .2s ease;
+      display:flex;
+      flex-direction:column;
+      gap:3px;
+    }
+    .notif-item:hover{
+      background:rgba(255,255,255,0.08);
+      border-color:var(--accent);
+    }
+    .notif-item.new-res{border-left:3px solid #3ddc84}
+    .notif-item.cancel-res{border-left:3px solid #ef4444}
+    .row-pulse-new{
+      animation:rowGlow 2.5s ease 3;
+    }
+    @keyframes rowGlow{
+      0%, 100%{background:rgba(61,220,132,0.06)}
+      50%{background:rgba(61,220,132,0.22);box-shadow:0 0 16px rgba(61,220,132,0.35)}
+    }
+
+    /* Empty State */
+    .empty-state{
+      text-align:center;
+      padding:60px 20px;
+      color:var(--muted);
+    }
+    .empty-state h3{font:600 1.4rem "Playfair Display";color:#fff;margin:12px 0 6px}
+
+    /* Modal Styling */
+    .modal-overlay{
+      position:fixed;
+      inset:0;
+      background:rgba(10,8,7,0.78);
+      backdrop-filter:blur(6px);
+      z-index:999;
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding:20px;
+    }
+    .modal-overlay.open{display:flex}
+    .modal-card{
+      background:var(--panel);
+      border:1px solid var(--line);
+      border-radius:24px;
+      max-width:540px;
+      width:100%;
+      padding:32px;
+      box-shadow:var(--shadow);
+      position:relative;
+      animation:pop .3s cubic-bezier(.2,.8,.2,1);
+    }
+    @keyframes pop{from{opacity:0;transform:scale(.96)} to{opacity:1;transform:scale(1)}}
+    .modal-head{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-bottom:22px;
+    }
+    .modal-head h2{
+      font:600 1.6rem "Playfair Display";
+      margin:0;
+    }
+    .close-btn{
+      background:transparent;
+      border:0;
+      color:var(--muted);
+      font-size:1.5rem;
+      cursor:pointer;
+      padding:4px;
+    }
+    .close-btn:hover{color:#fff}
+    .modal-form{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    .m-field{position:relative}
+    .m-field.full{grid-column:1/-1}
+    .m-field label{
+      display:block;
+      font-size:.76rem;
+      font-weight:700;
+      color:var(--muted);
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      margin-bottom:6px;
+    }
+    .m-field input,.m-field select,.m-field textarea{
+      width:100%;
+      background:var(--card);
+      border:1px solid var(--line);
+      padding:12px 14px;
+      border-radius:12px;
+      color:#fff;
+      outline:none;
+      transition:.2s;
+    }
+    .m-field input:focus,.m-field select:focus,.m-field textarea:focus{
+      border-color:var(--accent);
+      box-shadow:0 0 0 3px rgba(201,117,69,0.2);
+    }
+    .m-field input[type="date"]{color-scheme:dark}
+    .modal-foot{
+      grid-column:1/-1;
+      display:flex;
+      justify-content:flex-end;
+      gap:10px;
+      margin-top:10px;
+    }
+
+    /* Detail Modal Specifics */
+    .detail-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:16px;
+      background:var(--card);
+      border-radius:16px;
+      padding:18px;
+      margin-bottom:20px;
+    }
+    .detail-item small{color:var(--muted);font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;display:block;margin-bottom:3px}
+    .detail-item b{color:#fff;font-size:.95rem}
+    .notes-box{
+      background:rgba(255,255,255,0.03);
+      border:1px solid var(--line);
+      border-radius:12px;
+      padding:14px;
+      font-size:.88rem;
+      color:var(--cream);
+      margin-bottom:20px;
+      line-height:1.6;
+    }
+
+    /* Toast */
+    .toast{
+      position:fixed;
+      bottom:28px;
+      right:28px;
+      background:var(--ink);
+      border:1px solid rgba(201,117,69,0.4);
+      color:#fff;
+      padding:14px 20px;
+      border-radius:12px;
+      box-shadow:var(--shadow);
+      display:none;
+      align-items:center;
+      gap:10px;
+      z-index:9999;
+      font-size:.88rem;
+    }
+    .toast.show{display:flex;animation:pop .3s}
+
+    /* Responsive */
+    @media(max-width:1100px){
+      .metrics-grid{grid-template-columns:repeat(2,1fr)}
+    }
+    @media(max-width:700px){
+      .metrics-grid{grid-template-columns:1fr}
+      .toolbar{flex-direction:column;align-items:stretch}
+      .search-box{max-width:none}
+      .modal-form{grid-template-columns:1fr}
+      .m-field.full{grid-column:auto}
+      .modal-foot{grid-column:auto}
+    }
+
+    /* Admin Authentication Lock Screen */
+    body.auth-locked .topbar,
+    body.auth-locked .main-wrap,
+    body.auth-locked .modal-overlay,
+    body.auth-locked .toast{
+      display: none !important;
+    }
+    .admin-lock-screen{
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 999999;
+      background: radial-gradient(circle at 50% 30%, #251e19 0%, #13110f 100%);
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      overflow-y: auto;
+    }
+    body.auth-locked .admin-lock-screen{
+      display: flex !important;
+    }
+    .lock-card{
+      position: relative;
+      max-width: 440px;
+      width: 100%;
+      background: #1e1a17;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 28px;
+      padding: 44px 36px;
+      text-align: center;
+      box-shadow: 0 35px 80px rgba(0, 0, 0, 0.75);
+      animation: pop .35s cubic-bezier(.2,.8,.2,1);
+    }
+    .lock-emblem{
+      display: flex;
+      justify-content: center;
+      margin-bottom: 18px;
+    }
+    .lock-icon-wrap{
+      width: 64px;
+      height: 64px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, rgba(201,117,69,0.25), rgba(201,117,69,0.08));
+      border: 1px solid rgba(201,117,69,0.45);
+      color: var(--accent2);
+      display: grid;
+      place-items: center;
+      box-shadow: 0 10px 25px rgba(201,117,69,0.25);
+    }
+    .lock-brand{
+      font: 700 1.6rem "Playfair Display";
+      color: #fff;
+      margin-bottom: 6px;
+    }
+    .lock-brand em{font-style: normal; color: var(--accent2);}
+    .lock-security-badge{
+      display: inline-block;
+      font-size: .68rem;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--accent2);
+      background: rgba(201,117,69,0.15);
+      border: 1px solid rgba(201,117,69,0.3);
+      padding: 4px 12px;
+      border-radius: 999px;
+      margin-bottom: 18px;
+    }
+    .lock-title{
+      font: 600 1.5rem "Playfair Display";
+      margin: 0 0 8px;
+      color: #fff;
+    }
+    .lock-desc{
+      color: var(--muted);
+      font-size: .88rem;
+      line-height: 1.5;
+      margin: 0 0 24px;
+    }
+    .lock-form{
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .lock-input-group{
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+    .lock-input-group input{
+      width: 100%;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 16px 48px 16px 18px;
+      color: #fff;
+      font-size: 1.05rem;
+      letter-spacing: .1em;
+      outline: none;
+      transition: all .25s ease;
+      text-align: center;
+    }
+    .lock-input-group input:focus{
+      border-color: var(--accent);
+      background: rgba(255, 255, 255, 0.08);
+      box-shadow: 0 0 0 3px rgba(201,117,69,0.25);
+    }
+    .btn-toggle-eye{
+      position: absolute;
+      right: 14px;
+      background: none;
+      border: 0;
+      color: var(--muted);
+      cursor: pointer;
+      font-size: 1.1rem;
+      padding: 4px;
+      transition: color .2s;
+    }
+    .btn-toggle-eye:hover{color: #fff;}
+    .lock-error-msg{
+      background: rgba(214, 69, 69, 0.15);
+      border: 1px solid rgba(214, 69, 69, 0.35);
+      color: #ff8585;
+      padding: 10px 14px;
+      border-radius: 10px;
+      font-size: .84rem;
+      font-weight: 600;
+    }
+    .lock-error-msg.shake{
+      animation: shake .4s cubic-bezier(.36,.07,.19,.97) both;
+    }
+    @keyframes shake {
+      10%, 90% { transform: translate3d(-1px, 0, 0); }
+      20%, 80% { transform: translate3d(2px, 0, 0); }
+      30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+      40%, 60% { transform: translate3d(4px, 0, 0); }
+    }
+    .btn-unlock{
+      width: 100%;
+      padding: 15px;
+      font-size: .95rem;
+      font-weight: 700;
+      justify-content: center;
+      background: var(--accent);
+      color: #fff;
+      border-radius: 14px;
+      box-shadow: 0 10px 25px rgba(201,117,69,0.35);
+      transition: all .25s ease;
+      cursor: pointer;
+      border: 0;
+    }
+    .btn-unlock:hover{
+      background: #d5804e;
+      transform: translateY(-2px);
+      box-shadow: 0 14px 30px rgba(201,117,69,0.45);
+    }
+    .lock-footer-info{
+      margin-top: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      border-top: 1px solid var(--line);
+      padding-top: 18px;
+    }
+    .lock-hint{
+      color: #8c8278;
+      font-size: .78rem;
+    }
+    .lock-hint strong{color: var(--accent2);}
+    .lock-return-link{
+      color: var(--muted);
+      font-size: .82rem;
+      transition: color .2s;
+    }
+    .lock-return-link:hover{color: #fff;}
+  </style>
+</head>
+<body class="auth-locked">
+
+  <!-- Owner Authentication Lock Screen -->
+  <div class="admin-lock-screen" id="adminLockScreen">
+    <div class="lock-card">
+      <div class="lock-emblem">
+        <div class="lock-icon-wrap">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+          </svg>
+        </div>
+      </div>
+      <div class="lock-brand">Café <em>Lyria</em></div>
+      <span class="lock-security-badge">RESTRICTED ACCESS · OWNER PORTAL</span>
+      <h2 class="lock-title">Enter Owner Passcode</h2>
+      <p class="lock-desc">This management dashboard is restricted to Café Lyria owners and managers.</p>
+
+      <form id="ownerLockForm" class="lock-form" autocomplete="off">
+        <div class="lock-input-group">
+          <input type="password" id="ownerPasscodeInput" placeholder="Enter owner passcode" required autofocus autocomplete="current-password">
+          <button type="button" id="btnTogglePasscodeVis" class="btn-toggle-eye" aria-label="Toggle password visibility">👁</button>
+        </div>
+        <div class="lock-error-msg" id="lockErrorMsg" style="display:none">
+          <span id="lockErrorText">Incorrect passcode. Please try again.</span>
+        </div>
+        <button type="submit" class="btn primary btn-unlock" id="btnUnlockDashboard">Unlock Admin Dashboard →</button>
+      </form>
+
+      <div class="lock-footer-info">
+        <div class="lock-hint">
+          <small>🔑 Default Owner Passcode: <strong>1660</strong></small>
+        </div>
+        <a href="index.html" class="lock-return-link">← Return to Café Lyria Storefront</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Top Navigation Bar -->
+  <header class="topbar">
+    <div class="brand">
+      <a href="index.html" class="brand-logo">Café <em>Lyria</em></a>
+      <span class="badge-admin">Owner Portal</span>
+      <span class="clock-display" id="clockDisplay" style="color:var(--muted);font-size:.82rem;font-weight:600;padding:2px 8px;border-left:1px solid var(--line);margin-left:8px"></span>
+    </div>
+    <div class="topbar-actions">
+      <!-- Website Live / Offline ON-OFF Toggle Switch -->
+      <div class="site-status-widget is-live" id="siteStatusWidget" role="button" tabindex="0" aria-pressed="true" aria-label="Toggle Website Live Status" title="Click to toggle Website LIVE / OFFLINE">
+        <span class="status-dot-indicator live" id="statusDot"></span>
+        <div class="status-info">
+          <span class="status-title" id="statusTitle">Site: <strong>LIVE</strong></span>
+          <small class="status-sub" id="statusSub">Accepting guests</small>
+        </div>
+        <div class="live-toggle-switch" id="liveToggleSwitch" aria-hidden="true">
+          <span class="toggle-thumb"></span>
+          <span class="toggle-label-on">ON</span>
+          <span class="toggle-label-off">OFF</span>
+        </div>
+      </div>
+
+      <a href="index.html" class="btn ghost sm" target="_blank" id="btnStorefrontLink" title="View customer website">Storefront ↗</a>
+      
+      <!-- Owner Real-time Notification Center Bell -->
+      <div class="notif-wrapper">
+        <button type="button" class="icon-btn" id="btnNotifBell" title="Owner Real-Time Notifications" aria-label="Notifications" style="width:34px;height:34px;border-radius:999px">
+          🔔
+          <span class="notif-badge" id="notifBadge" style="display:none">0</span>
+        </button>
+        <!-- Dropdown -->
+        <div class="notif-dropdown" id="notifDropdown">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--line)">
+            <div style="display:flex;align-items:center;gap:6px">
+              <span style="color:#3ddc84;font-size:0.75rem">●</span>
+              <strong style="font-size:0.86rem;color:#fff">Owner Live Notifications</strong>
+            </div>
+            <button type="button" id="btnClearNotifs" style="background:none;border:0;color:var(--muted);font-size:0.75rem;cursor:pointer">Clear all</button>
+          </div>
+          <div id="notifList" style="max-height:280px;overflow-y:auto;display:flex;flex-direction:column;gap:8px">
+            <div id="notifEmptyState" style="text-align:center;padding:24px 10px;color:var(--muted);font-size:0.8rem">
+              No new alerts. When customers reserve or cancel, notifications ring here in real-time.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <button class="btn primary sm" id="btnOpenAddModal">+ New Booking</button>
+      <button type="button" class="btn ghost sm" id="btnLogoutAdmin" title="Lock Owner Portal" style="color:#d69b61;border-color:rgba(214,155,97,0.3)">
+        <span>🔒</span> Lock Portal
+      </button>
+      <button type="button" class="icon-btn" id="btnOpenChangePasscode" title="Change Owner Passcode" style="width:34px;height:34px;border-radius:999px">
+        🔑
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main-wrap">
+
+    <!-- Offline Alert Banner (Shows when website is turned OFF) -->
+    <div class="offline-banner" id="offlineAlertBanner" style="display:none">
+      <div class="offline-banner-content">
+        <span class="offline-badge">🔴 WEBSITE IS CURRENTLY OFFLINE</span>
+        <p>Public visitors accessing <strong>cafelyria.com</strong> are currently seeing the maintenance notice. Online table reservations are paused.</p>
+      </div>
+      <div class="offline-banner-actions">
+        <a href="index.html?mode=customer" target="_blank" class="btn ghost sm">Preview Notice (Customer View) ↗</a>
+        <button type="button" class="btn primary sm" id="btnBannerTurnOn" style="background:#2e7d32">Turn Website LIVE ✦</button>
+      </div>
+    </div>
+
+    <!-- Dashboard Title Row -->
+    <div class="dash-head">
+      <div>
+        <h1>Reservations & Bookings</h1>
+        <p>Live floor plan manager for Café Lyria · 166 Crosby St, SoHo</p>
+      </div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <button class="btn primary sm" id="btnViewReservations">✦ Table Bookings (<span id="badgeResCount">0</span>)</button>
+        <button class="btn ghost sm" id="btnViewInquiries">✉ Inquiries (<span id="badgeInqCount">0</span>)</button>
+        <button class="btn ghost sm" id="btnExportCSV">📥 Export CSV</button>
+        <button class="btn ghost sm" id="btnClearData" style="color:#ff7878;border-color:rgba(214,69,69,0.35)" title="Clear all reservations">🗑 Clear All Data</button>
+      </div>
+    </div>
+
+    <!-- Table Reservations View -->
+    <div id="reservationsSection">
+      <!-- Metrics Cards -->
+      <section class="metrics-grid">
+        <div class="metric-card m-today">
+          <div class="metric-label">Today's Bookings</div>
+          <div class="metric-value" id="metricToday">0</div>
+          <div class="metric-sub">Scheduled for today</div>
+        </div>
+        <div class="metric-card m-guests">
+          <div class="metric-label">Guests Expected Today</div>
+          <div class="metric-value" id="metricGuestsToday">0</div>
+          <div class="metric-sub">Total headcount for today</div>
+        </div>
+        <div class="metric-card m-seated">
+          <div class="metric-label">Seated / Completed</div>
+          <div class="metric-value" id="metricSeated">0</div>
+          <div class="metric-sub">Tables welcomed today</div>
+        </div>
+        <div class="metric-card m-total">
+          <div class="metric-label">Total Reservations</div>
+          <div class="metric-value" id="metricTotal">0</div>
+          <div class="metric-sub">Across all upcoming dates</div>
+        </div>
+      </section>
+
+      <!-- Toolbar: Search & Filter Tabs -->
+      <section class="toolbar">
+        <div class="search-box">
+          <span style="opacity:0.6;margin-right:6px">🔍</span>
+          <input type="text" id="searchInput" placeholder="Search by name, phone, email, or #ID...">
+        </div>
+        <div class="filter-pills">
+          <button class="pill-btn active" data-filter="all">All <span class="pill-count" id="countAll">0</span></button>
+          <button class="pill-btn" data-filter="today">Today <span class="pill-count" id="countToday">0</span></button>
+          <button class="pill-btn" data-filter="upcoming">Upcoming <span class="pill-count" id="countUpcoming">0</span></button>
+          <button class="pill-btn" data-filter="Confirmed">Confirmed <span class="pill-count" id="countConfirmed">0</span></button>
+          <button class="pill-btn" data-filter="Seated">Seated <span class="pill-count" id="countSeated">0</span></button>
+          <button class="pill-btn" data-filter="Cancelled">Cancelled <span class="pill-count" id="countCancelled">0</span></button>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px">
+          <span style="font-size:0.75rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.08em">Sort</span>
+          <select id="sortSelect" style="background:var(--card);border:1px solid var(--line);color:var(--cream);padding:7px 14px;border-radius:999px;font-size:0.82rem;font-weight:600;outline:none;cursor:pointer">
+            <option value="recent">Recently Submitted (Newest First)</option>
+            <option value="dateAsc">Visit Date (Upcoming First)</option>
+            <option value="dateDesc">Visit Date (Latest First)</option>
+            <option value="guests">Party Size (Largest First)</option>
+          </select>
+        </div>
+      </section>
+
+      <!-- Reservations Table -->
+      <section class="table-card">
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Guest & Contact</th>
+                <th>Date & Time</th>
+                <th>Party</th>
+                <th>Seating</th>
+                <th>Special Notes</th>
+                <th>Status</th>
+                <th style="text-align:right">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="reservationsTbody">
+              <!-- Dynamically populated rows -->
+            </tbody>
+          </table>
+        </div>
+        <div id="emptyNotice" class="empty-state" style="display:none">
+          <div style="font-size:2.4rem">☕</div>
+          <h3>No reservations found</h3>
+          <p>No bookings match your current filter or search criteria.</p>
+        </div>
+      </section>
+    </div>
+
+    <!-- Customer Inquiries View -->
+    <div id="inquiriesSection" style="display:none">
+      <section class="toolbar">
+        <div class="search-box">
+          <span style="opacity:0.6;margin-right:6px">🔍</span>
+          <input type="text" id="searchInqInput" placeholder="Search inquiries by sender, email, subject...">
+        </div>
+        <div class="filter-pills">
+          <button class="pill-btn active inq-filter-btn" data-inqfilter="all">All Inquiries <span class="pill-count" id="countInqAll">0</span></button>
+          <button class="pill-btn inq-filter-btn" data-inqfilter="Unread">Unread <span class="pill-count" id="countInqUnread">0</span></button>
+          <button class="pill-btn inq-filter-btn" data-inqfilter="Replied">Replied <span class="pill-count" id="countInqReplied">0</span></button>
+        </div>
+      </section>
+
+      <section class="table-card">
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Sender & Contact</th>
+                <th>Topic / Reason</th>
+                <th>Message Preview</th>
+                <th>Received Date</th>
+                <th>Status</th>
+                <th style="text-align:right">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="inquiriesTbody">
+              <!-- Dynamically populated rows -->
+            </tbody>
+          </table>
+        </div>
+        <div id="emptyInquiriesNotice" class="empty-state" style="display:none">
+          <div style="font-size:2.4rem">✉</div>
+          <h3>No customer inquiries found</h3>
+          <p>Inquiries submitted via the storefront Contact tab will appear here in real time.</p>
+        </div>
+      </section>
+    </div>
+
+  </main>
+
+  <!-- Add New Reservation Modal -->
+  <div class="modal-overlay" id="addModal">
+    <div class="modal-card">
+      <div class="modal-head">
+        <h2>New Reservation / Walk-in</h2>
+        <button class="close-btn" id="closeAddModal">×</button>
+      </div>
+      <form class="modal-form" id="addReservationForm">
+        <div class="m-field">
+          <label>Guest Name</label>
+          <input required id="addName" placeholder="e.g. Elena Rostova">
+        </div>
+        <div class="m-field">
+          <label>Phone Number</label>
+          <input required id="addPhone" placeholder="(212) 555-0192">
+        </div>
+        <div class="m-field full">
+          <label>Email Address</label>
+          <input required type="email" id="addEmail" placeholder="guest@example.com">
+        </div>
+        <div class="m-field">
+          <label>Date</label>
+          <input required type="date" id="addDate">
+        </div>
+        <div class="m-field">
+          <label>Time Slot</label>
+          <select required id="addTime">
+            <option value="08:00 AM">08:00 AM · Morning Brew</option>
+            <option value="09:30 AM">09:30 AM · Breakfast & Pastry</option>
+            <option value="11:00 AM" selected>11:00 AM · Midday Brunch</option>
+            <option value="12:30 PM">12:30 PM · Lunch & Freddo</option>
+            <option value="02:00 PM">02:00 PM · Afternoon Espresso</option>
+            <option value="03:30 PM">03:30 PM · Coffee & Matcha</option>
+            <option value="05:00 PM">05:00 PM · Golden Hour</option>
+            <option value="06:30 PM">06:30 PM · Evening Pause</option>
+          </select>
+        </div>
+        <div class="m-field">
+          <label>Party Size</label>
+          <select required id="addGuests">
+            <option value="1 Guest">1 Guest</option>
+            <option value="2 Guests" selected>2 Guests</option>
+            <option value="3 Guests">3 Guests</option>
+            <option value="4 Guests">4 Guests</option>
+            <option value="5-6 Guests">5–6 Guests</option>
+            <option value="7+ Group">7+ Guests</option>
+          </select>
+        </div>
+        <div class="m-field">
+          <label>Seating Preference</label>
+          <select id="addSeating">
+            <option value="Window Bar">Window Bar</option>
+            <option value="Cozy Lounge" selected>Cozy Lounge</option>
+            <option value="Espresso Counter">Espresso Counter</option>
+            <option value="Sidewalk Patio">Sidewalk Patio</option>
+          </select>
+        </div>
+        <div class="m-field full">
+          <label>Notes / Occasion</label>
+          <textarea id="addNotes" placeholder="Dietary restrictions, anniversary, quiet table, etc." rows="2"></textarea>
+        </div>
+        <div class="modal-foot">
+          <button type="button" class="btn ghost" id="btnCancelAdd">Cancel</button>
+          <button type="submit" class="btn primary">Add Reservation ✦</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Detail View Modal -->
+  <div class="modal-overlay" id="detailModal">
+    <div class="modal-card">
+      <div class="modal-head">
+        <div>
+          <span class="code-tag" id="detailCode">#LYR-0000</span>
+          <h2 id="detailName" style="margin-top:6px">Guest Details</h2>
+        </div>
+        <button class="close-btn" id="closeDetailModal">×</button>
+      </div>
+
+      <div class="detail-grid">
+        <div class="detail-item">
+          <small>Date & Time</small>
+          <b id="detailDateTime">—</b>
+        </div>
+        <div class="detail-item">
+          <small>Party Size</small>
+          <b id="detailGuests">—</b>
+        </div>
+        <div class="detail-item">
+          <small>Seating Area</small>
+          <b id="detailSeating">—</b>
+        </div>
+        <div class="detail-item">
+          <small>Current Status</small>
+          <b id="detailStatus">—</b>
+        </div>
+        <div class="detail-item">
+          <small>Phone</small>
+          <b id="detailPhone">—</b>
+        </div>
+        <div class="detail-item">
+          <small>Email</small>
+          <b id="detailEmail">—</b>
+        </div>
+      </div>
+
+      <div style="margin-bottom:8px">
+        <small style="color:var(--muted);text-transform:uppercase;font-size:.72rem;font-weight:700">Special Notes</small>
+      </div>
+      <div class="notes-box" id="detailNotes">No special requests noted.</div>
+
+      <div style="margin:14px 0 8px">
+        <small style="color:var(--accent2);text-transform:uppercase;font-size:.72rem;font-weight:700">📱 Automated Customer SMS Dispatch & 1-Hr Policy</small>
+      </div>
+      <div class="notes-box" id="detailSmsLog" style="background:rgba(255,255,255,0.03);font-size:0.83rem;line-height:1.5;margin-bottom:18px">—</div>
+
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px">
+        <div style="display:flex;gap:8px">
+          <a class="btn ghost sm" id="btnCallGuest" href="#">📞 Call</a>
+          <a class="btn ghost sm" id="btnEmailGuest" href="#">✉ Email</a>
+        </div>
+        <button type="button" class="btn primary sm" id="btnCloseDetail">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Change Passcode Modal -->
+  <div class="modal-overlay" id="changePasscodeModal">
+    <div class="modal-card" style="max-width:440px">
+      <div class="modal-head">
+        <div>
+          <h2>Change Owner Passcode</h2>
+          <small style="color:var(--muted)">Set a secure secret PIN for accessing this portal</small>
+        </div>
+        <button class="close-btn" id="closePasscodeModal">×</button>
+      </div>
+      <form id="changePasscodeForm">
+        <div style="display:flex;flex-direction:column;gap:14px;padding:14px 0 18px">
+          <div class="m-field">
+            <label>Current Passcode</label>
+            <input type="password" id="currentPasscodeInput" required placeholder="Enter current passcode (default: 1660)">
+          </div>
+          <div class="m-field">
+            <label>New Passcode (min 4 characters)</label>
+            <input type="password" id="newPasscodeInput" required minlength="4" placeholder="Enter new passcode">
+          </div>
+          <div class="m-field">
+            <label>Confirm New Passcode</label>
+            <input type="password" id="confirmPasscodeInput" required minlength="4" placeholder="Re-enter new passcode">
+          </div>
+          <div id="changePasscodeError" style="display:none;color:#ff8585;font-size:0.84rem;font-weight:600;background:rgba(214,69,69,0.15);padding:9px 12px;border-radius:10px;border:1px solid rgba(214,69,69,0.35)"></div>
+        </div>
+        <div class="modal-foot">
+          <button type="button" class="btn ghost sm" id="btnCancelPasscode">Cancel</button>
+          <button type="submit" class="btn primary sm">Save New Passcode</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Customer Inquiry Detail Modal -->
+  <div class="modal-overlay" id="inquiryDetailModal">
+    <div class="modal-card" style="max-width:520px">
+      <div class="modal-head">
+        <div>
+          <span style="font-size:0.75rem;font-weight:700;color:var(--accent2);letter-spacing:.08em;text-transform:uppercase" id="inqDetailCode">#INQ-0000</span>
+          <h2 style="margin:2px 0 0" id="inqDetailSubject">General Inquiry</h2>
+        </div>
+        <button class="close-btn" id="closeInquiryDetailModal">×</button>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:14px;padding:10px 0 20px">
+        <div style="background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px">
+          <div style="display:flex;justify-content:space-between;margin-bottom:6px">
+            <strong style="color:#fff" id="inqDetailName">Guest Name</strong>
+            <span style="color:var(--muted);font-size:0.8rem" id="inqDetailDate">—</span>
+          </div>
+          <div style="font-size:0.85rem;color:var(--muted);display:flex;gap:14px;flex-wrap:wrap">
+            <span>✉ <a href="#" id="inqDetailEmail" style="color:var(--accent2)">email@domain.com</a></span>
+            <span id="inqDetailPhoneWrap">📞 <span id="inqDetailPhone">—</span></span>
+          </div>
+        </div>
+        <div>
+          <label style="font-size:0.75rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;display:block;margin-bottom:6px">Message Content</label>
+          <div id="inqDetailMessage" style="background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;font-size:0.9rem;line-height:1.7;color:var(--cream);white-space:pre-wrap"></div>
+        </div>
+      </div>
+      <div class="modal-foot">
+        <button type="button" class="btn ghost sm" id="btnToggleInqStatus">Mark as Replied</button>
+        <a href="#" class="btn primary sm" id="btnReplyInquiryEmail">✉ Reply via Email</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Alert -->
+  <div class="toast" id="toast">
+    <span id="toastIcon">✓</span>
+    <span id="toastMsg">Action completed successfully</span>
+  </div>
+
+  <script>
+    const STORAGE_KEY = 'cafe_lyria_reservations';
+
+    // Seed Data
+    function getTodayString(offsetDays = 0) {
+      const d = new Date();
+      d.setDate(d.getDate() + offsetDays);
+      return d.toISOString().split('T')[0];
+    }
+
+    const defaultReservations = [
+      {
+        id: '#LYR-9421',
+        name: 'Sophia Martinez',
+        email: 'sophia.m@gmail.com',
+        phone: '+1 (212) 555-0143',
+        guests: '2 Guests',
+        date: getTodayString(0),
+        time: '11:00 AM',
+        seating: 'Window Bar',
+        notes: 'Anniversary visit · please reserve corner window view',
+        status: 'Confirmed',
+        createdAt: new Date().toISOString()
+      },
+      {
+        id: '#LYR-8812',
+        name: 'Liam Chen',
+        email: 'lchen@outlook.com',
+        phone: '+1 (917) 555-8891',
+        guests: '4 Guests',
+        date: getTodayString(0),
+        time: '01:00 PM',
+        seating: 'Cozy Lounge',
+        notes: 'Team coffee meeting · Freddo espresso and croissants',
+        status: 'Seated',
+        createdAt: new Date().toISOString()
+      },
+      {
+        id: '#LYR-7630',
+        name: 'Emma Watson',
+        email: 'emma.w@sohoart.com',
+        phone: '+1 (646) 555-3310',
+        guests: '1 Guest',
+        date: getTodayString(0),
+        time: '03:30 PM',
+        seating: 'Espresso Counter',
+        notes: 'Solo work session · reliable Wi-Fi needed',
+        status: 'Confirmed',
+        createdAt: new Date().toISOString()
+      },
+      {
+        id: '#LYR-6194',
+        name: 'Marcus Vance',
+        email: 'mvance@crosbylaw.com',
+        phone: '+1 (212) 555-7722',
+        guests: '6 Guests',
+        date: getTodayString(1),
+        time: '12:30 PM',
+        seating: 'Sidewalk Patio',
+        notes: 'Family brunch · high chair requested',
+        status: 'Confirmed',
+        createdAt: new Date().toISOString()
+      },
+      {
+        id: '#LYR-5042',
+        name: 'Chloe Dubois',
+        email: 'chloe.dubois@paris.fr',
+        phone: '+1 (347) 555-9014',
+        guests: '2 Guests',
+        date: getTodayString(2),
+        time: '05:00 PM',
+        seating: 'Cozy Lounge',
+        notes: 'First time visiting SoHo · excited for Greek pastries',
+        status: 'Confirmed',
+        createdAt: new Date().toISOString()
+      }
+    ];
+
+    function loadReservations() {
+      const data = localStorage.getItem(STORAGE_KEY);
+      if (!data) {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(defaultReservations));
+        return defaultReservations;
+      }
+      try {
+        return JSON.parse(data);
+      } catch (e) {
+        return defaultReservations;
+      }
+    }
+
+    function saveReservations(items) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
+      renderDashboard();
+    }
+
+    function showToast(msg, icon = '✓') {
+      const toast = document.getElementById('toast');
+      document.getElementById('toastMsg').textContent = msg;
+      document.getElementById('toastIcon').textContent = icon;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 3200);
+    }
+
+    // Filter and Search State
+    let currentFilter = 'all';
+    let searchQuery = '';
+
+    function renderDashboard() {
+      const allItems = loadReservations();
+      const todayStr = getTodayString(0);
+
+      // Compute metrics
+      let todayCount = 0;
+      let todayGuests = 0;
+      let seatedCount = 0;
+
+      allItems.forEach(r => {
+        if (r.date === todayStr && r.status !== 'Cancelled') {
+          todayCount++;
+          const match = r.guests.match(/\d+/);
+          todayGuests += match ? parseInt(match[0], 10) : 2;
+        }
+        if (r.status === 'Seated' || r.status === 'Completed') {
+          seatedCount++;
+        }
+      });
+
+      document.getElementById('metricToday').textContent = todayCount;
+      document.getElementById('metricGuestsToday').textContent = todayGuests;
+      document.getElementById('metricSeated').textContent = seatedCount;
+      document.getElementById('metricTotal').textContent = allItems.filter(r => r.status !== 'Cancelled').length;
+
+      // Update Counts on pills
+      document.getElementById('countAll').textContent = allItems.length;
+      document.getElementById('countToday').textContent = allItems.filter(r => r.date === todayStr).length;
+      document.getElementById('countUpcoming').textContent = allItems.filter(r => r.date >= todayStr && r.status !== 'Cancelled').length;
+      document.getElementById('countConfirmed').textContent = allItems.filter(r => r.status === 'Confirmed').length;
+      document.getElementById('countSeated').textContent = allItems.filter(r => r.status === 'Seated').length;
+      document.getElementById('countCancelled').textContent = allItems.filter(r => r.status === 'Cancelled').length;
+
+      const badgeRes = document.getElementById('badgeResCount');
+      if (badgeRes) badgeRes.textContent = allItems.length;
+      if (typeof updateInquiryCountBadge === 'function') updateInquiryCountBadge();
+
+      // Filtered items
+      let filtered = allItems.filter(item => {
+        // Status/Date filter
+        if (currentFilter === 'today' && item.date !== todayStr) return false;
+        if (currentFilter === 'upcoming' && (item.date < todayStr || item.status === 'Cancelled')) return false;
+        if (['Confirmed', 'Seated', 'Completed', 'Cancelled'].includes(currentFilter) && item.status !== currentFilter) return false;
+
+        // Search Query
+        if (searchQuery) {
+          const q = searchQuery.toLowerCase();
+          const matchName = item.name.toLowerCase().includes(q);
+          const matchId = item.id.toLowerCase().includes(q);
+          const matchPhone = (item.phone || '').toLowerCase().includes(q);
+          const matchEmail = (item.email || '').toLowerCase().includes(q);
+          const matchNotes = (item.notes || '').toLowerCase().includes(q);
+          if (!matchName && !matchId && !matchPhone && !matchEmail && !matchNotes) return false;
+        }
+
+        return true;
+      });
+
+      // Sort
+      const sortSelect = document.getElementById('sortSelect');
+      const sortMode = sortSelect ? sortSelect.value : 'recent';
+      if (sortMode === 'recent') {
+        filtered.sort((a, b) => (b.createdAt || '').localeCompare(a.createdAt || ''));
+      } else if (sortMode === 'dateAsc') {
+        filtered.sort((a, b) => (a.date + ' ' + a.time).localeCompare(b.date + ' ' + b.time));
+      } else if (sortMode === 'dateDesc') {
+        filtered.sort((a, b) => (b.date + ' ' + b.time).localeCompare(a.date + ' ' + a.time));
+      } else if (sortMode === 'guests') {
+        const getNum = str => parseInt((str.match(/\d+/) || [1])[0], 10);
+        filtered.sort((a, b) => getNum(b.guests) - getNum(a.guests));
+      }
+
+      const tbody = document.getElementById('reservationsTbody');
+      const emptyNotice = document.getElementById('emptyNotice');
+
+      if (filtered.length === 0) {
+        tbody.innerHTML = '';
+        emptyNotice.style.display = 'block';
+        return;
+      }
+
+      emptyNotice.style.display = 'none';
+      const lastBookingId = localStorage.getItem('cafe_lyria_last_booking_id');
+
+      tbody.innerHTML = filtered.map(r => {
+        const isNew = (lastBookingId && r.id === lastBookingId) || (r.createdAt && (Date.now() - new Date(r.createdAt).getTime() < 1800000));
+        const rowStyle = isNew ? 'style="background:rgba(61,220,132,0.06);box-shadow:inset 3px 0 0 #3ddc84"' : '';
+        const newBadge = isNew ? '<span style="background:rgba(61,220,132,0.18);color:#3ddc84;font-size:0.68rem;font-weight:700;padding:2px 7px;border-radius:999px;border:1px solid rgba(61,220,132,0.4);margin-left:6px;display:inline-block">✦ NEW</span>' : '';
+
+        return `
+        <tr ${isNew ? 'class="row-pulse-new"' : ''} ${rowStyle}>
+          <td><span class="code-tag">${r.id}</span>${newBadge}</td>
+          <td>
+            <div class="guest-info">
+              <b>${escapeHtml(r.name)}</b>
+              <span>${escapeHtml(r.phone || r.email || '')}</span>
+            </div>
+          </td>
+          <td>
+            <span class="date-badge">${formatDate(r.date)}</span>
+            <span class="time-badge">${escapeHtml(r.time)}</span>
+          </td>
+          <td>
+            <span class="party-chip">👥 ${escapeHtml(r.guests)}</span>
+          </td>
+          <td>
+            <span class="seating-chip">🪑 ${escapeHtml(r.seating || 'Cozy Lounge')}</span>
+          </td>
+          <td>
+            <div class="notes-preview" title="${escapeHtml(r.notes || 'None')}">${escapeHtml(r.notes || '—')}</div>
+          </td>
+          <td>
+            <select class="status-select ${r.status}" onchange="changeStatus('${r.id}', this.value)">
+              <option value="Confirmed" ${r.status === 'Confirmed' ? 'selected' : ''}>Confirmed</option>
+              <option value="Seated" ${r.status === 'Seated' ? 'selected' : ''}>Seated</option>
+              <option value="Completed" ${r.status === 'Completed' ? 'selected' : ''}>Completed</option>
+              <option value="Cancelled" ${r.status === 'Cancelled' ? 'selected' : ''}>Cancelled</option>
+            </select>
+            ${r.status === 'Cancelled' && r.cancelledByCustomer ? '<div style="font-size:0.67rem;color:#f87171;font-weight:700;margin-top:4px">📱 Cancelled via 1-hr SMS</div>' : ''}
+          </td>
+          <td style="text-align:right">
+            <div class="row-actions" style="justify-content:flex-end">
+              <button class="icon-btn" onclick="openDetailModal('${r.id}')" title="View details">👁</button>
+              <button class="icon-btn delete" onclick="deleteReservation('${r.id}')" title="Delete booking">✕</button>
+            </div>
+          </td>
+        </tr>`;
+      }).join('');
+    }
+
+    function formatDate(dateStr) {
+      if (!dateStr) return '—';
+      try {
+        const parts = dateStr.split('-');
+        if (parts.length === 3) {
+          const d = new Date(parts[0], parts[1] - 1, parts[2]);
+          const today = getTodayString(0);
+          if (dateStr === today) return 'Today, ' + d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+          return d.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
+        }
+      } catch (e) {}
+      return dateStr;
+    }
+
+    function escapeHtml(str) {
+      if (!str) return '';
+      return String(str).replace(/[&<>"']/g, m => ({
+        '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+      })[m]);
+    }
+
+    // Status change handler
+    window.changeStatus = function(id, newStatus) {
+      const items = loadReservations();
+      const target = items.find(r => r.id === id);
+      if (target) {
+        target.status = newStatus;
+        saveReservations(items);
+        showToast(`Reservation ${id} updated to ${newStatus}`);
+      }
+    };
+
+    // Delete handler
+    window.deleteReservation = function(id) {
+      if (confirm(`Are you sure you want to delete reservation ${id}?`)) {
+        let items = loadReservations();
+        items = items.filter(r => r.id !== id);
+        saveReservations(items);
+        showToast(`Reservation ${id} deleted`);
+      }
+    };
+
+    // Detail Modal
+    window.openDetailModal = function(id) {
+      const items = loadReservations();
+      const r = items.find(item => item.id === id);
+      if (!r) return;
+
+      document.getElementById('detailCode').textContent = r.id;
+      document.getElementById('detailName').textContent = r.name;
+      document.getElementById('detailDateTime').textContent = `${formatDate(r.date)} at ${r.time}`;
+      document.getElementById('detailGuests').textContent = r.guests;
+      document.getElementById('detailSeating').textContent = r.seating || 'Cozy Lounge';
+      document.getElementById('detailStatus').textContent = r.status;
+      document.getElementById('detailPhone').textContent = r.phone || 'None';
+      document.getElementById('detailEmail').textContent = r.email || 'None';
+      document.getElementById('detailNotes').textContent = r.notes || 'No special requests noted.';
+
+      const smsLogEl = document.getElementById('detailSmsLog');
+      if (smsLogEl) {
+        let smsHtml = `
+          <div>• <strong>Customer Phone (SMS):</strong> Dispatched to <code>${escapeHtml(r.phone || 'Customer mobile')}</code> (includes 1-hr cancellation link)</div>
+          <div style="margin-top:4px">• <strong>Customer Email:</strong> Dispatched to <code>${escapeHtml(r.email || 'Customer email')}</code> (includes calendar invite & table details)</div>
+          <div style="margin-top:4px">• <strong>Owner Admin Panel:</strong> Delivered to Owner Dashboard with chime & notification ping</div>`;
+        if (r.status === 'Cancelled') {
+          if (r.cancelledByCustomer) {
+            smsHtml += `<div style="margin-top:6px;color:#f87171">• <strong>Status:</strong> Cancelled by guest via 1-hr SMS cancellation link ${r.cancelledAt ? '(' + new Date(r.cancelledAt).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' }) + ')' : ''}. Table auto-released.</div>`;
+            smsHtml += `<div style="margin-top:4px;color:#34d399">• <strong>Cancellation Dispatches:</strong> Confirmation receipts sent to customer mobile & email.</div>`;
+          } else {
+            smsHtml += `<div style="margin-top:6px;color:#f87171">• <strong>Status:</strong> Cancelled manually by café staff.</div>`;
+          }
+        } else {
+          smsHtml += `<div style="margin-top:6px;color:#34d399">• <strong>1-Hour Policy:</strong> Guest can self-cancel via SMS/Email up to 1 hr before arrival (${escapeHtml(r.cancellationCutoffFormatted || '1 hr prior to arrival')}).</div>`;
+        }
+        smsLogEl.innerHTML = smsHtml;
+      }
+
+      document.getElementById('btnCallGuest').href = r.phone ? `tel:${r.phone}` : '#';
+      document.getElementById('btnEmailGuest').href = r.email ? `mailto:${r.email}?subject=Café Lyria Reservation ${r.id}` : '#';
+
+      document.getElementById('detailModal').classList.add('open');
+    };
+
+    document.getElementById('closeDetailModal').onclick = () => document.getElementById('detailModal').classList.remove('open');
+    document.getElementById('btnCloseDetail').onclick = () => document.getElementById('detailModal').classList.remove('open');
+
+    // Add Reservation Modal
+    const addModal = document.getElementById('addModal');
+    document.getElementById('btnOpenAddModal').onclick = () => {
+      document.getElementById('addDate').min = getTodayString(0);
+      document.getElementById('addDate').value = getTodayString(0);
+      addModal.classList.add('open');
+    };
+    document.getElementById('closeAddModal').onclick = () => addModal.classList.remove('open');
+    document.getElementById('btnCancelAdd').onclick = () => addModal.classList.remove('open');
+
+    document.getElementById('addReservationForm').onsubmit = (e) => {
+      e.preventDefault();
+      const name = document.getElementById('addName').value.trim();
+      const phone = document.getElementById('addPhone').value.trim();
+      const email = document.getElementById('addEmail').value.trim();
+      const date = document.getElementById('addDate').value;
+      const time = document.getElementById('addTime').value;
+      const guests = document.getElementById('addGuests').value;
+      const seating = document.getElementById('addSeating').value;
+      const notes = document.getElementById('addNotes').value.trim();
+
+      const newId = '#LYR-' + Math.floor(1000 + Math.random() * 9000);
+      const newBooking = {
+        id: newId,
+        name,
+        email,
+        phone,
+        date,
+        time,
+        guests,
+        seating,
+        notes,
+        status: 'Confirmed',
+        createdAt: new Date().toISOString()
+      };
+
+      const items = loadReservations();
+      items.unshift(newBooking);
+      saveReservations(items);
+
+      addModal.classList.remove('open');
+      document.getElementById('addReservationForm').reset();
+      showToast(`Reservation created for ${name} (${newId})`);
+    };
+
+    // Filter Pills
+    document.querySelectorAll('.pill-btn').forEach(btn => {
+      btn.onclick = () => {
+        document.querySelectorAll('.pill-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentFilter = btn.dataset.filter;
+        renderDashboard();
+      };
+    });
+
+    // Search Box
+    document.getElementById('searchInput').oninput = (e) => {
+      searchQuery = e.target.value.trim();
+      renderDashboard();
+    };
+
+    // Sort Dropdown
+    const sortSelectEl = document.getElementById('sortSelect');
+    if (sortSelectEl) {
+      sortSelectEl.onchange = () => renderDashboard();
+    }
+
+    // Clear All Data
+    document.getElementById('btnClearData').onclick = () => {
+      const currentCount = loadReservations().length;
+      if (currentCount === 0) {
+        showToast('Reservation list is already empty', 'ℹ️');
+        return;
+      }
+      if (confirm(`Are you sure you want to clear all ${currentCount} reservation(s)? This will remove all bookings from the system.`)) {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify([]));
+        renderDashboard();
+        showToast('All reservation data has been cleared', '🗑');
+      }
+    };
+
+    // Export CSV
+    document.getElementById('btnExportCSV').onclick = () => {
+      const items = loadReservations();
+      if (!items.length) {
+        showToast('No reservations to export', '⚠️');
+        return;
+      }
+      const headers = ['ID', 'Name', 'Phone', 'Email', 'Date', 'Time', 'Party Size', 'Seating', 'Status', 'Notes'];
+      const rows = items.map(r => [
+        `"${r.id}"`,
+        `"${r.name.replace(/"/g, '""')}"`,
+        `"${(r.phone || '').replace(/"/g, '""')}"`,
+        `"${(r.email || '').replace(/"/g, '""')}"`,
+        `"${r.date}"`,
+        `"${r.time}"`,
+        `"${r.guests}"`,
+        `"${(r.seating || '').replace(/"/g, '""')}"`,
+        `"${r.status}"`,
+        `"${(r.notes || '').replace(/"/g, '""')}"`
+      ]);
+
+      const csvContent = 'data:text/csv;charset=utf-8,' + [headers.join(','), ...rows.map(e => e.join(','))].join('\n');
+      const encodedUri = encodeURI(csvContent);
+      const link = document.createElement('a');
+      link.setAttribute('href', encodedUri);
+      link.setAttribute('download', `cafe_lyria_reservations_${getTodayString(0)}.csv`);
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      showToast('Reservations exported to CSV');
+    };
+
+    // Live Clock
+    function updateClock() {
+      const clockEl = document.getElementById('clockDisplay');
+      if (clockEl) {
+        const now = new Date();
+        clockEl.textContent = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }) + ' · NYC';
+      }
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+
+    // ============================================
+    // Real-Time Audio Chime & Desktop Notifications
+    // ============================================
+    function playNotificationChime(isAlert = false) {
+      try {
+        const AudioCtx = window.AudioContext || window.webkitAudioContext;
+        if (!AudioCtx) return;
+        const ctx = new AudioCtx();
+        if (ctx.state === 'suspended') {
+          ctx.resume();
+        }
+        const now = ctx.currentTime;
+        
+        if (isAlert) {
+          // Warning chime for cancellations (D5 to A4)
+          const o1 = ctx.createOscillator();
+          const g1 = ctx.createGain();
+          o1.type = 'sine';
+          o1.frequency.setValueAtTime(587.33, now);
+          g1.gain.setValueAtTime(0.18, now);
+          g1.gain.exponentialRampToValueAtTime(0.001, now + 0.4);
+          o1.connect(g1);
+          g1.connect(ctx.destination);
+          o1.start(now);
+          o1.stop(now + 0.4);
+
+          const o2 = ctx.createOscillator();
+          const g2 = ctx.createGain();
+          o2.type = 'sine';
+          o2.frequency.setValueAtTime(440.00, now + 0.15);
+          g2.gain.setValueAtTime(0.2, now + 0.15);
+          g2.gain.exponentialRampToValueAtTime(0.001, now + 0.6);
+          o2.connect(g2);
+          g2.connect(ctx.destination);
+          o2.start(now + 0.15);
+          o2.stop(now + 0.6);
+        } else {
+          // Cheerful café chime for new table reservations (G5 to C6)
+          const o1 = ctx.createOscillator();
+          const g1 = ctx.createGain();
+          o1.type = 'sine';
+          o1.frequency.setValueAtTime(783.99, now);
+          g1.gain.setValueAtTime(0.16, now);
+          g1.gain.exponentialRampToValueAtTime(0.001, now + 0.4);
+          o1.connect(g1);
+          g1.connect(ctx.destination);
+          o1.start(now);
+          o1.stop(now + 0.4);
+
+          const o2 = ctx.createOscillator();
+          const g2 = ctx.createGain();
+          o2.type = 'sine';
+          o2.frequency.setValueAtTime(1046.50, now + 0.12);
+          g2.gain.setValueAtTime(0.22, now + 0.12);
+          g2.gain.exponentialRampToValueAtTime(0.001, now + 0.75);
+          o2.connect(g2);
+          g2.connect(ctx.destination);
+          o2.start(now + 0.12);
+          o2.stop(now + 0.75);
+        }
+      } catch(e) {
+        console.log('Audio chime not available:', e);
+      }
+    }
+
+    function requestDesktopNotificationPermission() {
+      if ('Notification' in window && Notification.permission === 'default') {
+        Notification.requestPermission();
+      }
+    }
+
+    function sendDesktopNotification(title, body) {
+      if ('Notification' in window && Notification.permission === 'granted') {
+        try {
+          new Notification(title, {
+            body: body,
+            icon: 'favicon-32x32.png'
+          });
+        } catch(e){}
+      }
+    }
+
+    // ============================================
+    // Owner Notification Center Management
+    // ============================================
+    const NOTIFS_STORAGE_KEY = 'cafe_lyria_owner_notifications';
+
+    function loadOwnerNotifications() {
+      try {
+        const raw = localStorage.getItem(NOTIFS_STORAGE_KEY);
+        if (raw) return JSON.parse(raw);
+      } catch(e){}
+      return [];
+    }
+
+    function saveOwnerNotifications(list) {
+      try {
+        localStorage.setItem(NOTIFS_STORAGE_KEY, JSON.stringify(list));
+      } catch(e){}
+      renderNotificationsUI();
+    }
+
+    function addOwnerNotification(notif) {
+      const list = loadOwnerNotifications();
+      list.unshift({
+        id: 'notif-' + Date.now(),
+        unread: true,
+        timestamp: new Date().toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' }),
+        ...notif
+      });
+      if (list.length > 25) list.pop();
+      saveOwnerNotifications(list);
+    }
+
+    function renderNotificationsUI() {
+      const list = loadOwnerNotifications();
+      const unreadCount = list.filter(n => n.unread).length;
+      const badge = document.getElementById('notifBadge');
+      const notifListEl = document.getElementById('notifList');
+
+      if (badge) {
+        if (unreadCount > 0) {
+          badge.textContent = unreadCount > 9 ? '9+' : unreadCount;
+          badge.style.display = 'block';
+        } else {
+          badge.style.display = 'none';
+        }
+      }
+
+      if (notifListEl) {
+        if (list.length === 0) {
+          notifListEl.innerHTML = `
+            <div style="text-align:center;padding:24px 10px;color:var(--muted);font-size:0.8rem">
+              No new alerts. When customers reserve or cancel, notifications ring here in real-time.
+            </div>`;
+          return;
+        }
+
+        notifListEl.innerHTML = list.map(item => `
+          <div class="notif-item ${item.type === 'cancel' ? 'cancel-res' : 'new-res'}" onclick="handleNotifClick('${item.bookingId || ''}')">
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <strong style="color:#fff;font-size:0.83rem">${escapeHtml(item.title)}</strong>
+              <small style="color:var(--muted);font-size:0.72rem">${item.timestamp}</small>
+            </div>
+            <span style="color:var(--muted);font-size:0.78rem;line-height:1.4">${escapeHtml(item.desc)}</span>
+          </div>
+        `).join('');
+      }
+    }
+
+    window.handleNotifClick = function(bookingId) {
+      if (bookingId && typeof openDetailModal === 'function') {
+        openDetailModal(bookingId);
+      }
+      const dropdown = document.getElementById('notifDropdown');
+      if (dropdown) dropdown.classList.remove('open');
+    };
+
+    // Wire Notification Bell Dropdown Toggle & Clear
+    const btnNotifBell = document.getElementById('btnNotifBell');
+    const notifDropdown = document.getElementById('notifDropdown');
+    const btnClearNotifs = document.getElementById('btnClearNotifs');
+
+    if (btnNotifBell && notifDropdown) {
+      btnNotifBell.addEventListener('click', (e) => {
+        e.stopPropagation();
+        notifDropdown.classList.toggle('open');
+        requestDesktopNotificationPermission();
+        const list = loadOwnerNotifications();
+        list.forEach(n => n.unread = false);
+        saveOwnerNotifications(list);
+      });
+
+      document.addEventListener('click', (e) => {
+        if (!notifDropdown.contains(e.target) && e.target !== btnNotifBell) {
+          notifDropdown.classList.remove('open');
+        }
+      });
+    }
+
+    if (btnClearNotifs) {
+      btnClearNotifs.addEventListener('click', (e) => {
+        e.stopPropagation();
+        saveOwnerNotifications([]);
+      });
+    }
+
+    // Initial render of notifications
+    renderNotificationsUI();
+
+    function handleNewReservationNotification(booking) {
+      if (!booking) return;
+      playNotificationChime(false);
+      showToast(`🔔 NEW RESERVATION: ${booking.name} (${booking.guests}) for ${booking.time} · ${booking.id}`, '✦');
+      addOwnerNotification({
+        title: `New Reservation Confirmed`,
+        desc: `${booking.name} (${booking.guests}) · ${booking.date} at ${booking.time} (${booking.seating || 'Cozy Lounge'}) · ${booking.id}`,
+        bookingId: booking.id,
+        type: 'new'
+      });
+      sendDesktopNotification(
+        `Café Lyria: New Table Reservation`,
+        `${booking.name} reserved ${booking.guests} on ${booking.date} at ${booking.time} (${booking.id})`
+      );
+      renderDashboard();
+    }
+
+    function handleCancelledReservationNotification(booking) {
+      if (!booking) return;
+      playNotificationChime(true);
+      showToast(`📱 TABLE RELEASED: ${booking.id} was cancelled by guest via 1-hr SMS link`, '✕');
+      addOwnerNotification({
+        title: `Table Released (Cancelled)`,
+        desc: `Reservation ${booking.id} (${booking.name}) cancelled by guest via 1-hr SMS link. Table released for walk-ins.`,
+        bookingId: booking.id,
+        type: 'cancel'
+      });
+      sendDesktopNotification(
+        `Café Lyria: Table Cancelled by Guest`,
+        `Reservation ${booking.id} for ${booking.name || 'Guest'} was cancelled via 1-hr SMS link.`
+      );
+      renderDashboard();
+    }
+
+    // Listen to Storage Events (Real-time updates when customer reserves or cancels on index.html)
+    window.addEventListener('storage', (e) => {
+      if (e.key === 'cafe_lyria_latest_notification') {
+        try {
+          const payload = JSON.parse(e.newValue || '{}');
+          if (payload.type === 'new_reservation') {
+            handleNewReservationNotification(payload.booking);
+          } else if (payload.type === 'cancelled_reservation') {
+            handleCancelledReservationNotification(payload.booking);
+          }
+        } catch(err){}
+      } else if (e.key === STORAGE_KEY) {
+        renderDashboard();
+      } else if (e.key === INQUIRIES_STORAGE_KEY) {
+        renderInquiries();
+        updateInquiryCountBadge();
+        playNotificationChime(false);
+        showToast('✉ New customer inquiry received!', '✉');
+        addOwnerNotification({
+          title: `New Customer Inquiry`,
+          desc: `Received inquiry via Contact Form on storefront`,
+          type: 'new'
+        });
+      }
+    });
+
+    // ============================================
+    // Customer Inquiries Management
+    // ============================================
+    const INQUIRIES_STORAGE_KEY = 'cafe_lyria_inquiries';
+
+    const defaultInquiries = [
+      {
+        id: '#INQ-1042',
+        name: 'Julian Montgomery',
+        email: 'j.montgomery@designagency.nyc',
+        phone: '+1 (212) 555-4921',
+        reason: 'Private event',
+        message: 'Hello Café Lyria team, looking to host an intimate evening book launch & reception for ~25 guests next month. Would love to know your private hire options and Greek pastry packages!',
+        status: 'Unread',
+        createdAt: new Date(Date.now() - 3600000 * 4).toISOString()
+      },
+      {
+        id: '#INQ-1038',
+        name: 'Camilla Rossi',
+        email: 'camilla.r@milanomoda.it',
+        phone: '+1 (917) 555-8832',
+        reason: 'Partnership',
+        message: 'Loved my morning Freddo espresso on Crosby St during NY Fashion Week! Reaching out regarding an editorial coffee pop-up feature.',
+        status: 'Replied',
+        createdAt: new Date(Date.now() - 86400000).toISOString()
+      }
+    ];
+
+    function loadInquiries() {
+      const stored = localStorage.getItem(INQUIRIES_STORAGE_KEY);
+      if (!stored) {
+        localStorage.setItem(INQUIRIES_STORAGE_KEY, JSON.stringify(defaultInquiries));
+        return defaultInquiries;
+      }
+      try {
+        return JSON.parse(stored);
+      } catch (e) {
+        return defaultInquiries;
+      }
+    }
+
+    function saveInquiries(items) {
+      localStorage.setItem(INQUIRIES_STORAGE_KEY, JSON.stringify(items));
+      renderInquiries();
+      updateInquiryCountBadge();
+    }
+
+    function updateInquiryCountBadge() {
+      const inqs = loadInquiries();
+      const badge = document.getElementById('badgeInqCount');
+      if (badge) badge.textContent = inqs.length;
+    }
+
+    let inqCurrentFilter = 'all';
+    let inqSearchQuery = '';
+
+    function renderInquiries() {
+      const allInqs = loadInquiries();
+      updateInquiryCountBadge();
+
+      const countAllEl = document.getElementById('countInqAll');
+      const countUnreadEl = document.getElementById('countInqUnread');
+      const countRepliedEl = document.getElementById('countInqReplied');
+      if (countAllEl) countAllEl.textContent = allInqs.length;
+      if (countUnreadEl) countUnreadEl.textContent = allInqs.filter(i => i.status === 'Unread').length;
+      if (countRepliedEl) countRepliedEl.textContent = allInqs.filter(i => i.status === 'Replied').length;
+
+      let filtered = allInqs.filter(item => {
+        if (inqCurrentFilter === 'Unread' && item.status !== 'Unread') return false;
+        if (inqCurrentFilter === 'Replied' && item.status !== 'Replied') return false;
+
+        if (inqSearchQuery) {
+          const q = inqSearchQuery.toLowerCase();
+          const matchName = (item.name || '').toLowerCase().includes(q);
+          const matchEmail = (item.email || '').toLowerCase().includes(q);
+          const matchId = (item.id || '').toLowerCase().includes(q);
+          const matchMsg = (item.message || '').toLowerCase().includes(q);
+          const matchReason = (item.reason || '').toLowerCase().includes(q);
+          if (!matchName && !matchEmail && !matchId && !matchMsg && !matchReason) return false;
+        }
+        return true;
+      });
+
+      const tbody = document.getElementById('inquiriesTbody');
+      const emptyNotice = document.getElementById('emptyInquiriesNotice');
+      if (!tbody) return;
+      tbody.innerHTML = '';
+
+      if (filtered.length === 0) {
+        if (emptyNotice) emptyNotice.style.display = 'block';
+      } else {
+        if (emptyNotice) emptyNotice.style.display = 'none';
+        filtered.forEach(item => {
+          const tr = document.createElement('tr');
+          const isUnread = item.status === 'Unread';
+          const statusBadge = isUnread 
+            ? `<span style="background:rgba(214,69,69,0.18);color:#ff8585;border:1px solid rgba(214,69,69,0.35);padding:4px 10px;border-radius:999px;font-size:0.75rem;font-weight:700">● Unread</span>`
+            : `<span style="background:rgba(61,220,132,0.15);color:#3ddc84;border:1px solid rgba(61,220,132,0.3);padding:4px 10px;border-radius:999px;font-size:0.75rem;font-weight:700">✓ Replied</span>`;
+
+          const dateStr = item.createdAt ? new Date(item.createdAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' }) : '—';
+          const msgSnippet = (item.message || '').length > 60 ? (item.message.substring(0, 60) + '...') : (item.message || '');
+
+          tr.innerHTML = `
+            <td><strong style="color:var(--accent2);letter-spacing:0.04em">${item.id}</strong></td>
+            <td>
+              <div style="font-weight:600;color:#fff">${item.name}</div>
+              <div style="font-size:0.78rem;color:var(--muted)">${item.email} ${item.phone ? '· ' + item.phone : ''}</div>
+            </td>
+            <td><span style="background:rgba(255,255,255,0.08);padding:3px 8px;border-radius:6px;font-size:0.78rem;font-weight:600;color:var(--cream)">${item.reason}</span></td>
+            <td><div class="notes-preview" title="${item.message}">${msgSnippet}</div></td>
+            <td style="font-size:0.82rem;color:var(--muted)">${dateStr}</td>
+            <td>${statusBadge}</td>
+            <td style="text-align:right">
+              <div class="row-actions" style="justify-content:flex-end">
+                <button type="button" class="icon-btn" onclick="openInquiryDetail('${item.id}')" title="View inquiry message">👁</button>
+                <button type="button" class="icon-btn" onclick="toggleInquiryStatus('${item.id}')" title="Toggle status (Unread/Replied)">${isUnread ? '✓' : '↩'}</button>
+                <button type="button" class="icon-btn delete" onclick="deleteInquiry('${item.id}')" title="Delete inquiry">✕</button>
+              </div>
+            </td>
+          `;
+          tbody.appendChild(tr);
+        });
+      }
+    }
+
+    // View Switching
+    const btnViewReservations = document.getElementById('btnViewReservations');
+    const btnViewInquiries = document.getElementById('btnViewInquiries');
+    const reservationsSection = document.getElementById('reservationsSection');
+    const inquiriesSection = document.getElementById('inquiriesSection');
+
+    function switchMainView(view) {
+      if (view === 'reservations') {
+        if (btnViewReservations) { btnViewReservations.className = 'btn primary sm'; }
+        if (btnViewInquiries) { btnViewInquiries.className = 'btn ghost sm'; }
+        if (reservationsSection) reservationsSection.style.display = 'block';
+        if (inquiriesSection) inquiriesSection.style.display = 'none';
+        renderDashboard();
+      } else {
+        if (btnViewReservations) { btnViewReservations.className = 'btn ghost sm'; }
+        if (btnViewInquiries) { btnViewInquiries.className = 'btn primary sm'; }
+        if (reservationsSection) reservationsSection.style.display = 'none';
+        if (inquiriesSection) inquiriesSection.style.display = 'block';
+        renderInquiries();
+      }
+    }
+
+    if (btnViewReservations) {
+      btnViewReservations.addEventListener('click', () => switchMainView('reservations'));
+    }
+    if (btnViewInquiries) {
+      btnViewInquiries.addEventListener('click', () => switchMainView('inquiries'));
+    }
+
+    // Inquiry Filters
+    document.querySelectorAll('.inq-filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.inq-filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        inqCurrentFilter = btn.dataset.inqfilter;
+        renderInquiries();
+      });
+    });
+
+    const searchInqInput = document.getElementById('searchInqInput');
+    if (searchInqInput) {
+      searchInqInput.addEventListener('input', (e) => {
+        inqSearchQuery = e.target.value.trim();
+        renderInquiries();
+      });
+    }
+
+    // Inquiry Actions
+    let activeInquiryId = null;
+    window.openInquiryDetail = function(id) {
+      const inqs = loadInquiries();
+      const inq = inqs.find(i => i.id === id);
+      if (!inq) return;
+      activeInquiryId = id;
+
+      document.getElementById('inqDetailCode').textContent = inq.id;
+      document.getElementById('inqDetailSubject').textContent = inq.reason || 'General Inquiry';
+      document.getElementById('inqDetailName').textContent = inq.name;
+      document.getElementById('inqDetailDate').textContent = inq.createdAt ? new Date(inq.createdAt).toLocaleString() : '—';
+      
+      const emailLink = document.getElementById('inqDetailEmail');
+      if (emailLink) {
+        emailLink.textContent = inq.email;
+        emailLink.href = `mailto:${inq.email}?subject=Regarding your Café Lyria inquiry (${inq.id})`;
+      }
+
+      const phoneWrap = document.getElementById('inqDetailPhoneWrap');
+      const phoneSpan = document.getElementById('inqDetailPhone');
+      if (inq.phone) {
+        if (phoneWrap) phoneWrap.style.display = 'inline';
+        if (phoneSpan) phoneSpan.textContent = inq.phone;
+      } else {
+        if (phoneWrap) phoneWrap.style.display = 'none';
+      }
+
+      document.getElementById('inqDetailMessage').textContent = inq.message;
+
+      const btnReply = document.getElementById('btnReplyInquiryEmail');
+      if (btnReply) {
+        btnReply.href = `mailto:${inq.email}?subject=Regarding your Café Lyria inquiry (${inq.id})&body=Hi ${inq.name},%0D%0A%0D%0AThank you for reaching out to Café Lyria.%0D%0A%0D%0A`;
+      }
+
+      const btnToggle = document.getElementById('btnToggleInqStatus');
+      if (btnToggle) {
+        btnToggle.textContent = inq.status === 'Unread' ? '✓ Mark as Replied' : '↩ Mark as Unread';
+      }
+
+      document.getElementById('inquiryDetailModal').classList.add('open');
+    };
+
+    window.toggleInquiryStatus = function(id) {
+      const inqs = loadInquiries();
+      const inq = inqs.find(i => i.id === id);
+      if (inq) {
+        inq.status = inq.status === 'Unread' ? 'Replied' : 'Unread';
+        saveInquiries(inqs);
+        showToast(`Inquiry ${id} marked as ${inq.status}`);
+      }
+    };
+
+    window.deleteInquiry = function(id) {
+      if (confirm(`Are you sure you want to delete inquiry ${id}?`)) {
+        let inqs = loadInquiries();
+        inqs = inqs.filter(i => i.id !== id);
+        saveInquiries(inqs);
+        showToast(`Inquiry ${id} deleted`);
+      }
+    };
+
+    const closeInquiryDetailModal = document.getElementById('closeInquiryDetailModal');
+    if (closeInquiryDetailModal) {
+      closeInquiryDetailModal.addEventListener('click', () => {
+        document.getElementById('inquiryDetailModal').classList.remove('open');
+      });
+    }
+
+    const btnToggleInqStatus = document.getElementById('btnToggleInqStatus');
+    if (btnToggleInqStatus) {
+      btnToggleInqStatus.addEventListener('click', () => {
+        if (activeInquiryId) {
+          toggleInquiryStatus(activeInquiryId);
+          document.getElementById('inquiryDetailModal').classList.remove('open');
+        }
+      });
+    }
+
+    // Close Modals on Overlay Click
+    window.onclick = (e) => {
+      if (e.target.classList.contains('modal-overlay')) {
+        e.target.classList.remove('open');
+      }
+    };
+
+    // ============================================
+    // Website Live / Offline State Controller
+    // ============================================
+    const SITE_STATUS_KEY = 'cafe_lyria_site_status';
+    const siteStatusWidget = document.getElementById('siteStatusWidget');
+    const statusDot = document.getElementById('statusDot');
+    const statusTitle = document.getElementById('statusTitle');
+    const statusSub = document.getElementById('statusSub');
+    const offlineAlertBanner = document.getElementById('offlineAlertBanner');
+    const btnBannerTurnOn = document.getElementById('btnBannerTurnOn');
+
+    function getSiteStatus() {
+      return localStorage.getItem(SITE_STATUS_KEY) || 'live';
+    }
+
+    function setSiteStatus(status, notify = true) {
+      localStorage.setItem(SITE_STATUS_KEY, status);
+      updateSiteStatusUI(status);
+      if (notify) {
+        if (status === 'live') {
+          showToast('🟢 Website is now LIVE! Public guests can reserve & browse.', '✦');
+        } else {
+          showToast('🔴 Website is now OFFLINE. Customer notice screen is active.', '⚠️');
+        }
+      }
+    }
+
+    function updateSiteStatusUI(status) {
+      const isLive = status === 'live';
+      if (isLive) {
+        siteStatusWidget.className = 'site-status-widget is-live';
+        siteStatusWidget.setAttribute('aria-pressed', 'true');
+        siteStatusWidget.title = 'Website is LIVE · Click to take OFFLINE';
+        statusDot.className = 'status-dot-indicator live';
+        statusTitle.innerHTML = 'Site: <strong>LIVE</strong>';
+        statusSub.textContent = 'Accepting guests';
+        if (offlineAlertBanner) offlineAlertBanner.style.display = 'none';
+      } else {
+        siteStatusWidget.className = 'site-status-widget is-offline';
+        siteStatusWidget.setAttribute('aria-pressed', 'false');
+        siteStatusWidget.title = 'Website is OFFLINE · Click to turn LIVE';
+        statusDot.className = 'status-dot-indicator offline';
+        statusTitle.innerHTML = 'Site: <strong>OFFLINE</strong>';
+        statusSub.textContent = 'Maintenance mode';
+        if (offlineAlertBanner) offlineAlertBanner.style.display = 'flex';
+      }
+    }
+
+    function toggleSiteStatus() {
+      const current = getSiteStatus();
+      const next = current === 'live' ? 'offline' : 'live';
+      setSiteStatus(next);
+    }
+
+    if (siteStatusWidget) {
+      siteStatusWidget.addEventListener('click', (e) => {
+        e.preventDefault();
+        toggleSiteStatus();
+      });
+      siteStatusWidget.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          toggleSiteStatus();
+        }
+      });
+    }
+
+    if (btnBannerTurnOn) {
+      btnBannerTurnOn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        setSiteStatus('live');
+      });
+    }
+
+    // Initialize UI on load
+    updateSiteStatusUI(getSiteStatus());
+
+    // Listen to Storage events for multi-tab sync
+    window.addEventListener('storage', (e) => {
+      if (e.key === SITE_STATUS_KEY) {
+        updateSiteStatusUI(e.newValue || 'live');
+      }
+    });
+
+    // -------------------------------------------------------------------------
+    // OWNER AUTHENTICATION & ACCESS CONTROL
+    // -------------------------------------------------------------------------
+    const OWNER_PASSCODE_KEY = 'cafe_lyria_owner_passcode';
+    const DEFAULT_OWNER_PASSCODE = '1660';
+    const AUTH_SESSION_KEY = 'cafe_lyria_admin_session';
+
+    function getOwnerPasscode() {
+      return localStorage.getItem(OWNER_PASSCODE_KEY) || DEFAULT_OWNER_PASSCODE;
+    }
+
+    function setOwnerPasscode(newCode) {
+      localStorage.setItem(OWNER_PASSCODE_KEY, newCode);
+    }
+
+    function isAuthenticated() {
+      return sessionStorage.getItem(AUTH_SESSION_KEY) === 'authenticated';
+    }
+
+    function setAuthenticated(status) {
+      const lockScreenEl = document.getElementById('adminLockScreen');
+      if (status) {
+        sessionStorage.setItem(AUTH_SESSION_KEY, 'authenticated');
+        document.body.classList.remove('auth-locked');
+        if (lockScreenEl) lockScreenEl.style.display = 'none';
+      } else {
+        sessionStorage.removeItem(AUTH_SESSION_KEY);
+        document.body.classList.add('auth-locked');
+        if (lockScreenEl) lockScreenEl.style.display = 'flex';
+      }
+    }
+
+    // Lock Screen Elements
+    const ownerLockForm = document.getElementById('ownerLockForm');
+    const ownerPasscodeInput = document.getElementById('ownerPasscodeInput');
+    const btnTogglePasscodeVis = document.getElementById('btnTogglePasscodeVis');
+    const lockErrorMsg = document.getElementById('lockErrorMsg');
+    const lockErrorText = document.getElementById('lockErrorText');
+    const btnLogoutAdmin = document.getElementById('btnLogoutAdmin');
+
+    // Change Passcode Elements
+    const btnOpenChangePasscode = document.getElementById('btnOpenChangePasscode');
+    const changePasscodeModal = document.getElementById('changePasscodeModal');
+    const closePasscodeModal = document.getElementById('closePasscodeModal');
+    const btnCancelPasscode = document.getElementById('btnCancelPasscode');
+    const changePasscodeForm = document.getElementById('changePasscodeForm');
+    const currentPasscodeInput = document.getElementById('currentPasscodeInput');
+    const newPasscodeInput = document.getElementById('newPasscodeInput');
+    const confirmPasscodeInput = document.getElementById('confirmPasscodeInput');
+    const changePasscodeError = document.getElementById('changePasscodeError');
+
+    // Initial Auth State Verification
+    if (isAuthenticated()) {
+      document.body.classList.remove('auth-locked');
+    } else {
+      document.body.classList.add('auth-locked');
+      setTimeout(() => {
+        if (ownerPasscodeInput) ownerPasscodeInput.focus();
+      }, 120);
+    }
+
+    // Toggle Lock Screen Password Visibility
+    if (btnTogglePasscodeVis && ownerPasscodeInput) {
+      btnTogglePasscodeVis.addEventListener('click', () => {
+        const isPassword = ownerPasscodeInput.type === 'password';
+        ownerPasscodeInput.type = isPassword ? 'text' : 'password';
+        btnTogglePasscodeVis.textContent = isPassword ? '🙈' : '👁';
+      });
+    }
+
+    // Core Unlock Handler
+    function attemptUnlock() {
+      if (!ownerPasscodeInput) return false;
+      const entered = (ownerPasscodeInput.value || '').trim();
+      const expected = getOwnerPasscode();
+
+      if (entered === expected) {
+        if (lockErrorMsg) lockErrorMsg.style.display = 'none';
+        ownerPasscodeInput.value = '';
+        setAuthenticated(true);
+        renderDashboard();
+        showToast('Welcome to Owner Portal', '🔒');
+        return true;
+      }
+      return false;
+    }
+
+    // Auto-unlock immediately after filling the correct passcode
+    if (ownerPasscodeInput) {
+      ownerPasscodeInput.addEventListener('input', () => {
+        const entered = (ownerPasscodeInput.value || '').trim();
+        const expected = getOwnerPasscode();
+        if (entered.length >= expected.length) {
+          if (entered === expected) {
+            attemptUnlock();
+          }
+        }
+      });
+    }
+
+    // Unlock Form Submission (via Enter key or "Unlock Admin Dashboard" button)
+    if (ownerLockForm) {
+      ownerLockForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const success = attemptUnlock();
+        if (!success) {
+          if (lockErrorMsg) {
+            lockErrorMsg.style.display = 'block';
+            lockErrorMsg.classList.remove('shake');
+            void lockErrorMsg.offsetWidth; // Trigger reflow for animation restart
+            lockErrorMsg.classList.add('shake');
+          }
+          if (lockErrorText) {
+            lockErrorText.textContent = 'Incorrect passcode. Please try again.';
+          }
+          ownerPasscodeInput.select();
+        }
+      });
+    }
+
+    // Logout / Lock Portal Button
+    if (btnLogoutAdmin) {
+      btnLogoutAdmin.addEventListener('click', () => {
+        setAuthenticated(false);
+        if (ownerPasscodeInput) {
+          ownerPasscodeInput.value = '';
+          setTimeout(() => ownerPasscodeInput.focus(), 120);
+        }
+        if (lockErrorMsg) lockErrorMsg.style.display = 'none';
+        showToast('Portal locked securely', '🔒');
+      });
+    }
+
+    // Change Passcode Modal Handlers
+    function openChangePasscodeDialog() {
+      if (changePasscodeModal) {
+        if (changePasscodeError) changePasscodeError.style.display = 'none';
+        if (changePasscodeForm) changePasscodeForm.reset();
+        changePasscodeModal.classList.add('open');
+        setTimeout(() => {
+          if (currentPasscodeInput) currentPasscodeInput.focus();
+        }, 120);
+      }
+    }
+
+    function closeChangePasscodeDialog() {
+      if (changePasscodeModal) {
+        changePasscodeModal.classList.remove('open');
+        if (changePasscodeForm) changePasscodeForm.reset();
+      }
+    }
+
+    if (btnOpenChangePasscode) {
+      btnOpenChangePasscode.addEventListener('click', openChangePasscodeDialog);
+    }
+
+    if (closePasscodeModal) {
+      closePasscodeModal.addEventListener('click', closeChangePasscodeDialog);
+    }
+
+    if (btnCancelPasscode) {
+      btnCancelPasscode.addEventListener('click', closeChangePasscodeDialog);
+    }
+
+    if (changePasscodeModal) {
+      changePasscodeModal.addEventListener('click', (e) => {
+        if (e.target === changePasscodeModal) {
+          closeChangePasscodeDialog();
+        }
+      });
+    }
+
+    // Change Passcode Form Submission
+    if (changePasscodeForm) {
+      changePasscodeForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const currentVal = (currentPasscodeInput.value || '').trim();
+        const newVal = (newPasscodeInput.value || '').trim();
+        const confirmVal = (confirmPasscodeInput.value || '').trim();
+
+        if (currentVal !== getOwnerPasscode()) {
+          if (changePasscodeError) {
+            changePasscodeError.textContent = 'Current passcode is incorrect.';
+            changePasscodeError.style.display = 'block';
+          }
+          currentPasscodeInput.select();
+          return;
+        }
+
+        if (newVal.length < 4) {
+          if (changePasscodeError) {
+            changePasscodeError.textContent = 'New passcode must be at least 4 characters long.';
+            changePasscodeError.style.display = 'block';
+          }
+          newPasscodeInput.focus();
+          return;
+        }
+
+        if (newVal !== confirmVal) {
+          if (changePasscodeError) {
+            changePasscodeError.textContent = 'New passcodes do not match.';
+            changePasscodeError.style.display = 'block';
+          }
+          confirmPasscodeInput.focus();
+          return;
+        }
+
+        // Successfully update passcode
+        setOwnerPasscode(newVal);
+        closeChangePasscodeDialog();
+        showToast('Passcode updated successfully!', '🔑');
+      });
+    }
+
+    // Initial render
+    renderDashboard();
+    updateInquiryCountBadge();
+  </script>
+</body>
+</html>

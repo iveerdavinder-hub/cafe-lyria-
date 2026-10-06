@@ -1,0 +1,11 @@
+# Agent and scratch directories
+.agent/
+.agents/
+.claude/
+scratch/
+scratch_repo/
+*.log
+
+# OS generated
+Thumbs.db
+.DS_Store
