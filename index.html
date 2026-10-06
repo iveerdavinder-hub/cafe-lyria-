@@ -1,0 +1,1923 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Café Lyria — Coffee, Matcha & Good Energy · SoHo, NYC</title>
+  <meta name="description" content="Greek-inspired espresso, signature Freddo cappuccino, ceremonial matcha and artisanal pastries at 166 Crosby St, NoHo/SoHo, New York. Reserve your table or walk in.">
+  <link rel="canonical" href="https://cafelyria.com/">
+
+  <!-- Favicon & App Icons -->
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Café Lyria">
+  <meta property="og:url" content="https://cafelyria.com/">
+  <meta property="og:title" content="Café Lyria — Coffee, Matcha & Good Energy · SoHo, NYC">
+  <meta property="og:description" content="Greek-inspired espresso, signature Freddo cappuccino, ceremonial matcha and artisanal pastries at 166 Crosby St, NoHo/SoHo, New York. Reserve your table or walk in.">
+  <meta property="og:image" content="https://cafelyria.com/images/og_image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Café Lyria espresso bar and interior at 166 Crosby St, SoHo">
+  <meta property="og:locale" content="en_US">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@cafelyria">
+  <meta name="twitter:title" content="Café Lyria — Coffee, Matcha & Good Energy · SoHo, NYC">
+  <meta name="twitter:description" content="Greek-inspired espresso, signature Freddo cappuccino, ceremonial matcha and artisanal pastries at 166 Crosby St, New York.">
+  <meta name="twitter:image" content="https://cafelyria.com/images/og_image.jpg">
+
+  <!-- Schema.org JSON-LD Structured Data for Local Coffee Shop -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CafeOrCoffeeShop",
+    "@id": "https://cafelyria.com/#organization",
+    "name": "Café Lyria",
+    "image": [
+      "https://cafelyria.com/images/lyria_noho_interior.png",
+      "https://cafelyria.com/images/environment_lounge.jpg",
+      "https://cafelyria.com/images/coffee.jpg"
+    ],
+    "url": "https://cafelyria.com",
+    "telephone": "+1-212-555-0143",
+    "priceRange": "$$",
+    "servesCuisine": ["Coffee", "Greek", "Pastries", "Matcha"],
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "166 Crosby St",
+      "addressLocality": "New York",
+      "addressRegion": "NY",
+      "postalCode": "10012",
+      "addressCountry": "US"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 40.72585,
+      "longitude": -73.99542
+    },
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+        "opens": "08:00",
+        "closes": "17:00"
+      }
+    ],
+    "acceptsReservations": "True",
+    "menu": "https://cafelyria.com/#menu",
+    "hasMap": "https://maps.app.goo.gl/QcBv3BZen3J98FzY9"
+  }
+  </script>
+
+  <!-- Privacy-Friendly Analytics (Plausible) -->
+  <script defer data-domain="cafelyria.com" src="https://plausible.io/js/script.js"></script>
+  <script>
+    window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) };
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="lenis.css">
+  <style>
+    :root{
+      /* Color System */
+      --ink:#181614;
+      --cream:#f6f0e7;
+      --paper:#fffaf3;
+      --accent:#b9683c;
+      --accent2:#d69b61;
+      --muted:#736b63;
+      --line:rgba(24,22,20,.12);
+      --shadow:0 24px 70px rgba(40,25,12,.12);
+      --color-text-light:#fdfbf7;
+      --color-text-light-muted:#c2b8ac;
+      --color-accent-light:#e1a46b;
+
+      /* Unified Type Scale (8 consistent steps) */
+      --fs-xs:0.75rem;    /* 12px: badges, tags, timestamps */
+      --fs-sm:0.875rem;   /* 14px: captions, meta, secondary actions */
+      --fs-base:1rem;     /* 16px: standard body copy, inputs */
+      --fs-md:1.125rem;   /* 18px: lead copy, subtitles */
+      --fs-lg:1.35rem;    /* 22px: section subtitles, item titles */
+      --fs-xl:1.65rem;    /* 26px: card headings */
+      --fs-2xl:2.25rem;   /* 36px: section headings */
+      --fs-3xl:clamp(2.8rem, 6vw, 6rem); /* Display headings */
+
+      /* Unified Border Radii (4 standard scales) */
+      --radius-sm:8px;
+      --radius-md:14px;
+      --radius-lg:24px;
+      --radius-full:9999px;
+    }
+    *{box-sizing:border-box} html{scroll-behavior:smooth} html.lenis{scroll-behavior:auto!important} section[id]{scroll-margin-top:70px} body{margin:0;color:var(--ink);background:var(--cream);font-family:"DM Sans",sans-serif;font-size:var(--fs-base);overflow-x:hidden}
+    a{color:inherit;text-decoration:none} button,input,select,textarea{font:inherit}
+    .loader{position:fixed;inset:0;background:var(--ink);z-index:9999;display:grid;place-items:center;transition:.7s ease}
+    .loader.hide{opacity:0;pointer-events:none}.loader span{font:600 var(--fs-md) "Playfair Display";color:var(--cream);letter-spacing:.12em}
+    .loader i{display:block;width:70px;height:1px;background:var(--accent2);margin:12px auto 0;animation:load 1.1s infinite alternate}
+    @keyframes load{from{transform:scaleX(.15)}to{transform:scaleX(1)}}
+    .nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:22px 5vw;display:flex;align-items:center;justify-content:space-between;color:#fff;transition:.35s}
+    .nav.scrolled{background:rgba(24,22,20,.88);backdrop-filter:blur(18px);padding:14px 5vw;box-shadow:0 10px 35px rgba(0,0,0,.1)}
+    .logo{font:700 var(--fs-lg) "Playfair Display";letter-spacing:.02em}.logo em{font-style:normal;color:#e7b47d}
+    .links{display:flex;gap:30px;font-size:var(--fs-sm)}.links a{opacity:.82;position:relative}.links a:after{content:"";position:absolute;left:0;bottom:-6px;width:100%;height:1px;background:#fff;transform:scaleX(0);transform-origin:right;transition:.3s}.links a:hover:after{transform:scaleX(1);transform-origin:left}
+    .nav-cta,.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:var(--radius-full);padding:12px 22px;font-size:var(--fs-sm);font-weight:700;cursor:pointer;transition:.3s}
+    .nav-cta{background:#fff;color:var(--ink)}.nav-cta:hover{transform:translateY(-2px);box-shadow:0 10px 25px rgba(0,0,0,.2)}
+    .menu-btn{display:none;background:none;border:0;color:#fff;font-size:1.6rem}
+    .hero{min-height:100vh;position:relative;display:grid;align-items:end;padding:150px 7vw 75px;color:#fff;overflow:hidden;background:#201914}
+    .hero-bg{position:absolute;inset:-8%;background:#1d1713;background:linear-gradient(110deg,rgba(20,13,9,.92),rgba(32,21,13,.46)),image-set(url("images/hero_lyria.webp") type("image/webp"), url("images/hero_lyria.jpg") type("image/jpeg")),url("images/hero_lyria.webp"),url("images/hero_lyria.jpg");background-position:center;background-size:cover;animation:heroZoom 14s ease-out forwards}
+    @keyframes heroZoom{from{transform:scale(1.1)}to{transform:scale(1)}}
+    .orb{position:absolute;border-radius:50%;filter:blur(2px);opacity:.45;mix-blend-mode:screen}.orb.one{width:360px;height:360px;background:#d48748;right:4%;top:18%;animation:float 8s ease-in-out infinite}.orb.two{width:190px;height:190px;background:#e6b67e;left:48%;bottom:12%;animation:float 6s ease-in-out infinite reverse}
+    @keyframes float{50%{transform:translate3d(0,-22px,0) scale(1.04)}}
+    .hero-content{position:relative;z-index:2;max-width:920px}.eyebrow{text-transform:uppercase;letter-spacing:.16em;font-size:var(--fs-xs);font-weight:700;color:var(--color-accent-light);margin-bottom:20px}.hero h1{font:600 var(--fs-3xl)/.92 "Playfair Display";letter-spacing:-.055em;margin:0;max-width:950px}.hero p{max-width:600px;color:var(--color-text-light-muted);font-size:var(--fs-md);line-height:1.75;margin:28px 0}.hero-actions{display:flex;gap:12px;flex-wrap:wrap}.btn.primary{background:#f4e9dc;color:var(--ink)}.btn.secondary{border:1px solid rgba(255,255,255,.35);color:#fff;background:rgba(255,255,255,.1);backdrop-filter:blur(10px)}.btn:hover{transform:translateY(-3px)}.scroll{position:absolute;right:6vw;bottom:45px;writing-mode:vertical-rl;font-size:var(--fs-xs);letter-spacing:.16em;color:rgba(255,255,255,.6);z-index:2}
+    section{padding:120px 7vw}.intro{display:grid;grid-template-columns:1fr 1.35fr;gap:9vw;align-items:start}.kicker{color:var(--accent);font-weight:700;text-transform:uppercase;letter-spacing:.14em;font-size:var(--fs-xs)}.intro h2,.section-head h2{font:600 clamp(2.5rem,5vw,4.5rem)/1.02 "Playfair Display";letter-spacing:-.04em;margin:12px 0 0}.intro-copy{font-size:var(--fs-md);line-height:1.85;color:var(--muted);max-width:650px}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:55px}.stat{padding:28px 20px;border-top:1px solid var(--line)}.stat b{font:600 clamp(2.2rem,4vw,4rem) "Playfair Display";display:block}.stat span{color:var(--muted);font-size:var(--fs-sm)}
+    .dark{background:var(--ink);color:var(--cream)}.dark .section-head p,.dark .muted{color:var(--color-text-light-muted)}.section-head{display:flex;justify-content:space-between;gap:40px;align-items:end;margin-bottom:50px}.section-head p{max-width:450px;color:var(--muted);line-height:1.7;font-size:var(--fs-base)}
+    .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}.card{position:relative;border:1px solid var(--line);padding:20px;border-radius:var(--radius-lg);background:#ffffff58;transition:.45s;overflow:hidden;display:flex;flex-direction:column}.dark .card{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.1)}.card:before{content:"";position:absolute;inset:-70%;background:radial-gradient(circle at 50% 50%,rgba(213,139,85,.16),transparent 45%);transform:translateY(55%);transition:.5s;pointer-events:none}.card:hover{transform:translateY(-8px);box-shadow:var(--shadow);border-color:rgba(201,130,82,.3)}.card:hover:before{transform:translateY(0)}.card-media{position:relative;width:100%;height:220px;border-radius:var(--radius-md);overflow:hidden;margin-bottom:20px;background:#141210;border:1px solid rgba(255,255,255,.08)}.card-media img{width:100%;height:100%;object-fit:cover;object-position:center;display:block;transition:transform .6s cubic-bezier(.2,.8,.2,1)}.card:hover .card-media img{transform:scale(1.05)}.card-media .icon{position:absolute;top:12px;right:12px;margin:0;width:44px;height:44px;border-radius:var(--radius-sm);display:grid;place-items:center;background:#181614;border:1.5px solid rgba(214,155,97,.5);box-shadow:0 4px 14px rgba(0,0,0,.45);color:var(--color-accent-light);font-size:1.25rem;z-index:2}.card h3,.project h3{font:600 var(--fs-xl) "Playfair Display";margin:0 0 9px;position:relative}.dark .card h3{color:var(--cream)}.card p{color:var(--muted);line-height:1.65;font-size:var(--fs-sm);position:relative}.dark .card p{color:var(--color-text-light-muted)}
+    .menu-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}.menu-item{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:22px 0;border-bottom:1px solid var(--line)}.menu-item-info{display:flex;flex-direction:column;gap:4px}.menu-item h3{font:600 var(--fs-lg) "Playfair Display";margin:0;display:inline-flex;align-items:center;gap:10px;flex-wrap:wrap}.menu-item p{margin:0;color:var(--muted);font-size:var(--fs-sm)}.menu-tag{display:inline-block;padding:3px 9px;border-radius:var(--radius-full);background:rgba(185,104,60,.12);border:1px solid rgba(185,104,60,.28);color:var(--accent);font-size:var(--fs-xs);font-weight:700;letter-spacing:.02em;text-transform:none;vertical-align:middle}.price{font-weight:700;color:var(--accent);font-size:var(--fs-base);white-space:nowrap}
+    .env-filters{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:-20px 0 35px}
+    .env-pill{display:inline-flex;align-items:center;padding:9px 18px;border-radius:var(--radius-full);font-size:var(--fs-sm);font-weight:600;background:rgba(24,22,20,.05);color:var(--muted);border:1px solid var(--line);cursor:pointer;transition:.25s ease;user-select:none}
+    .env-pill:hover{background:rgba(24,22,20,.09);color:var(--ink)}
+    .env-pill.active{background:var(--ink);color:var(--cream);border-color:var(--ink);box-shadow:0 4px 12px rgba(24,22,20,.18)}
+    .env-maps-link{margin-left:0;display:inline-flex;align-items:center;gap:7px;padding:9px 18px;border-radius:var(--radius-full);font-size:var(--fs-sm);font-weight:600;color:var(--accent);text-decoration:none;border:1px dashed var(--accent);background:rgba(185,104,60,.06);transition:.25s}
+    .env-maps-link:hover{background:var(--accent);color:#fff;border-style:solid;transform:translateY(-1px)}
+    .portfolio{display:grid;grid-template-columns:repeat(12,1fr);gap:22px}
+    .project{position:relative;overflow:hidden;border-radius:var(--radius-lg);background:#151311;color:#fff;border:1px solid rgba(255,255,255,.08);cursor:pointer;transition:transform .4s cubic-bezier(.2,.8,.2,1),box-shadow .4s}
+    .project.span-7{grid-column:span 7;min-height:460px}
+    .project.span-5{grid-column:span 5;min-height:460px}
+    .project.span-4{grid-column:span 4;min-height:420px}
+    .project.span-12{grid-column:span 12;min-height:360px}
+    .project:hover{transform:translateY(-6px);box-shadow:0 22px 45px rgba(0,0,0,.35)}
+    .project img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;transition:transform .8s cubic-bezier(.2,.8,.2,1)}
+    .project:hover img{transform:scale(1.06)}
+    .project:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(16,13,11,.1) 0%,rgba(16,13,11,.52) 42%,rgba(16,13,11,.95) 100%);pointer-events:none}
+    .project-info{position:absolute;z-index:2;left:26px;right:26px;bottom:26px;text-shadow:0 1px 4px rgba(0,0,0,.7)}
+    .project-tag{display:inline-block;padding:5px 12px;border-radius:var(--radius-full);background:rgba(225,164,107,.2);border:1px solid rgba(225,164,107,.4);color:#f5cba7;font-size:var(--fs-xs);font-weight:600;letter-spacing:normal;text-transform:none;margin-bottom:8px;backdrop-filter:blur(6px)}
+    .project-info small{display:block;color:var(--color-accent-light);text-transform:none;letter-spacing:normal;font-size:var(--fs-xs);font-weight:600;margin-bottom:2px}
+    .project h3{font:600 clamp(1.4rem,2.2vw,2.1rem)/1.15 "Playfair Display";margin:6px 0 8px;color:#fff}
+    .project-blurb{color:rgba(255,255,255,.88);font-size:var(--fs-sm);line-height:1.55;margin:0 0 16px;max-width:540px}
+    .project-actions{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+    .project-actions .btn-book-spot{padding:10px 18px;background:var(--accent);color:#fff;border-radius:var(--radius-full);font-size:var(--fs-sm);font-weight:600;text-decoration:none;transition:.25s;display:inline-flex;align-items:center;gap:6px}
+    .project-actions .btn-book-spot:hover{background:#d58b55;transform:translateX(2px)}
+    .project-actions .btn-subtle-view{background:none;border:0;color:var(--color-text-light-muted);font-size:var(--fs-xs);font-weight:600;padding:6px 8px;cursor:pointer;display:inline-flex;align-items:center;gap:4px;transition:.2s;text-decoration:underline;text-underline-offset:3px}
+    .project-actions .btn-subtle-view:hover{color:#fff}
+    .project.span-4 .project-actions{flex-direction:row;justify-content:flex-start}
+    /* Lightbox Modal */
+    .env-lightbox{position:fixed;inset:0;z-index:9999;display:none;align-items:center;justify-content:center;padding:20px}
+    .env-lightbox.open{display:flex}
+    .env-lightbox-backdrop{position:absolute;inset:0;background:rgba(12,10,9,.86);backdrop-filter:blur(14px);animation:pop .3s}
+    .env-lightbox-dialog{position:relative;z-index:2;background:#181614;border:1px solid rgba(255,255,255,.14);border-radius:28px;max-width:880px;width:100%;max-height:90vh;overflow-y:auto;box-shadow:0 30px 60px rgba(0,0,0,.6);color:#fff;display:grid;grid-template-columns:1.15fr .85fr;animation:pop .35s cubic-bezier(.2,.8,.2,1)}
+    .env-lightbox-close{position:absolute;top:16px;right:16px;z-index:10;width:38px;height:38px;border-radius:50%;background:rgba(0,0,0,.5);border:1px solid rgba(255,255,255,.2);color:#fff;font-size:1.1rem;display:grid;place-items:center;cursor:pointer;transition:.2s}
+    .env-lightbox-close:hover{background:var(--accent);border-color:var(--accent)}
+    .env-lightbox-img-wrap{position:relative;background:#0d0b0a;min-height:360px}
+    .env-lightbox-img-wrap img{width:100%;height:100%;object-fit:cover;display:block}
+    .env-lightbox-body{padding:38px 30px;display:flex;flex-direction:column;justify-content:center}
+    .env-lightbox-tag{display:inline-block;padding:5px 12px;border-radius:999px;background:rgba(225,164,107,.18);border:1px solid rgba(225,164,107,.35);color:#f5cba7;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:12px;width:fit-content}
+    .env-lightbox-body h3{font:600 2rem/1.2 "Playfair Display";margin:0 0 14px;color:#fff}
+    .env-lightbox-body p{color:#b8aea4;line-height:1.7;font-size:.93rem;margin:0 0 24px}
+    .env-lightbox-meta{display:grid;grid-template-columns:1fr 1fr;gap:14px;padding:16px 0;border-top:1px solid rgba(255,255,255,.1);border-bottom:1px solid rgba(255,255,255,.1);margin-bottom:24px}
+    .env-lightbox-meta small{color:#e1a46b;text-transform:uppercase;letter-spacing:.12em;font-size:.66rem;display:block;margin-bottom:4px}
+    .env-lightbox-meta b{font-size:.9rem;color:#f0ece8;font-weight:600}
+    .env-lightbox-actions{display:flex;gap:10px;flex-wrap:wrap}
+    .env-lightbox-actions .btn{padding:12px 20px;font-size:.85rem}
+    .env-lightbox-actions .btn.primary{background:var(--accent);color:#fff}
+    .env-lightbox-actions .btn.secondary{background:rgba(255,255,255,.1);color:#fff;border:1px solid rgba(255,255,255,.2);text-decoration:none}
+    .env-lightbox-actions .btn.secondary:hover{background:rgba(255,255,255,.2)}
+
+    /* Offline / Maintenance Mode Overlay */
+    .site-offline-overlay{
+      position:fixed;
+      inset:0;
+      z-index:999999;
+      background:#11100f;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:24px;
+      overflow-y:auto;
+      color:#fff;
+    }
+    .site-offline-overlay::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:radial-gradient(circle at 50% 30%, rgba(201,117,69,0.18), transparent 70%);
+      pointer-events:none;
+    }
+    .offline-card{
+      position:relative;
+      z-index:2;
+      max-width:620px;
+      width:100%;
+      background:#181614;
+      border:1px solid rgba(255,255,255,0.12);
+      border-radius:32px;
+      padding:48px 36px;
+      text-align:center;
+      box-shadow:0 30px 70px rgba(0,0,0,0.65);
+      animation:pop .4s cubic-bezier(.2,.8,.2,1);
+    }
+    .offline-brand{
+      font:700 2rem "Playfair Display";
+      margin-bottom:12px;
+      letter-spacing:.02em;
+      color:#fff;
+    }
+    .offline-brand em{font-style:italic;color:var(--accent2)}
+    .offline-status-pill{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      padding:5px 14px;
+      border-radius:999px;
+      background:rgba(235,87,87,0.18);
+      border:1px solid rgba(235,87,87,0.35);
+      color:#ff8e8e;
+      font-size:.72rem;
+      font-weight:800;
+      letter-spacing:.1em;
+      text-transform:uppercase;
+      margin-bottom:20px;
+    }
+    .offline-card h2{
+      font:600 clamp(2rem,4vw,3rem)/1.15 "Playfair Display";
+      letter-spacing:-.03em;
+      margin:0 0 16px;
+      color:#fff;
+    }
+    .offline-lead{
+      color:#b3a99f;
+      font-size:1rem;
+      line-height:1.65;
+      margin:0 auto 26px;
+      max-width:500px;
+    }
+    .offline-box{
+      background:rgba(255,255,255,0.03);
+      border:1px solid rgba(255,255,255,0.08);
+      border-radius:20px;
+      padding:20px;
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:14px;
+      text-align:left;
+      margin-bottom:28px;
+    }
+    .offline-item small{
+      display:block;
+      color:#e1a46b;
+      text-transform:uppercase;
+      letter-spacing:.1em;
+      font-size:.66rem;
+      margin-bottom:3px;
+    }
+    .offline-item b{
+      font-size:.88rem;
+      color:#eee;
+      font-weight:600;
+    }
+    .offline-actions{
+      display:flex;
+      gap:12px;
+      justify-content:center;
+      flex-wrap:wrap;
+      margin-bottom:18px;
+    }
+    .offline-actions .btn{
+      padding:12px 22px;
+      font-size:.88rem;
+      border-radius:999px;
+    }
+    .offline-actions .btn.primary{background:var(--accent);color:#fff}
+    .offline-actions .btn.primary:hover{background:#d58b55}
+    .offline-actions .btn.ghost{background:rgba(255,255,255,0.08);color:#fff;border:1px solid rgba(255,255,255,0.18);text-decoration:none}
+    .offline-actions .btn.ghost:hover{background:rgba(255,255,255,0.15)}
+    .bypass-link{
+      background:none;
+      border:0;
+      color:#777;
+      font-size:.76rem;
+      cursor:pointer;
+      text-decoration:underline;
+      transition:.2s;
+    }
+    .bypass-link:hover{color:#bbb}
+
+    /* Admin Preview Sticky Banner */
+    .admin-preview-bar{
+      position:sticky;
+      top:0;
+      left:0;
+      right:0;
+      z-index:99999;
+      background:#d97706;
+      color:#fff;
+      padding:10px 4vw;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:14px;
+      font-size:.85rem;
+      font-weight:600;
+      box-shadow:0 4px 12px rgba(0,0,0,0.3);
+    }
+    .admin-preview-btn{
+      background:#fff;
+      color:#111;
+      padding:5px 12px;
+      border-radius:999px;
+      font-size:.76rem;
+      font-weight:700;
+      text-decoration:none;
+    }
+    .admin-preview-btn:hover{background:#f3f3f3}
+    .admin-preview-close{
+      background:rgba(0,0,0,0.25);
+      color:#fff;
+      border:0;
+      padding:5px 10px;
+      border-radius:999px;
+      font-size:.76rem;
+      cursor:pointer;
+    }
+    .testimonial{max-width:850px;margin:auto;text-align:center}.quote{font:500 clamp(2rem,4vw,3.7rem)/1.18 "Playfair Display";letter-spacing:-.035em}.client{margin-top:30px;color:var(--muted)}.stars{color:#e1a46b;letter-spacing:4px;margin-bottom:10px}.dots{display:flex;justify-content:center;gap:7px;margin-top:35px}.dot{width:7px;height:7px;border:0;border-radius:50%;background:#bdb3aa;cursor:pointer}.dot.active{background:var(--accent);transform:scale(1.5)}
+    .cta{margin:0 5vw 120px;border-radius:34px;padding:100px 8vw;position:relative;overflow:hidden;background:linear-gradient(120deg,#6f351f,#b9683c 45%,#e1a46b);color:#fff}.cta:before,.cta:after{content:"";position:absolute;border:1px solid #fff4;border-radius:50%;width:420px;height:420px}.cta:before{right:-100px;top:-250px}.cta:after{left:-250px;bottom:-330px}.cta h2{font:600 clamp(2.8rem,6vw,6rem)/.95 "Playfair Display";max-width:850px;margin:0 0 20px;letter-spacing:-.05em}.cta p{max-width:520px;color:#fff9;line-height:1.7}.cta .btn{background:#fff;color:var(--ink);margin-top:15px}
+    .contact{display:grid;grid-template-columns:.8fr 1.2fr;gap:8vw}.details{display:grid;gap:24px;margin-top:35px}.detail small{color:var(--accent);text-transform:none;letter-spacing:normal;font-weight:700;font-size:var(--fs-xs)}.detail p{margin:6px 0;color:var(--muted);line-height:1.6;font-size:var(--fs-base)}.form{display:grid;grid-template-columns:1fr 1fr;gap:14px}.field{position:relative}.field.full{grid-column:1/-1}.field input,.field select,.field textarea{width:100%;border:1px solid var(--line);background:#ffffff45;padding:17px 16px;border-radius:var(--radius-md);outline:none;color:var(--ink);font-size:var(--fs-base);transition:.25s}.field textarea{min-height:140px;resize:vertical}.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--accent);box-shadow:0 0 0 4px rgba(185,104,60,.12)}.form .btn{grid-column:1/-1;width:100%;justify-self:stretch;justify-content:center;background:var(--ink);color:#fff;padding:16px 26px;border-radius:var(--radius-md);font-size:var(--fs-base);font-weight:700;box-shadow:0 4px 16px rgba(24,22,20,.18)}.form .btn:hover{background:#2a2622;transform:translateY(-1px)}.success{grid-column:1/-1;display:none;padding:14px 16px;background:rgba(45,106,79,.12);color:#2d6a4f;border-radius:var(--radius-md);font-size:var(--fs-sm)}.success.show{display:block;animation:pop .4s}.success + .btn{display:none}@keyframes pop{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+    .booking-container{position:relative}
+    .booking-tabs{display:grid;grid-template-columns:repeat(3, 1fr);gap:8px;margin-bottom:16px;padding:6px;background:rgba(24,22,20,.06);border-radius:var(--radius-md);width:100%}
+    .tab-btn{border:0;background:none;padding:12px 14px;border-radius:10px;font-weight:600;font-size:var(--fs-sm);color:var(--muted);cursor:pointer;transition:.25s ease;text-align:center;display:flex;align-items:center;justify-content:center;gap:6px;white-space:nowrap}
+    .tab-btn.active{background:var(--ink);color:var(--cream);box-shadow:0 4px 14px rgba(24,22,20,.15)}
+    .field input[type="date"]{color-scheme:light;font-family:inherit}
+    .lookup-card{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius-lg);padding:30px 28px;box-shadow:var(--shadow);animation:pop .4s cubic-bezier(.2,.8,.2,1)}
+    .lookup-pill{background:rgba(201,117,69,0.14);color:var(--accent2);font-size:var(--fs-xs);font-weight:700;letter-spacing:.05em;padding:5px 12px;border-radius:var(--radius-full);display:inline-block;text-transform:uppercase}
+    .reservation-card{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius-lg);padding:32px;box-shadow:var(--shadow);animation:pop .4s cubic-bezier(.2,.8,.2,1)}
+    .res-card-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:8px}
+    .res-pill{background:rgba(45,106,79,.12);color:#2d6a4f;font-size:var(--fs-xs);font-weight:700;letter-spacing:.04em;padding:6px 12px;border-radius:var(--radius-full)}
+    .res-pill.cancelled{background:rgba(220,38,38,0.12);color:#dc2626}
+    .res-id{font-family:monospace;font-weight:700;color:var(--accent);font-size:var(--fs-sm);letter-spacing:.04em}
+    .reservation-card h3{font:600 var(--fs-xl) "Playfair Display";margin:0 0 16px;color:var(--ink)}
+    .res-details-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;padding:18px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-bottom:16px}
+    .res-item small,.res-location small{color:var(--accent);text-transform:none;font-weight:700;font-size:var(--fs-xs);display:block;margin-bottom:4px}
+    .res-item b{font-size:var(--fs-base);color:var(--ink);font-weight:600}
+    .res-location p{margin:2px 0 0;font-size:var(--fs-sm);color:var(--muted)}
+    .res-sms-box{background:#181614;border:1px solid rgba(255,255,255,0.12);border-radius:16px;padding:18px 20px;margin:18px 0;color:#fff;position:relative;overflow:hidden}
+    .res-sms-box:before{content:'';position:absolute;top:0;left:0;width:4px;height:100%;background:#10b981}
+    .res-sms-box.sms-cancelled:before{background:#ef4444}
+    .res-sms-header{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:10px;font-size:0.84rem}
+    .sms-badge-sent{background:rgba(16,185,129,0.18);color:#34d399;border:1px solid rgba(16,185,129,0.4);padding:3px 9px;border-radius:999px;font-size:0.72rem;font-weight:700;display:inline-flex;align-items:center;gap:4px}
+    .sms-badge-sent.cancelled{background:rgba(239,68,68,0.18);color:#f87171;border-color:rgba(239,68,68,0.4)}
+    .res-sms-bubble{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:12px 14px;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;font-size:0.84rem;line-height:1.55;color:#f3f3f3;margin-bottom:8px}
+    .sms-link-preview{color:#38bdf8;text-decoration:underline;word-break:break-all}
+    .res-sms-caption{font-size:0.76rem;color:#a8a29e;line-height:1.4}
+    .res-email-box{background:#181614;border:1px solid rgba(255,255,255,0.12);border-radius:16px;padding:18px 20px;margin:18px 0;color:#fff;position:relative;overflow:hidden}
+    .res-email-box:before{content:'';position:absolute;top:0;left:0;width:4px;height:100%;background:#38bdf8}
+    .res-email-box.email-cancelled:before{background:#ef4444}
+    .res-email-header{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:12px;font-size:0.84rem}
+    .email-badge-sent{background:rgba(56,189,248,0.18);color:#38bdf8;border:1px solid rgba(56,189,248,0.4);padding:3px 9px;border-radius:999px;font-size:0.72rem;font-weight:700;display:inline-flex;align-items:center;gap:4px}
+    .email-badge-sent.cancelled{background:rgba(239,68,68,0.18);color:#f87171;border-color:rgba(239,68,68,0.4)}
+    .res-email-card{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:14px 16px;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;font-size:0.84rem;line-height:1.5;color:#f3f3f3;margin-bottom:8px}
+    .email-card-meta{display:flex;flex-direction:column;gap:3px;padding-bottom:10px;margin-bottom:10px;border-bottom:1px solid rgba(255,255,255,0.08);font-size:0.79rem;color:#d6d3d1}
+    .email-card-body{margin-bottom:12px}
+    .email-card-actions{display:flex;gap:8px;flex-wrap:wrap}
+    .btn-email-action{background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);color:#fff;padding:7px 12px;border-radius:8px;font-size:0.76rem;font-weight:600;text-decoration:none;cursor:pointer;transition:all .2s ease;display:inline-flex;align-items:center;gap:5px}
+    .btn-email-action:hover{background:rgba(255,255,255,0.18);border-color:rgba(255,255,255,0.35);transform:translateY(-1px)}
+    .btn-email-action.ghost{background:transparent;color:#a8a29e}
+    .btn-email-action.ghost:hover{color:#fff;background:rgba(255,255,255,0.08)}
+    .res-email-caption{font-size:0.76rem;color:#a8a29e;line-height:1.4}
+    .res-cancel-container{background:rgba(24,22,20,0.03);border:1px dashed var(--line);border-radius:14px;padding:18px 20px;margin:18px 0}
+    .cancel-policy-head{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:8px}
+    .cancel-eligibility-badge{font-size:0.72rem;font-weight:700;padding:4px 10px;border-radius:999px;letter-spacing:0.04em}
+    .cancel-eligibility-badge.eligible{background:rgba(16,185,129,0.15);color:#065f46;border:1px solid rgba(16,185,129,0.3)}
+    .cancel-eligibility-badge.expired{background:rgba(245,158,11,0.15);color:#92400e;border:1px solid rgba(245,158,11,0.3)}
+    .cancel-eligibility-badge.cancelled{background:rgba(239,68,68,0.12);color:#991b1b;border:1px solid rgba(239,68,68,0.3)}
+    .btn-cancel-res{background:#dc2626;color:#fff;border:0;padding:10px 18px;border-radius:8px;font-size:0.85rem;font-weight:700;cursor:pointer;transition:all .2s ease;display:inline-flex;align-items:center;gap:6px}
+    .btn-cancel-res:hover{background:#b91c1c;transform:translateY(-1px)}
+    .cancel-confirm-box{background:rgba(220,38,38,0.06);border:1px solid rgba(220,38,38,0.25);border-radius:10px;padding:14px;margin-top:12px}
+    .btn-confirm-cancel-now{background:#dc2626;color:#fff;border:0;padding:9px 16px;border-radius:8px;font-size:0.82rem;font-weight:700;cursor:pointer;transition:.2s}
+    .btn-confirm-cancel-now:hover{background:#b91c1c}
+    .btn-keep-res{background:rgba(24,22,20,0.08);color:var(--ink);border:1px solid var(--line);padding:9px 16px;border-radius:8px;font-size:0.82rem;font-weight:600;cursor:pointer;transition:.2s}
+    .btn-keep-res:hover{background:rgba(24,22,20,0.15)}
+    .res-footer-msg{margin:16px 0 20px;color:var(--muted);font-size:var(--fs-sm);line-height:1.6}
+    .res-actions{display:flex;gap:10px;flex-wrap:wrap}
+    .res-actions .btn{padding:12px 20px;font-size:var(--fs-sm);background:var(--ink);color:#fff;border-radius:var(--radius-md)}
+    footer{background:#11100f;color:#ddd;padding:65px 7vw 30px}.foot-top{display:grid;grid-template-columns:1.2fr .8fr .9fr .8fr 1.6fr;gap:35px;padding-bottom:50px;align-items:start}.foot-logo{font:700 var(--fs-xl) "Playfair Display";color:#fff}.foot p{color:#8f8984;line-height:1.7;max-width:340px;font-size:var(--fs-sm)}.foot h3,.foot h4{color:#fff;margin:0 0 18px;font-size:var(--fs-base);font-weight:700}.foot a{display:block;color:#96908b;margin:10px 0;font-size:var(--fs-sm)}.foot a:hover{color:#e1a46b}.foot-map-col{display:flex;flex-direction:column}.foot-map-frame{position:relative;width:100%;height:180px;border-radius:var(--radius-md);overflow:hidden;border:1px solid rgba(255,255,255,.14);box-shadow:0 8px 24px rgba(0,0,0,.35)}.foot-map-frame iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0}.copyright{border-top:1px solid rgba(255,255,255,.12);padding-top:22px;color:#777;font-size:var(--fs-xs);display:flex;justify-content:space-between}
+    .social-buttons{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+    .social-btn{display:inline-flex;align-items:center;gap:9px;padding:9px 16px;border-radius:999px;font-size:.84rem;font-weight:600;text-decoration:none;transition:all .28s cubic-bezier(.2,.8,.2,1)}
+    .social-btn svg{width:16px;height:16px;flex-shrink:0;transition:transform .28s ease}
+    .social-btn:hover{transform:translateY(-2px)}
+    .social-btn:hover svg{transform:scale(1.15)}
+    .foot-social{display:flex;flex-direction:column;gap:8px;margin-top:14px}
+    .foot-social .social-btn{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);color:#e2dad1;width:100%;max-width:160px;box-sizing:border-box}
+    .foot-social .social-btn:hover{background:var(--accent);color:#fff;border-color:var(--accent);box-shadow:0 8px 22px rgba(185,104,60,.35)}
+    .mobile-social{display:none;gap:10px;margin-top:12px;padding-top:16px;border-top:1px solid rgba(255,255,255,.12);flex-wrap:wrap}
+    .links.open .mobile-social{display:flex}
+    .mobile-social .social-btn{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);color:#fff;padding:8px 14px}
+    .mobile-social .social-btn:hover{background:var(--accent);border-color:var(--accent)}
+    .reveal{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s ease}.reveal.visible{opacity:1;transform:none}.stagger>*{opacity:0;transform:translateY(20px);transition:.7s}.stagger.visible>*{opacity:1;transform:none}.stagger.visible>*:nth-child(2){transition-delay:.08s}.stagger.visible>*:nth-child(3){transition-delay:.16s}.stagger.visible>*:nth-child(4){transition-delay:.24s}.stagger.visible>*:nth-child(5){transition-delay:.32s}.stagger.visible>*:nth-child(6){transition-delay:.4s}
+    @media(max-width:1100px){.foot-top{grid-template-columns:1.4fr 1fr 1fr 1fr}.foot-map-col{grid-column:1/-1}.foot-map-frame{height:220px}}
+    @media(max-width:900px){.links,.nav-cta{display:none}.menu-btn{display:block}.links.open{display:flex;position:absolute;top:70px;left:5vw;right:5vw;background:#181614ee;backdrop-filter:blur(15px);padding:20px;border-radius:18px;flex-direction:column;gap:18px}.intro,.contact,.portfolio{grid-template-columns:1fr}.project.span-7,.project.span-5,.project.span-4,.project.span-12{grid-column:auto;min-height:380px}.cards{grid-template-columns:1fr 1fr}.stats{grid-template-columns:1fr 1fr}.menu-grid{grid-template-columns:1fr}.foot-top{grid-template-columns:1fr 1fr}.scroll{display:none}.env-lightbox-dialog{grid-template-columns:1fr;max-height:86vh}.env-lightbox-img-wrap{height:280px;min-height:unset}.env-lightbox-body{padding:26px 22px}}
+    @media(max-width:560px){section{padding:80px 6vw}.hero{padding:140px 6vw 60px}.hero h1{font-size:3.5rem}.cards{grid-template-columns:1fr}.stats{grid-template-columns:1fr 1fr}.form{grid-template-columns:1fr}.field.full{grid-column:auto}.form .btn{grid-column:auto}.cta{margin:0 4vw 80px;padding:70px 7vw}.foot-top{grid-template-columns:1fr}.foot-map-col{grid-column:auto}.copyright{display:block}.copyright span{display:block;margin-top:8px}.foot-social{flex-direction:row;flex-wrap:wrap}.foot-social .social-btn{width:auto;max-width:none}.booking-tabs{width:100%}.tab-btn{flex:1;padding:9px 10px;font-size:.8rem;text-align:center}.reservation-card{padding:22px 18px}.env-maps-link{margin-left:0;width:100%;justify-content:center}.project{min-height:320px}}
+    @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation:none!important;transition:none!important}.reveal,.stagger>*{opacity:1!important;transform:none!important}}
+  </style>
+</head>
+<body>
+  <div class="loader" id="loader"><div><span>CAFÉ LYRIA</span><i></i></div></div>
+
+  <!-- Offline / Maintenance Mode Overlay (Controlled from Owner Admin Panel) -->
+  <div class="site-offline-overlay" id="siteOfflineOverlay" style="display:none">
+    <div class="offline-card">
+      <div class="offline-brand">Café <em>Lyria</em></div>
+      <span class="offline-status-pill">🔴 ONLINE RESERVATIONS PAUSED · PRIVATE HOURS</span>
+      <h2>We’ll be right back.</h2>
+      <p class="offline-lead">Our online storefront and table bookings are temporarily paused for updates and private tastings. We look forward to welcoming you soon!</p>
+      <div class="offline-box">
+        <div class="offline-item"><small>In-Person Visits</small><b>166 Crosby St, NoHo, New York</b></div>
+        <div class="offline-item"><small>Today's Hours</small><b>8:00 AM – 5:00 PM Daily</b></div>
+        <div class="offline-item"><small>Location</small><b>Located in HealthQuarters, SoHo</b></div>
+        <div class="offline-item"><small>Atmosphere</small><b>Walk-ins & Counter Stools Welcome</b></div>
+      </div>
+      <div class="offline-actions">
+        <a class="btn primary" href="https://maps.app.goo.gl/QcBv3BZen3J98FzY9" target="_blank" rel="noopener noreferrer">Directions on Google Maps ↗</a>
+        <a class="btn ghost" href="admin.html">Owner Admin Portal 🔐</a>
+        <button type="button" class="btn ghost" id="btnOverlayMakeLive" style="border-color:rgba(61,220,132,0.4);color:#3ddc84;cursor:pointer">Turn Website LIVE ✦</button>
+      </div>
+      <div>
+        <button type="button" id="btnBypassOffline" class="bypass-link">Preview site with Owner Access ↗</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sticky Admin Preview Banner (When viewing site in offline mode) -->
+  <div class="admin-preview-bar" id="adminPreviewBar" style="display:none">
+    <span>⚠️ <strong>ADMIN PREVIEW MODE:</strong> Public visitors currently see the offline screen.</span>
+    <div style="display:flex;gap:8px;align-items:center">
+      <a href="admin.html" class="admin-preview-btn">Turn Site LIVE in Admin ↗</a>
+      <button type="button" class="admin-preview-close" id="btnExitAdminPreview" title="Exit admin preview">Exit Preview</button>
+    </div>
+  </div>
+  <header class="nav" id="nav">
+    <a class="logo" href="#home">Café <em>Lyria</em></a>
+    <nav class="links" id="links">
+      <a href="#home">Home</a><a href="#about">About</a><a href="#menu">Menu</a><a href="#work">Gallery</a><a href="#reviews">Reviews</a><a href="#contact">Contact</a>
+      <div class="mobile-social">
+        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Café Lyria on Instagram">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+          <span>Instagram</span>
+        </a>
+        <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Café Lyria on Facebook">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          <span>Facebook</span>
+        </a>
+        <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Café Lyria on Twitter">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          <span>Twitter</span>
+        </a>
+      </div>
+    </nav>
+    <a class="nav-cta" href="#reserve">Reserve a Table <span>→</span></a>
+    <button class="menu-btn" id="menuBtn" aria-label="Open menu">☰</button>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-bg"></div><div class="orb one"></div><div class="orb two"></div>
+      <div class="hero-content reveal">
+        <div class="eyebrow">SoHo · New York City</div>
+        <h1>Good coffee.<br><em>Good energy.</em></h1>
+        <p>A vibrant neighborhood café for beautifully crafted coffee, matcha, pastries and easy conversations — right in the heart of Crosby Street.</p>
+        <div class="hero-actions"><a class="btn primary" href="#reserve">Reserve a Table →</a><a class="btn secondary" href="#menu">Explore Menu →</a></div>
+      </div>
+      <div class="scroll">SCROLL TO EXPLORE ↓</div>
+    </section>
+
+    <section id="about">
+      <div class="intro reveal">
+        <div><div class="kicker">The Lyria feeling</div><h2>A little pause in the middle of the city.</h2></div>
+        <div><p class="intro-copy">Café Lyria brings together delicious coffee, Greek-inspired treats and a cool, energetic atmosphere. Come for the Freddo espresso, stay for the friendly service, reliable Wi-Fi and the feeling that you can make this place your own.</p></div>
+      </div>
+      <div class="stats stagger reveal">
+        <div class="stat"><b data-count="615">0</b><span>Guest reviews</span></div>
+        <div class="stat"><b data-count="4.6">0</b><span>Average rating</span></div>
+        <div class="stat"><b data-count="10">0</b><span>Years of craft*</span></div>
+        <div class="stat"><b data-count="12">0</b><span>Menu favorites</span></div>
+      </div>
+    </section>
+
+    <section class="dark" id="menu">
+      <div class="section-head reveal"><div><div class="kicker">Made for your day</div><h2>Simple things,<br>done beautifully.</h2></div><p>From a creamy Freddo Cappuccino to a flaky croissant, our menu is built around familiar favorites with a Lyria twist.</p></div>
+      <div class="cards stagger reveal">
+        <article class="card">
+          <div class="card-media">
+            <picture>
+              <source srcset="images/coffee.webp" type="image/webp">
+              <img src="images/coffee.jpg" alt="Artisan coffee and espresso" loading="lazy" style="object-position: center 60%;">
+            </picture>
+            <span class="icon" aria-hidden="true">☕</span>
+          </div>
+          <h3>Coffee</h3>
+          <p>Freddo espresso, Americano, iced coffee and creamy foam creations for every coffee mood.</p>
+        </article>
+        <article class="card">
+          <div class="card-media">
+            <picture>
+              <source srcset="images/matcha.webp" type="image/webp">
+              <img src="images/matcha.jpg" alt="Iced matcha and artisan tea" loading="lazy" style="object-position: center 48%;">
+            </picture>
+            <span class="icon" aria-hidden="true">✦</span>
+          </div>
+          <h3>Matcha & Tea</h3>
+          <p>Matcha, green tea, iced tea and refreshing alternatives when you want something lighter.</p>
+        </article>
+        <article class="card">
+          <div class="card-media">
+            <picture>
+              <source srcset="images/pastries.webp" type="image/webp">
+              <img src="images/pastries.jpg" alt="Fresh croissants and pastries" loading="lazy" style="object-position: center 52%;">
+            </picture>
+            <span class="icon" aria-hidden="true">✧</span>
+          </div>
+          <h3>Pastries</h3>
+          <p>Greek cookies plus almond and chocolate croissants — perfect with your next coffee.</p>
+        </article>
+      </div>
+      <div class="menu-grid reveal" style="margin-top:65px">
+        <div>
+          <div class="menu-item"><div class="menu-item-info"><h3>Freddo Cappuccino <span class="menu-tag">Popular</span></h3><p>Chilled espresso · creamy foam</p></div><span class="price">$6.50</span></div>
+          <div class="menu-item"><div class="menu-item-info"><h3>Lyria Latte <span class="menu-tag">Popular</span></h3><p>Signature house-style latte</p></div><span class="price">$7.00</span></div>
+          <div class="menu-item"><div class="menu-item-info"><h3>Matcha <span class="menu-tag">Favorite</span></h3><p>Bright, smooth & refreshing</p></div><span class="price">$6.75</span></div>
+        </div>
+        <div>
+          <div class="menu-item"><div class="menu-item-info"><h3>Almond Croissant <span class="menu-tag">Fresh</span></h3><p>Flaky, buttery pastry</p></div><span class="price">$5.50</span></div>
+          <div class="menu-item"><div class="menu-item-info"><h3>Chocolate Croissant <span class="menu-tag">Fresh</span></h3><p>Classic pastry · rich chocolate</p></div><span class="price">$5.50</span></div>
+          <div class="menu-item"><div class="menu-item-info"><h3>Iced Chai <span class="menu-tag">Favorite</span></h3><p>Cool, spiced & aromatic</p></div><span class="price">$6.25</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="work">
+      <div class="section-head reveal">
+        <div>
+          <div class="kicker">Inside Café Lyria · 166 Crosby St</div>
+          <h2>The Café Environment<br>& Atmosphere.</h2>
+        </div>
+        <p>A Greek-inspired oasis nestled in NoHo. From our authentic espresso counter and sunlit garden lounge to our Crosby Street patio, discover the spaces where community and craft come together.</p>
+      </div>
+
+      <div class="env-filters reveal">
+        <button type="button" class="env-pill active" data-filter="all">All Spaces (6)</button>
+        <button type="button" class="env-pill" data-filter="counter">Espresso Bar</button>
+        <button type="button" class="env-pill" data-filter="lounge">Garden Lounge</button>
+        <button type="button" class="env-pill" data-filter="patio">Sidewalk Patio</button>
+        <button type="button" class="env-pill" data-filter="ritual">Freddo Ritual</button>
+        <a href="https://maps.app.goo.gl/QcBv3BZen3J98FzY9" target="_blank" rel="noopener noreferrer" class="env-maps-link">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+          Explore on Google Maps ↗
+        </a>
+      </div>
+
+      <div class="portfolio stagger reveal">
+        <!-- 1. The Main Counter & Founders (Authentic Lyria Photo) -->
+        <article class="project span-7" data-cat="counter" data-seating="Espresso Counter" data-img="images/lyria_noho_interior.webp" data-title="Founders & Espresso Counter" data-tag="Authentic 166 Crosby St" data-zone="Espresso Bar · 166 Crosby St" data-rec="Walk-ins & Solo Brews" data-desc="The authentic heart of Café Lyria. Handcrafted walnut wood bar, custom espresso setup, classical Greek fresco on raw concrete tiles, authentic Greek urn, and fresh pastries served by founders Yannis and Theo.">
+          <picture>
+            <source srcset="images/lyria_noho_interior.webp" type="image/webp">
+            <img src="images/lyria_noho_interior.png" alt="Café Lyria espresso bar and founders Yannis and Theo at 166 Crosby St" loading="lazy">
+          </picture>
+          <div class="project-info">
+            <span class="project-tag">Authentic 166 Crosby St</span>
+            <small>Espresso Bar · Heart of Lyria</small>
+            <h3>Founders & The Espresso Counter</h3>
+            <p class="project-blurb">Warm walnut wood counter, Greek classical art fresco, antique Greek urn, and fresh pastry cloche run by Yannis & Theo.</p>
+            <div class="project-actions">
+              <a class="btn-book-spot" href="#reserve" onclick="selectSeating('Espresso Counter')">Reserve Counter Spot →</a>
+              <button class="btn-subtle-view" type="button">View details ↗</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- 2. The Garden Oasis Lounge -->
+        <article class="project span-5" data-cat="lounge" data-seating="Cozy Lounge" data-img="images/environment_lounge.webp" data-title="The Garden Oasis Lounge" data-tag="Indoor Atmosphere" data-zone="Garden Conservatory Lounge" data-rec="Leisure, Reading & Table for Two" data-desc="A sun-drenched European conservatory aesthetic designed with the warmth of 'Grandma\'s front yard'. Features wooden pergola beams, hanging woven pendants, terracotta floor, and lush greenery for a serene retreat.">
+          <picture>
+            <source srcset="images/environment_lounge.webp" type="image/webp">
+            <img src="images/environment_lounge.jpg" alt="Café Lyria garden lounge with lush plants and wood pergola" loading="lazy">
+          </picture>
+          <div class="project-info">
+            <span class="project-tag">Indoor Oasis</span>
+            <small>Atmosphere · Grandma's Front Yard</small>
+            <h3>The Garden Oasis Lounge</h3>
+            <p class="project-blurb">Sunlit greenery, natural light, woven lanterns, and relaxed seating designed for slow mornings.</p>
+            <div class="project-actions">
+              <a class="btn-book-spot" href="#reserve" onclick="selectSeating('Cozy Lounge')">Reserve Lounge Table →</a>
+              <button class="btn-subtle-view" type="button">View details ↗</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- 3. Crosby Street Sidewalk Patio -->
+        <article class="project span-4" data-cat="patio" data-seating="Sidewalk Patio" data-img="images/environment_seating.webp" data-title="Sidewalk Cobblestone Patio" data-tag="Al Fresco Seating" data-zone="Crosby Street Sidewalk Patio" data-rec="Sunny Mornings & People Watching" data-desc="Charming outdoor bistro tables on quiet, historic Crosby Street. Savor your morning coffee or Freddo al fresco surrounded by potted plants and classic NoHo cobblestones.">
+          <picture>
+            <source srcset="images/environment_seating.webp" type="image/webp">
+            <img src="images/environment_seating.jpg" alt="Outdoor cafe patio on cobblestone street" loading="lazy">
+          </picture>
+          <div class="project-info">
+            <span class="project-tag">Al Fresco Seating</span>
+            <small>Outdoor · Crosby St</small>
+            <h3>Sidewalk Cobblestone Patio</h3>
+            <p class="project-blurb">Quiet Crosby Street breeze, outdoor bistro chairs, and morning sun for relaxing al fresco.</p>
+            <div class="project-actions">
+              <a class="btn-book-spot" href="#reserve" onclick="selectSeating('Sidewalk Patio')">Reserve Patio Table →</a>
+              <button class="btn-subtle-view" type="button">View details ↗</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- 4. The Freddo Ritual -->
+        <article class="project span-4" data-cat="ritual" data-seating="Window Bar" data-img="images/environment_freddo.webp" data-title="The Freddo Espresso Ritual" data-tag="Signature Craft" data-zone="Signature Drink Ritual" data-rec="Afternoon Boost & Greek Tradition" data-desc="Greek-style Freddo Espresso and the signature Lyria latte: freshly pulled double shot vigorously shaken with Greek thyme honey, poured over crystalline ice, and finished with velvety oat cold foam.">
+          <picture>
+            <source srcset="images/environment_freddo.webp" type="image/webp">
+            <img src="images/environment_freddo.jpg" alt="Signature Freddo iced espresso with cold foam" loading="lazy">
+          </picture>
+          <div class="project-info">
+            <span class="project-tag">Signature Drink</span>
+            <small>Greek Tradition · Iced Always</small>
+            <h3>The Freddo Espresso Ritual</h3>
+            <p class="project-blurb">Shaken iced Greek espresso, aromatic Greek honey, and dense velvety oat foam in ribbed glassware.</p>
+            <div class="project-actions">
+              <a class="btn-book-spot" href="#reserve" onclick="selectSeating('Window Bar')">Reserve Tasting Spot →</a>
+              <button class="btn-subtle-view" type="button">View details ↗</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- 5. Communal Bar & Work Lounge -->
+        <article class="project span-4" data-cat="counter" data-seating="Window Bar" data-img="images/environment_espressobar.webp" data-title="Communal Tables & Workspace" data-tag="Community Space" data-zone="Communal Wood Tables" data-rec="Laptops, Work & Group Catchups" data-desc="Generous wooden communal tables, pastry vitrine, high-speed Wi-Fi, and natural light that keep the room buzzing with welcoming energy and creative conversations.">
+          <picture>
+            <source srcset="images/environment_espressobar.webp" type="image/webp">
+            <img src="images/environment_espressobar.jpg" alt="Communal wooden tables and cafe interior" loading="lazy">
+          </picture>
+          <div class="project-info">
+            <span class="project-tag">Community & Connect</span>
+            <small>Workspace · Social Tables</small>
+            <h3>Communal Bar & Seating</h3>
+            <p class="project-blurb">Spacious wooden tables, pastry display, fast Wi-Fi, and welcoming community energy.</p>
+            <div class="project-actions">
+              <a class="btn-book-spot" href="#reserve" onclick="selectSeating('Window Bar')">Reserve Window Bar →</a>
+              <button class="btn-subtle-view" type="button">View details ↗</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- 6. Botanical Greenery Nook -->
+        <article class="project span-12" data-cat="lounge" data-seating="Cozy Lounge" data-img="images/environment_windowbar.webp" data-title="Botanical Greenery & Artisanal Pour" data-tag="Serene Corner" data-zone="Botanical Quiet Nook" data-rec="Reading, Journaling & Calm Mornings" data-desc="Tucked amongst lush monstera, olive, and ficus plants, handcrafted ceramic mugs poured with delicate latte art offer a peaceful sanctuary away from Manhattan's fast pace.">
+          <picture>
+            <source srcset="images/environment_windowbar.webp" type="image/webp">
+            <img src="images/environment_windowbar.jpg" alt="Artisanal latte art nestled in botanical greenery" loading="lazy">
+          </picture>
+          <div class="project-info" style="max-width:650px">
+            <span class="project-tag">Serene Corner</span>
+            <small>Botanical Haven · Art in Every Cup</small>
+            <h3>Botanical Greenery & Artisanal Pour</h3>
+            <p class="project-blurb">Nestled amongst leafy tropical plants, ceramic mugs with delicate latte art invite you to pause, unwind, and savor the moment.</p>
+            <div class="project-actions">
+              <a class="btn-book-spot" href="#reserve" onclick="selectSeating('Cozy Lounge')">Reserve Cozy Nook →</a>
+              <button class="btn-subtle-view" type="button">View details ↗</button>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Environment Lightbox Modal -->
+    <div class="env-lightbox" id="envLightbox" aria-hidden="true" role="dialog" aria-labelledby="envModalTitle">
+      <div class="env-lightbox-backdrop" id="envLightboxBackdrop"></div>
+      <div class="env-lightbox-dialog">
+        <button class="env-lightbox-close" id="envLightboxClose" aria-label="Close modal">✕</button>
+        <div class="env-lightbox-img-wrap">
+          <img id="envModalImg" src="images/lyria_noho_interior.png" alt="Café Lyria Environment">
+        </div>
+        <div class="env-lightbox-body">
+          <span class="env-lightbox-tag" id="envModalTag">Authentic 166 Crosby St</span>
+          <h3 id="envModalTitle">Founders & Espresso Counter</h3>
+          <p id="envModalDesc">The authentic heart of Café Lyria at 166 Crosby St.</p>
+          <div class="env-lightbox-meta">
+            <div><small>Environment Zone</small><b id="envModalZone">Espresso Bar</b></div>
+            <div><small>Recommended For</small><b id="envModalRec">Morning Brew · Walk-ins</b></div>
+          </div>
+          <div class="env-lightbox-actions">
+            <a class="btn primary" id="envModalReserveBtn" href="#reserve">Book This Seating Zone →</a>
+            <a class="btn secondary" href="https://maps.app.goo.gl/QcBv3BZen3J98FzY9" target="_blank" rel="noopener noreferrer">View on Google Maps ↗</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section class="dark" id="reviews">
+      <div class="testimonial reveal">
+        <div class="stars">★★★★★</div>
+        <div class="quote" id="quote">“Delicious coffee, especially the Freddo espresso and signature Lyria latte. The atmosphere is cool, energetic and genuinely welcoming.”</div>
+        <div class="client" id="client">Café Lyria guest · New York</div>
+        <div class="dots"><button class="dot active"></button><button class="dot"></button><button class="dot"></button></div>
+      </div>
+    </section>
+
+    <section class="cta reveal">
+      <div class="eyebrow">Your next coffee break</div><h2>Ready to make your day a little better?</h2><p>Meet us on Crosby Street for great coffee, a pastry and the kind of atmosphere you want to come back to.</p><a class="btn" href="#reserve">Book a Table Now →</a>
+    </section>
+
+    <section id="reserve">
+      <div id="contact"></div>
+      <div class="contact">
+        <div class="reveal"><div class="kicker">Reservations & Visits</div><h2 style="font:600 clamp(2.7rem,5vw,5rem)/1 'Playfair Display';letter-spacing:-.04em;margin:12px 0 0">Your table is waiting.</h2>
+          <div class="details">
+            <div class="detail"><small>Address</small><p><a href="https://maps.app.goo.gl/QcBv3BZen3J98FzY9" target="_blank" rel="noopener noreferrer" style="color:inherit">166 Crosby St, New York, NY 10012<br>Located in HealthQuarters ↗</a></p></div>
+            <div class="detail"><small>Online</small><p>cafelyria.com</p></div>
+            <div class="detail"><small>Hours</small><p>Opening from 8:00 AM Tuesday*</p></div>
+            <div class="detail"><small>Policy</small><p>Table reservations are strictly held for 15 minutes past your reserved time. Free cancellation is sent automatically via SMS and accepted up to 1 hour prior to your reserved time.</p></div>
+          </div>
+        </div>
+
+        <div class="booking-container reveal">
+          <div class="booking-tabs">
+            <button type="button" class="tab-btn active" id="tabReserve">Reserve a Table →</button>
+            <button type="button" class="tab-btn" id="tabLookup">Manage / Cancel ✕</button>
+            <button type="button" class="tab-btn" id="tabContact">General Inquiry →</button>
+          </div>
+
+          <!-- Reservation Form -->
+          <form class="form" id="reserveForm">
+            <div class="field"><input required name="name" id="resName" placeholder="Full Name" aria-label="Full Name"></div>
+            <div class="field"><input required type="email" name="email" id="resEmail" placeholder="Email Address" aria-label="Email Address"></div>
+            <div class="field"><input required type="tel" name="phone" id="resPhone" placeholder="Phone (for reservation reminders)" aria-label="Phone Number"></div>
+            <div class="field">
+              <select required name="guests" id="resGuests" aria-label="Party Size">
+                <option value="" disabled selected>Select Party Size</option>
+                <option value="1 Guest">1 Guest (Solo Coffee & Work)</option>
+                <option value="2 Guests">2 Guests (Table for Two)</option>
+                <option value="3 Guests">3 Guests</option>
+                <option value="4 Guests">4 Guests (Standard Table)</option>
+                <option value="5-6 Guests">5–6 Guests (Group)</option>
+                <option value="7+ Group">7+ Guests (Private Tasting)</option>
+              </select>
+            </div>
+            <div class="field">
+              <input required type="date" name="date" id="resDate" aria-label="Reservation Date">
+            </div>
+            <div class="field">
+              <select required name="time" id="resTime" aria-label="Reservation Time">
+                <option value="" disabled selected>Select Time Slot</option>
+                <option value="08:00 AM">08:00 AM · Morning Brew</option>
+                <option value="09:30 AM">09:30 AM · Breakfast & Pastry</option>
+                <option value="11:00 AM">11:00 AM · Midday Brunch</option>
+                <option value="12:30 PM">12:30 PM · Lunch & Freddo</option>
+                <option value="02:00 PM">02:00 PM · Afternoon Espresso</option>
+                <option value="03:30 PM">03:30 PM · Coffee & Matcha</option>
+                <option value="05:00 PM">05:00 PM · Golden Hour</option>
+                <option value="06:30 PM">06:30 PM · Evening Pause</option>
+              </select>
+            </div>
+            <div class="field full">
+              <select name="seating" id="resSeating" aria-label="Seating Preference">
+                <option value="Window Bar">Seating: Window Bar (Crosby St View)</option>
+                <option value="Cozy Lounge" selected>Seating: Cozy Lounge</option>
+                <option value="Espresso Counter">Seating: Espresso Bar Counter</option>
+                <option value="Sidewalk Patio">Seating: Sidewalk Patio (Weather Permitting)</option>
+              </select>
+            </div>
+            <div class="field full">
+              <textarea name="notes" id="resNotes" placeholder="Special requests (dietary preferences, celebration, quiet corner...)" aria-label="Special requests" style="min-height:90px"></textarea>
+            </div>
+            <div class="hold-policy-banner" style="grid-column:1/-1;background:rgba(201,117,69,0.12);border:1px solid rgba(201,117,69,0.3);border-radius:12px;padding:11px 15px;font-size:0.83rem;color:var(--cream);display:flex;align-items:center;gap:10px">
+              <span style="color:var(--accent2);font-size:1.15rem;line-height:1">⏱</span>
+              <span><strong>Reservation Policy:</strong> Tables held for 15 mins. An automated SMS confirmation with a <strong>1-hour free cancellation option</strong> is texted to your mobile upon booking.</span>
+            </div>
+            <button class="btn" type="submit" id="btnSubmitReserve">Confirm Reservation →</button>
+          </form>
+
+          <!-- Manage / Cancel Lookup Card -->
+          <div class="lookup-card" id="lookupSection" style="display:none">
+            <span class="lookup-pill">📱 Self-Service Table Portal</span>
+            <h3 style="font:600 clamp(1.4rem,2.5vw,1.9rem)/1.2 'Playfair Display';margin:10px 0 6px;color:var(--ink)">Manage or Cancel Reservation</h3>
+            <p style="font-size:0.88rem;color:var(--muted);line-height:1.6;margin:0 0 18px">Enter the confirmation code from your SMS (e.g. <strong>#LYR-8421</strong>) or your phone number. You can cancel your table online without charge up to <strong>1 hour before</strong> your scheduled arrival time.</p>
+            <form id="lookupForm" style="display:flex;gap:10px;flex-wrap:wrap;align-items:stretch;margin-bottom:14px">
+              <div style="flex:1;min-width:220px">
+                <input required type="text" id="lookupInput" placeholder="Booking Code (#LYR-XXXX) or Phone" aria-label="Booking Code or Phone" style="width:100%;border:1px solid var(--line);background:#ffffff80;padding:14px 16px;border-radius:var(--radius-md);font-size:0.95rem;color:var(--ink);outline:none">
+              </div>
+              <button class="btn" type="submit" id="btnSubmitLookup" style="padding:14px 22px;background:var(--ink);color:#fff;border-radius:var(--radius-md);font-weight:700;border:0;cursor:pointer">Find Reservation →</button>
+            </form>
+            <div id="lookupMsg" style="display:none;padding:12px 16px;border-radius:10px;font-size:0.86rem;margin-bottom:12px"></div>
+          </div>
+
+          <!-- Reservation Confirmation Receipt -->
+          <div class="reservation-card" id="reservationCard" style="display:none">
+            <div class="res-card-header">
+              <span class="res-pill" id="resStatusPill">✓ RESERVATION CONFIRMED</span>
+              <span class="res-id" id="resCode">#LYR-8421</span>
+            </div>
+            <h3 id="resSummaryTitle">Table Reserved for Guest</h3>
+            <div class="res-details-grid">
+              <div class="res-item"><small>Date</small><b id="confDate">—</b></div>
+              <div class="res-item"><small>Time</small><b id="confTime">—</b></div>
+              <div class="res-item"><small>Party Size</small><b id="confGuests">—</b></div>
+              <div class="res-item"><small>Seating</small><b id="confSeating">—</b></div>
+            </div>
+            <div class="res-location">
+              <small>Location</small>
+              <p>Café Lyria · 166 Crosby St, SoHo, New York</p>
+            </div>
+
+            <!-- Automated Customer SMS Dispatch Card -->
+            <div class="res-sms-box" id="resSmsBox">
+              <div class="res-sms-header">
+                <div style="display:flex;align-items:center;gap:7px">
+                  <span style="font-size:1.05rem">📱</span>
+                  <strong>Automated SMS to <span id="smsPhoneDisplay">+1 (212) 555-0192</span></strong>
+                </div>
+                <span class="sms-badge-sent" id="smsSentBadge">✓ Sent automatically</span>
+              </div>
+              <div class="res-sms-bubble" id="smsBubbleText">
+                "Café Lyria: Table reserved for Elena Rostova on Tue, Oct 7 at 12:30 PM (2 Guests). Free cancellation is available up to 1 hr before arrival (until 11:30 AM). To cancel: <span class="sms-link-preview" id="smsLinkPreview">cafelyria.com/?cancel=LYR-8421</span>"
+              </div>
+              <div class="res-sms-caption">
+                💬 An automatic SMS confirmation containing your 1-click cancellation option has been sent to your customer phone number.
+              </div>
+            </div>
+
+            <!-- Automated Customer Email Dispatch Card -->
+            <div class="res-email-box" id="resEmailBox">
+              <div class="res-email-header">
+                <div style="display:flex;align-items:center;gap:7px">
+                  <span style="font-size:1.05rem">✉️</span>
+                  <strong>Confirmation Email to <span id="emailDisplay">guest@example.com</span></strong>
+                </div>
+                <span class="email-badge-sent" id="emailSentBadge">✓ Delivered to Inbox</span>
+              </div>
+              <div class="res-email-card">
+                <div class="email-card-meta">
+                  <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:4px">
+                    <span><strong>From:</strong> Café Lyria &lt;reservations@cafelyria.com&gt;</span>
+                    <span style="color:#a8a29e;font-size:0.75rem" id="emailTimestamp">Dispatched automatically</span>
+                  </div>
+                  <div><strong>Subject:</strong> Table Confirmed at Café Lyria (<span id="emailSubjectCode">#LYR-8421</span>)</div>
+                </div>
+                <div class="email-card-body" id="emailCardBody">
+                  <p style="margin:0 0 6px">Hi <strong id="emailGuestName">Guest</strong>, your table at Café Lyria is confirmed!</p>
+                  <ul style="margin:4px 0 10px;padding-left:18px;line-height:1.55;font-size:0.83rem">
+                    <li><strong>Party & Seating:</strong> <span id="emailPartySeating">2 Guests · Cozy Lounge</span></li>
+                    <li><strong>Date & Time:</strong> <span id="emailDateTime">Tue, Oct 7 at 12:30 PM</span></li>
+                    <li><strong>Location:</strong> 166 Crosby St, SoHo, NY (in HealthQuarters)</li>
+                    <li><strong>Policy:</strong> 15-min table hold · 1-hour free cancellation option</li>
+                  </ul>
+                </div>
+                <div class="email-card-actions">
+                  <a href="#" target="_blank" rel="noopener noreferrer" class="btn-email-action" id="btnAddToGoogleCal">
+                    📅 Add to Google Calendar
+                  </a>
+                  <button type="button" class="btn-email-action" id="btnDownloadIcs">
+                    📥 Download .ics Calendar Invite
+                  </button>
+                  <button type="button" class="btn-email-action ghost" id="btnResendEmail">
+                    ✉ Resend Email
+                  </button>
+                </div>
+              </div>
+              <div class="res-email-caption">
+                ✓ A copy of your reservation receipt, calendar invite, and 1-hour cancellation option was dispatched to your email.
+              </div>
+            </div>
+
+            <!-- 1-Hour Cancellation Controller -->
+            <div class="res-cancel-container" id="resCancelContainer">
+              <div class="cancel-policy-head">
+                <div style="display:flex;align-items:center;gap:8px">
+                  <span id="cancelPolicyIcon" style="font-size:1.1rem">⏱</span>
+                  <strong id="cancelPolicyTitle">1-Hour Advance Cancellation Option</strong>
+                </div>
+                <span class="cancel-eligibility-badge eligible" id="cancelEligibilityBadge">Eligible for Free Cancellation</span>
+              </div>
+              <p class="cancel-policy-text" id="cancelPolicyText" style="margin:4px 0 14px;font-size:0.84rem;color:var(--muted);line-height:1.5">
+                You can cancel your reservation online without charge up to <strong>1 hour before</strong> your scheduled arrival time (cutoff: <strong id="cancelCutoffTime">—</strong>).
+              </p>
+              
+              <!-- Cancel Trigger Button & Countdown -->
+              <div id="cancelActionWrapper" style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+                <button type="button" class="btn-cancel-res" id="btnTriggerCancel">
+                  ✕ Cancel Reservation
+                </button>
+                <span id="cancelCountdownText" style="font-size:0.82rem;color:var(--muted)"></span>
+              </div>
+
+              <!-- Inline Confirmation Prompt -->
+              <div class="cancel-confirm-box" id="cancelConfirmBox" style="display:none">
+                <p style="margin:0 0 10px;font-weight:600;color:var(--ink);font-size:0.86rem">
+                  Are you sure you want to cancel this reservation? Your table will be immediately released, and a cancellation receipt will be sent automatically to your phone.
+                </p>
+                <div style="display:flex;gap:8px;flex-wrap:wrap">
+                  <button type="button" class="btn-confirm-cancel-now" id="btnConfirmCancelNow">Yes, Cancel Table</button>
+                  <button type="button" class="btn-keep-res" id="btnKeepRes">No, Keep Reservation</button>
+                </div>
+              </div>
+
+              <!-- Cancelled State Banner -->
+              <div class="cancelled-alert" id="cancelledAlert" style="display:none;background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.3);border-radius:10px;padding:12px 14px">
+                <div style="display:flex;align-items:center;gap:8px;color:#dc2626;font-weight:700;font-size:0.9rem;margin-bottom:3px">
+                  <span>✕ Reservation Cancelled</span>
+                </div>
+                <p style="margin:0;font-size:0.82rem;color:#7f1d1d;line-height:1.5">
+                  Your table has been released and a cancellation SMS has been dispatched to your mobile. If your plans change, we hope to see you another day!
+                </p>
+              </div>
+
+              <!-- Policy Expired / Late Notice (within 1 hr of arrival) -->
+              <div class="cancel-expired-alert" id="cancelExpiredAlert" style="display:none;background:rgba(245,158,11,0.1);border:1px solid rgba(245,158,11,0.3);border-radius:10px;padding:12px 14px">
+                <div style="display:flex;align-items:center;gap:8px;color:#b45309;font-weight:700;font-size:0.88rem;margin-bottom:3px">
+                  <span>⚠️ Online Cancellation Closed (Within 1 Hour)</span>
+                </div>
+                <p style="margin:0 0 8px;font-size:0.82rem;color:#78350f;line-height:1.5">
+                  Online self-cancellation closed at <strong id="expiredCutoffTimeDisplay">—</strong> (1 hour prior to arrival) so our baristas could stage your table. Please call our host stand directly to release your table.
+                </p>
+                <a href="tel:+12125550143" style="display:inline-flex;align-items:center;gap:6px;background:rgba(201,117,69,0.18);border:1px solid rgba(201,117,69,0.4);color:var(--ink);padding:6px 12px;border-radius:8px;font-size:0.8rem;font-weight:700;text-decoration:none">
+                  📞 Call Host Stand: +1 (212) 555-0143
+                </a>
+              </div>
+            </div>
+
+            <p class="res-footer-msg" id="resReceiptMsg">Please save your confirmation booking code <strong id="resCodeHighlight" style="color:var(--accent2);letter-spacing:0.04em">#LYR-8421</strong> to present upon arrival. Tables are held for up to <strong>15 minutes</strong> past your reserved time.</p>
+            <div class="res-actions">
+              <button type="button" class="btn secondary" id="btnCopyBookingCode" style="background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.25);color:#fff">📋 Copy Booking Code</button>
+              <button type="button" class="btn" id="btnModifyRes">Reserve Another Table</button>
+            </div>
+          </div>
+
+          <!-- General Inquiry Form -->
+          <form class="form" id="form" style="display:none">
+            <div class="field"><input required name="name" id="inqName" placeholder="Full Name" aria-label="Name"></div>
+            <div class="field"><input required type="email" name="email" id="inqEmail" placeholder="Email Address" aria-label="Email"></div>
+            <div class="field"><input type="tel" name="phone" id="inqPhone" placeholder="Phone Number (Optional)" aria-label="Phone"></div>
+            <div class="field">
+              <select name="reason" id="inqReason" aria-label="Reason">
+                <option value="General enquiry">General Inquiry</option>
+                <option value="Private event">Private Event / Gathering</option>
+                <option value="Partnership">Brand Partnership & Press</option>
+                <option value="Feedback">Guest Experience & Feedback</option>
+              </select>
+            </div>
+            <div class="field full"><textarea required name="message" id="inqMessage" placeholder="How can we help you? (Message details...)" aria-label="Message" style="min-height:90px"></textarea></div>
+            <div class="success" id="success"></div>
+            <button class="btn" type="submit" id="btnSubmitInquiry">Send Message →</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="foot-top">
+      <div class="foot"><div class="foot-logo">Café Lyria</div><p>Good coffee, Greek-inspired treats and good energy on Crosby Street, New York.</p></div>
+      <div class="foot"><h3>Explore</h3><a href="#about">About</a><a href="#menu">Menu</a><a href="#work">Gallery</a><a href="#reserve">Reserve</a><a href="#reviews">Reviews</a></div>
+      <div class="foot"><h3>Visit</h3><a href="https://maps.app.goo.gl/QcBv3BZen3J98FzY9" target="_blank" rel="noopener noreferrer">166 Crosby St</a><a href="https://maps.app.goo.gl/QcBv3BZen3J98FzY9" target="_blank" rel="noopener noreferrer">New York, NY 10012</a><a href="https://maps.app.goo.gl/QcBv3BZen3J98FzY9" target="_blank" rel="noopener noreferrer">Google Maps ↗</a></div>
+      <div class="foot">
+        <h3>Social</h3>
+        <div class="social-buttons foot-social">
+          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Café Lyria on Instagram">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+            <span>Instagram</span>
+          </a>
+          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Café Lyria on Facebook">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            <span>Facebook</span>
+          </a>
+          <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Café Lyria on Twitter">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            <span>Twitter</span>
+          </a>
+        </div>
+      </div>
+      <div class="foot foot-map-col">
+        <h3>Location</h3>
+        <div class="foot-map-frame">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3023.633519159981!2d-73.99800092357731!3d40.72584997139109!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c259f56e035771%3A0x1a404262f72adc1f!2zQ2Fmw6kgTHlyaWE!5e0!3m2!1sen!2sus!4v1710000000000!5m2!1sen!2sus" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Café Lyria Location"></iframe>
+        </div>
+      </div>
+    </div>
+    <div class="copyright"><span>© 2026 Café Lyria. All rights reserved.</span> <span>166 Crosby St, NoHo, New York</span></div>
+  </footer>
+
+  <script src="lenis.min.js"></script>
+  <script>
+  const loader=document.getElementById('loader'); window.addEventListener('load',()=>setTimeout(()=>loader.classList.add('hide'),500));
+  const nav=document.getElementById('nav');
+  const btn=document.getElementById('menuBtn'), links=document.getElementById('links');
+  btn.addEventListener('click',()=>links.classList.toggle('open'));
+  links.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>links.classList.remove('open')));
+  const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Initialize Lenis Smooth Scrolling
+  let lenis;
+  if(typeof Lenis !== 'undefined'){
+    lenis = new Lenis({
+      autoRaf: true,
+      autoToggle: true,
+      anchors: true,
+      allowNestedScroll: true,
+      smoothWheel: true,
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      respectReducedMotion: true
+    });
+    window.lenis = lenis;
+    lenis.on('scroll', (e) => {
+      nav.classList.toggle('scrolled', e.scroll > 40);
+    });
+  } else {
+    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40), { passive: true });
+  }
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible'); if(e.target.classList.contains('stats')) counters(e.target); io.unobserve(e.target)}}),{threshold:.14});
+  document.querySelectorAll('.reveal,.stagger').forEach(el=>io.observe(el));
+  function counters(box){box.querySelectorAll('[data-count]').forEach(el=>{const end=parseFloat(el.dataset.count), decimals=end%1?1:0;if(reduced){el.textContent=end.toFixed(decimals);return} let s=performance.now(),d=1100;function tick(t){let p=Math.min((t-s)/d,1),v=end*(1-Math.pow(1-p,3));el.textContent=v.toFixed(decimals)+(end===4.6?'★':'+');if(p<1)requestAnimationFrame(tick)}requestAnimationFrame(tick)})}
+  if(!reduced) window.addEventListener('mousemove',e=>{document.querySelectorAll('.orb').forEach((o,i)=>o.style.transform=`translate(${(e.clientX-innerWidth/2)*(i?-.012:.018)}px,${(e.clientY-innerHeight/2)*(i?-.012:.018)}px)`)});
+  const reviews=[['“Delicious coffee, especially the Freddo espresso and signature Lyria latte. The atmosphere is cool, energetic and genuinely welcoming.”','Café Lyria guest · New York'],['“A reliable spot with friendly staff, great coffee and a clean, comfortable place to slow down or get some work done.”','Café Lyria guest · SoHo'],['“The pastries and iced drinks are exactly what you want for a New York afternoon. Easy to recommend.”','Café Lyria guest · Manhattan']];
+  let ri=0; const q=document.getElementById('quote'),c=document.getElementById('client'),dots=[...document.querySelectorAll('.dot')];
+  function showReview(n){q.style.opacity=c.style.opacity=0;setTimeout(()=>{q.textContent=reviews[n][0];c.textContent=reviews[n][1];q.style.opacity=c.style.opacity=1},220);dots.forEach((d,i)=>d.classList.toggle('active',i===n));ri=n}
+  dots.forEach((d,i)=>d.onclick=()=>showReview(i)); if(!reduced)setInterval(()=>showReview((ri+1)%reviews.length),5000);
+  // Reservation System
+  const todayStr = new Date().toISOString().split('T')[0];
+  const dateInput = document.getElementById('resDate');
+  if (dateInput) {
+    dateInput.min = todayStr;
+    dateInput.value = todayStr;
+  }
+
+  // Escape and Calendar Helpers
+  function escapeHtml(str) {
+    if (!str) return '';
+    return String(str).replace(/[&<>"']/g, m => ({
+      '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+    })[m]);
+  }
+
+  function downloadIcsFile(b) {
+    if (!b) return;
+    try {
+      const start = parseReservationDateTime(b.date, b.time) || new Date();
+      const end = new Date(start.getTime() + (90 * 60 * 1000));
+      const toIcs = d => d.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
+      const ics = [
+        'BEGIN:VCALENDAR',
+        'VERSION:2.0',
+        'PRODID:-//Cafe Lyria//Table Reservation//EN',
+        'CALSCALE:GREGORIAN',
+        'METHOD:PUBLISH',
+        'BEGIN:VEVENT',
+        `UID:${(b.id || 'res').replace('#', '')}-${Date.now()}@cafelyria.com`,
+        `DTSTAMP:${toIcs(new Date())}`,
+        `DTSTART:${toIcs(start)}`,
+        `DTEND:${toIcs(end)}`,
+        `SUMMARY:Table Reservation at Café Lyria (${b.id})`,
+        `DESCRIPTION:Table reserved for ${b.name} (${b.guests}) at Café Lyria. Seating: ${b.seating}. Address: 166 Crosby St, SoHo, NY. Online cancellation available up to 1 hr before arrival.`,
+        'LOCATION:166 Crosby St, New York, NY 10012',
+        'STATUS:CONFIRMED',
+        'END:VEVENT',
+        'END:VCALENDAR'
+      ].join('\r\n');
+      const blob = new Blob([ics], { type: 'text/calendar;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `cafe_lyria_reservation_${(b.id || 'booking').replace('#', '')}.ics`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    } catch(err) {
+      console.error('ICS export error:', err);
+    }
+  }
+
+  // 1-Hour Advance Cancellation & Date Helper Functions
+  function parseReservationDateTime(dateStr, timeStr) {
+    if (!dateStr) return null;
+    const parts = dateStr.split('-');
+    if (parts.length !== 3) return null;
+    const year = parseInt(parts[0], 10);
+    const month = parseInt(parts[1], 10) - 1;
+    const day = parseInt(parts[2], 10);
+    let hour = 12;
+    let min = 0;
+    if (timeStr) {
+      const match = timeStr.match(/(\d+):(\d+)\s*(AM|PM)?/i);
+      if (match) {
+        hour = parseInt(match[1], 10);
+        min = parseInt(match[2], 10);
+        const ampm = (match[3] || '').toUpperCase();
+        if (ampm === 'PM' && hour < 12) hour += 12;
+        if (ampm === 'AM' && hour === 12) hour = 0;
+      }
+    }
+    return new Date(year, month, day, hour, min, 0, 0);
+  }
+
+  function getCancellationStatus(dateStr, timeStr) {
+    const resDateTime = parseReservationDateTime(dateStr, timeStr);
+    if (!resDateTime || isNaN(resDateTime.getTime())) {
+      return { eligible: true, cutoffFormatted: '1 hr before arrival', remainingText: 'Available online' };
+    }
+    // Cancellation policy: Strictly up to 1 hour before scheduled arrival time
+    const cutoff = new Date(resDateTime.getTime() - (60 * 60 * 1000));
+    const now = new Date();
+    const isEligible = now.getTime() < cutoff.getTime();
+    const msDiff = cutoff.getTime() - now.getTime();
+    const minDiff = Math.max(0, Math.round(msDiff / 60000));
+    
+    let remainingText = '';
+    if (minDiff > 1440) {
+      const days = Math.floor(minDiff / 1440);
+      remainingText = `${days} day${days > 1 ? 's' : ''} left`;
+    } else if (minDiff > 60) {
+      const hrs = Math.floor(minDiff / 60);
+      remainingText = `${hrs} hr${hrs > 1 ? 's' : ''} left`;
+    } else if (minDiff > 0) {
+      remainingText = `${minDiff} min left`;
+    } else {
+      remainingText = 'Expired';
+    }
+
+    const cutoffTimeOnly = cutoff.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+    const cutoffDateOnly = cutoff.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
+    const todayYmd = now.toISOString().split('T')[0];
+    const isToday = (cutoff.toISOString().split('T')[0] === todayYmd);
+    const cutoffFormatted = isToday ? `Today at ${cutoffTimeOnly}` : `${cutoffDateOnly} at ${cutoffTimeOnly}`;
+
+    return {
+      eligible: isEligible,
+      cutoff,
+      cutoffFormatted,
+      cutoffTimeOnly,
+      remainingText
+    };
+  }
+
+  const RESERVATIONS_KEY = 'cafe_lyria_reservations';
+  function getStoredReservations() {
+    try {
+      const raw = localStorage.getItem(RESERVATIONS_KEY);
+      if (raw) return JSON.parse(raw);
+    } catch(e) {}
+    // Default fallback reservations matching admin portal
+    const getTodayString = (offsetDays = 0) => {
+      const d = new Date();
+      d.setDate(d.getDate() + offsetDays);
+      return d.toISOString().split('T')[0];
+    };
+    const defaults = [
+      {
+        id: '#LYR-8812',
+        name: 'Liam Chen',
+        email: 'lchen@outlook.com',
+        phone: '+1 (917) 555-8891',
+        guests: '4 Guests',
+        date: getTodayString(0),
+        time: '01:00 PM',
+        seating: 'Cozy Lounge',
+        notes: 'Team coffee meeting · Freddo espresso and croissants',
+        status: 'Seated',
+        createdAt: new Date().toISOString()
+      },
+      {
+        id: '#LYR-7630',
+        name: 'Emma Watson',
+        email: 'emma.w@sohoart.com',
+        phone: '+1 (646) 555-3310',
+        guests: '1 Guest',
+        date: getTodayString(0),
+        time: '03:30 PM',
+        seating: 'Espresso Counter',
+        notes: 'Solo work session · reliable Wi-Fi needed',
+        status: 'Confirmed',
+        createdAt: new Date().toISOString()
+      },
+      {
+        id: '#LYR-6194',
+        name: 'Marcus Vance',
+        email: 'mvance@crosbylaw.com',
+        phone: '+1 (212) 555-7722',
+        guests: '6 Guests',
+        date: getTodayString(1),
+        time: '12:30 PM',
+        seating: 'Sidewalk Patio',
+        notes: 'Family brunch · high chair requested',
+        status: 'Confirmed',
+        createdAt: new Date().toISOString()
+      },
+      {
+        id: '#LYR-5042',
+        name: 'Chloe Dubois',
+        email: 'chloe.dubois@paris.fr',
+        phone: '+1 (347) 555-9014',
+        guests: '2 Guests',
+        date: getTodayString(2),
+        time: '05:00 PM',
+        seating: 'Cozy Lounge',
+        notes: 'First time visiting SoHo · excited for Greek pastries',
+        status: 'Confirmed',
+        createdAt: new Date().toISOString()
+      }
+    ];
+    try {
+      localStorage.setItem(RESERVATIONS_KEY, JSON.stringify(defaults));
+    } catch(e) {}
+    return defaults;
+  }
+
+  function saveStoredReservations(list) {
+    try {
+      localStorage.setItem(RESERVATIONS_KEY, JSON.stringify(list));
+      window.dispatchEvent(new Event('storage'));
+    } catch(e) {
+      console.error('Storage error:', e);
+    }
+  }
+
+  let activeBooking = null;
+
+  function renderReservationCard(b) {
+    if (!b) return;
+    activeBooking = b;
+
+    const resStatusPill = document.getElementById('resStatusPill');
+    const resCode = document.getElementById('resCode');
+    const resCodeHighlight = document.getElementById('resCodeHighlight');
+    const resSummaryTitle = document.getElementById('resSummaryTitle');
+    const confDate = document.getElementById('confDate');
+    const confTime = document.getElementById('confTime');
+    const confGuests = document.getElementById('confGuests');
+    const confSeating = document.getElementById('confSeating');
+    
+    if (resCode) resCode.textContent = b.id;
+    if (resCodeHighlight) resCodeHighlight.textContent = b.id;
+    
+    let formattedDate = b.date;
+    try {
+      const parts = b.date.split('-');
+      if (parts.length === 3) {
+        const d = new Date(parts[0], parts[1] - 1, parts[2]);
+        formattedDate = d.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
+      }
+    } catch(err){}
+    
+    if (confDate) confDate.textContent = formattedDate;
+    if (confTime) confTime.textContent = b.time;
+    if (confGuests) confGuests.textContent = b.guests;
+    if (confSeating) confSeating.textContent = (b.seating || '').replace('Seating: ', '');
+
+    const isCancelled = (b.status === 'Cancelled');
+
+    if (resStatusPill) {
+      if (isCancelled) {
+        resStatusPill.textContent = '✕ RESERVATION CANCELLED';
+        resStatusPill.className = 'res-pill cancelled';
+      } else {
+        resStatusPill.textContent = '✓ RESERVATION CONFIRMED';
+        resStatusPill.className = 'res-pill';
+      }
+    }
+
+    if (resSummaryTitle) {
+      resSummaryTitle.textContent = isCancelled
+        ? `Reservation Cancelled for ${b.name}`
+        : `Table Reserved for ${b.name}`;
+    }
+
+    // Automated SMS Preview Box
+    const resSmsBox = document.getElementById('resSmsBox');
+    const smsPhoneDisplay = document.getElementById('smsPhoneDisplay');
+    const smsSentBadge = document.getElementById('smsSentBadge');
+    const smsBubbleText = document.getElementById('smsBubbleText');
+
+    if (smsPhoneDisplay) smsPhoneDisplay.textContent = b.phone || 'Your Phone Number';
+
+    const cancelUrl = `${window.location.origin}${window.location.pathname}?cancel=${encodeURIComponent((b.id || '').replace('#', ''))}`;
+    const cutoffInfo = getCancellationStatus(b.date, b.time);
+
+    if (resSmsBox && smsBubbleText && smsSentBadge) {
+      if (isCancelled) {
+        resSmsBox.className = 'res-sms-box sms-cancelled';
+        smsSentBadge.className = 'sms-badge-sent cancelled';
+        smsSentBadge.textContent = '✓ Cancellation SMS Sent';
+        smsBubbleText.innerHTML = `"Café Lyria: Your reservation <strong>${b.id}</strong> on ${formattedDate} at ${b.time} has been cancelled as requested. Your table has been released. We hope to welcome you another time!"`;
+      } else {
+        resSmsBox.className = 'res-sms-box';
+        smsSentBadge.className = 'sms-badge-sent';
+        smsSentBadge.textContent = '✓ Sent automatically';
+        smsBubbleText.innerHTML = `"Café Lyria: Table reserved for ${b.name} on ${formattedDate} at ${b.time} (${b.guests}). Free cancellation is available automatically up to 1 hr before arrival (until ${cutoffInfo.cutoffFormatted}). To cancel: <a href="${cancelUrl}" class="sms-link-preview">${window.location.hostname || 'cafelyria.com'}?cancel=${(b.id || '').replace('#', '')}</a>"`;
+      }
+    }
+
+    // Automated Email Dispatch Card
+    const resEmailBox = document.getElementById('resEmailBox');
+    const emailDisplay = document.getElementById('emailDisplay');
+    const emailSentBadge = document.getElementById('emailSentBadge');
+    const emailSubjectCode = document.getElementById('emailSubjectCode');
+    const emailGuestName = document.getElementById('emailGuestName');
+    const emailPartySeating = document.getElementById('emailPartySeating');
+    const emailDateTime = document.getElementById('emailDateTime');
+    const emailCardBody = document.getElementById('emailCardBody');
+    const btnAddToGoogleCal = document.getElementById('btnAddToGoogleCal');
+    const btnDownloadIcs = document.getElementById('btnDownloadIcs');
+    const btnResendEmail = document.getElementById('btnResendEmail');
+
+    if (emailDisplay) emailDisplay.textContent = b.email || 'customer@example.com';
+    if (emailSubjectCode) emailSubjectCode.textContent = b.id || '';
+    if (emailGuestName) emailGuestName.textContent = b.name || 'Guest';
+    if (emailPartySeating) emailPartySeating.textContent = `${b.guests || '2 Guests'} · ${b.seating || 'Cozy Lounge'}`;
+    if (emailDateTime) emailDateTime.textContent = `${formattedDate} at ${b.time || '12:30 PM'}`;
+
+    if (resEmailBox && emailSentBadge && emailCardBody) {
+      if (isCancelled) {
+        resEmailBox.className = 'res-email-box email-cancelled';
+        emailSentBadge.className = 'email-badge-sent cancelled';
+        emailSentBadge.textContent = '✓ Cancellation Email Sent';
+        emailCardBody.innerHTML = `<p style="margin:0 0 6px">Hi <strong>${escapeHtml(b.name || 'Guest')}</strong>, your reservation <strong>${b.id}</strong> has been cancelled as requested.</p><p style="margin:0;color:#f87171;font-size:0.82rem">Your table has been released. If your plans change, we hope to welcome you back!</p>`;
+      } else {
+        resEmailBox.className = 'res-email-box';
+        emailSentBadge.className = 'email-badge-sent';
+        emailSentBadge.textContent = '✓ Delivered to Inbox';
+        emailCardBody.innerHTML = `
+          <p style="margin:0 0 6px">Hi <strong>${escapeHtml(b.name || 'Guest')}</strong>, your table at Café Lyria is confirmed!</p>
+          <ul style="margin:4px 0 10px;padding-left:18px;line-height:1.55;font-size:0.83rem">
+            <li><strong>Party & Seating:</strong> ${escapeHtml(b.guests || '2 Guests')} · ${escapeHtml(b.seating || 'Cozy Lounge')}</li>
+            <li><strong>Date & Time:</strong> ${formattedDate} at ${escapeHtml(b.time || '12:30 PM')}</li>
+            <li><strong>Location:</strong> 166 Crosby St, SoHo, NY (in HealthQuarters)</li>
+            <li><strong>Policy:</strong> 15-min table hold · 1-hour free cancellation option</li>
+          </ul>`;
+      }
+    }
+
+    // Google Calendar Link Setup
+    if (btnAddToGoogleCal) {
+      if (!isCancelled) {
+        try {
+          const start = parseReservationDateTime(b.date, b.time) || new Date();
+          const end = new Date(start.getTime() + (90 * 60 * 1000));
+          const toGcal = d => d.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
+          btnAddToGoogleCal.href = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent('Table Reservation at Café Lyria (' + b.id + ')')}&dates=${toGcal(start)}/${toGcal(end)}&details=${encodeURIComponent('Table for ' + b.guests + ' at Café Lyria (166 Crosby St, NY). Free cancellation up to 1 hr prior via SMS/Email link.')}&location=${encodeURIComponent('166 Crosby St, New York, NY 10012')}`;
+          btnAddToGoogleCal.style.display = 'inline-flex';
+        } catch(e) {
+          btnAddToGoogleCal.style.display = 'none';
+        }
+      } else {
+        btnAddToGoogleCal.style.display = 'none';
+      }
+    }
+
+    if (btnDownloadIcs) {
+      btnDownloadIcs.style.display = isCancelled ? 'none' : 'inline-flex';
+      btnDownloadIcs.onclick = () => downloadIcsFile(b);
+    }
+
+    if (btnResendEmail) {
+      btnResendEmail.onclick = () => {
+        const orig = btnResendEmail.innerHTML;
+        btnResendEmail.innerHTML = '✓ Dispatched to ' + (b.email || 'inbox');
+        setTimeout(() => { btnResendEmail.innerHTML = orig; }, 2600);
+      };
+    }
+
+    // 1-Hour Cancellation Controller
+    const cancelCutoffTime = document.getElementById('cancelCutoffTime');
+    const cancelCountdownText = document.getElementById('cancelCountdownText');
+    const cancelEligibilityBadge = document.getElementById('cancelEligibilityBadge');
+    const cancelPolicyText = document.getElementById('cancelPolicyText');
+    const cancelActionWrapper = document.getElementById('cancelActionWrapper');
+    const cancelConfirmBox = document.getElementById('cancelConfirmBox');
+    const cancelledAlert = document.getElementById('cancelledAlert');
+    const cancelExpiredAlert = document.getElementById('cancelExpiredAlert');
+    const expiredCutoffTimeDisplay = document.getElementById('expiredCutoffTimeDisplay');
+
+    if (cancelCutoffTime) cancelCutoffTime.textContent = cutoffInfo.cutoffFormatted;
+    if (expiredCutoffTimeDisplay) expiredCutoffTimeDisplay.textContent = cutoffInfo.cutoffFormatted;
+
+    if (cancelConfirmBox) cancelConfirmBox.style.display = 'none';
+
+    if (isCancelled) {
+      if (cancelEligibilityBadge) {
+        cancelEligibilityBadge.className = 'cancel-eligibility-badge cancelled';
+        cancelEligibilityBadge.textContent = 'Table Released';
+      }
+      if (cancelPolicyText) {
+        cancelPolicyText.innerHTML = `This reservation was cancelled. An automated SMS confirmation was sent to your phone.`;
+      }
+      if (cancelActionWrapper) cancelActionWrapper.style.display = 'none';
+      if (cancelledAlert) cancelledAlert.style.display = 'block';
+      if (cancelExpiredAlert) cancelExpiredAlert.style.display = 'none';
+    } else if (cutoffInfo.eligible) {
+      if (cancelEligibilityBadge) {
+        cancelEligibilityBadge.className = 'cancel-eligibility-badge eligible';
+        cancelEligibilityBadge.textContent = 'Eligible for Free Cancellation';
+      }
+      if (cancelPolicyText) {
+        cancelPolicyText.innerHTML = `You can cancel your reservation online without charge up to <strong>1 hour before</strong> your scheduled arrival time (cutoff: <strong>${cutoffInfo.cutoffFormatted}</strong>).`;
+      }
+      if (cancelCountdownText) cancelCountdownText.textContent = `⏱ ${cutoffInfo.remainingText} remaining to cancel online`;
+      if (cancelActionWrapper) cancelActionWrapper.style.display = 'flex';
+      if (cancelledAlert) cancelledAlert.style.display = 'none';
+      if (cancelExpiredAlert) cancelExpiredAlert.style.display = 'none';
+    } else {
+      // Within 1 hour or past time
+      if (cancelEligibilityBadge) {
+        cancelEligibilityBadge.className = 'cancel-eligibility-badge expired';
+        cancelEligibilityBadge.textContent = 'Cancellation Window Closed';
+      }
+      if (cancelPolicyText) {
+        cancelPolicyText.innerHTML = `Online self-cancellation closed at <strong>${cutoffInfo.cutoffFormatted}</strong> (1 hour prior to arrival).`;
+      }
+      if (cancelActionWrapper) cancelActionWrapper.style.display = 'none';
+      if (cancelledAlert) cancelledAlert.style.display = 'none';
+      if (cancelExpiredAlert) cancelExpiredAlert.style.display = 'block';
+    }
+
+    if (reserveForm) reserveForm.style.display = 'none';
+    if (contactForm) contactForm.style.display = 'none';
+    const lookupSection = document.getElementById('lookupSection');
+    if (lookupSection) lookupSection.style.display = 'none';
+    reservationCard.style.display = 'block';
+  }
+
+  const tabReserve = document.getElementById('tabReserve');
+  const tabLookup = document.getElementById('tabLookup');
+  const tabContact = document.getElementById('tabContact');
+  const reserveForm = document.getElementById('reserveForm');
+  const contactForm = document.getElementById('form');
+  const lookupSection = document.getElementById('lookupSection');
+  const reservationCard = document.getElementById('reservationCard');
+
+  if (tabReserve && tabLookup && tabContact) {
+    tabReserve.addEventListener('click', () => {
+      tabReserve.classList.add('active');
+      tabLookup.classList.remove('active');
+      tabContact.classList.remove('active');
+      if (reservationCard.style.display !== 'block') {
+        reserveForm.style.display = 'grid';
+      }
+      if (lookupSection) lookupSection.style.display = 'none';
+      contactForm.style.display = 'none';
+    });
+
+    tabLookup.addEventListener('click', () => {
+      tabLookup.classList.add('active');
+      tabReserve.classList.remove('active');
+      tabContact.classList.remove('active');
+      if (lookupSection) lookupSection.style.display = 'block';
+      reserveForm.style.display = 'none';
+      contactForm.style.display = 'none';
+      reservationCard.style.display = 'none';
+      const input = document.getElementById('lookupInput');
+      if (input) setTimeout(() => input.focus(), 60);
+    });
+
+    tabContact.addEventListener('click', () => {
+      tabContact.classList.add('active');
+      tabReserve.classList.remove('active');
+      tabLookup.classList.remove('active');
+      contactForm.style.display = 'grid';
+      reserveForm.style.display = 'none';
+      if (lookupSection) lookupSection.style.display = 'none';
+      reservationCard.style.display = 'none';
+    });
+  }
+
+  // Handle Reservation Submission
+  if (reserveForm) {
+    reserveForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = document.getElementById('resName').value.trim() || 'Guest';
+      const email = document.getElementById('resEmail').value.trim();
+      const phone = document.getElementById('resPhone').value.trim();
+      const guests = document.getElementById('resGuests').value || '2 Guests';
+      const dateVal = document.getElementById('resDate').value;
+      const timeVal = document.getElementById('resTime').value || '12:30 PM';
+      const seatingVal = document.getElementById('resSeating').value || 'Cozy Lounge';
+      const notes = document.getElementById('resNotes') ? document.getElementById('resNotes').value.trim() : '';
+      
+      const code = '#LYR-' + Math.floor(1000 + Math.random() * 9000);
+      const cutoffData = getCancellationStatus(dateVal, timeVal);
+
+      const newBooking = {
+        id: code,
+        name: name,
+        email: email,
+        phone: phone,
+        guests: guests,
+        date: dateVal,
+        time: timeVal,
+        seating: seatingVal.replace('Seating: ', ''),
+        notes: notes,
+        status: 'Confirmed',
+        createdAt: new Date().toISOString(),
+        smsSent: true,
+        smsPhone: phone,
+        emailSent: true,
+        emailAddress: email,
+        adminNotified: true,
+        cancellationCutoffFormatted: cutoffData.cutoffFormatted
+      };
+
+      try {
+        const existing = getStoredReservations();
+        existing.unshift(newBooking);
+        saveStoredReservations(existing);
+        localStorage.setItem('cafe_lyria_last_booking_id', code);
+
+        // Notify Admin Panel in real time via cross-tab storage event
+        localStorage.setItem('cafe_lyria_latest_notification', JSON.stringify({
+          type: 'new_reservation',
+          booking: newBooking,
+          timestamp: Date.now()
+        }));
+      } catch(err) {
+        console.error('Storage error:', err);
+      }
+
+      // Privacy-Friendly Analytics Event
+      if (typeof window.plausible === 'function') {
+        window.plausible('Reservation_Booked', { props: { guests, seating: seatingVal, time: timeVal } });
+      }
+      
+      renderReservationCard(newBooking);
+    });
+  }
+
+  // Wire 1-Hour Cancellation Trigger and Confirm Buttons
+  const btnTriggerCancel = document.getElementById('btnTriggerCancel');
+  const cancelConfirmBox = document.getElementById('cancelConfirmBox');
+  const btnKeepRes = document.getElementById('btnKeepRes');
+  const btnConfirmCancelNow = document.getElementById('btnConfirmCancelNow');
+
+  if (btnTriggerCancel && cancelConfirmBox) {
+    btnTriggerCancel.addEventListener('click', () => {
+      cancelConfirmBox.style.display = 'block';
+      btnTriggerCancel.style.display = 'none';
+    });
+  }
+
+  if (btnKeepRes && cancelConfirmBox && btnTriggerCancel) {
+    btnKeepRes.addEventListener('click', () => {
+      cancelConfirmBox.style.display = 'none';
+      btnTriggerCancel.style.display = 'inline-flex';
+    });
+  }
+
+  if (btnConfirmCancelNow) {
+    btnConfirmCancelNow.addEventListener('click', () => {
+      if (!activeBooking) return;
+      const list = getStoredReservations();
+      const target = list.find(r => r.id === activeBooking.id);
+      if (target) {
+        target.status = 'Cancelled';
+        target.cancelledAt = new Date().toISOString();
+        target.cancelledByCustomer = true;
+        target.cancelReason = 'Customer 1-hr SMS link cancellation';
+        target.cancelSmsSent = true;
+        target.cancelEmailSent = true;
+        saveStoredReservations(list);
+
+        // Notify Admin Panel in real time of cancellation
+        try {
+          localStorage.setItem('cafe_lyria_latest_notification', JSON.stringify({
+            type: 'cancelled_reservation',
+            booking: target,
+            timestamp: Date.now()
+          }));
+        } catch(e){}
+
+        activeBooking = target;
+        renderReservationCard(target);
+
+        if (typeof window.plausible === 'function') {
+          window.plausible('Reservation_Cancelled', { props: { code: target.id, source: 'Customer_SMS_1hr' } });
+        }
+      }
+    });
+  }
+
+  // Booking Lookup Logic
+  function findBooking(query) {
+    if (!query) return null;
+    const clean = query.trim().toLowerCase().replace('#', '');
+    const cleanDigits = query.replace(/\D/g, '');
+    const list = getStoredReservations();
+    
+    return list.find(r => {
+      const idClean = (r.id || '').toLowerCase().replace('#', '');
+      if (idClean === clean) return true;
+      if (cleanDigits.length >= 7 && r.phone) {
+        const phoneDigits = r.phone.replace(/\D/g, '');
+        if (phoneDigits.includes(cleanDigits) || cleanDigits.includes(phoneDigits)) return true;
+      }
+      return false;
+    });
+  }
+
+  const lookupForm = document.getElementById('lookupForm');
+  const lookupInput = document.getElementById('lookupInput');
+  const lookupMsg = document.getElementById('lookupMsg');
+
+  if (lookupForm) {
+    lookupForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const query = (lookupInput?.value || '').trim();
+      const match = findBooking(query);
+      if (match) {
+        if (lookupMsg) lookupMsg.style.display = 'none';
+        renderReservationCard(match);
+      } else {
+        if (lookupMsg) {
+          lookupMsg.innerHTML = `⚠️ No active reservation found for <strong>${query}</strong>. Please check your confirmation SMS or call host stand at <a href="tel:+12125550143" style="color:inherit;font-weight:700">+1 (212) 555-0143</a>.`;
+          lookupMsg.style.display = 'block';
+          lookupMsg.style.background = 'rgba(239,68,68,0.1)';
+          lookupMsg.style.color = '#991b1b';
+          lookupMsg.style.border = '1px solid rgba(239,68,68,0.3)';
+        }
+      }
+    });
+  }
+
+  // Handle URL parameter query (?cancel=LYR-8421 or ?code=LYR-8421) from customer SMS link
+  try {
+    const params = new URLSearchParams(window.location.search);
+    const cancelCode = params.get('cancel') || params.get('code');
+    if (cancelCode) {
+      const found = findBooking(cancelCode);
+      if (found) {
+        if (tabLookup) {
+          tabLookup.classList.add('active');
+          if (tabReserve) tabReserve.classList.remove('active');
+        }
+        renderReservationCard(found);
+        const reserveSection = document.getElementById('reserve');
+        if (reserveSection) {
+          setTimeout(() => {
+            if (typeof lenis !== 'undefined' && lenis) {
+              lenis.scrollTo(reserveSection, { offset: -50 });
+            } else {
+              reserveSection.scrollIntoView({ behavior: 'smooth' });
+            }
+          }, 350);
+        }
+      } else if (lookupInput) {
+        lookupInput.value = cancelCode;
+        if (tabLookup) tabLookup.click();
+      }
+    }
+  } catch(e){}
+
+  // Copy Booking Code to Clipboard
+  const btnCopyBookingCode = document.getElementById('btnCopyBookingCode');
+  if (btnCopyBookingCode) {
+    btnCopyBookingCode.addEventListener('click', () => {
+      const codeToCopy = document.getElementById('resCode')?.textContent || '#LYR-1660';
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(codeToCopy).then(() => {
+          const original = btnCopyBookingCode.innerHTML;
+          btnCopyBookingCode.innerHTML = '✓ Copied to Clipboard!';
+          setTimeout(() => { btnCopyBookingCode.innerHTML = original; }, 2200);
+        }).catch(() => {});
+      }
+    });
+  }
+
+  const btnModifyRes = document.getElementById('btnModifyRes');
+  if (btnModifyRes) {
+    btnModifyRes.addEventListener('click', () => {
+      reservationCard.style.display = 'none';
+      if (tabReserve) tabReserve.click();
+      reserveForm.style.display = 'grid';
+      reserveForm.reset();
+      if (dateInput) dateInput.value = todayStr;
+    });
+  }
+
+  // Wire General Inquiry Form (#form) to Local Admin Storage
+  if (contactForm) {
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const inqId = '#INQ-' + Math.floor(1000 + Math.random() * 9000);
+      const nameVal = (document.getElementById('inqName')?.value || '').trim() || 'Guest';
+      const emailVal = (document.getElementById('inqEmail')?.value || '').trim();
+      const phoneVal = (document.getElementById('inqPhone')?.value || '').trim();
+      const reasonVal = document.getElementById('inqReason')?.value || 'General enquiry';
+      const messageVal = (document.getElementById('inqMessage')?.value || '').trim();
+
+      const inquiryObj = {
+        id: inqId,
+        name: nameVal,
+        email: emailVal,
+        phone: phoneVal,
+        reason: reasonVal,
+        message: messageVal,
+        status: 'Unread',
+        createdAt: new Date().toISOString()
+      };
+
+      try {
+        const existingInquiries = JSON.parse(localStorage.getItem('cafe_lyria_inquiries') || '[]');
+        existingInquiries.unshift(inquiryObj);
+        localStorage.setItem('cafe_lyria_inquiries', JSON.stringify(existingInquiries));
+      } catch(err) {
+        console.error('Storage error saving inquiry:', err);
+      }
+
+      // Privacy-Friendly Analytics Event
+      if (typeof window.plausible === 'function') {
+        window.plausible('Inquiry_Submitted', { props: { reason: reasonVal } });
+      }
+
+      const successBox = document.getElementById('success');
+      if (successBox) {
+        successBox.innerHTML = `✓ Thank you, <strong>${nameVal}</strong>! Your message (<strong>${inqId}</strong>) has been received. Our team will review your message and reply to <strong>${emailVal}</strong> within 24 hours.`;
+        successBox.classList.add('show');
+      }
+      contactForm.reset();
+    });
+  }
+
+  // Helper to select seating zone and scroll to reservation form
+  window.selectSeating = function(name) {
+    const sel = document.getElementById('resSeating');
+    if (sel) {
+      for (let opt of sel.options) {
+        if (opt.value === name || opt.value.includes(name) || opt.text.includes(name)) {
+          sel.value = opt.value;
+          break;
+        }
+      }
+    }
+    const tabReserve = document.getElementById('tabReserve');
+    if (tabReserve) tabReserve.click();
+    
+    const reserveSection = document.getElementById('reserve');
+    if (reserveSection) {
+      if (typeof lenis !== 'undefined' && lenis) {
+        lenis.scrollTo(reserveSection, { offset: -60 });
+      } else {
+        reserveSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  };
+
+  // Environment Gallery Filter Tabs
+  const envPills = document.querySelectorAll('.env-pill');
+  const projectCards = document.querySelectorAll('.portfolio .project');
+  envPills.forEach(pill => {
+    pill.addEventListener('click', () => {
+      envPills.forEach(p => p.classList.remove('active'));
+      pill.classList.add('active');
+      const filter = pill.getAttribute('data-filter');
+      projectCards.forEach(card => {
+        if (filter === 'all' || card.getAttribute('data-cat') === filter) {
+          card.style.display = '';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  });
+
+  // Environment Lightbox Modal Controller
+  const envLightbox = document.getElementById('envLightbox');
+  const envLightboxClose = document.getElementById('envLightboxClose');
+  const envLightboxBackdrop = document.getElementById('envLightboxBackdrop');
+  const envModalImg = document.getElementById('envModalImg');
+  const envModalTag = document.getElementById('envModalTag');
+  const envModalTitle = document.getElementById('envModalTitle');
+  const envModalDesc = document.getElementById('envModalDesc');
+  const envModalZone = document.getElementById('envModalZone');
+  const envModalRec = document.getElementById('envModalRec');
+  const envModalReserveBtn = document.getElementById('envModalReserveBtn');
+
+  function openEnvModal(card) {
+    if (!card || !envLightbox) return;
+    const img = card.getAttribute('data-img') || card.querySelector('img')?.src;
+    const title = card.getAttribute('data-title') || card.querySelector('h3')?.textContent;
+    const tag = card.getAttribute('data-tag') || 'Café Environment';
+    const zone = card.getAttribute('data-zone') || 'General Seating';
+    const rec = card.getAttribute('data-rec') || 'Walk-ins & Reservations';
+    const desc = card.getAttribute('data-desc') || card.querySelector('.project-blurb')?.textContent;
+    const seating = card.getAttribute('data-seating') || 'Cozy Lounge';
+
+    if (envModalImg) { envModalImg.src = img; envModalImg.alt = title; }
+    if (envModalTag) envModalTag.textContent = tag;
+    if (envModalTitle) envModalTitle.textContent = title;
+    if (envModalDesc) envModalDesc.textContent = desc;
+    if (envModalZone) envModalZone.textContent = zone;
+    if (envModalRec) envModalRec.textContent = rec;
+    
+    if (envModalReserveBtn) {
+      envModalReserveBtn.onclick = (e) => {
+        e.preventDefault();
+        closeEnvModal();
+        selectSeating(seating);
+      };
+    }
+
+    envLightbox.classList.add('open');
+    envLightbox.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeEnvModal() {
+    if (!envLightbox) return;
+    envLightbox.classList.remove('open');
+    envLightbox.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  projectCards.forEach(card => {
+    card.addEventListener('click', (e) => {
+      if (e.target.closest('.btn-book-spot')) return;
+      openEnvModal(card);
+    });
+  });
+
+  if (envLightboxClose) envLightboxClose.addEventListener('click', closeEnvModal);
+  if (envLightboxBackdrop) envLightboxBackdrop.addEventListener('click', closeEnvModal);
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && envLightbox && envLightbox.classList.contains('open')) {
+      closeEnvModal();
+    }
+  });
+
+  // ============================================
+  // Website Live / Offline Mode Listener
+  // ============================================
+  const SITE_STATUS_KEY = 'cafe_lyria_site_status';
+  const siteOfflineOverlay = document.getElementById('siteOfflineOverlay');
+  const adminPreviewBar = document.getElementById('adminPreviewBar');
+  const btnBypassOffline = document.getElementById('btnBypassOffline');
+  const btnExitAdminPreview = document.getElementById('btnExitAdminPreview');
+  const btnOverlayMakeLive = document.getElementById('btnOverlayMakeLive');
+
+  // Check URL query parameters
+  const urlParams = new URLSearchParams(window.location.search);
+  if (urlParams.get('mode') === 'customer' || urlParams.get('preview') === 'customer') {
+    sessionStorage.removeItem('cafe_lyria_admin_preview');
+  } else if (urlParams.get('preview') === 'admin') {
+    sessionStorage.setItem('cafe_lyria_admin_preview', 'true');
+  }
+
+  function checkSiteStatus() {
+    const status = localStorage.getItem(SITE_STATUS_KEY) || 'live';
+    const hasAdminBypass = sessionStorage.getItem('cafe_lyria_admin_preview') === 'true';
+
+    if (status === 'offline') {
+      if (hasAdminBypass) {
+        if (siteOfflineOverlay) siteOfflineOverlay.style.display = 'none';
+        if (adminPreviewBar) adminPreviewBar.style.display = 'flex';
+        document.body.style.overflow = '';
+      } else {
+        if (siteOfflineOverlay) siteOfflineOverlay.style.display = 'flex';
+        if (adminPreviewBar) adminPreviewBar.style.display = 'none';
+        document.body.style.overflow = 'hidden';
+      }
+    } else {
+      if (siteOfflineOverlay) siteOfflineOverlay.style.display = 'none';
+      if (adminPreviewBar) adminPreviewBar.style.display = 'none';
+      document.body.style.overflow = '';
+    }
+  }
+
+  if (btnBypassOffline) {
+    btnBypassOffline.addEventListener('click', () => {
+      sessionStorage.setItem('cafe_lyria_admin_preview', 'true');
+      checkSiteStatus();
+    });
+  }
+
+  if (btnExitAdminPreview) {
+    btnExitAdminPreview.addEventListener('click', () => {
+      sessionStorage.removeItem('cafe_lyria_admin_preview');
+      checkSiteStatus();
+    });
+  }
+
+  if (btnOverlayMakeLive) {
+    btnOverlayMakeLive.addEventListener('click', () => {
+      localStorage.setItem(SITE_STATUS_KEY, 'live');
+      checkSiteStatus();
+    });
+  }
+
+  // Initial check on load
+  checkSiteStatus();
+
+  // Real-time synchronization when owner toggles live/offline in admin panel
+  window.addEventListener('storage', (e) => {
+    if (e.key === SITE_STATUS_KEY) {
+      checkSiteStatus();
+    }
+  });
+</script>
+</body>
+</html>

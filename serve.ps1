@@ -1,6 +1,6 @@
 param(
     [int]$Port = 8080,
-    [string]$Path = "$PSScriptRoot\cafe-lyria"
+    [string]$Path = "$PSScriptRoot"
 )
 
 $listener = New-Object System.Net.HttpListener
