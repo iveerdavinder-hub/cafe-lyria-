@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /admin.html
 
-Sitemap: https://cafeintegral.com/sitemap.xml
+Sitemap: https://thehedgehogcafe.in/sitemap.xml
