@@ -671,6 +671,464 @@
       color:var(--amber);
       white-space:nowrap;
     }
+    .menu-item-action{
+      display:flex;
+      flex-direction:column;
+      align-items:flex-end;
+      gap:8px;
+      flex-shrink:0;
+    }
+    .btn-menu-add{
+      background:rgba(196,124,56,0.12);
+      color:var(--amber);
+      border:1px solid rgba(196,124,56,0.38);
+      padding:5px 14px;
+      border-radius:999px;
+      font-size:0.8rem;
+      font-weight:700;
+      font-family:var(--font-sans);
+      cursor:pointer;
+      transition:all .18s ease;
+      display:inline-flex;
+      align-items:center;
+      gap:4px;
+      white-space:nowrap;
+    }
+    .btn-menu-add:hover{
+      background:var(--amber);
+      color:#fff;
+      border-color:var(--amber);
+      transform:translateY(-1px);
+    }
+    .menu-qty-control{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      background:var(--parchment);
+      border:1px solid var(--line);
+      border-radius:999px;
+      padding:2px 4px;
+    }
+    .qty-btn{
+      width:24px;
+      height:24px;
+      border-radius:50%;
+      border:0;
+      background:#fff;
+      color:var(--walnut);
+      font-weight:700;
+      font-size:0.85rem;
+      cursor:pointer;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      box-shadow:0 1px 3px rgba(0,0,0,0.1);
+      transition:background .15s ease;
+    }
+    .qty-btn:hover{
+      background:var(--amber);
+      color:#fff;
+    }
+    .qty-count{
+      font-size:0.82rem;
+      font-weight:700;
+      min-width:16px;
+      text-align:center;
+      color:var(--walnut);
+    }
+
+    /* Table Order Banner */
+    .table-order-banner{
+      max-width:1160px;
+      margin:0 auto 36px;
+      background:var(--cream);
+      border:1px solid rgba(196,124,56,0.28);
+      border-radius:var(--radius-md);
+      padding:18px 24px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:20px;
+      flex-wrap:wrap;
+      box-shadow:0 4px 18px rgba(31,23,18,0.04);
+      transition:all .3s ease;
+    }
+    .table-order-banner.highlight-pulse{
+      box-shadow:0 0 0 4px rgba(196,124,56,0.35), 0 8px 24px rgba(196,124,56,0.15);
+      border-color:var(--amber);
+      transform:scale(1.01);
+    }
+    .table-order-banner-left{
+      display:flex;
+      flex-direction:column;
+      gap:4px;
+    }
+    .table-order-live-badge{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      font-size:0.82rem;
+      font-weight:700;
+      color:var(--forest);
+      text-transform:uppercase;
+      letter-spacing:0.06em;
+    }
+    .pulse-indicator{
+      width:8px;
+      height:8px;
+      border-radius:50%;
+      background:#16a34a;
+      box-shadow:0 0 0 0 rgba(22,163,74,0.7);
+      animation:pulseDot 1.8s infinite;
+    }
+    @keyframes pulseDot{
+      0%{box-shadow:0 0 0 0 rgba(22,163,74,0.7)}
+      70%{box-shadow:0 0 0 8px rgba(22,163,74,0)}
+      100%{box-shadow:0 0 0 0 rgba(22,163,74,0)}
+    }
+    .table-order-subtext{
+      margin:0;
+      font-size:0.86rem;
+      color:var(--muted);
+    }
+    .table-order-selector-wrap{
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+    .table-order-selector-wrap label{
+      font-size:0.85rem;
+      font-weight:700;
+      color:var(--walnut);
+      display:flex;
+      align-items:center;
+      gap:4px;
+    }
+    .table-select-dropdown{
+      padding:8px 14px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:#fff;
+      color:var(--walnut);
+      font-size:0.88rem;
+      font-family:var(--font-sans);
+      font-weight:600;
+      cursor:pointer;
+      outline:none;
+      transition:border-color .15s ease;
+    }
+    .table-select-dropdown:focus{
+      border-color:var(--amber);
+    }
+
+    /* Floating Table Order Bar */
+    .floating-order-bar{
+      position:fixed;
+      bottom:24px;
+      left:50%;
+      transform:translateX(-50%) translateY(140%);
+      width:calc(100% - 32px);
+      max-width:540px;
+      background:rgba(31,23,18,0.96);
+      -webkit-backdrop-filter:blur(14px);
+      backdrop-filter:blur(14px);
+      border:1px solid rgba(255,255,255,0.18);
+      border-radius:999px;
+      padding:10px 14px 10px 22px;
+      box-shadow:0 14px 40px rgba(0,0,0,0.45);
+      z-index:998;
+      transition:transform .35s cubic-bezier(0.16,1,0.3,1);
+      pointer-events:none;
+    }
+    .floating-order-bar.active{
+      transform:translateX(-50%) translateY(0);
+      pointer-events:auto;
+    }
+    .floating-order-inner{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+    }
+    .floating-order-info{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      color:#fff;
+    }
+    .floating-order-icon{
+      font-size:1.35rem;
+    }
+    .floating-order-title{
+      font-size:0.95rem;
+      color:#fff;
+    }
+    .floating-order-title strong{
+      color:#fff;
+    }
+    .floating-order-title span{
+      color:#f5b072;
+      font-weight:700;
+    }
+    .floating-order-seat{
+      font-size:0.75rem;
+      color:#ded5c8;
+    }
+    .floating-order-btn{
+      padding:9px 20px;
+      font-size:0.88rem;
+      white-space:nowrap;
+      background:var(--amber);
+      border-color:var(--amber);
+    }
+    .floating-order-btn:hover{
+      background:#a86226;
+    }
+
+    /* In-Cafe Order Modal Overlay */
+    .order-modal-overlay{
+      position:fixed;
+      inset:0;
+      z-index:1000;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:16px;
+    }
+    .order-modal-backdrop{
+      position:absolute;
+      inset:0;
+      background:rgba(22,15,11,0.72);
+      -webkit-backdrop-filter:blur(6px);
+      backdrop-filter:blur(6px);
+    }
+    .order-modal-dialog{
+      position:relative;
+      z-index:1;
+      width:100%;
+      max-width:520px;
+      max-height:90vh;
+      overflow-y:auto;
+      background:#fff;
+      border-radius:var(--radius-lg);
+      padding:28px;
+      box-shadow:0 24px 60px rgba(0,0,0,0.35);
+      animation:modalPop .24s ease-out;
+    }
+    @keyframes modalPop{
+      from{opacity:0;transform:scale(0.96) translateY(10px)}
+      to{opacity:1;transform:scale(1) translateY(0)}
+    }
+    .order-modal-header{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      margin-bottom:18px;
+      padding-bottom:14px;
+      border-bottom:1px solid var(--line);
+    }
+    .order-modal-title{
+      font-family:var(--font-display);
+      font-size:1.35rem;
+      color:var(--walnut);
+      margin:0 0 2px;
+    }
+    .order-modal-subtitle{
+      font-size:0.8rem;
+      color:var(--muted);
+      margin:0;
+    }
+    .order-modal-close{
+      background:none;
+      border:0;
+      font-size:1.6rem;
+      color:var(--muted);
+      cursor:pointer;
+      line-height:1;
+      padding:2px 6px;
+    }
+    .order-modal-close:hover{
+      color:var(--walnut);
+    }
+    .modal-table-selector{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      background:var(--parchment);
+      padding:10px 14px;
+      border-radius:var(--radius-sm);
+      margin-bottom:16px;
+      border:1px solid var(--line);
+    }
+    .modal-table-selector label{
+      font-size:0.85rem;
+      font-weight:700;
+      color:var(--walnut);
+    }
+    .modal-order-items{
+      max-height:200px;
+      overflow-y:auto;
+      margin-bottom:16px;
+      border-bottom:1px dashed var(--line);
+      padding-bottom:8px;
+    }
+    .modal-item-row{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+      padding:8px 0;
+    }
+    .modal-item-name{
+      font-size:0.9rem;
+      font-weight:600;
+      color:var(--walnut);
+    }
+    .modal-item-controls{
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+    .modal-item-price{
+      font-size:0.9rem;
+      font-weight:700;
+      color:var(--amber);
+      min-width:60px;
+      text-align:right;
+    }
+    .modal-form-fields{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:12px;
+      margin-bottom:14px;
+    }
+    .modal-form-fields div{
+      display:flex;
+      flex-direction:column;
+      gap:4px;
+    }
+    .modal-form-fields label{
+      font-size:0.75rem;
+      font-weight:700;
+      text-transform:uppercase;
+      letter-spacing:0.04em;
+      color:var(--muted);
+    }
+    .modal-form-fields input{
+      padding:8px 12px;
+      border:1px solid var(--line);
+      border-radius:var(--radius-sm);
+      font-size:0.85rem;
+      font-family:var(--font-sans);
+    }
+    .modal-order-summary{
+      background:var(--parchment);
+      padding:14px;
+      border-radius:var(--radius-sm);
+      margin-bottom:18px;
+    }
+    .summary-line{
+      display:flex;
+      justify-content:space-between;
+      font-size:0.85rem;
+      color:var(--muted);
+      margin-bottom:6px;
+    }
+    .summary-line.total-line{
+      font-size:1.05rem;
+      color:var(--walnut);
+      border-top:1px dashed var(--line);
+      padding-top:8px;
+      margin-top:6px;
+      margin-bottom:6px;
+    }
+    .summary-line.total-line strong:last-child{
+      color:var(--amber);
+    }
+    .summary-note{
+      display:block;
+      font-size:0.75rem;
+      color:var(--forest);
+      line-height:1.4;
+    }
+    .modal-order-actions{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+    .btn-whatsapp{
+      background:#25D366;
+      color:#fff;
+      border:0;
+      border-radius:999px;
+      font-family:var(--font-sans);
+      font-weight:600;
+      cursor:pointer;
+      transition:all .18s ease;
+      text-align:center;
+    }
+    .btn-whatsapp:hover{
+      background:#1ebe5d;
+      transform:translateY(-1px);
+    }
+
+    /* Receipt Confirmation */
+    .order-modal-receipt{
+      text-align:center;
+      padding:16px 8px;
+    }
+    .receipt-success-badge{
+      width:52px;
+      height:52px;
+      border-radius:50%;
+      background:#dcfce7;
+      color:#15803d;
+      font-size:1.8rem;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      margin:0 auto 12px;
+      font-weight:bold;
+    }
+    .order-modal-receipt h3{
+      font-family:var(--font-display);
+      font-size:1.4rem;
+      color:var(--walnut);
+      margin:0 0 6px;
+    }
+    .receipt-order-id{
+      font-size:1.1rem;
+      font-weight:700;
+      color:var(--amber);
+      letter-spacing:0.04em;
+      margin-bottom:6px;
+    }
+    .receipt-timing-pill{
+      display:inline-block;
+      background:rgba(196,124,56,0.12);
+      color:var(--amber);
+      font-weight:700;
+      font-size:0.84rem;
+      padding:4px 14px;
+      border-radius:999px;
+      margin:10px 0 16px;
+    }
+    .receipt-items-summary{
+      background:var(--parchment);
+      padding:12px;
+      border-radius:var(--radius-sm);
+      text-align:left;
+      font-size:0.84rem;
+      margin-bottom:14px;
+      max-height:150px;
+      overflow-y:auto;
+    }
+    .receipt-payment-info{
+      font-size:0.8rem;
+      color:var(--muted);
+      line-height:1.5;
+    }
 
     /* Ordering Banner */
     .order-spotlight{
@@ -1298,8 +1756,8 @@
     </nav>
 
     <div class="nav-actions">
-      <a href="https://link.zomato.com/xqzv/rshare?id=232436979b0b9217" target="_blank" rel="noopener noreferrer" class="btn btn-order-online">
-        Order Online ↗
+      <a href="#menu" class="btn btn-order-online" id="navOrderOnlineBtn">
+        Order Online
       </a>
       <button class="menu-toggle" id="menuToggle" aria-label="Toggle Navigation">☰</button>
     </div>
@@ -1332,8 +1790,8 @@
           <a href="#reserve" class="btn btn-primary" id="heroBookTableBtn" style="font-size:0.95rem;padding:13px 26px">
             Reserve a Table →
           </a>
-          <a href="https://link.zomato.com/xqzv/rshare?id=232436979b0b9217" target="_blank" rel="noopener noreferrer" class="btn btn-order-online" style="font-size:0.95rem;padding:13px 26px">
-            Order Online on Zomato ↗
+          <a href="#menu" class="btn btn-order-online" id="heroOrderOnlineBtn" style="font-size:0.95rem;padding:13px 26px">
+            Order Online →
           </a>
           <a href="#menu" class="btn btn-ghost" id="heroViewMenuBtn" style="color:#fff;border-color:rgba(255,255,255,0.3);background:rgba(255,255,255,0.08);font-size:0.95rem;padding:13px 26px">
             View Food & Drinks ↓
@@ -1438,6 +1896,33 @@
         </p>
       </div>
 
+      <!-- In-Cafe Table Ordering Bar -->
+      <div class="table-order-banner" id="tableOrderBanner">
+        <div class="table-order-banner-left">
+          <div class="table-order-live-badge">
+            <span class="pulse-indicator"></span> In-Cafe Digital Ordering · Serving to Table
+          </div>
+          <p class="table-order-subtext">Sitting in the cafe? Pick your table, add items, and our kitchen will deliver freshly to your seat.</p>
+        </div>
+        <div class="table-order-selector-wrap">
+          <label for="tableNumberSelect"><span class="table-pin">📍</span> Table:</label>
+          <select id="tableNumberSelect" class="table-select-dropdown">
+            <option value="Table 1">Table 1 · Window</option>
+            <option value="Table 2">Table 2 · Window</option>
+            <option value="Table 3">Table 3 · Bookshelf</option>
+            <option value="Table 4" selected>Table 4 · Central Library</option>
+            <option value="Table 5">Table 5 · Cozy Booth</option>
+            <option value="Table 6">Table 6 · Reading Nook</option>
+            <option value="Table 7">Table 7 · Bookshelf</option>
+            <option value="Table 8">Table 8 · Study Corner</option>
+            <option value="Table 9">Table 9 · Wood Panel</option>
+            <option value="Table 10">Table 10 · Group Table</option>
+            <option value="Reading Lounge">Reading Lounge Couch</option>
+            <option value="Front Counter">Front Counter / Takeaway</option>
+          </select>
+        </div>
+      </div>
+
       <div class="menu-filter-bar">
         <button type="button" class="menu-filter-btn active" data-filter="all">All Highlights</button>
         <button type="button" class="menu-filter-btn" data-filter="popular">Popular Dishes</button>
@@ -1448,111 +1933,147 @@
 
       <div class="menu-grid-columns" id="menuContainer">
         <!-- Item 1: The English Breakfast -->
-        <div class="menu-item" data-cat="popular breakfast">
+        <div class="menu-item" data-cat="popular breakfast" data-id="item-1" data-name="The English Breakfast" data-price="395">
           <div class="menu-item-info">
             <h4>The English Breakfast <span class="menu-tag">Popular</span></h4>
             <p>Sunny-side eggs, chicken sausages, baked beans, sauteed butter mushrooms, grilled tomatoes and toasted sourdough bread.</p>
           </div>
-          <div class="menu-price">₹395</div>
+          <div class="menu-item-action">
+            <div class="menu-price">₹395</div>
+            <button type="button" class="btn-menu-add" data-id="item-1" data-name="The English Breakfast" data-price="395" aria-label="Add The English Breakfast to order">+ Add</button>
+          </div>
         </div>
 
         <!-- Item 2: Popeye's Ravioli -->
-        <div class="menu-item" data-cat="popular mains">
+        <div class="menu-item" data-cat="popular mains" data-id="item-2" data-name="Popeye's Ravioli" data-price="385">
           <div class="menu-item-info">
             <h4>Popeye's Ravioli <span class="menu-tag">Popular</span></h4>
             <p>Handmade delicate spinach and ricotta stuffed ravioli tossed in a rich butter sage reduction with aged parmesan.</p>
           </div>
-          <div class="menu-price">₹385</div>
+          <div class="menu-item-action">
+            <div class="menu-price">₹385</div>
+            <button type="button" class="btn-menu-add" data-id="item-2" data-name="Popeye's Ravioli" data-price="385" aria-label="Add Popeye's Ravioli to order">+ Add</button>
+          </div>
         </div>
 
         <!-- Item 3: The Enchilada Has Landed -->
-        <div class="menu-item" data-cat="popular mains">
+        <div class="menu-item" data-cat="popular mains" data-id="item-3" data-name="The Enchilada Has Landed" data-price="375">
           <div class="menu-item-info">
             <h4>The Enchilada Has Landed <span class="menu-tag">Popular</span></h4>
             <p>Stuffed baked corn tortillas layered with spiced savory beans, melted cheddar, zesty salsa and sour cream.</p>
           </div>
-          <div class="menu-price">₹375</div>
+          <div class="menu-item-action">
+            <div class="menu-price">₹375</div>
+            <button type="button" class="btn-menu-add" data-id="item-3" data-name="The Enchilada Has Landed" data-price="375" aria-label="Add The Enchilada to order">+ Add</button>
+          </div>
         </div>
 
         <!-- Item 4: Alfredo in Wonderland Veg -->
-        <div class="menu-item" data-cat="mains">
+        <div class="menu-item" data-cat="mains" data-id="item-4" data-name="Alfredo in Wonderland Veg" data-price="365">
           <div class="menu-item-info">
             <h4>Alfredo in Wonderland Veg <span class="menu-tag veg">Vegetarian</span></h4>
             <p>Penne pasta folded in a velvety parmesan and garlic white cream sauce with sauteed mushrooms and tender broccoli.</p>
           </div>
-          <div class="menu-price">₹365</div>
+          <div class="menu-item-action">
+            <div class="menu-price">₹365</div>
+            <button type="button" class="btn-menu-add" data-id="item-4" data-name="Alfredo in Wonderland Veg" data-price="365" aria-label="Add Alfredo in Wonderland to order">+ Add</button>
+          </div>
         </div>
 
         <!-- Item 5: The Pizza of SW-Desi Things -->
-        <div class="menu-item" data-cat="popular mains">
+        <div class="menu-item" data-cat="popular mains" data-id="item-5" data-name="The Pizza of SW-Desi Things" data-price="445">
           <div class="menu-item-info">
             <h4>The Pizza of SW-Desi Things <span class="menu-tag">Popular</span></h4>
             <p>Artisanal thin-crust pizza loaded with Indian-fusion herbs, roasted bell peppers, paneer or chicken, and melted mozzarella.</p>
           </div>
-          <div class="menu-price">₹445</div>
+          <div class="menu-item-action">
+            <div class="menu-price">₹445</div>
+            <button type="button" class="btn-menu-add" data-id="item-5" data-name="The Pizza of SW-Desi Things" data-price="445" aria-label="Add Pizza of SW-Desi Things to order">+ Add</button>
+          </div>
         </div>
 
         <!-- Item 6: Light Club Veg Sandwich -->
-        <div class="menu-item" data-cat="popular breakfast mains">
+        <div class="menu-item" data-cat="popular breakfast mains" data-id="item-6" data-name="Light Club Veg" data-price="295">
           <div class="menu-item-info">
             <h4>Light Club Veg <span class="menu-tag">Popular</span> <span class="menu-tag veg">Veg</span></h4>
             <p>Triple-decker toasted sandwich packed with fresh crisp veggies, herb mayo, cheese, served with fries and coleslaw.</p>
           </div>
-          <div class="menu-price">₹295</div>
+          <div class="menu-item-action">
+            <div class="menu-price">₹295</div>
+            <button type="button" class="btn-menu-add" data-id="item-6" data-name="Light Club Veg" data-price="295" aria-label="Add Light Club Veg to order">+ Add</button>
+          </div>
         </div>
 
         <!-- Item 7: Mushroom Specialties -->
-        <div class="menu-item" data-cat="popular breakfast">
+        <div class="menu-item" data-cat="popular breakfast" data-id="item-7" data-name="Sauteed Garlic Mushrooms on Toast" data-price="285">
           <div class="menu-item-info">
             <h4>Sauteed Garlic Mushrooms on Toast <span class="menu-tag">Popular</span></h4>
             <p>Plump button mushrooms sauteed in garlic butter, fresh parsley, and cracked black pepper over crusty bread.</p>
           </div>
-          <div class="menu-price">₹285</div>
+          <div class="menu-item-action">
+            <div class="menu-price">₹285</div>
+            <button type="button" class="btn-menu-add" data-id="item-7" data-name="Sauteed Garlic Mushrooms" data-price="285" aria-label="Add Mushrooms on Toast to order">+ Add</button>
+          </div>
         </div>
 
         <!-- Item 8: Frappe & Cold Coffee -->
-        <div class="menu-item" data-cat="popular drinks">
+        <div class="menu-item" data-cat="popular drinks" data-id="item-8" data-name="Signature Frappe" data-price="245">
           <div class="menu-item-info">
             <h4>Signature Frappe <span class="menu-tag">Popular</span></h4>
             <p>Thick blended cold coffee frappe crowned with whipped cream and rich chocolate fudge swirl.</p>
           </div>
-          <div class="menu-price">₹245</div>
+          <div class="menu-item-action">
+            <div class="menu-price">₹245</div>
+            <button type="button" class="btn-menu-add" data-id="item-8" data-name="Signature Frappe" data-price="245" aria-label="Add Signature Frappe to order">+ Add</button>
+          </div>
         </div>
 
         <!-- Item 9: Cappuccino Tart with Ice Cream -->
-        <div class="menu-item" data-cat="popular drinks">
+        <div class="menu-item" data-cat="popular drinks" data-id="item-9" data-name="Cappuccino Tart with Ice Cream" data-price="265">
           <div class="menu-item-info">
             <h4>Cappuccino Tart with Ice Cream <span class="menu-tag">Highlight</span></h4>
             <p>Warm espresso chocolate ganache tart paired with a generous scoop of chilled vanilla bean ice cream.</p>
           </div>
-          <div class="menu-price">₹265</div>
+          <div class="menu-item-action">
+            <div class="menu-price">₹265</div>
+            <button type="button" class="btn-menu-add" data-id="item-9" data-name="Cappuccino Tart with Ice Cream" data-price="265" aria-label="Add Cappuccino Tart to order">+ Add</button>
+          </div>
         </div>
 
         <!-- Item 10: Buttermilk Pancakes -->
-        <div class="menu-item" data-cat="breakfast">
+        <div class="menu-item" data-cat="breakfast" data-id="item-10" data-name="Fluffy Buttermilk Pancakes" data-price="285">
           <div class="menu-item-info">
             <h4>Fluffy Buttermilk Pancakes</h4>
             <p>Warm stack of golden pancakes served with real maple syrup, whipped salted butter, and berry compote.</p>
           </div>
-          <div class="menu-price">₹285</div>
+          <div class="menu-item-action">
+            <div class="menu-price">₹285</div>
+            <button type="button" class="btn-menu-add" data-id="item-10" data-name="Fluffy Buttermilk Pancakes" data-price="285" aria-label="Add Buttermilk Pancakes to order">+ Add</button>
+          </div>
         </div>
 
         <!-- Item 11: Classic Cafe Latte & Cappuccino -->
-        <div class="menu-item" data-cat="drinks">
+        <div class="menu-item" data-cat="drinks" data-id="item-11" data-name="Cafe Cappuccino & Latte" data-price="195">
           <div class="menu-item-info">
             <h4>Cafe Cappuccino & Latte</h4>
             <p>Freshly ground arabica espresso beans brewed with silky microfoam milk and barista latte art.</p>
           </div>
-          <div class="menu-price">₹195</div>
+          <div class="menu-item-action">
+            <div class="menu-price">₹195</div>
+            <button type="button" class="btn-menu-add" data-id="item-11" data-name="Cafe Cappuccino & Latte" data-price="195" aria-label="Add Cafe Cappuccino & Latte to order">+ Add</button>
+          </div>
         </div>
 
         <!-- Item 12: Display Bakery & Cheesecakes -->
-        <div class="menu-item" data-cat="breakfast">
+        <div class="menu-item" data-cat="breakfast" data-id="item-12" data-name="New York Cheesecake & Brownies" data-price="275">
           <div class="menu-item-info">
             <h4>New York Cheesecake & Brownies</h4>
             <p>Classic baked New York cheesecake, warm fudgy brownies, and daily rotating dessert counter specials.</p>
           </div>
-          <div class="menu-price">₹275</div>
+          <div class="menu-item-action">
+            <div class="menu-price">₹275</div>
+            <button type="button" class="btn-menu-add" data-id="item-12" data-name="New York Cheesecake & Brownies" data-price="275" aria-label="Add New York Cheesecake to order">+ Add</button>
+          </div>
         </div>
       </div>
 
@@ -1917,6 +2438,119 @@
         </div>
       </div>
     </section>
+
+    <!-- Floating In-Cafe Table Order Tray -->
+    <aside class="floating-order-bar" id="floatingOrderBar" aria-label="Active Table Order">
+      <div class="floating-order-inner">
+        <div class="floating-order-info">
+          <div class="floating-order-icon">🍽️</div>
+          <div>
+            <div class="floating-order-title">
+              <strong id="barItemCount">0 items</strong> · <span id="barTotalPrice">₹0</span>
+            </div>
+            <div class="floating-order-seat" id="barTableSeat">Serving to: Table 4</div>
+          </div>
+        </div>
+        <button type="button" class="btn btn-primary floating-order-btn" id="openOrderModalBtn">
+          Review & Place Order →
+        </button>
+      </div>
+    </aside>
+
+    <!-- In-Cafe Table Order Modal -->
+    <div class="order-modal-overlay" id="orderModalOverlay" style="display:none" role="dialog" aria-modal="true" aria-labelledby="modalOrderTitle">
+      <div class="order-modal-backdrop" id="closeOrderModalBackdrop"></div>
+      <div class="order-modal-dialog">
+        <div class="order-modal-header">
+          <div>
+            <h3 id="modalOrderTitle" class="order-modal-title">🍽️ In-Cafe Table Order</h3>
+            <p class="order-modal-subtitle">The Hedgehog Cafe · Freshly cooked & brought to your table</p>
+          </div>
+          <button type="button" class="order-modal-close" id="closeOrderModalBtn" aria-label="Close modal">&times;</button>
+        </div>
+
+        <div class="order-modal-body" id="orderModalBody">
+          <!-- Active Table Selector -->
+          <div class="modal-table-selector">
+            <label for="modalTableNumber">Deliver to Table:</label>
+            <select id="modalTableNumber" class="table-select-dropdown">
+              <option value="Table 1">Table 1 · Window</option>
+              <option value="Table 2">Table 2 · Window</option>
+              <option value="Table 3">Table 3 · Bookshelf</option>
+              <option value="Table 4" selected>Table 4 · Central Library</option>
+              <option value="Table 5">Table 5 · Cozy Booth</option>
+              <option value="Table 6">Table 6 · Reading Nook</option>
+              <option value="Table 7">Table 7 · Bookshelf</option>
+              <option value="Table 8">Table 8 · Study Corner</option>
+              <option value="Table 9">Table 9 · Wood Panel</option>
+              <option value="Table 10">Table 10 · Group Table</option>
+              <option value="Reading Lounge">Reading Lounge Couch</option>
+              <option value="Front Counter">Front Counter / Takeaway</option>
+            </select>
+          </div>
+
+          <!-- Items list -->
+          <div class="modal-order-items" id="modalOrderItemsList">
+            <!-- Dynamic items rendered via JS -->
+          </div>
+
+          <!-- Notes & Contact -->
+          <div class="modal-form-fields">
+            <div>
+              <label for="orderCustomerName">Your Name (Optional)</label>
+              <input type="text" id="orderCustomerName" placeholder="e.g. Aman / Simran">
+            </div>
+            <div>
+              <label for="orderSpecialNotes">Special Instructions</label>
+              <input type="text" id="orderSpecialNotes" placeholder="e.g. Less ice in frappe, extra crispy bread">
+            </div>
+          </div>
+
+          <!-- Total summary -->
+          <div class="modal-order-summary">
+            <div class="summary-line">
+              <span>Items Total</span>
+              <span id="modalSummarySubtotal">₹0</span>
+            </div>
+            <div class="summary-line total-line">
+              <strong>Total to Pay at Table</strong>
+              <strong id="modalSummaryTotal">₹0</strong>
+            </div>
+            <small class="summary-note">💡 Payment is accepted at your table via UPI, Card, or Cash when served.</small>
+          </div>
+
+          <!-- Actions -->
+          <div class="modal-order-actions">
+            <button type="button" class="btn btn-primary" id="confirmTableOrderBtn" style="width:100%;padding:14px;font-size:1rem">
+              Confirm Table Order ⚡
+            </button>
+            <button type="button" class="btn btn-whatsapp" id="whatsappTableOrderBtn" style="width:100%;padding:12px;font-size:0.92rem">
+              💬 Send Order Directly on WhatsApp
+            </button>
+          </div>
+        </div>
+
+        <!-- Success Receipt State (Hidden by default) -->
+        <div class="order-modal-receipt" id="orderModalReceipt" style="display:none">
+          <div class="receipt-success-badge">✓</div>
+          <h3>Order Received in Kitchen!</h3>
+          <div class="receipt-order-id" id="receiptOrderId">#HHC-ORD-4921</div>
+          <p id="receiptOrderDetails">Your order is being freshly prepared for <strong>Table 4</strong>.</p>
+          <div class="receipt-timing-pill">⏱️ Estimated Service: 12 – 15 Minutes</div>
+          
+          <div class="receipt-items-summary" id="receiptItemsSummary"></div>
+          
+          <div class="receipt-payment-info">
+            <strong>Payment Method:</strong> Cash, UPI (GPay/PhonePe), or Card at your table when served.
+          </div>
+
+          <div style="display:flex;gap:12px;margin-top:20px;flex-wrap:wrap">
+            <button type="button" class="btn btn-primary" id="receiptNewOrderBtn" style="flex:1">Order More Items</button>
+            <button type="button" class="btn btn-ghost" id="receiptCloseBtn" style="flex:1">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </main>
 
   <!-- Footer -->
@@ -2040,13 +2674,48 @@
         });
       }
 
+      function scrollToMenuOrder(e) {
+        if (e) e.preventDefault();
+        const menuSec = document.getElementById('menu');
+        if (menuSec) {
+          if (lenis) {
+            lenis.scrollTo(menuSec, { offset: -35, duration: 1.25 });
+          } else {
+            menuSec.scrollIntoView({ behavior: 'smooth' });
+          }
+        }
+        const banner = document.getElementById('tableOrderBanner');
+        if (banner) {
+          banner.classList.add('highlight-pulse');
+          setTimeout(() => banner.classList.remove('highlight-pulse'), 2200);
+        }
+        const tableSel = document.getElementById('tableNumberSelect');
+        if (tableSel) {
+          setTimeout(() => tableSel.focus(), 850);
+        }
+      }
+
+      const heroOrderBtn = document.getElementById('heroOrderOnlineBtn');
+      if (heroOrderBtn) {
+        heroOrderBtn.addEventListener('click', scrollToMenuOrder);
+      }
+
+      const navOrderBtn = document.getElementById('navOrderOnlineBtn');
+      if (navOrderBtn) {
+        navOrderBtn.addEventListener('click', scrollToMenuOrder);
+      }
+
       const heroMenuBtn = document.getElementById('heroViewMenuBtn');
       if (heroMenuBtn) {
         heroMenuBtn.addEventListener('click', function(e) {
           e.preventDefault();
           const menuSec = document.getElementById('menu');
           if (menuSec) {
-            lenis.scrollTo(menuSec, { offset: -35, duration: 1.25 });
+            if (lenis) {
+              lenis.scrollTo(menuSec, { offset: -35, duration: 1.25 });
+            } else {
+              menuSec.scrollIntoView({ behavior: 'smooth' });
+            }
           }
         });
       }
@@ -2452,6 +3121,340 @@
       });
       navLinks.querySelectorAll('a').forEach(a => {
         a.addEventListener('click', () => navLinks.classList.remove('mobile-open'));
+      });
+    }
+
+    // ==========================================
+    // 6. In-Cafe Table Ordering System
+    // ==========================================
+    const TABLE_ORDERS_KEY = 'thehedgehog_table_orders';
+    let tableOrderCart = {}; // { [id]: { id, name, price, qty } }
+    let currentTable = 'Table 4';
+
+    const tableSelectBanner = document.getElementById('tableNumberSelect');
+    const tableSelectModal = document.getElementById('modalTableNumber');
+    const barTableSeat = document.getElementById('barTableSeat');
+    const floatingOrderBar = document.getElementById('floatingOrderBar');
+    const barItemCount = document.getElementById('barItemCount');
+    const barTotalPrice = document.getElementById('barTotalPrice');
+
+    const orderModalOverlay = document.getElementById('orderModalOverlay');
+    const openOrderModalBtn = document.getElementById('openOrderModalBtn');
+    const closeOrderModalBtn = document.getElementById('closeOrderModalBtn');
+    const closeOrderModalBackdrop = document.getElementById('closeOrderModalBackdrop');
+    const modalOrderItemsList = document.getElementById('modalOrderItemsList');
+    const modalSummarySubtotal = document.getElementById('modalSummarySubtotal');
+    const modalSummaryTotal = document.getElementById('modalSummaryTotal');
+
+    const confirmTableOrderBtn = document.getElementById('confirmTableOrderBtn');
+    const whatsappTableOrderBtn = document.getElementById('whatsappTableOrderBtn');
+    const orderCustomerName = document.getElementById('orderCustomerName');
+    const orderSpecialNotes = document.getElementById('orderSpecialNotes');
+
+    const orderModalBody = document.getElementById('orderModalBody');
+    const orderModalReceipt = document.getElementById('orderModalReceipt');
+    const receiptOrderId = document.getElementById('receiptOrderId');
+    const receiptOrderDetails = document.getElementById('receiptOrderDetails');
+    const receiptItemsSummary = document.getElementById('receiptItemsSummary');
+    const receiptNewOrderBtn = document.getElementById('receiptNewOrderBtn');
+    const receiptCloseBtn = document.getElementById('receiptCloseBtn');
+
+    // Sync Table Pickers
+    function updateSelectedTable(tbl) {
+      currentTable = tbl;
+      if (tableSelectBanner) tableSelectBanner.value = tbl;
+      if (tableSelectModal) tableSelectModal.value = tbl;
+      if (barTableSeat) barTableSeat.textContent = `Serving to: ${tbl}`;
+    }
+
+    if (tableSelectBanner) {
+      tableSelectBanner.addEventListener('change', (e) => updateSelectedTable(e.target.value));
+    }
+    if (tableSelectModal) {
+      tableSelectModal.addEventListener('change', (e) => updateSelectedTable(e.target.value));
+    }
+
+    // Render menu item card actions (+ Add vs Qty control)
+    function renderCardActions() {
+      document.querySelectorAll('.menu-item').forEach(item => {
+        const id = item.getAttribute('data-id');
+        const name = item.getAttribute('data-name');
+        const price = parseInt(item.getAttribute('data-price'), 10);
+        const actionWrap = item.querySelector('.menu-item-action');
+        if (!actionWrap || !id) return;
+
+        const inCart = tableOrderCart[id];
+        if (inCart && inCart.qty > 0) {
+          actionWrap.innerHTML = `
+            <div class="menu-price">₹${price}</div>
+            <div class="menu-qty-control">
+              <button type="button" class="qty-btn btn-qty-minus" data-id="${id}" aria-label="Decrease quantity">−</button>
+              <span class="qty-count">${inCart.qty}</span>
+              <button type="button" class="qty-btn btn-qty-plus" data-id="${id}" aria-label="Increase quantity">+</button>
+            </div>
+          `;
+        } else {
+          actionWrap.innerHTML = `
+            <div class="menu-price">₹${price}</div>
+            <button type="button" class="btn-menu-add" data-id="${id}" data-name="${name}" data-price="${price}" aria-label="Add ${name} to order">+ Add</button>
+          `;
+        }
+      });
+    }
+
+    // Update Floating Bar UI
+    function updateOrderBarUI() {
+      const items = Object.values(tableOrderCart);
+      const totalQty = items.reduce((sum, item) => sum + item.qty, 0);
+      const totalPrice = items.reduce((sum, item) => sum + (item.price * item.qty), 0);
+
+      if (barItemCount) barItemCount.textContent = `${totalQty} item${totalQty === 1 ? '' : 's'}`;
+      if (barTotalPrice) barTotalPrice.textContent = `₹${totalPrice}`;
+
+      if (floatingOrderBar) {
+        if (totalQty > 0) {
+          floatingOrderBar.classList.add('active');
+        } else {
+          floatingOrderBar.classList.remove('active');
+        }
+      }
+    }
+
+    // Menu Container delegation
+    const menuContainer = document.getElementById('menuContainer');
+    if (menuContainer) {
+      menuContainer.addEventListener('click', (e) => {
+        const addBtn = e.target.closest('.btn-menu-add');
+        const plusBtn = e.target.closest('.btn-qty-plus');
+        const minusBtn = e.target.closest('.btn-qty-minus');
+
+        if (addBtn) {
+          const id = addBtn.getAttribute('data-id');
+          const name = addBtn.getAttribute('data-name');
+          const price = parseInt(addBtn.getAttribute('data-price'), 10);
+          tableOrderCart[id] = { id, name, price, qty: 1 };
+          renderCardActions();
+          updateOrderBarUI();
+          return;
+        }
+
+        if (plusBtn) {
+          const id = plusBtn.getAttribute('data-id');
+          if (tableOrderCart[id]) {
+            tableOrderCart[id].qty += 1;
+            renderCardActions();
+            updateOrderBarUI();
+          }
+          return;
+        }
+
+        if (minusBtn) {
+          const id = minusBtn.getAttribute('data-id');
+          if (tableOrderCart[id]) {
+            tableOrderCart[id].qty -= 1;
+            if (tableOrderCart[id].qty <= 0) {
+              delete tableOrderCart[id];
+            }
+            renderCardActions();
+            updateOrderBarUI();
+          }
+          return;
+        }
+      });
+    }
+
+    // Render Modal Items List
+    function renderModalItems() {
+      if (!modalOrderItemsList) return;
+      const items = Object.values(tableOrderCart);
+      if (items.length === 0) {
+        modalOrderItemsList.innerHTML = `
+          <div style="text-align:center;padding:24px 0;color:var(--muted)">
+            <p style="margin:0 0 8px;font-size:1.1rem">Your table order tray is empty.</p>
+            <small>Browse the menu and tap <strong>+ Add</strong> on any dish to order.</small>
+          </div>
+        `;
+        if (modalSummarySubtotal) modalSummarySubtotal.textContent = '₹0';
+        if (modalSummaryTotal) modalSummaryTotal.textContent = '₹0';
+        if (confirmTableOrderBtn) confirmTableOrderBtn.disabled = true;
+        return;
+      }
+
+      if (confirmTableOrderBtn) confirmTableOrderBtn.disabled = false;
+      let total = 0;
+      let html = '';
+      items.forEach(item => {
+        const itemTotal = item.price * item.qty;
+        total += itemTotal;
+        html += `
+          <div class="modal-item-row">
+            <div>
+              <div class="modal-item-name">${item.name}</div>
+              <small style="color:var(--muted)">₹${item.price} each</small>
+            </div>
+            <div class="modal-item-controls">
+              <div class="menu-qty-control">
+                <button type="button" class="qty-btn modal-qty-minus" data-id="${item.id}" aria-label="Decrease quantity">−</button>
+                <span class="qty-count">${item.qty}</span>
+                <button type="button" class="qty-btn modal-qty-plus" data-id="${item.id}" aria-label="Increase quantity">+</button>
+              </div>
+              <div class="modal-item-price">₹${itemTotal}</div>
+            </div>
+          </div>
+        `;
+      });
+
+      modalOrderItemsList.innerHTML = html;
+      if (modalSummarySubtotal) modalSummarySubtotal.textContent = `₹${total}`;
+      if (modalSummaryTotal) modalSummaryTotal.textContent = `₹${total}`;
+    }
+
+    // Modal Qty delegation
+    if (modalOrderItemsList) {
+      modalOrderItemsList.addEventListener('click', (e) => {
+        const plus = e.target.closest('.modal-qty-plus');
+        const minus = e.target.closest('.modal-qty-minus');
+        if (plus) {
+          const id = plus.getAttribute('data-id');
+          if (tableOrderCart[id]) {
+            tableOrderCart[id].qty += 1;
+            renderCardActions();
+            updateOrderBarUI();
+            renderModalItems();
+          }
+        }
+        if (minus) {
+          const id = minus.getAttribute('data-id');
+          if (tableOrderCart[id]) {
+            tableOrderCart[id].qty -= 1;
+            if (tableOrderCart[id].qty <= 0) {
+              delete tableOrderCart[id];
+            }
+            renderCardActions();
+            updateOrderBarUI();
+            renderModalItems();
+          }
+        }
+      });
+    }
+
+    // Modal Open & Close
+    function openOrderModal() {
+      if (orderModalOverlay) {
+        orderModalOverlay.style.display = 'flex';
+        if (orderModalBody) orderModalBody.style.display = 'block';
+        if (orderModalReceipt) orderModalReceipt.style.display = 'none';
+        updateSelectedTable(currentTable);
+        renderModalItems();
+      }
+    }
+
+    function closeOrderModal() {
+      if (orderModalOverlay) {
+        orderModalOverlay.style.display = 'none';
+      }
+    }
+
+    if (openOrderModalBtn) openOrderModalBtn.addEventListener('click', openOrderModal);
+    if (closeOrderModalBtn) closeOrderModalBtn.addEventListener('click', closeOrderModal);
+    if (closeOrderModalBackdrop) closeOrderModalBackdrop.addEventListener('click', closeOrderModal);
+    if (receiptCloseBtn) receiptCloseBtn.addEventListener('click', closeOrderModal);
+
+    // Confirm Table Order Submission
+    if (confirmTableOrderBtn) {
+      confirmTableOrderBtn.addEventListener('click', () => {
+        const items = Object.values(tableOrderCart);
+        if (items.length === 0) return;
+
+        const orderCode = '#HHC-ORD-' + Math.floor(1000 + Math.random() * 9000);
+        const guestName = (orderCustomerName ? orderCustomerName.value.trim() : '') || 'Guest';
+        const specialNotes = (orderSpecialNotes ? orderSpecialNotes.value.trim() : '') || 'None';
+        const totalAmount = items.reduce((sum, item) => sum + (item.price * item.qty), 0);
+
+        const newOrder = {
+          id: orderCode,
+          table: currentTable,
+          guestName,
+          specialNotes,
+          items: items.map(x => ({ name: x.name, qty: x.qty, price: x.price })),
+          total: totalAmount,
+          createdAt: new Date().toISOString(),
+          status: 'Kitchen Preparing'
+        };
+
+        // Save order to LocalStorage
+        try {
+          const list = JSON.parse(localStorage.getItem(TABLE_ORDERS_KEY) || '[]');
+          list.unshift(newOrder);
+          localStorage.setItem(TABLE_ORDERS_KEY, JSON.stringify(list));
+        } catch(err){}
+
+        // Render receipt
+        if (receiptOrderId) receiptOrderId.textContent = orderCode;
+        if (receiptOrderDetails) {
+          receiptOrderDetails.innerHTML = `Your order has been sent to the kitchen for <strong>${currentTable}</strong> (${guestName}).`;
+        }
+        if (receiptItemsSummary) {
+          let summaryHtml = '<ul style="margin:0;padding-left:18px;line-height:1.6">';
+          items.forEach(it => {
+            summaryHtml += `<li>${it.qty}x ${it.name} — ₹${it.price * it.qty}</li>`;
+          });
+          if (specialNotes !== 'None') {
+            summaryHtml += `<li style="color:var(--muted)"><em>Note: ${specialNotes}</em></li>`;
+          }
+          summaryHtml += `</ul><div style="margin-top:8px;font-weight:700;color:var(--walnut);text-align:right">Total: ₹${totalAmount}</div>`;
+          receiptItemsSummary.innerHTML = summaryHtml;
+        }
+
+        // Show receipt in modal
+        if (orderModalBody) orderModalBody.style.display = 'none';
+        if (orderModalReceipt) orderModalReceipt.style.display = 'block';
+
+        // Clear cart
+        tableOrderCart = {};
+        renderCardActions();
+        updateOrderBarUI();
+      });
+    }
+
+    // Send via WhatsApp
+    if (whatsappTableOrderBtn) {
+      whatsappTableOrderBtn.addEventListener('click', () => {
+        const items = Object.values(tableOrderCart);
+        if (items.length === 0) return;
+
+        const guestName = (orderCustomerName ? orderCustomerName.value.trim() : '') || 'Guest';
+        const specialNotes = (orderSpecialNotes ? orderSpecialNotes.value.trim() : '') || 'None';
+        const totalAmount = items.reduce((sum, item) => sum + (item.price * item.qty), 0);
+
+        let lines = [
+          'Hello The Hedgehog Cafe! 👋',
+          `📍 In-Cafe Table Order for: *${currentTable}*`,
+          `👤 Guest: ${guestName}`,
+          ''
+        ];
+        items.forEach(it => {
+          lines.push(`• ${it.qty}x ${it.name} (₹${it.price * it.qty})`);
+        });
+        lines.push('');
+        lines.push(`💰 Total: *₹${totalAmount}* (Will pay at table)`);
+        if (specialNotes !== 'None') {
+          lines.push(`📝 Note: ${specialNotes}`);
+        }
+
+        const encoded = encodeURIComponent(lines.join('\n'));
+        window.open(`https://wa.me/911724730478?text=${encoded}`, '_blank');
+      });
+    }
+
+    if (receiptNewOrderBtn) {
+      receiptNewOrderBtn.addEventListener('click', () => {
+        closeOrderModal();
+        const menuSec = document.getElementById('menu');
+        if (menuSec) {
+          if (lenis) lenis.scrollTo(menuSec, { offset: -35, duration: 1.0 });
+          else menuSec.scrollIntoView({ behavior: 'smooth' });
+        }
       });
     }
   </script>
