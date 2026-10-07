@@ -389,6 +389,179 @@
       gap:6px;
     }
 
+    /* 3D Scroll Progress Bar */
+    .scroll-progress-container{
+      position:fixed;
+      top:0;
+      left:0;
+      width:100%;
+      height:4px;
+      background:rgba(31,23,18,0.08);
+      z-index:9999;
+      pointer-events:none;
+    }
+    .scroll-progress-bar{
+      height:100%;
+      width:100%;
+      background:linear-gradient(90deg, #c47c38, #f5b072, #e59a54);
+      transform-origin:0 50%;
+      transform:scaleX(0);
+      box-shadow:0 0 12px rgba(196,124,56,0.6);
+      transition:transform 0.05s linear;
+    }
+
+    /* 3D Interactive Showcase */
+    .hero-3d-showcase{
+      max-width:760px;
+      margin:0 auto 34px;
+      background:rgba(26,17,12,0.65);
+      border:1px solid rgba(255,255,255,0.15);
+      backdrop-filter:blur(16px);
+      -webkit-backdrop-filter:blur(16px);
+      border-radius:20px;
+      overflow:hidden;
+      box-shadow:0 24px 60px rgba(0,0,0,0.42), inset 0 1px 0 rgba(255,255,255,0.12);
+      transition:border-color .3s ease, box-shadow .3s ease;
+      position:relative;
+    }
+    .hero-3d-showcase:hover{
+      border-color:rgba(245,176,114,0.38);
+      box-shadow:0 30px 70px rgba(0,0,0,0.52), inset 0 1px 0 rgba(255,255,255,0.22);
+    }
+    .hero-3d-header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:12px 18px;
+      background:rgba(18,12,8,0.45);
+      border-bottom:1px solid rgba(255,255,255,0.08);
+      font-size:0.78rem;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+    .hero-3d-tag{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      color:#f5b072;
+      font-weight:700;
+      letter-spacing:0.04em;
+      text-transform:uppercase;
+      font-size:0.72rem;
+    }
+    .live-pulse-dot{
+      width:8px;
+      height:8px;
+      border-radius:50%;
+      background:#3ddc84;
+      box-shadow:0 0 10px #3ddc84;
+      animation:pulseDot 2s infinite ease-in-out;
+    }
+    @keyframes pulseDot{
+      0%,100%{transform:scale(1);opacity:1}
+      50%{transform:scale(1.35);opacity:0.75}
+    }
+    .hero-3d-instructions{
+      display:inline-flex;
+      align-items:center;
+      gap:12px;
+      color:#ded5c8;
+      font-size:0.76rem;
+    }
+    .btn-3d-reset{
+      background:rgba(255,255,255,0.1);
+      border:1px solid rgba(255,255,255,0.18);
+      color:#fff;
+      font-size:0.72rem;
+      font-weight:600;
+      padding:4px 10px;
+      border-radius:999px;
+      cursor:pointer;
+      transition:all .2s ease;
+    }
+    .btn-3d-reset:hover{
+      background:var(--amber);
+      border-color:var(--amber);
+      transform:scale(1.05);
+    }
+    .hero-3d-canvas-wrapper{
+      position:relative;
+      width:100%;
+      height:320px;
+      cursor:grab;
+      user-select:none;
+      touch-action:none;
+    }
+    .hero-3d-canvas-wrapper:active{
+      cursor:grabbing;
+    }
+    .hero-3d-canvas-wrapper canvas{
+      width:100% !important;
+      height:100% !important;
+      display:block;
+    }
+    .hero-3d-badge-floating{
+      position:absolute;
+      bottom:14px;
+      right:18px;
+      background:rgba(22,15,11,0.85);
+      border:1px solid rgba(255,255,255,0.12);
+      backdrop-filter:blur(8px);
+      padding:6px 12px;
+      border-radius:10px;
+      text-align:right;
+      pointer-events:none;
+    }
+    .hero-3d-badge-floating span{
+      display:block;
+      font-family:var(--font-display);
+      font-size:0.82rem;
+      color:#f5b072;
+      font-weight:600;
+    }
+    .hero-3d-badge-floating small{
+      font-size:0.68rem;
+      color:rgba(255,255,255,0.55);
+      letter-spacing:0.04em;
+    }
+    @media(max-width:768px){
+      .hero-3d-canvas-wrapper{height:250px;}
+      .hero-3d-instructions span{display:none;}
+    }
+
+    /* 3D Card Perspective Tilt & Glare */
+    .tilt-card-3d{
+      transform-style:preserve-3d;
+      perspective:1000px;
+      transition:transform 0.16s cubic-bezier(0.2, 0, 0.2, 1), box-shadow 0.25s ease;
+      will-change:transform;
+    }
+    .tilt-glare{
+      position:absolute;
+      inset:0;
+      border-radius:inherit;
+      pointer-events:none;
+      background:radial-gradient(circle at var(--glare-x, 50%) var(--glare-y, 50%), rgba(255,255,255,0.22) 0%, rgba(255,255,255,0) 65%);
+      opacity:0;
+      transition:opacity 0.25s ease;
+      z-index:5;
+    }
+    .tilt-card-3d:hover .tilt-glare{
+      opacity:1;
+    }
+
+    /* 3D Scroll Reveal */
+    .reveal-3d-item{
+      opacity:0;
+      transform:perspective(1000px) rotateX(10deg) translateY(36px) scale(0.97);
+      transition:opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change:opacity, transform;
+    }
+    .reveal-3d-item.revealed-3d{
+      opacity:1;
+      transform:perspective(1000px) rotateX(0deg) translateY(0px) scale(1);
+    }
+
     /* Key Facts Strip */
     .facts-strip{
       background:var(--cream);
@@ -1202,6 +1375,11 @@
 </head>
 <body>
 
+  <!-- 3D Scroll Progress Bar -->
+  <div class="scroll-progress-container" aria-hidden="true">
+    <div class="scroll-progress-bar" id="scrollProgressBar"></div>
+  </div>
+
   <!-- Top Strip: Gurmukhi Script, Location, Badges & Hours -->
   <div class="top-strip">
     <div class="top-strip-left">
@@ -1278,6 +1456,27 @@
           <a href="#menu" class="btn btn-ghost" style="color:#fff;border-color:rgba(255,255,255,0.25)">
             View Food & Drinks ↓
           </a>
+        </div>
+
+        <!-- 3D Interactive Literary Showcase -->
+        <div class="hero-3d-showcase" id="hero3dContainer">
+          <div class="hero-3d-header">
+            <div class="hero-3d-tag">
+              <span class="live-pulse-dot"></span>
+              <span>Interactive 3D Stage</span>
+            </div>
+            <div class="hero-3d-instructions">
+              <span>✦ Drag 360° to rotate in 3D • Scroll down to turn pages</span>
+              <button type="button" class="btn-3d-reset" id="btnReset3D" aria-label="Reset 3D camera" title="Reset 3D Camera">↺ Reset Angle</button>
+            </div>
+          </div>
+          <div class="hero-3d-canvas-wrapper">
+            <canvas id="hero3dCanvas" aria-label="Interactive 3D Book and Artisan Coffee"></canvas>
+            <div class="hero-3d-badge-floating">
+              <span>The Hedgehog Novel</span>
+              <small>Vol. I · Sector 7-C</small>
+            </div>
+          </div>
         </div>
 
         <div class="hero-badges">
@@ -1909,11 +2108,450 @@
     </div>
   </footer>
 
-  <!-- Lenis Smooth Scroll -->
+  <!-- Three.js 3D Engine & Lenis Smooth Scroll -->
+  <script src="three.min.js"></script>
   <script src="lenis.min.js"></script>
   <script>
+    // ==========================================
+    // 1. Lenis Inertial Smooth Scrolling System
+    // ==========================================
+    let lenis = null;
     if (typeof Lenis !== 'undefined') {
-      const lenis = new Lenis({ autoRaf: true, duration: 1.2 });
+      lenis = new Lenis({
+        duration: 1.25,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        orientation: 'vertical',
+        gestureOrientation: 'vertical',
+        smoothWheel: true,
+        wheelMultiplier: 1.0,
+        touchMultiplier: 1.2,
+        infinite: false,
+        autoRaf: true
+      });
+      window.lenis = lenis;
+
+      // Real-time 3D Scroll Progress Bar
+      const progressBar = document.getElementById('scrollProgressBar');
+      lenis.on('scroll', (e) => {
+        if (progressBar) {
+          progressBar.style.transform = `scaleX(${e.progress})`;
+        }
+      });
+
+      // Cinematic Smooth Anchor Navigation
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          const targetId = this.getAttribute('href');
+          if (targetId && targetId !== '#' && targetId.startsWith('#')) {
+            const targetEl = document.querySelector(targetId);
+            if (targetEl) {
+              e.preventDefault();
+              lenis.scrollTo(targetEl, { offset: -35, duration: 1.25 });
+              const navLinks = document.getElementById('navLinks');
+              if (navLinks) navLinks.classList.remove('mobile-open');
+            }
+          }
+        });
+      });
+    }
+
+    // ==========================================
+    // 2. Interactive 3D Literary Book & Espresso Stage (Three.js)
+    // ==========================================
+    function initHero3D() {
+      const canvas = document.getElementById('hero3dCanvas');
+      const container = document.querySelector('.hero-3d-canvas-wrapper');
+      if (!canvas || !container || typeof THREE === 'undefined') return;
+
+      const width = container.clientWidth || 700;
+      const height = container.clientHeight || 320;
+
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(36, width / height, 0.1, 100);
+      camera.position.set(0, 1.6, 7.2);
+      camera.lookAt(0, 0, 0);
+
+      const renderer = new THREE.WebGLRenderer({
+        canvas: canvas,
+        alpha: true,
+        antialias: true,
+        powerPreference: 'high-performance'
+      });
+      renderer.setSize(width, height);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+      // 3D Scene Lighting
+      const ambientLight = new THREE.AmbientLight(0xfff2e0, 1.3);
+      scene.add(ambientLight);
+
+      const keyLight = new THREE.DirectionalLight(0xffdfb8, 2.2);
+      keyLight.position.set(5, 7, 5);
+      scene.add(keyLight);
+
+      const warmLampLight = new THREE.PointLight(0xff9e44, 2.0, 16);
+      warmLampLight.position.set(-3.5, 2.5, 3.0);
+      scene.add(warmLampLight);
+
+      const rimLight = new THREE.DirectionalLight(0x7ea0c2, 0.65);
+      rimLight.position.set(-4, -1, -4);
+      scene.add(rimLight);
+
+      // Main 3D Group
+      const stageGroup = new THREE.Group();
+      scene.add(stageGroup);
+      stageGroup.position.set(0, -0.2, 0);
+
+      // Materials
+      const leatherMaterial = new THREE.MeshStandardMaterial({
+        color: 0x382216,
+        roughness: 0.38,
+        metalness: 0.12
+      });
+      const goldMaterial = new THREE.MeshStandardMaterial({
+        color: 0xd4af37,
+        roughness: 0.28,
+        metalness: 0.82
+      });
+      const pageMaterial = new THREE.MeshStandardMaterial({
+        color: 0xfdf7eb,
+        roughness: 0.92,
+        metalness: 0.02
+      });
+      const ribbonMaterial = new THREE.MeshStandardMaterial({
+        color: 0xc43d2e,
+        roughness: 0.4
+      });
+      const ceramicMaterial = new THREE.MeshStandardMaterial({
+        color: 0xf6f0e6,
+        roughness: 0.18,
+        metalness: 0.08
+      });
+      const coffeeMaterial = new THREE.MeshStandardMaterial({
+        color: 0x3d2012,
+        roughness: 0.2,
+        metalness: 0.12
+      });
+
+      // 1. THE 3D BOOK
+      const bookGroup = new THREE.Group();
+      stageGroup.add(bookGroup);
+      bookGroup.position.set(-0.85, 0, 0);
+
+      // Back cover
+      const backCover = new THREE.Mesh(new THREE.BoxGeometry(2.7, 0.08, 3.8), leatherMaterial);
+      backCover.position.set(0, -0.22, 0);
+      bookGroup.add(backCover);
+
+      // Paper block
+      const pagesMesh = new THREE.Mesh(new THREE.BoxGeometry(2.55, 0.36, 3.65), pageMaterial);
+      pagesMesh.position.set(0.04, 0, 0);
+      bookGroup.add(pagesMesh);
+
+      // Spine
+      const spine = new THREE.Mesh(new THREE.CylinderGeometry(0.24, 0.24, 3.8, 20, 1, false, Math.PI * 0.5, Math.PI), leatherMaterial);
+      spine.rotation.z = Math.PI * 0.5;
+      spine.position.set(-1.35, -0.04, 0);
+      bookGroup.add(spine);
+
+      // Gold spine ribs
+      for (let i = -1.3; i <= 1.3; i += 0.65) {
+        const ring = new THREE.Mesh(new THREE.TorusGeometry(0.245, 0.02, 12, 24, Math.PI), goldMaterial);
+        ring.rotation.y = Math.PI * 0.5;
+        ring.position.set(-1.35, -0.04, i);
+        bookGroup.add(ring);
+      }
+
+      // Front Cover Pivot (Hinged on spine for opening on scroll)
+      const frontCoverPivot = new THREE.Group();
+      frontCoverPivot.position.set(-1.35, 0.18, 0);
+      bookGroup.add(frontCoverPivot);
+
+      const frontCover = new THREE.Mesh(new THREE.BoxGeometry(2.7, 0.08, 3.8), leatherMaterial);
+      frontCover.position.set(1.35, 0, 0);
+      frontCoverPivot.add(frontCover);
+
+      const emblem = new THREE.Mesh(new THREE.BoxGeometry(1.4, 0.015, 1.8), goldMaterial);
+      emblem.position.set(1.35, 0.045, 0);
+      frontCoverPivot.add(emblem);
+
+      // Bookmark ribbon
+      const ribbon = new THREE.Mesh(new THREE.BoxGeometry(0.18, 0.02, 1.2), ribbonMaterial);
+      ribbon.position.set(0.3, -0.05, 2.1);
+      ribbon.rotation.x = 0.25;
+      bookGroup.add(ribbon);
+
+      // 2. THE 3D ESPRESSO CUP & SAUCER
+      const cupGroup = new THREE.Group();
+      stageGroup.add(cupGroup);
+      cupGroup.position.set(1.7, -0.15, 0.4);
+
+      const saucer = new THREE.Mesh(new THREE.CylinderGeometry(1.15, 0.95, 0.08, 32), ceramicMaterial);
+      saucer.position.set(0, -0.04, 0);
+      cupGroup.add(saucer);
+
+      const cup = new THREE.Mesh(new THREE.CylinderGeometry(0.68, 0.48, 0.85, 32), ceramicMaterial);
+      cup.position.set(0, 0.42, 0);
+      cupGroup.add(cup);
+
+      const coffee = new THREE.Mesh(new THREE.CircleGeometry(0.62, 32), coffeeMaterial);
+      coffee.rotation.x = -Math.PI * 0.5;
+      coffee.position.set(0, 0.76, 0);
+      cupGroup.add(coffee);
+
+      const handle = new THREE.Mesh(new THREE.TorusGeometry(0.32, 0.07, 16, 24, Math.PI * 1.2), ceramicMaterial);
+      handle.rotation.z = -Math.PI * 0.2;
+      handle.position.set(0.68, 0.44, 0);
+      cupGroup.add(handle);
+
+      // 3. 3D STEAM PARTICLES
+      const steamCount = 36;
+      const steamGeo = new THREE.BufferGeometry();
+      const steamPositions = new Float32Array(steamCount * 3);
+      const steamSpeeds = [];
+
+      for (let i = 0; i < steamCount; i++) {
+        steamPositions[i * 3 + 0] = (Math.random() - 0.5) * 0.35;
+        steamPositions[i * 3 + 1] = 0.8 + Math.random() * 1.5;
+        steamPositions[i * 3 + 2] = (Math.random() - 0.5) * 0.35;
+        steamSpeeds.push({
+          y: 0.008 + Math.random() * 0.012,
+          phase: Math.random() * Math.PI * 2,
+          baseX: steamPositions[i * 3 + 0],
+          baseZ: steamPositions[i * 3 + 2]
+        });
+      }
+      steamGeo.setAttribute('position', new THREE.BufferAttribute(steamPositions, 3));
+      const steamMat = new THREE.PointsMaterial({
+        color: 0xffffff,
+        size: 0.12,
+        transparent: true,
+        opacity: 0.35,
+        blending: THREE.AdditiveBlending
+      });
+      const steamParticles = new THREE.Points(steamGeo, steamMat);
+      cupGroup.add(steamParticles);
+
+      // 4. FLOATING 3D AMBIENT PARTICLES
+      const moteCount = 50;
+      const moteGeo = new THREE.BufferGeometry();
+      const motePositions = new Float32Array(moteCount * 3);
+      for (let i = 0; i < moteCount; i++) {
+        motePositions[i * 3 + 0] = (Math.random() - 0.5) * 12;
+        motePositions[i * 3 + 1] = (Math.random() - 0.5) * 6;
+        motePositions[i * 3 + 2] = (Math.random() - 0.5) * 8;
+      }
+      moteGeo.setAttribute('position', new THREE.BufferAttribute(motePositions, 3));
+      const moteMat = new THREE.PointsMaterial({
+        color: 0xf5b072,
+        size: 0.08,
+        transparent: true,
+        opacity: 0.6,
+        blending: THREE.AdditiveBlending
+      });
+      const motes = new THREE.Points(moteGeo, moteMat);
+      scene.add(motes);
+
+      // Initial rotations
+      const baseRotationX = 0.32;
+      const baseRotationY = -0.42;
+      stageGroup.rotation.x = baseRotationX;
+      stageGroup.rotation.y = baseRotationY;
+
+      // Pointer drag & hover interaction
+      let isDragging = false;
+      let prevPointerX = 0;
+      let prevPointerY = 0;
+      let targetRotationX = baseRotationX;
+      let targetRotationY = baseRotationY;
+      let velX = 0;
+      let velY = 0;
+      let mouseTiltX = 0;
+      let mouseTiltY = 0;
+
+      function onPointerDown(e) {
+        isDragging = true;
+        prevPointerX = e.clientX || (e.touches && e.touches[0].clientX) || 0;
+        prevPointerY = e.clientY || (e.touches && e.touches[0].clientY) || 0;
+        velX = 0;
+        velY = 0;
+      }
+
+      function onPointerMove(e) {
+        const clientX = e.clientX || (e.touches && e.touches[0].clientX) || 0;
+        const clientY = e.clientY || (e.touches && e.touches[0].clientY) || 0;
+
+        if (isDragging) {
+          const deltaX = clientX - prevPointerX;
+          const deltaY = clientY - prevPointerY;
+          prevPointerX = clientX;
+          prevPointerY = clientY;
+
+          velY = deltaX * 0.007;
+          velX = deltaY * 0.007;
+
+          targetRotationY += velY;
+          targetRotationX += velX;
+          targetRotationX = Math.max(-0.6, Math.min(1.1, targetRotationX));
+        } else {
+          const rect = container.getBoundingClientRect();
+          const normX = (clientX - rect.left) / rect.width - 0.5;
+          const normY = (clientY - rect.top) / rect.height - 0.5;
+          mouseTiltX = normY * 0.22;
+          mouseTiltY = normX * 0.32;
+        }
+      }
+
+      function onPointerUp() {
+        isDragging = false;
+      }
+
+      container.addEventListener('mousedown', onPointerDown);
+      window.addEventListener('mousemove', onPointerMove);
+      window.addEventListener('mouseup', onPointerUp);
+
+      container.addEventListener('touchstart', onPointerDown, { passive: true });
+      window.addEventListener('touchmove', onPointerMove, { passive: true });
+      window.addEventListener('touchend', onPointerUp, { passive: true });
+
+      const btnReset = document.getElementById('btnReset3D');
+      if (btnReset) {
+        btnReset.addEventListener('click', (e) => {
+          e.stopPropagation();
+          targetRotationX = baseRotationX;
+          targetRotationY = baseRotationY;
+          velX = 0;
+          velY = 0;
+        });
+      }
+
+      // Scroll-driven 3D animation
+      let scrollProgress = 0;
+      window.addEventListener('scroll', () => {
+        const maxScroll = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+        scrollProgress = window.scrollY / maxScroll;
+      }, { passive: true });
+
+      // Render Loop
+      let clock = new THREE.Clock();
+      function animate() {
+        requestAnimationFrame(animate);
+        const time = clock.getElapsedTime();
+
+        if (!isDragging) {
+          targetRotationX += velX;
+          targetRotationY += velY;
+          velX *= 0.92;
+          velY *= 0.92;
+
+          const floatY = Math.sin(time * 1.2) * 0.04;
+          const floatRot = Math.cos(time * 0.8) * 0.03;
+          stageGroup.position.y = -0.2 + floatY;
+
+          stageGroup.rotation.x += (targetRotationX + mouseTiltX - stageGroup.rotation.x) * 0.08;
+          stageGroup.rotation.y += (targetRotationY + mouseTiltY + floatRot + (scrollProgress * 2.2) - stageGroup.rotation.y) * 0.08;
+        } else {
+          stageGroup.rotation.x += (targetRotationX - stageGroup.rotation.x) * 0.2;
+          stageGroup.rotation.y += (targetRotationY - stageGroup.rotation.y) * 0.2;
+        }
+
+        // Scroll opens book cover
+        const heroScroll = Math.min(1, Math.max(0, window.scrollY / (window.innerHeight * 0.8)));
+        const targetCoverAngle = -heroScroll * 0.85;
+        frontCoverPivot.rotation.y += (targetCoverAngle - frontCoverPivot.rotation.y) * 0.1;
+
+        // Animate steam particles
+        const positions = steamGeo.attributes.position.array;
+        for (let i = 0; i < steamCount; i++) {
+          const sp = steamSpeeds[i];
+          positions[i * 3 + 1] += sp.y;
+          positions[i * 3 + 0] = sp.baseX + Math.sin(time * 2.5 + sp.phase) * 0.08;
+          positions[i * 3 + 2] = sp.baseZ + Math.cos(time * 2.5 + sp.phase) * 0.08;
+          if (positions[i * 3 + 1] > 2.2) positions[i * 3 + 1] = 0.8;
+        }
+        steamGeo.attributes.position.needsUpdate = true;
+
+        motes.rotation.y = time * 0.05;
+
+        renderer.render(scene, camera);
+      }
+      animate();
+
+      window.addEventListener('resize', () => {
+        const newW = container.clientWidth;
+        const newH = container.clientHeight;
+        if (newW && newH) {
+          camera.aspect = newW / newH;
+          camera.updateProjectionMatrix();
+          renderer.setSize(newW, newH);
+        }
+      });
+    }
+
+    // ==========================================
+    // 3. Interactive 3D Card Tilt Physics
+    // ==========================================
+    function initCardTilt3D() {
+      const cards = document.querySelectorAll('.highlight-card, .menu-card, .space-photo-card, .reviews-card, .location-card, .fact-item');
+      cards.forEach(card => {
+        card.classList.add('tilt-card-3d');
+
+        const glare = document.createElement('div');
+        glare.className = 'tilt-glare';
+        card.style.position = 'relative';
+        card.appendChild(glare);
+
+        card.addEventListener('mousemove', (e) => {
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          const percentX = x / rect.width;
+          const percentY = y / rect.height;
+
+          const rotateX = (percentY - 0.5) * -12;
+          const rotateY = (percentX - 0.5) * 12;
+
+          card.style.setProperty('--glare-x', `${percentX * 100}%`);
+          card.style.setProperty('--glare-y', `${percentY * 100}%`);
+          card.style.transform = `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) translateZ(10px) scale3d(1.015, 1.015, 1.015)`;
+        });
+
+        card.addEventListener('mouseleave', () => {
+          card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0px) scale3d(1, 1, 1)';
+        });
+      });
+    }
+
+    // ==========================================
+    // 4. Scroll-Triggered 3D Reveal Observer
+    // ==========================================
+    function initScrollReveal3D() {
+      const revealItems = document.querySelectorAll('.section-head, .highlight-card, .menu-card, .space-photo-card, .reviews-card, .location-card');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('revealed-3d');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+
+      revealItems.forEach(item => {
+        item.classList.add('reveal-3d-item');
+        observer.observe(item);
+      });
+    }
+
+    // Initialize 3D & Tilt
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', () => {
+        initHero3D();
+        initCardTilt3D();
+        initScrollReveal3D();
+      });
+    } else {
+      initHero3D();
+      initCardTilt3D();
+      initScrollReveal3D();
     }
   </script>
 
