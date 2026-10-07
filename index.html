@@ -3389,6 +3389,15 @@
           localStorage.setItem(TABLE_ORDERS_KEY, JSON.stringify(list));
         } catch(err){}
 
+        // Push real-time event to Admin Portal
+        try {
+          localStorage.setItem('the_hedgehog_cafe_latest_notification', JSON.stringify({
+            type: 'new_order',
+            order: newOrder,
+            timestamp: Date.now()
+          }));
+        } catch(err){}
+
         // Render receipt
         if (receiptOrderId) receiptOrderId.textContent = orderCode;
         if (receiptOrderDetails) {
@@ -3423,9 +3432,33 @@
         const items = Object.values(tableOrderCart);
         if (items.length === 0) return;
 
+        const orderCode = '#HHC-ORD-' + Math.floor(1000 + Math.random() * 9000);
         const guestName = (orderCustomerName ? orderCustomerName.value.trim() : '') || 'Guest';
         const specialNotes = (orderSpecialNotes ? orderSpecialNotes.value.trim() : '') || 'None';
         const totalAmount = items.reduce((sum, item) => sum + (item.price * item.qty), 0);
+
+        const newOrder = {
+          id: orderCode,
+          table: currentTable,
+          guestName,
+          specialNotes,
+          items: items.map(x => ({ name: x.name, qty: x.qty, price: x.price })),
+          total: totalAmount,
+          createdAt: new Date().toISOString(),
+          status: 'Kitchen Preparing'
+        };
+
+        // Record in admin orders storage
+        try {
+          const list = JSON.parse(localStorage.getItem(TABLE_ORDERS_KEY) || '[]');
+          list.unshift(newOrder);
+          localStorage.setItem(TABLE_ORDERS_KEY, JSON.stringify(list));
+          localStorage.setItem('the_hedgehog_cafe_latest_notification', JSON.stringify({
+            type: 'new_order',
+            order: newOrder,
+            timestamp: Date.now()
+          }));
+        } catch(err){}
 
         let lines = [
           'Hello The Hedgehog Cafe! 👋',

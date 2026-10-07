@@ -509,6 +509,39 @@
     .status-select.Seated{background-color:var(--blue-bg);color:#70b0ff;border:1px solid rgba(112,176,255,0.3)}
     .status-select.Completed{background-color:rgba(255,255,255,0.08);color:#dcd5cb;border:1px solid rgba(255,255,255,0.18)}
     .status-select.Cancelled{background-color:var(--red-bg);color:#ff7878;border:1px solid rgba(255,120,120,0.3)}
+    .status-select.Preparing{background-color:rgba(217,119,54,0.22);color:#f59e0b;border:1px solid rgba(245,158,11,0.35)}
+    .status-select.Served{background-color:var(--green-bg);color:#3ddc84;border:1px solid rgba(61,220,132,0.3)}
+
+    .order-items-badge{
+      display:flex;
+      flex-direction:column;
+      gap:4px;
+      max-width:280px;
+      white-space:normal;
+    }
+    .order-item-chip{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      background:rgba(255,255,255,0.06);
+      padding:2px 8px;
+      border-radius:6px;
+      font-size:0.8rem;
+      border:1px solid var(--line);
+      color:var(--cream);
+    }
+    .order-table-tag{
+      font-weight:700;
+      color:#e3a469;
+      background:rgba(227,164,105,0.14);
+      padding:4px 10px;
+      border-radius:999px;
+      font-size:0.82rem;
+      border:1px solid rgba(227,164,105,0.28);
+      display:inline-flex;
+      align-items:center;
+      gap:4px;
+    }
 
     .notes-preview{
       max-width:200px;
@@ -913,6 +946,17 @@
       transition: color .2s;
     }
     .lock-return-link:hover{color: #fff;}
+
+    /* KOT Kitchen Slip Print Styles */
+    @media print {
+      body * { visibility: hidden !important; }
+      #orderDetailModal, #orderDetailModal * { visibility: visible !important; }
+      #orderDetailModal { position: fixed; inset: 0; background: #fff !important; color: #000 !important; z-index: 99999; display: block !important; padding: 20px; }
+      .modal-card { background: #fff !important; color: #000 !important; box-shadow: none !important; border: 2px dashed #000 !important; width: 100% !important; max-width: 480px !important; margin: 0 auto; }
+      .modal-foot, .close-btn { display: none !important; }
+      #kotContentArea * { color: #000 !important; background: transparent !important; }
+      .status-select { border: 1px solid #000 !important; color: #000 !important; }
+    }
   </style>
 </head>
 <body class="auth-locked">
@@ -1033,6 +1077,7 @@
       </div>
       <div style="display:flex;gap:10px;flex-wrap:wrap">
         <button class="btn primary sm" id="btnViewReservations">✦ Table Bookings (<span id="badgeResCount">0</span>)</button>
+        <button class="btn ghost sm" id="btnViewOrders">🍽️ Online & Table Orders (<span id="badgeOrdersCount">0</span>)</button>
         <button class="btn ghost sm" id="btnViewInquiries">✉ Inquiries (<span id="badgeInqCount">0</span>)</button>
         <button class="btn ghost sm" id="btnExportCSV">📥 Export CSV</button>
         <button class="btn ghost sm" id="btnClearData" style="color:#ff7878;border-color:rgba(214,69,69,0.35)" title="Clear all reservations">🗑 Clear All Data</button>
@@ -1156,6 +1201,94 @@
           <div style="font-size:2.4rem">✉</div>
           <h3>No customer inquiries found</h3>
           <p>Inquiries submitted via the storefront Contact tab will appear here in real time.</p>
+        </div>
+      </section>
+    </div>
+
+    <!-- Online & Table Orders View -->
+    <div id="ordersSection" style="display:none">
+      <!-- Metrics Cards -->
+      <section class="metrics-grid">
+        <div class="metric-card m-today">
+          <div class="metric-label">Today's Orders</div>
+          <div class="metric-value" id="metricOrdersToday">0</div>
+          <div class="metric-sub">In-cafe table & online orders</div>
+        </div>
+        <div class="metric-card m-guests" style="border-top-color:#f59e0b">
+          <div class="metric-label">Kitchen Preparing</div>
+          <div class="metric-value" id="metricOrdersActive">0</div>
+          <div class="metric-sub">Active orders on kitchen station</div>
+        </div>
+        <div class="metric-card m-seated" style="border-top-color:#10b981">
+          <div class="metric-label">Served & Fulfilled</div>
+          <div class="metric-value" id="metricOrdersServed">0</div>
+          <div class="metric-sub">Delivered to guest tables</div>
+        </div>
+        <div class="metric-card m-total" style="border-top-color:#e3a469">
+          <div class="metric-label">Total Order Revenue</div>
+          <div class="metric-value" id="metricOrdersRevenue">₹0</div>
+          <div class="metric-sub">Gross food & drinks billing</div>
+        </div>
+      </section>
+
+      <!-- Toolbar: Search & Filter Tabs -->
+      <section class="toolbar">
+        <div class="search-box">
+          <span style="opacity:0.6;margin-right:6px">🔍</span>
+          <input type="text" id="searchOrdersInput" placeholder="Search orders by ID, Table, Guest, or Dish...">
+        </div>
+        <div class="filter-pills">
+          <button class="pill-btn active order-filter-btn" data-orderfilter="all">All Orders <span class="pill-count" id="countOrdersAll">0</span></button>
+          <button class="pill-btn order-filter-btn" data-orderfilter="Kitchen Preparing">Kitchen Preparing 🍳 <span class="pill-count" id="countOrdersPreparing">0</span></button>
+          <button class="pill-btn order-filter-btn" data-orderfilter="Served">Served ✅ <span class="pill-count" id="countOrdersServed">0</span></button>
+          <button class="pill-btn order-filter-btn" data-orderfilter="Cancelled">Cancelled ❌ <span class="pill-count" id="countOrdersCancelled">0</span></button>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px">
+          <span style="font-size:0.75rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.08em">Table</span>
+          <select id="filterTableSelect" style="background:var(--card);border:1px solid var(--line);color:var(--cream);padding:7px 14px;border-radius:999px;font-size:0.82rem;font-weight:600;outline:none;cursor:pointer">
+            <option value="all">All Tables / Seats</option>
+            <option value="Table 1">Table 1 · Window</option>
+            <option value="Table 2">Table 2 · Window</option>
+            <option value="Table 3">Table 3 · Bookshelf</option>
+            <option value="Table 4">Table 4 · Central Library</option>
+            <option value="Table 5">Table 5 · Cozy Booth</option>
+            <option value="Table 6">Table 6 · Reading Nook</option>
+            <option value="Table 7">Table 7 · Bookshelf</option>
+            <option value="Table 8">Table 8 · Study Corner</option>
+            <option value="Table 9">Table 9 · Wood Panel</option>
+            <option value="Table 10">Table 10 · Group Table</option>
+            <option value="Reading Lounge">Reading Lounge Couch</option>
+            <option value="Front Counter">Front Counter / Takeaway</option>
+          </select>
+        </div>
+      </section>
+
+      <!-- Orders Table -->
+      <section class="table-card">
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Order ID</th>
+                <th>Table</th>
+                <th>Guest</th>
+                <th>Items Ordered & Qty</th>
+                <th>Kitchen Instructions</th>
+                <th>Total</th>
+                <th>Time Placed</th>
+                <th>Status</th>
+                <th style="text-align:right">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="ordersTbody">
+              <!-- Dynamically populated rows -->
+            </tbody>
+          </table>
+        </div>
+        <div id="emptyOrdersNotice" class="empty-state" style="display:none">
+          <div style="font-size:2.4rem">🍽️</div>
+          <h3>No online or table orders found</h3>
+          <p>When customers order from the menu on the website, orders will appear here in real-time with full details.</p>
         </div>
       </section>
     </div>
@@ -1352,6 +1485,61 @@
       <div class="modal-foot">
         <button type="button" class="btn ghost sm" id="btnToggleInqStatus">Mark as Replied</button>
         <a href="#" class="btn primary sm" id="btnReplyInquiryEmail">✉ Reply via Email</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Online & Table Order Detail / KOT Modal -->
+  <div class="modal-overlay" id="orderDetailModal">
+    <div class="modal-card" style="max-width:540px">
+      <div class="modal-head">
+        <div>
+          <span style="font-size:0.75rem;font-weight:700;color:var(--accent2);letter-spacing:.08em;text-transform:uppercase" id="kotOrderCode">#HHC-ORD-0000</span>
+          <h2 style="margin:2px 0 0" id="kotOrderTitle">Kitchen Order Ticket (KOT)</h2>
+        </div>
+        <button class="close-btn" id="closeOrderDetailModal">×</button>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:14px;padding:10px 0 20px" id="kotContentArea">
+        <!-- Table & Guest Header -->
+        <div style="background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px">
+          <div>
+            <div style="font-size:1.1rem;font-weight:700;color:#e3a469" id="kotTableDisplay">Table 4 · Central Library</div>
+            <div style="font-size:0.85rem;color:var(--muted);margin-top:2px" id="kotGuestDisplay">Guest: Aman (Dine-in)</div>
+          </div>
+          <div style="text-align:right">
+            <span class="status-select Preparing" id="kotStatusBadge">Kitchen Preparing</span>
+            <div style="font-size:0.75rem;color:var(--muted);margin-top:4px" id="kotTimeDisplay">8:45 PM</div>
+          </div>
+        </div>
+
+        <!-- Ordered Items Breakdown -->
+        <div>
+          <label style="font-size:0.75rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;display:block;margin-bottom:6px">Ordered Dishes & Beverages</label>
+          <div id="kotItemsList" style="background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 16px;display:flex;flex-direction:column;gap:10px">
+            <!-- Dynamic item lines -->
+          </div>
+        </div>
+
+        <!-- Special Instructions -->
+        <div id="kotNotesWrap" style="background:rgba(217,119,54,0.1);border:1px solid rgba(217,119,54,0.25);border-radius:12px;padding:12px 14px">
+          <small style="display:block;color:var(--accent2);font-weight:700;text-transform:uppercase;font-size:0.72rem;letter-spacing:.06em">Special Kitchen Instructions</small>
+          <div id="kotNotesDisplay" style="font-size:0.86rem;color:var(--cream);margin-top:2px">None</div>
+        </div>
+
+        <!-- Total Breakdown -->
+        <div style="background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px;display:flex;justify-content:space-between;align-items:center">
+          <span style="font-size:0.9rem;color:var(--muted)">Total to Collect at Table</span>
+          <strong style="font-size:1.3rem;color:#e3a469" id="kotTotalDisplay">₹0</strong>
+        </div>
+      </div>
+
+      <div class="modal-foot" style="display:flex;justify-content:space-between;align-items:center">
+        <button type="button" class="btn ghost sm" id="btnPrintKOT">🖨️ Print Kitchen Slip</button>
+        <div style="display:flex;gap:10px">
+          <button type="button" class="btn ghost sm" id="btnCancelOrder" style="color:#ff7878;border-color:rgba(214,69,69,0.35)">Cancel Order</button>
+          <button type="button" class="btn primary sm" id="btnMarkServed">Mark as Served ✓</button>
+        </div>
       </div>
     </div>
   </div>
@@ -1769,6 +1957,36 @@
 
     // Export CSV
     document.getElementById('btnExportCSV').onclick = () => {
+      const ordersSec = document.getElementById('ordersSection');
+      if (ordersSec && ordersSec.style.display !== 'none') {
+        const orders = typeof loadOrders === 'function' ? loadOrders() : [];
+        if (!orders.length) {
+          showToast('No orders to export', '⚠️');
+          return;
+        }
+        const headers = ['Order ID', 'Table', 'Guest Name', 'Items Summary', 'Special Notes', 'Total (INR)', 'Status', 'Date Time'];
+        const rows = orders.map(o => [
+          `"${o.id}"`,
+          `"${(o.table || '').replace(/"/g, '""')}"`,
+          `"${(o.guestName || '').replace(/"/g, '""')}"`,
+          `"${(o.items || []).map(i => i.qty + 'x ' + i.name).join('; ').replace(/"/g, '""')}"`,
+          `"${(o.specialNotes || '').replace(/"/g, '""')}"`,
+          `"${o.total || 0}"`,
+          `"${o.status}"`,
+          `"${o.createdAt || ''}"`
+        ]);
+        const csvContent = 'data:text/csv;charset=utf-8,' + [headers.join(','), ...rows.map(e => e.join(','))].join('\n');
+        const encodedUri = encodeURI(csvContent);
+        const link = document.createElement('a');
+        link.setAttribute('href', encodedUri);
+        link.setAttribute('download', `the_hedgehog_cafe_orders_${new Date().toISOString().split('T')[0]}.csv`);
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        showToast('Orders exported to CSV');
+        return;
+      }
+
       const items = loadReservations();
       if (!items.length) {
         showToast('No reservations to export', '⚠️');
@@ -1804,7 +2022,7 @@
       const clockEl = document.getElementById('clockDisplay');
       if (clockEl) {
         const now = new Date();
-        clockEl.textContent = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }) + ' · NYC';
+        clockEl.textContent = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }) + ' · Chandigarh';
       }
     }
     setInterval(updateClock, 1000);
@@ -2034,7 +2252,23 @@
       renderDashboard();
     }
 
-    // Listen to Storage Events (Real-time updates when customer reserves or cancels on index.html)
+    function handleNewOrderNotification(order) {
+      if (!order) return;
+      playNotificationChime(false);
+      showToast(`🍽️ NEW ORDER: ${order.id} for ${order.table} · ₹${order.total}`, '🍽️');
+      addOwnerNotification({
+        title: `New Table Order: ${order.id}`,
+        desc: `${order.table} · ${order.guestName || 'Guest'} ordered ${(order.items || []).map(i => i.qty + 'x ' + i.name).join(', ')} · Total: ₹${order.total}`,
+        type: 'new'
+      });
+      sendDesktopNotification(
+        `The Hedgehog Cafe: New Table Order`,
+        `Order ${order.id} for ${order.table} (${order.guestName || 'Guest'}): ₹${order.total}`
+      );
+      if (typeof renderOrders === 'function') renderOrders();
+    }
+
+    // Listen to Storage Events (Real-time updates when customer reserves, orders, or cancels on index.html)
     window.addEventListener('storage', (e) => {
       if (e.key === 'the_hedgehog_cafe_latest_notification' || e.key === 'cafe_integral_latest_notification' || e.key === 'cafe_lyria_latest_notification') {
         try {
@@ -2043,10 +2277,14 @@
             handleNewReservationNotification(payload.booking);
           } else if (payload.type === 'cancelled_reservation') {
             handleCancelledReservationNotification(payload.booking);
+          } else if (payload.type === 'new_order') {
+            handleNewOrderNotification(payload.order);
           }
         } catch(err){}
       } else if (e.key === STORAGE_KEY || e.key === 'cafe_integral_reservations' || e.key === 'cafe_lyria_reservations') {
         renderDashboard();
+      } else if (e.key === 'thehedgehog_table_orders') {
+        if (typeof renderOrders === 'function') renderOrders();
       } else if (e.key === INQUIRIES_STORAGE_KEY || e.key === 'cafe_integral_inquiries' || e.key === 'cafe_lyria_inquiries') {
         renderInquiries();
         updateInquiryCountBadge();
@@ -2187,21 +2425,35 @@
 
     // View Switching
     const btnViewReservations = document.getElementById('btnViewReservations');
+    const btnViewOrders = document.getElementById('btnViewOrders');
     const btnViewInquiries = document.getElementById('btnViewInquiries');
     const reservationsSection = document.getElementById('reservationsSection');
+    const ordersSection = document.getElementById('ordersSection');
     const inquiriesSection = document.getElementById('inquiriesSection');
 
     function switchMainView(view) {
       if (view === 'reservations') {
-        if (btnViewReservations) { btnViewReservations.className = 'btn primary sm'; }
-        if (btnViewInquiries) { btnViewInquiries.className = 'btn ghost sm'; }
+        if (btnViewReservations) btnViewReservations.className = 'btn primary sm';
+        if (btnViewOrders) btnViewOrders.className = 'btn ghost sm';
+        if (btnViewInquiries) btnViewInquiries.className = 'btn ghost sm';
         if (reservationsSection) reservationsSection.style.display = 'block';
+        if (ordersSection) ordersSection.style.display = 'none';
         if (inquiriesSection) inquiriesSection.style.display = 'none';
         renderDashboard();
-      } else {
-        if (btnViewReservations) { btnViewReservations.className = 'btn ghost sm'; }
-        if (btnViewInquiries) { btnViewInquiries.className = 'btn primary sm'; }
+      } else if (view === 'orders') {
+        if (btnViewReservations) btnViewReservations.className = 'btn ghost sm';
+        if (btnViewOrders) btnViewOrders.className = 'btn primary sm';
+        if (btnViewInquiries) btnViewInquiries.className = 'btn ghost sm';
         if (reservationsSection) reservationsSection.style.display = 'none';
+        if (ordersSection) ordersSection.style.display = 'block';
+        if (inquiriesSection) inquiriesSection.style.display = 'none';
+        if (typeof renderOrders === 'function') renderOrders();
+      } else {
+        if (btnViewReservations) btnViewReservations.className = 'btn ghost sm';
+        if (btnViewOrders) btnViewOrders.className = 'btn ghost sm';
+        if (btnViewInquiries) btnViewInquiries.className = 'btn primary sm';
+        if (reservationsSection) reservationsSection.style.display = 'none';
+        if (ordersSection) ordersSection.style.display = 'none';
         if (inquiriesSection) inquiriesSection.style.display = 'block';
         renderInquiries();
       }
@@ -2209,6 +2461,9 @@
 
     if (btnViewReservations) {
       btnViewReservations.addEventListener('click', () => switchMainView('reservations'));
+    }
+    if (btnViewOrders) {
+      btnViewOrders.addEventListener('click', () => switchMainView('orders'));
     }
     if (btnViewInquiries) {
       btnViewInquiries.addEventListener('click', () => switchMainView('inquiries'));
@@ -2317,6 +2572,346 @@
         e.target.classList.remove('open');
       }
     };
+
+    // ============================================
+    // Online & Table Orders Management
+    // ============================================
+    const ORDERS_STORAGE_KEY = 'thehedgehog_table_orders';
+    let orderCurrentFilter = 'all';
+    let orderTableFilter = 'all';
+    let orderSearchQuery = '';
+    let activeKOTOrderId = null;
+
+    const defaultOrders = [
+      {
+        id: '#HHC-ORD-4921',
+        table: 'Table 4',
+        guestName: 'Simran Kaur',
+        specialNotes: 'Less ice in frappe, warm sourdough toast',
+        items: [
+          { name: 'The English Breakfast', qty: 1, price: 395 },
+          { name: 'Signature Frappe', qty: 1, price: 245 }
+        ],
+        total: 640,
+        createdAt: new Date(Date.now() - 12 * 60 * 1000).toISOString(),
+        status: 'Kitchen Preparing'
+      },
+      {
+        id: '#HHC-ORD-4916',
+        table: 'Table 2',
+        guestName: 'Arjun Mehta',
+        specialNotes: 'Extra parmesan on side',
+        items: [
+          { name: "Popeye's Ravioli", qty: 2, price: 385 },
+          { name: 'Cafe Cappuccino & Latte', qty: 2, price: 195 }
+        ],
+        total: 1160,
+        createdAt: new Date(Date.now() - 35 * 60 * 1000).toISOString(),
+        status: 'Served'
+      },
+      {
+        id: '#HHC-ORD-4908',
+        table: 'Reading Lounge',
+        guestName: 'Dr. Kabir Verma',
+        specialNotes: 'Table near novel bookshelf',
+        items: [
+          { name: 'The Pizza of SW-Desi Things', qty: 1, price: 445 },
+          { name: 'Cappuccino Tart with Ice Cream', qty: 1, price: 265 }
+        ],
+        total: 710,
+        createdAt: new Date(Date.now() - 75 * 60 * 1000).toISOString(),
+        status: 'Served'
+      }
+    ];
+
+    function loadOrders() {
+      const stored = localStorage.getItem(ORDERS_STORAGE_KEY);
+      if (!stored) {
+        localStorage.setItem(ORDERS_STORAGE_KEY, JSON.stringify(defaultOrders));
+        return defaultOrders;
+      }
+      try {
+        const parsed = JSON.parse(stored);
+        if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+        return defaultOrders;
+      } catch(e) {
+        return defaultOrders;
+      }
+    }
+
+    function saveOrders(items) {
+      localStorage.setItem(ORDERS_STORAGE_KEY, JSON.stringify(items));
+      renderOrders();
+      updateOrderCountBadge();
+    }
+
+    function updateOrderCountBadge() {
+      const orders = loadOrders();
+      const activeCount = orders.filter(o => (o.status || '').includes('Preparing')).length;
+      const badge = document.getElementById('badgeOrdersCount');
+      if (badge) badge.textContent = activeCount > 0 ? `${activeCount} active` : orders.length;
+    }
+
+    function renderOrderMetrics() {
+      const orders = loadOrders();
+      const todayStr = new Date().toISOString().split('T')[0];
+      const todayOrders = orders.filter(o => (o.createdAt || '').startsWith(todayStr));
+      const activeOrders = orders.filter(o => (o.status || '').includes('Preparing'));
+      const servedOrders = orders.filter(o => (o.status || '').includes('Served'));
+      const totalRevenue = orders.filter(o => o.status !== 'Cancelled').reduce((sum, o) => sum + (o.total || 0), 0);
+
+      const elToday = document.getElementById('metricOrdersToday');
+      const elActive = document.getElementById('metricOrdersActive');
+      const elServed = document.getElementById('metricOrdersServed');
+      const elRevenue = document.getElementById('metricOrdersRevenue');
+
+      if (elToday) elToday.textContent = todayOrders.length || orders.length;
+      if (elActive) elActive.textContent = activeOrders.length;
+      if (elServed) elServed.textContent = servedOrders.length;
+      if (elRevenue) elRevenue.textContent = `₹${totalRevenue.toLocaleString('en-IN')}`;
+
+      // Counts on filter pills
+      const countAll = document.getElementById('countOrdersAll');
+      const countPrep = document.getElementById('countOrdersPreparing');
+      const countServed = document.getElementById('countOrdersServed');
+      const countCanc = document.getElementById('countOrdersCancelled');
+
+      if (countAll) countAll.textContent = orders.length;
+      if (countPrep) countPrep.textContent = activeOrders.length;
+      if (countServed) countServed.textContent = servedOrders.length;
+      if (countCanc) countCanc.textContent = orders.filter(o => o.status === 'Cancelled').length;
+    }
+
+    function renderOrders() {
+      renderOrderMetrics();
+      updateOrderCountBadge();
+      const tbody = document.getElementById('ordersTbody');
+      const emptyNotice = document.getElementById('emptyOrdersNotice');
+      if (!tbody) return;
+
+      let orders = loadOrders();
+
+      // Filter by Status
+      if (orderCurrentFilter !== 'all') {
+        orders = orders.filter(o => (o.status || '').toLowerCase().includes(orderCurrentFilter.toLowerCase()));
+      }
+
+      // Filter by Table
+      if (orderTableFilter !== 'all') {
+        orders = orders.filter(o => (o.table || '').toLowerCase().includes(orderTableFilter.toLowerCase()));
+      }
+
+      // Search Query
+      if (orderSearchQuery) {
+        const q = orderSearchQuery.toLowerCase();
+        orders = orders.filter(o => {
+          return (o.id && o.id.toLowerCase().includes(q)) ||
+                 (o.guestName && o.guestName.toLowerCase().includes(q)) ||
+                 (o.table && o.table.toLowerCase().includes(q)) ||
+                 (o.items && o.items.some(i => i.name.toLowerCase().includes(q))) ||
+                 (o.specialNotes && o.specialNotes.toLowerCase().includes(q));
+        });
+      }
+
+      tbody.innerHTML = '';
+      if (orders.length === 0) {
+        if (emptyNotice) emptyNotice.style.display = 'block';
+      } else {
+        if (emptyNotice) emptyNotice.style.display = 'none';
+        orders.forEach(order => {
+          const tr = document.createElement('tr');
+          const timeFormatted = order.createdAt ? new Date(order.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : 'Just now';
+
+          const itemsHtml = (order.items || []).map(item => `
+            <span class="order-item-chip">
+              <strong>${item.qty}x</strong> ${escapeHtml(item.name)} <small style="color:var(--muted)">₹${item.price * item.qty}</small>
+            </span>
+          `).join(' ');
+
+          const isPrep = (order.status || '').includes('Preparing');
+          const isServ = (order.status || '').includes('Served');
+          const statusClass = isPrep ? 'Preparing' : (isServ ? 'Served' : 'Cancelled');
+
+          tr.innerHTML = `
+            <td><span class="code-tag">${escapeHtml(order.id)}</span></td>
+            <td><span class="order-table-tag">📍 ${escapeHtml(order.table || 'Table 4')}</span></td>
+            <td>
+              <div class="guest-info">
+                <b>${escapeHtml(order.guestName || 'Guest')}</b>
+                <span>In-Cafe Order</span>
+              </div>
+            </td>
+            <td>
+              <div class="order-items-badge">
+                ${itemsHtml}
+              </div>
+            </td>
+            <td>
+              <span class="notes-preview" title="${escapeHtml(order.specialNotes || 'None')}">
+                ${escapeHtml(order.specialNotes || 'None')}
+              </span>
+            </td>
+            <td>
+              <strong style="color:#e3a469;font-size:0.96rem">₹${order.total || 0}</strong>
+            </td>
+            <td>
+              <span class="date-badge">${timeFormatted}</span>
+            </td>
+            <td>
+              <select class="status-select ${statusClass}" onchange="changeOrderStatus('${order.id}', this.value)">
+                <option value="Kitchen Preparing" ${isPrep ? 'selected' : ''}>Kitchen Preparing</option>
+                <option value="Served" ${isServ ? 'selected' : ''}>Served & Fulfilled</option>
+                <option value="Cancelled" ${order.status === 'Cancelled' ? 'selected' : ''}>Cancelled</option>
+              </select>
+            </td>
+            <td style="text-align:right">
+              <div class="row-actions" style="justify-content:flex-end">
+                <button type="button" class="icon-btn" title="View & Print KOT Slip" onclick="openOrderDetailModal('${order.id}')">🖨️</button>
+                <button type="button" class="icon-btn" title="Mark as Served" onclick="markOrderServed('${order.id}')" style="color:#3ddc84">✓</button>
+                <button type="button" class="icon-btn delete" title="Cancel Order" onclick="deleteOrCancelOrder('${order.id}')">✕</button>
+              </div>
+            </td>
+          `;
+          tbody.appendChild(tr);
+        });
+      }
+    }
+
+    window.changeOrderStatus = function(orderId, newStatus) {
+      const orders = loadOrders();
+      const target = orders.find(o => o.id === orderId);
+      if (target) {
+        target.status = newStatus;
+        saveOrders(orders);
+        showToast(`Order ${orderId} status updated to "${newStatus}"`, '✓');
+      }
+    };
+
+    window.markOrderServed = function(orderId) {
+      const orders = loadOrders();
+      const target = orders.find(o => o.id === orderId);
+      if (target) {
+        target.status = 'Served';
+        saveOrders(orders);
+        showToast(`Order ${orderId} marked as Served to table!`, '✓');
+      }
+    };
+
+    window.deleteOrCancelOrder = function(orderId) {
+      if (confirm(`Cancel Order ${orderId}?`)) {
+        const orders = loadOrders();
+        const target = orders.find(o => o.id === orderId);
+        if (target) {
+          target.status = 'Cancelled';
+          saveOrders(orders);
+          showToast(`Order ${orderId} cancelled`, '✕');
+        }
+      }
+    };
+
+    window.openOrderDetailModal = function(orderId) {
+      const orders = loadOrders();
+      const order = orders.find(o => o.id === orderId);
+      if (!order) return;
+      activeKOTOrderId = orderId;
+
+      document.getElementById('kotOrderCode').textContent = order.id;
+      document.getElementById('kotTableDisplay').textContent = `${order.table || 'Table 4'}`;
+      document.getElementById('kotGuestDisplay').textContent = `Guest: ${order.guestName || 'Guest'} (In-Cafe Order)`;
+      
+      const isPrep = (order.status || '').includes('Preparing');
+      const isServ = (order.status || '').includes('Served');
+      const badge = document.getElementById('kotStatusBadge');
+      badge.className = `status-select ${isPrep ? 'Preparing' : (isServ ? 'Served' : 'Cancelled')}`;
+      badge.textContent = order.status;
+      document.getElementById('kotTimeDisplay').textContent = order.createdAt ? new Date(order.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : 'Now';
+
+      const itemsListEl = document.getElementById('kotItemsList');
+      if (itemsListEl) {
+        itemsListEl.innerHTML = (order.items || []).map(item => `
+          <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px dashed var(--line);padding-bottom:6px">
+            <div>
+              <strong style="color:#fff">${item.qty}x ${escapeHtml(item.name)}</strong>
+              <small style="display:block;color:var(--muted)">₹${item.price} each</small>
+            </div>
+            <strong style="color:var(--accent2)">₹${item.price * item.qty}</strong>
+          </div>
+        `).join('');
+      }
+
+      document.getElementById('kotNotesDisplay').textContent = order.specialNotes || 'None requested';
+      document.getElementById('kotTotalDisplay').textContent = `₹${order.total || 0}`;
+
+      const modal = document.getElementById('orderDetailModal');
+      if (modal) modal.classList.add('open');
+    };
+
+    // Order Toolbar Event Listeners
+    document.querySelectorAll('.order-filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.order-filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        orderCurrentFilter = btn.dataset.orderfilter;
+        renderOrders();
+      });
+    });
+
+    const searchOrdersInput = document.getElementById('searchOrdersInput');
+    if (searchOrdersInput) {
+      searchOrdersInput.addEventListener('input', (e) => {
+        orderSearchQuery = e.target.value.trim();
+        renderOrders();
+      });
+    }
+
+    const filterTableSelect = document.getElementById('filterTableSelect');
+    if (filterTableSelect) {
+      filterTableSelect.addEventListener('change', (e) => {
+        orderTableFilter = e.target.value;
+        renderOrders();
+      });
+    }
+
+    // KOT Modal Button Handlers
+    const closeOrderDetailModal = document.getElementById('closeOrderDetailModal');
+    if (closeOrderDetailModal) {
+      closeOrderDetailModal.addEventListener('click', () => {
+        const modal = document.getElementById('orderDetailModal');
+        if (modal) modal.classList.remove('open');
+      });
+    }
+
+    const btnPrintKOT = document.getElementById('btnPrintKOT');
+    if (btnPrintKOT) {
+      btnPrintKOT.addEventListener('click', () => {
+        window.print();
+      });
+    }
+
+    const btnMarkServed = document.getElementById('btnMarkServed');
+    if (btnMarkServed) {
+      btnMarkServed.addEventListener('click', () => {
+        if (activeKOTOrderId) {
+          markOrderServed(activeKOTOrderId);
+          const modal = document.getElementById('orderDetailModal');
+          if (modal) modal.classList.remove('open');
+        }
+      });
+    }
+
+    const btnCancelOrder = document.getElementById('btnCancelOrder');
+    if (btnCancelOrder) {
+      btnCancelOrder.addEventListener('click', () => {
+        if (activeKOTOrderId) {
+          deleteOrCancelOrder(activeKOTOrderId);
+          const modal = document.getElementById('orderDetailModal');
+          if (modal) modal.classList.remove('open');
+        }
+      });
+    }
+
+    // Initial render of orders
+    renderOrders();
 
     // ============================================
     // Website Live / Offline State Controller
