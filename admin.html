@@ -1080,7 +1080,7 @@
         <button class="btn ghost sm" id="btnViewOrders">🍽️ Online & Table Orders (<span id="badgeOrdersCount">0</span>)</button>
         <button class="btn ghost sm" id="btnViewInquiries">✉ Inquiries (<span id="badgeInqCount">0</span>)</button>
         <button class="btn ghost sm" id="btnExportCSV">📥 Export CSV</button>
-        <button class="btn ghost sm" id="btnClearData" style="color:#ff7878;border-color:rgba(214,69,69,0.35)" title="Clear all reservations">🗑 Clear All Data</button>
+        <button class="btn ghost sm" id="btnClearData" style="color:#ff7878;border-color:rgba(214,69,69,0.35)" title="Clear all data across all admin sections (Reservations, Orders, Inquiries, Alerts)">🗑 Clear All Data</button>
       </div>
     </div>
 
@@ -1629,15 +1629,24 @@
     ];
 
     function loadReservations() {
-      const data = localStorage.getItem(STORAGE_KEY) || localStorage.getItem('cafe_integral_reservations') || localStorage.getItem('cafe_lyria_reservations');
-      if (!data) {
+      const stored = localStorage.getItem(STORAGE_KEY);
+      if (stored === null) {
+        const legacy = localStorage.getItem('cafe_integral_reservations') || localStorage.getItem('cafe_lyria_reservations');
+        if (legacy !== null) {
+          try {
+            const parsed = JSON.parse(legacy);
+            if (Array.isArray(parsed)) return parsed;
+          } catch (e) {}
+        }
         localStorage.setItem(STORAGE_KEY, JSON.stringify(defaultReservations));
         return defaultReservations;
       }
       try {
-        return JSON.parse(data);
+        const parsed = JSON.parse(stored);
+        if (Array.isArray(parsed)) return parsed;
+        return [];
       } catch (e) {
-        return defaultReservations;
+        return [];
       }
     }
 
@@ -1941,23 +1950,78 @@
       sortSelectEl.onchange = () => renderDashboard();
     }
 
-    // Clear All Data
+    // Clear All Data Across All Admin Sections
     document.getElementById('btnClearData').onclick = () => {
-      const currentCount = loadReservations().length;
-      if (currentCount === 0) {
-        showToast('Reservation list is already empty', 'ℹ️');
+      const reservations = typeof loadReservations === 'function' ? loadReservations() : [];
+      const orders = typeof loadOrders === 'function' ? loadOrders() : [];
+      const inquiries = typeof loadInquiries === 'function' ? loadInquiries() : [];
+      const notifications = typeof loadOwnerNotifications === 'function' ? loadOwnerNotifications() : [];
+
+      const totalItems = reservations.length + orders.length + inquiries.length + notifications.length;
+
+      if (totalItems === 0) {
+        showToast('All sections in admin panel are already empty', 'ℹ️');
         return;
       }
-      if (confirm(`Are you sure you want to clear all ${currentCount} reservation(s)? This will remove all bookings from the system.`)) {
+
+      const confirmMsg =
+        `Are you sure you want to clear ALL data across all admin sections?\n\n` +
+        `• ${reservations.length} Table Reservation(s)\n` +
+        `• ${orders.length} Table & Online Order(s)\n` +
+        `• ${inquiries.length} Customer Inquiry/Inquiries\n` +
+        `• ${notifications.length} Live Alert(s)\n\n` +
+        `This will completely wipe all records and reset all counts to 0 across Table Bookings, Orders, Inquiries, and Live Alerts.`;
+
+      if (confirm(confirmMsg)) {
+        // 1. Wipe Table Reservations
         localStorage.setItem(STORAGE_KEY, JSON.stringify([]));
+        localStorage.removeItem('cafe_integral_reservations');
+        localStorage.removeItem('cafe_lyria_reservations');
+        localStorage.removeItem('the_hedgehog_cafe_last_booking_id');
+        localStorage.removeItem('cafe_integral_last_booking_id');
+        localStorage.removeItem('cafe_lyria_last_booking_id');
+
+        // 2. Wipe Online & Table Orders
+        localStorage.setItem(ORDERS_STORAGE_KEY, JSON.stringify([]));
+
+        // 3. Wipe Customer Inquiries
+        localStorage.setItem(INQUIRIES_STORAGE_KEY, JSON.stringify([]));
+        localStorage.removeItem('cafe_integral_inquiries');
+        localStorage.removeItem('cafe_lyria_inquiries');
+
+        // 4. Wipe Owner Notifications
+        localStorage.setItem(NOTIFS_STORAGE_KEY, JSON.stringify([]));
+        localStorage.removeItem('cafe_integral_owner_notifications');
+        localStorage.removeItem('cafe_lyria_owner_notifications');
+        localStorage.removeItem('the_hedgehog_cafe_latest_notification');
+        localStorage.removeItem('cafe_integral_latest_notification');
+        localStorage.removeItem('cafe_lyria_latest_notification');
+
+        // 5. Re-render all sections
         renderDashboard();
-        showToast('All reservation data has been cleared', '🗑');
+        if (typeof renderOrders === 'function') renderOrders();
+        if (typeof renderInquiries === 'function') renderInquiries();
+        if (typeof renderNotificationsUI === 'function') renderNotificationsUI();
+
+        // 6. Explicitly update all badge counters
+        const badgeRes = document.getElementById('badgeResCount');
+        if (badgeRes) badgeRes.textContent = '0';
+        const badgeOrders = document.getElementById('badgeOrdersCount');
+        if (badgeOrders) badgeOrders.textContent = '0';
+        const badgeInq = document.getElementById('badgeInqCount');
+        if (badgeInq) badgeInq.textContent = '0';
+        const notifBadge = document.getElementById('notifBadge');
+        if (notifBadge) notifBadge.style.display = 'none';
+
+        showToast('All reservations, orders, inquiries & alerts have been cleared!', '🗑');
       }
     };
 
     // Export CSV
     document.getElementById('btnExportCSV').onclick = () => {
       const ordersSec = document.getElementById('ordersSection');
+      const inqSec = document.getElementById('inquiriesSection');
+
       if (ordersSec && ordersSec.style.display !== 'none') {
         const orders = typeof loadOrders === 'function' ? loadOrders() : [];
         if (!orders.length) {
@@ -1984,6 +2048,35 @@
         link.click();
         document.body.removeChild(link);
         showToast('Orders exported to CSV');
+        return;
+      }
+
+      if (inqSec && inqSec.style.display !== 'none') {
+        const inqs = typeof loadInquiries === 'function' ? loadInquiries() : [];
+        if (!inqs.length) {
+          showToast('No customer inquiries to export', '⚠️');
+          return;
+        }
+        const headers = ['Inquiry ID', 'Sender Name', 'Email', 'Phone', 'Topic / Reason', 'Message', 'Status', 'Received Date'];
+        const rows = inqs.map(i => [
+          `"${i.id}"`,
+          `"${(i.name || '').replace(/"/g, '""')}"`,
+          `"${(i.email || '').replace(/"/g, '""')}"`,
+          `"${(i.phone || '').replace(/"/g, '""')}"`,
+          `"${(i.reason || '').replace(/"/g, '""')}"`,
+          `"${(i.message || '').replace(/"/g, '""')}"`,
+          `"${i.status}"`,
+          `"${i.createdAt || ''}"`
+        ]);
+        const csvContent = 'data:text/csv;charset=utf-8,' + [headers.join(','), ...rows.map(e => e.join(','))].join('\n');
+        const encodedUri = encodeURI(csvContent);
+        const link = document.createElement('a');
+        link.setAttribute('href', encodedUri);
+        link.setAttribute('download', `the_hedgehog_cafe_inquiries_${new Date().toISOString().split('T')[0]}.csv`);
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        showToast('Inquiries exported to CSV');
         return;
       }
 
@@ -2117,8 +2210,16 @@
 
     function loadOwnerNotifications() {
       try {
-        const raw = localStorage.getItem(NOTIFS_STORAGE_KEY) || localStorage.getItem('cafe_integral_owner_notifications') || localStorage.getItem('cafe_lyria_owner_notifications');
-        if (raw) return JSON.parse(raw);
+        const raw = localStorage.getItem(NOTIFS_STORAGE_KEY);
+        if (raw !== null) {
+          const parsed = JSON.parse(raw);
+          if (Array.isArray(parsed)) return parsed;
+        }
+        const legacy = localStorage.getItem('cafe_integral_owner_notifications') || localStorage.getItem('cafe_lyria_owner_notifications');
+        if (legacy !== null) {
+          const parsed = JSON.parse(legacy);
+          if (Array.isArray(parsed)) return parsed;
+        }
       } catch(e){}
       return [];
     }
@@ -2328,14 +2429,23 @@
 
     function loadInquiries() {
       const stored = localStorage.getItem(INQUIRIES_STORAGE_KEY);
-      if (!stored) {
+      if (stored === null) {
+        const legacy = localStorage.getItem('cafe_integral_inquiries') || localStorage.getItem('cafe_lyria_inquiries');
+        if (legacy !== null) {
+          try {
+            const parsed = JSON.parse(legacy);
+            if (Array.isArray(parsed)) return parsed;
+          } catch (e) {}
+        }
         localStorage.setItem(INQUIRIES_STORAGE_KEY, JSON.stringify(defaultInquiries));
         return defaultInquiries;
       }
       try {
-        return JSON.parse(stored);
+        const parsed = JSON.parse(stored);
+        if (Array.isArray(parsed)) return parsed;
+        return [];
       } catch (e) {
-        return defaultInquiries;
+        return [];
       }
     }
 
@@ -2626,16 +2736,16 @@
 
     function loadOrders() {
       const stored = localStorage.getItem(ORDERS_STORAGE_KEY);
-      if (!stored) {
+      if (stored === null) {
         localStorage.setItem(ORDERS_STORAGE_KEY, JSON.stringify(defaultOrders));
         return defaultOrders;
       }
       try {
         const parsed = JSON.parse(stored);
-        if (Array.isArray(parsed) && parsed.length > 0) return parsed;
-        return defaultOrders;
+        if (Array.isArray(parsed)) return parsed;
+        return [];
       } catch(e) {
-        return defaultOrders;
+        return [];
       }
     }
 
@@ -2665,7 +2775,7 @@
       const elServed = document.getElementById('metricOrdersServed');
       const elRevenue = document.getElementById('metricOrdersRevenue');
 
-      if (elToday) elToday.textContent = todayOrders.length || orders.length;
+      if (elToday) elToday.textContent = orders.length === 0 ? 0 : (todayOrders.length || orders.length);
       if (elActive) elActive.textContent = activeOrders.length;
       if (elServed) elServed.textContent = servedOrders.length;
       if (elRevenue) elRevenue.textContent = `₹${totalRevenue.toLocaleString('en-IN')}`;
