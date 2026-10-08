@@ -1017,6 +1017,90 @@
     }
 
     /* ==========================================================================
+       SECTION: FAQS (FREQUENTLY ASKED QUESTIONS)
+       ========================================================================== */
+    .faq-container {
+      max-width: 860px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .faq-item {
+      background: rgba(28, 22, 18, 0.65);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      transition: all 0.3s var(--ease-smooth);
+      overflow: hidden;
+      backdrop-filter: blur(8px);
+    }
+    .faq-item:hover {
+      border-color: rgba(217, 119, 54, 0.45);
+      background: rgba(34, 27, 22, 0.8);
+    }
+    .faq-item.active {
+      border-color: var(--amber);
+      background: rgba(38, 30, 24, 0.9);
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4);
+    }
+    .faq-question-btn {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 22px 28px;
+      background: none;
+      border: none;
+      text-align: left;
+      font-family: var(--font-sans);
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: #fff;
+      cursor: pointer;
+      gap: 18px;
+    }
+    .faq-question-btn:focus-visible {
+      outline: 2px solid var(--amber);
+      outline-offset: -2px;
+    }
+    .faq-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      color: var(--amber);
+      flex-shrink: 0;
+      transition: transform 0.3s var(--ease-smooth), background 0.3s, color 0.3s;
+      line-height: 1;
+    }
+    .faq-item.active .faq-icon {
+      transform: rotate(45deg);
+      background: var(--amber);
+      color: #120e0b;
+    }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s var(--ease-smooth), padding 0.35s var(--ease-smooth);
+      padding: 0 28px;
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+    .faq-item.active .faq-answer {
+      max-height: 320px;
+      padding-bottom: 24px;
+    }
+    .faq-answer strong {
+      color: #f7f1e7;
+    }
+
+    /* ==========================================================================
        FINAL CTA: "See You Over Coffee"
        ========================================================================== */
     .final-cta-section {
@@ -1252,6 +1336,7 @@
           <li><a href="#books" class="nav-item">Books</a></li>
           <li><a href="#reviews" class="nav-item">Reviews</a></li>
           <li><a href="#study" class="nav-item">Work Spot</a></li>
+          <li><a href="#faqs" class="nav-item">FAQs</a></li>
           <li><a href="#location" class="nav-item">Visit</a></li>
         </ul>
       </nav>
@@ -1628,6 +1713,87 @@
         <a href="https://www.instagram.com/the_hedgehog_cafe" target="_blank" class="btn btn-secondary">
           FOLLOW @THE_HEDGEHOG_CAFE ↗
         </a>
+      </div>
+    </section>
+
+    <!-- SECTION: FREQUENTLY ASKED QUESTIONS (FAQS) -->
+    <section class="section-wrap" id="faqs">
+      <div class="section-header">
+        <span class="section-eyebrow">Frequent Queries</span>
+        <h2 class="section-heading">Frequently Asked Questions.</h2>
+        <p class="section-desc">Everything you need to know about our coffees, kitchen, library, work corners, and visiting us in Sector 7-C.</p>
+      </div>
+
+      <div class="faq-container">
+        <div class="faq-item active">
+          <button type="button" class="faq-question-btn" aria-expanded="true">
+            <span>What are your opening hours and exact address?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            We are open <strong>daily from 10:00 AM to 11:30 PM</strong>. We are situated at <strong>SCF 12, Inner Market, Sector 7-C, Chandigarh, 160019</strong> — nestled in the quiet, tree-lined inner market with peaceful surroundings away from highway bustle.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button type="button" class="faq-question-btn" aria-expanded="false">
+            <span>Can I bring my laptop and work or study from the café?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            Yes, absolutely! The Hedgehog Cafe is designed as a peaceful, work-and-study-friendly haven. We offer <strong>high-speed complimentary Wi-Fi</strong>, accessible power outlets throughout the seating area, comfortable armchairs, and a long-stay friendly culture.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button type="button" class="faq-question-btn" aria-expanded="false">
+            <span>Can I read the books in your café library for free?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            Yes! Our extensive library of classic novels, poetry, design books, fiction, and journals is completely complimentary for all guests to browse and read while enjoying their coffee and meals.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button type="button" class="faq-question-btn" aria-expanded="false">
+            <span>Do I need to reserve a table in advance?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            Walk-ins are always warmly welcomed! For weekend evenings, busy brunch hours, or groups of 4 or more, we recommend booking a table in advance using our quick <strong>"Reserve Table"</strong> button on the website to ensure your preferred seating area is ready upon arrival.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button type="button" class="faq-question-btn" aria-expanded="false">
+            <span>Do you have vegetarian, vegan, and eggless food options?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            Yes! We take pride in a diverse culinary menu. We offer vegetarian versions of café classics, vegan-friendly pasta and wood-fired pizzas, eggless bakery treats, and plant-based milk alternatives (oat and almond milk) for all espresso beverages.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button type="button" class="faq-question-btn" aria-expanded="false">
+            <span>Can I order food and drinks directly to my table while seated?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            Yes! Browse our interactive menu section and click <strong>"Order to Table +"</strong> on any dish or beverage. Enter your table number, and your order will be delivered hot and fresh directly to your seat.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button type="button" class="faq-question-btn" aria-expanded="false">
+            <span>Is parking available near the café?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            Yes, spacious and convenient market parking is available directly within the Sector 7-C Inner Market courtyard right in front of the café entrance.
+          </div>
+        </div>
       </div>
     </section>
 
@@ -2496,6 +2662,27 @@
               card.style.display = 'none';
             }
           });
+        });
+      });
+
+      // FAQ Accordion Interactivity
+      document.querySelectorAll('.faq-question-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const item = btn.closest('.faq-item');
+          const isOpen = item.classList.contains('active');
+
+          // Close all FAQ items
+          document.querySelectorAll('.faq-item').forEach(other => {
+            other.classList.remove('active');
+            const otherBtn = other.querySelector('.faq-question-btn');
+            if (otherBtn) otherBtn.setAttribute('aria-expanded', 'false');
+          });
+
+          // Toggle current item
+          if (!isOpen) {
+            item.classList.add('active');
+            btn.setAttribute('aria-expanded', 'true');
+          }
         });
       });
 
