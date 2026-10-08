@@ -24,6 +24,7 @@
        DESIGN SYSTEM TOKENS: Cozy Book-Café Aesthetics & Warm Walnut Lighting
        ========================================================================== */
     :root {
+      color-scheme: dark;
       --bg-dark: #120e0c;
       --bg-espresso: #181310;
       --bg-walnut: #231b16;
@@ -71,6 +72,7 @@
 
     html {
       font-size: 16px;
+      color-scheme: dark;
       scroll-behavior: auto;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
@@ -1174,15 +1176,16 @@
       display: flex;
     }
     .modal-box {
-      background: #1e1713;
+      background: #1a1410;
       border: 1px solid var(--amber);
       border-radius: var(--radius-lg);
       width: 100%;
       max-width: 520px;
       padding: 36px 32px;
-      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8);
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.85);
       position: relative;
       animation: modalPop 0.3s var(--ease-smooth);
+      color-scheme: dark;
     }
     @keyframes modalPop {
       0% { transform: scale(0.95) translateY(10px); opacity: 0; }
@@ -1215,6 +1218,7 @@
       display: flex;
       flex-direction: column;
       gap: 16px;
+      color-scheme: dark;
     }
     .form-group label {
       display: block;
@@ -1229,21 +1233,52 @@
     .form-group select,
     .form-group textarea {
       width: 100%;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid var(--line);
+      background: #140e0b;
+      border: 1px solid rgba(227, 164, 105, 0.3);
       border-radius: var(--radius-sm);
-      padding: 12px 14px;
-      color: #fff;
+      padding: 13px 15px;
+      color: #ffffff;
       font-family: var(--font-body);
-      font-size: 0.94rem;
+      font-size: 0.95rem;
       outline: none;
-      transition: border-color 0.2s;
+      color-scheme: dark;
+      transition: border-color 0.2s, background-color 0.2s, box-shadow 0.2s;
     }
     .form-group input:focus,
     .form-group select:focus,
     .form-group textarea:focus {
       border-color: var(--amber);
-      background: rgba(255, 255, 255, 0.08);
+      background: #1d140e;
+      box-shadow: 0 0 0 3px rgba(227, 164, 105, 0.25);
+    }
+    .form-group select {
+      background-color: #140e0b;
+      color: #ffffff;
+      cursor: pointer;
+      color-scheme: dark;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23e3a469' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      background-size: 16px;
+      padding-right: 42px;
+    }
+    .form-group select option {
+      background-color: #16100c !important;
+      color: #ffffff !important;
+      padding: 14px 16px;
+      font-size: 0.96rem;
+    }
+    .form-group select option:checked,
+    .form-group select option:hover {
+      background-color: #3b2a1e !important;
+      color: #e3a469 !important;
+    }
+    .form-group input[type="date"]::-webkit-calendar-picker-indicator {
+      filter: invert(0.85) sepia(1) saturate(5) hue-rotate(345deg);
+      cursor: pointer;
     }
 
     /* Toast Notification */
@@ -1847,33 +1882,33 @@
           </div>
           <div class="form-group">
             <label>Time Slot</label>
-            <select id="resTime" required>
-              <option value="11:00 AM">11:00 AM (Brunch)</option>
-              <option value="01:00 PM">01:00 PM (Lunch)</option>
-              <option value="03:30 PM">03:30 PM (Reading Hour)</option>
-              <option value="06:00 PM">06:00 PM (Evening)</option>
-              <option value="08:00 PM">08:00 PM (Dinner)</option>
+            <select id="resTime" required style="background-color:#140e0b;color:#ffffff;color-scheme:dark;">
+              <option value="11:00 AM" style="background-color:#16100c;color:#ffffff;">11:00 AM (Brunch)</option>
+              <option value="01:00 PM" style="background-color:#16100c;color:#ffffff;">01:00 PM (Lunch)</option>
+              <option value="03:30 PM" style="background-color:#16100c;color:#ffffff;">03:30 PM (Reading Hour)</option>
+              <option value="06:00 PM" style="background-color:#16100c;color:#ffffff;">06:00 PM (Evening)</option>
+              <option value="08:00 PM" style="background-color:#16100c;color:#ffffff;">08:00 PM (Dinner)</option>
             </select>
           </div>
         </div>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
           <div class="form-group">
             <label>Party Size</label>
-            <select id="resGuests">
-              <option value="1 Guest">1 Guest (Solo Reading)</option>
-              <option value="2 Guests" selected>2 Guests</option>
-              <option value="3 Guests">3 Guests</option>
-              <option value="4 Guests">4 Guests</option>
-              <option value="5+ Group">5+ Group</option>
+            <select id="resGuests" style="background-color:#140e0b;color:#ffffff;color-scheme:dark;">
+              <option value="1 Guest" style="background-color:#16100c;color:#ffffff;">1 Guest (Solo Reading)</option>
+              <option value="2 Guests" selected style="background-color:#16100c;color:#ffffff;">2 Guests</option>
+              <option value="3 Guests" style="background-color:#16100c;color:#ffffff;">3 Guests</option>
+              <option value="4 Guests" style="background-color:#16100c;color:#ffffff;">4 Guests</option>
+              <option value="5+ Group" style="background-color:#16100c;color:#ffffff;">5+ Group</option>
             </select>
           </div>
           <div class="form-group">
             <label>Seating Area</label>
-            <select id="resSeating">
-              <option value="Library Bookshelf Table">Library Bookshelf Table</option>
-              <option value="Cozy Reading Armchairs">Cozy Reading Armchairs</option>
-              <option value="Study & Work Desk">Study & Work Desk</option>
-              <option value="Bistro Dining Table">Bistro Dining Table</option>
+            <select id="resSeating" style="background-color:#140e0b;color:#ffffff;color-scheme:dark;">
+              <option value="Library Bookshelf Table" style="background-color:#16100c;color:#ffffff;">Library Bookshelf Table</option>
+              <option value="Cozy Reading Armchairs" style="background-color:#16100c;color:#ffffff;">Cozy Reading Armchairs</option>
+              <option value="Study & Work Desk" style="background-color:#16100c;color:#ffffff;">Study & Work Desk</option>
+              <option value="Bistro Dining Table" style="background-color:#16100c;color:#ffffff;">Bistro Dining Table</option>
             </select>
           </div>
         </div>
@@ -1899,14 +1934,14 @@
       <form class="modal-form" id="orderForm">
         <div class="form-group">
           <label>Select Table / Seating Area</label>
-          <select id="orderTable" required>
-            <option value="Table 1 · Window">Table 1 · Window</option>
-            <option value="Table 2 · Window">Table 2 · Window</option>
-            <option value="Table 3 · Bookshelf">Table 3 · Bookshelf</option>
-            <option value="Table 4 · Central Library" selected>Table 4 · Central Library</option>
-            <option value="Table 5 · Cozy Booth">Table 5 · Cozy Booth</option>
-            <option value="Reading Lounge Couch">Reading Lounge Couch</option>
-            <option value="Front Counter / Takeaway">Front Counter / Takeaway</option>
+          <select id="orderTable" required style="background-color:#140e0b;color:#ffffff;color-scheme:dark;">
+            <option value="Table 1 · Window" style="background-color:#16100c;color:#ffffff;">Table 1 · Window</option>
+            <option value="Table 2 · Window" style="background-color:#16100c;color:#ffffff;">Table 2 · Window</option>
+            <option value="Table 3 · Bookshelf" style="background-color:#16100c;color:#ffffff;">Table 3 · Bookshelf</option>
+            <option value="Table 4 · Central Library" selected style="background-color:#16100c;color:#ffffff;">Table 4 · Central Library</option>
+            <option value="Table 5 · Cozy Booth" style="background-color:#16100c;color:#ffffff;">Table 5 · Cozy Booth</option>
+            <option value="Reading Lounge Couch" style="background-color:#16100c;color:#ffffff;">Reading Lounge Couch</option>
+            <option value="Front Counter / Takeaway" style="background-color:#16100c;color:#ffffff;">Front Counter / Takeaway</option>
           </select>
         </div>
         <div class="form-group">
@@ -1915,10 +1950,10 @@
         </div>
         <div class="form-group">
           <label>Quantity</label>
-          <select id="orderQty">
-            <option value="1" selected>1 Portion</option>
-            <option value="2">2 Portions</option>
-            <option value="3">3 Portions</option>
+          <select id="orderQty" style="background-color:#140e0b;color:#ffffff;color-scheme:dark;">
+            <option value="1" selected style="background-color:#16100c;color:#ffffff;">1 Portion</option>
+            <option value="2" style="background-color:#16100c;color:#ffffff;">2 Portions</option>
+            <option value="3" style="background-color:#16100c;color:#ffffff;">3 Portions</option>
           </select>
         </div>
         <div class="form-group">
