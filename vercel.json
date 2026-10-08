@@ -2,8 +2,13 @@
   "version": 2,
   "cleanUrls": true,
   "rewrites": [
+    { "source": "/3d", "destination": "/3d-experience.html" },
+    { "source": "/motion", "destination": "/motion.html" },
+    { "source": "/experience", "destination": "/3d-experience.html" },
     { "source": "/admin", "destination": "/admin.html" },
-    { "source": "/cafe-lyria", "destination": "/index.html" },
+    { "source": "/cafe", "destination": "/the-hedgehog-cafe.html" },
+    { "source": "/the-hedgehog-cafe", "destination": "/the-hedgehog-cafe.html" },
+    { "source": "/cafe-lyria", "destination": "/the-hedgehog-cafe.html" },
     { "source": "/cafe-lyria/(.*)", "destination": "/$1" }
   ]
 }
