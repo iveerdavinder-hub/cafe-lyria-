@@ -114,40 +114,6 @@
       background: radial-gradient(circle at 65% 38%, rgba(227,164,105,0.06) 0%, rgba(18,14,12,0.4) 60%, rgba(10,8,7,0.88) 100%);
     }
 
-    /* Custom Glowing Cursor */
-    .custom-cursor {
-      position: fixed;
-      width: 24px;
-      height: 24px;
-      border: 1.5px solid var(--amber);
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 9999;
-      transform: translate(-50%, -50%);
-      transition: width 0.25s, height 0.25s, background-color 0.25s, border-color 0.25s, opacity 0.2s;
-      opacity: 0;
-    }
-    .custom-cursor-dot {
-      position: fixed;
-      width: 5px;
-      height: 5px;
-      background: var(--amber);
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 9999;
-      transform: translate(-50%, -50%);
-      opacity: 0;
-    }
-    body:hover .custom-cursor,
-    body:hover .custom-cursor-dot {
-      opacity: 1;
-    }
-    .custom-cursor.active {
-      width: 44px;
-      height: 44px;
-      background: rgba(227, 164, 105, 0.18);
-      border-color: var(--gold-light);
-    }
 
     /* ==========================================================================
        PRELOADER: "BREWING THE EXPERIENCE..."
@@ -1414,15 +1380,10 @@
       .hero-title { font-size: 2.8rem; }
       .hero-section { padding-top: 110px; }
       .section-wrap { padding: 70px 5vw; }
-      .custom-cursor, .custom-cursor-dot { display: none; }
     }
   </style>
 </head>
 <body>
-
-  <!-- Custom Cursor Glow -->
-  <div class="custom-cursor" id="customCursor" aria-hidden="true"></div>
-  <div class="custom-cursor-dot" id="customCursorDot" aria-hidden="true"></div>
 
   <!-- Preloader Screen: "BREWING THE EXPERIENCE..." -->
   <div class="preloader-overlay" id="preloader">
@@ -2204,23 +2165,7 @@
         }, 800);
       });
 
-      // 2. Custom Glowing Cursor
-      const cursor = document.getElementById('customCursor');
-      const cursorDot = document.getElementById('customCursorDot');
-      window.addEventListener('mousemove', (e) => {
-        if (cursor && cursorDot) {
-          cursor.style.left = `${e.clientX}px`;
-          cursor.style.top = `${e.clientY}px`;
-          cursorDot.style.left = `${e.clientX}px`;
-          cursorDot.style.top = `${e.clientY}px`;
-        }
-      });
-      document.querySelectorAll('a, button, .food-card, .exp-card, .insta-item').forEach(el => {
-        el.addEventListener('mouseenter', () => cursor && cursor.classList.add('active'));
-        el.addEventListener('mouseleave', () => cursor && cursor.classList.remove('active'));
-      });
-
-      // 3. Navbar Scroll Darken
+      // 2. Navbar Scroll Darken
       window.addEventListener('scroll', () => {
         const nav = document.getElementById('navbar');
         if (nav) {
