@@ -844,55 +844,128 @@
     }
 
     /* ==========================================================================
-       SECTION 7: INSTAGRAM MASONRY GRID
+       SECTION 7: CATEGORIZED PHOTO GALLERY (GOOGLE MAPS & SECTOR 7-C)
        ========================================================================== */
-    .insta-grid {
+    .gallery-filter-wrap {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 36px;
+    }
+    .gallery-filter-btn {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--line);
+      color: var(--muted);
+      padding: 9px 20px;
+      border-radius: var(--radius-pill);
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.25s var(--ease-smooth);
+    }
+    .gallery-filter-btn:hover {
+      border-color: var(--amber);
+      color: #fff;
+      background: rgba(227, 164, 105, 0.1);
+    }
+    .gallery-filter-btn.active {
+      background: var(--amber);
+      color: #120e0b;
+      border-color: var(--amber);
+      box-shadow: 0 4px 18px rgba(217, 119, 54, 0.4);
+    }
+    .gallery-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 22px;
       margin-bottom: 40px;
     }
-    .insta-item {
-      height: 260px;
+    .gallery-card {
+      height: 300px;
       border-radius: var(--radius-md);
       overflow: hidden;
       position: relative;
       cursor: pointer;
       border: 1px solid var(--line);
+      background: #191310;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+      transition: transform 0.35s var(--ease-smooth), box-shadow 0.35s var(--ease-smooth), border-color 0.35s;
     }
-    .insta-img {
+    .gallery-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+      border-color: var(--amber);
+    }
+    .gallery-img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: transform 0.5s var(--ease-smooth);
+      transition: transform 0.6s var(--ease-smooth);
     }
-    .insta-overlay {
+    .gallery-card:hover .gallery-img {
+      transform: scale(1.08);
+    }
+    .gallery-category-badge {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      background: rgba(18, 14, 12, 0.85);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(227, 164, 105, 0.3);
+      padding: 4px 12px;
+      border-radius: var(--radius-pill);
+      font-size: 0.74rem;
+      font-weight: 700;
+      color: var(--amber);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      z-index: 2;
+    }
+    .gallery-overlay {
       position: absolute;
       inset: 0;
-      background: rgba(18, 14, 12, 0.78);
+      background: linear-gradient(180deg, rgba(18, 14, 12, 0.1) 0%, rgba(18, 14, 12, 0.88) 85%);
       display: flex;
       flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      opacity: 0;
-      transition: opacity 0.3s;
-      padding: 20px;
-      text-align: center;
+      justify-content: flex-end;
+      padding: 22px;
+      z-index: 2;
+      opacity: 0.92;
+      transition: opacity 0.3s, background 0.3s;
     }
-    .insta-item:hover .insta-overlay {
+    .gallery-card:hover .gallery-overlay {
       opacity: 1;
+      background: linear-gradient(180deg, rgba(18, 14, 12, 0.2) 0%, rgba(18, 14, 12, 0.95) 75%);
     }
-    .insta-item:hover .insta-img {
-      transform: scale(1.1);
-    }
-    .insta-icon {
-      font-size: 1.8rem;
-      color: var(--amber);
-    }
-    .insta-caption {
-      font-size: 0.85rem;
+    .gallery-title {
+      font-family: var(--font-serif);
+      font-size: 1.15rem;
+      font-weight: 700;
       color: #fff;
+      margin-bottom: 4px;
+      line-height: 1.3;
+    }
+    .gallery-desc {
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+    .gallery-zoom-hint {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 8px;
+      font-size: 0.76rem;
+      font-weight: 600;
+      color: var(--amber);
+      opacity: 0;
+      transform: translateY(6px);
+      transition: all 0.25s var(--ease-smooth);
+    }
+    .gallery-card:hover .gallery-zoom-hint {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     /* ==========================================================================
@@ -1410,6 +1483,7 @@
           <li><a href="#hero" class="nav-item">Home</a></li>
           <li><a href="#experience" class="nav-item">Experience</a></li>
           <li><a href="#menu" class="nav-item">Menu</a></li>
+          <li><a href="#gallery" class="nav-item">Moments</a></li>
           <li><a href="#reviews" class="nav-item">Reviews</a></li>
           <li><a href="#study" class="nav-item">Work Spot</a></li>
           <li><a href="#faqs" class="nav-item">FAQs</a></li>
@@ -1689,48 +1763,187 @@
       </div>
     </section>
 
-    <!-- SECTION 7: INSTAGRAM GALLERY -->
-    <section class="section-wrap" id="instagram">
+    <!-- SECTION 7: CATEGORIZED PHOTO GALLERY (SECTOR 7-C & GOOGLE MAPS) -->
+    <section class="section-wrap" id="gallery">
       <div class="section-header">
-        <span class="section-eyebrow">Community & Stories</span>
+        <span class="section-eyebrow">Real Cafe Moments</span>
         <h2 class="section-heading">Life at The Hedgehog.</h2>
-        <p class="section-desc">Follow our daily brews, new book arrivals, and cozy moments in Sector 7 on Instagram.</p>
+        <p class="section-desc">Authentic glimpses from our Sector 7-C sanctuary — browse our book walls, artisanal kitchen creations, specialty brews, and cozy corners.</p>
       </div>
 
-      <div class="insta-grid">
-        <div class="insta-item" onclick="window.open('https://www.instagram.com/the_hedgehog_cafe', '_blank')">
-          <img src="images/hedgehog_hero.jpg" alt="Instagram 1" class="insta-img" loading="lazy">
-          <div class="insta-overlay">
-            <span class="insta-icon">📸</span>
-            <span class="insta-caption">Wood-fired pizza evenings at Sector 7</span>
+      <!-- Category Filter Pills -->
+      <div class="gallery-filter-wrap">
+        <button type="button" class="gallery-filter-btn active" data-filter="all">All Photos</button>
+        <button type="button" class="gallery-filter-btn" data-filter="ambience">Ambience & Library</button>
+        <button type="button" class="gallery-filter-btn" data-filter="food">Artisan Kitchen</button>
+        <button type="button" class="gallery-filter-btn" data-filter="coffee">Coffee & Sips</button>
+        <button type="button" class="gallery-filter-btn" data-filter="spaces">Cafe Spaces & Facade</button>
+      </div>
+
+      <!-- Photo Grid -->
+      <div class="gallery-grid" id="galleryGrid">
+        <!-- Item 1: Ambience - Grand Bookshelf Wall -->
+        <div class="gallery-card" data-category="ambience" data-img="images/hedgehog_library_quote.jpg" data-title="15,000+ Book Wall & Emerson Quote" data-desc="Floor-to-ceiling wooden library shelves with quiet study desks and the iconic Ralph Waldo Emerson quote wall.">
+          <span class="gallery-category-badge">Ambience & Library</span>
+          <img src="images/hedgehog_library_quote.jpg" alt="The Hedgehog Cafe library bookshelf and quote wall" class="gallery-img" loading="lazy">
+          <div class="gallery-overlay">
+            <h3 class="gallery-title">15,000+ Book Wall & Quote</h3>
+            <p class="gallery-desc">Floor-to-ceiling library with workstations and the iconic Ralph Waldo Emerson quote.</p>
+            <span class="gallery-zoom-hint">🔍 Click to view full picture</span>
           </div>
         </div>
-        <div class="insta-item" onclick="window.open('https://www.instagram.com/the_hedgehog_cafe', '_blank')">
-          <img src="images/hedgehog_english_breakfast.jpg" alt="Instagram 2" class="insta-img" loading="lazy">
-          <div class="insta-overlay">
-            <span class="insta-icon">📸</span>
-            <span class="insta-caption">Morning breakfast ritual & sourdough toast</span>
+
+        <!-- Item 2: Ambience - Reading Pod & Hedgehog Cushion -->
+        <div class="gallery-card" data-category="ambience" data-img="images/hedgehog_reading_lounge.jpg" data-title="Cozy Armchair Reading Pod" data-desc="Plush armchairs, hedgehog cushion lounge, coffee table with books, and warm floor lamp ambiance.">
+          <span class="gallery-category-badge">Ambience & Library</span>
+          <img src="images/hedgehog_reading_lounge.jpg" alt="Cozy armchair pod with hedgehog cushion" class="gallery-img" loading="lazy">
+          <div class="gallery-overlay">
+            <h3 class="gallery-title">Cozy Armchair Reading Pod</h3>
+            <p class="gallery-desc">Plush armchairs, signature hedgehog cushion couch, and warm reading lamp nook.</p>
+            <span class="gallery-zoom-hint">🔍 Click to view full picture</span>
           </div>
         </div>
-        <div class="insta-item" onclick="window.open('images/hedgehog_frappe_dessert.jpg', '_blank')">
-          <img src="images/hedgehog_frappe_dessert.jpg" alt="Instagram 3" class="insta-img" loading="lazy">
-          <div class="insta-overlay">
-            <span class="insta-icon">📸</span>
-            <span class="insta-caption">Iced frappes & warm cappuccino tarts</span>
+
+        <!-- Item 3: Ambience - Bistro Dining & Vintage Lanterns -->
+        <div class="gallery-card" data-category="ambience" data-img="images/hedgehog_bistro_lantern.jpg" data-title="Library Bistro & Vintage Lanterns" data-desc="Handcrafted walnut bistro seating set alongside books and ambient reading lighting.">
+          <span class="gallery-category-badge">Ambience & Library</span>
+          <img src="images/hedgehog_bistro_lantern.jpg" alt="Warm wooden tables with vintage lanterns" class="gallery-img" loading="lazy">
+          <div class="gallery-overlay">
+            <h3 class="gallery-title">Bistro Tables & Vintage Lanterns</h3>
+            <p class="gallery-desc">Handcrafted walnut bistro seating with candle lanterns beside the bookshelves.</p>
+            <span class="gallery-zoom-hint">🔍 Click to view full picture</span>
           </div>
         </div>
-        <div class="insta-item" onclick="window.open('images/hedgehog_ravioli_pizza.jpg', '_blank')">
-          <img src="images/hedgehog_ravioli_pizza.jpg" alt="Instagram 4" class="insta-img" loading="lazy">
-          <div class="insta-overlay">
-            <span class="insta-icon">📸</span>
-            <span class="insta-caption">Popeye's ravioli in parmesan cream</span>
+
+        <!-- Item 4: Food - English Breakfast -->
+        <div class="gallery-card" data-category="food" data-img="images/hedgehog_english_breakfast.jpg" data-title="The English Breakfast Platter" data-desc="Eggs, golden crispy hash browns, grilled tomatoes, sautéed greens, mushrooms and sourdough toast.">
+          <span class="gallery-category-badge">Artisan Kitchen</span>
+          <img src="images/hedgehog_english_breakfast.jpg" alt="English Breakfast platter at The Hedgehog Cafe" class="gallery-img" loading="lazy">
+          <div class="gallery-overlay">
+            <h3 class="gallery-title">The English Breakfast</h3>
+            <p class="gallery-desc">Golden hash browns, roasted tomatoes, sautéed greens & toasted sourdough.</p>
+            <span class="gallery-zoom-hint">🔍 Click to view full picture</span>
+          </div>
+        </div>
+
+        <!-- Item 5: Food - Cheesy Lasagna / Gratin -->
+        <div class="gallery-card" data-category="food" data-img="images/hedgehog_lasagna_gratin.jpg" data-title="Cheesy Spinach & Corn Gratin" data-desc="Oven-baked bubbling cheese gratin served with golden garlic herb baguette slices.">
+          <span class="gallery-category-badge">Artisan Kitchen</span>
+          <img src="images/hedgehog_lasagna_gratin.jpg" alt="Cheesy spinach and corn gratin with garlic bread" class="gallery-img" loading="lazy">
+          <div class="gallery-overlay">
+            <h3 class="gallery-title">Cheesy Spinach & Corn Gratin</h3>
+            <p class="gallery-desc">Oven-baked golden cheese crust served with toasted garlic baguette slices.</p>
+            <span class="gallery-zoom-hint">🔍 Click to view full picture</span>
+          </div>
+        </div>
+
+        <!-- Item 6: Food - Baked Zucchini Boats -->
+        <div class="gallery-card" data-category="food" data-img="images/hedgehog_zucchini_boat.jpg" data-title="Baked Zucchini Boats with Herb Rice" data-desc="Roasted zucchini boats stuffed with cheese, served with butter veggies, brown rice and fresh pesto.">
+          <span class="gallery-category-badge">Artisan Kitchen</span>
+          <img src="images/hedgehog_zucchini_boat.jpg" alt="Baked zucchini boats with herb brown rice and veggies" class="gallery-img" loading="lazy">
+          <div class="gallery-overlay">
+            <h3 class="gallery-title">Baked Zucchini Boats</h3>
+            <p class="gallery-desc">Stuffed with melted cheese, served with butter-tossed veggies & herb brown rice.</p>
+            <span class="gallery-zoom-hint">🔍 Click to view full picture</span>
+          </div>
+        </div>
+
+        <!-- Item 7: Food - Handcrafted Pizza -->
+        <div class="gallery-card" data-category="food" data-img="images/hedgehog_hero.jpg" data-title="Handcrafted Wood-Fired Pizza" data-desc="Slow-fermented artisan crust baked with rich tomato sugo, fresh mozzarella, and aromatic basil.">
+          <span class="gallery-category-badge">Artisan Kitchen</span>
+          <img src="images/hedgehog_hero.jpg" alt="Handcrafted artisan pizza at The Hedgehog Cafe" class="gallery-img" loading="lazy">
+          <div class="gallery-overlay">
+            <h3 class="gallery-title">Wood-Fired Artisan Pizza</h3>
+            <p class="gallery-desc">Slow-fermented artisan crust baked with mozzarella and garden-fresh herbs.</p>
+            <span class="gallery-zoom-hint">🔍 Click to view full picture</span>
+          </div>
+        </div>
+
+        <!-- Item 8: Coffee - Signature Cold Coffee Frappe -->
+        <div class="gallery-card" data-category="coffee" data-img="images/coffee.webp" data-title="Signature Cold Coffee Frappe" data-desc="Double shot arabica blend churned with chilled milk, velvety cream, and dark cocoa dust.">
+          <span class="gallery-category-badge">Coffee & Sips</span>
+          <img src="images/coffee.webp" alt="Signature Cold Coffee Frappe at The Hedgehog Cafe" class="gallery-img" loading="lazy">
+          <div class="gallery-overlay">
+            <h3 class="gallery-title">Signature Cold Coffee Frappe</h3>
+            <p class="gallery-desc">Double-shot arabica blend churned with chilled cream and dark cocoa dust.</p>
+            <span class="gallery-zoom-hint">🔍 Click to view full picture</span>
+          </div>
+        </div>
+
+        <!-- Item 9: Coffee - Cappuccino Tart -->
+        <div class="gallery-card" data-category="coffee" data-img="images/hedgehog_frappe_dessert.jpg" data-title="Cappuccino Tart with Vanilla Bean" data-desc="Crisp buttery tart pastry filled with espresso ganache and accompanied by rich vanilla ice cream.">
+          <span class="gallery-category-badge">Coffee & Sips</span>
+          <img src="images/hedgehog_frappe_dessert.jpg" alt="Cappuccino Tart with ice cream dessert" class="gallery-img" loading="lazy">
+          <div class="gallery-overlay">
+            <h3 class="gallery-title">Cappuccino Tart with Gelato</h3>
+            <p class="gallery-desc">Buttery cocoa tart pastry filled with espresso ganache & vanilla bean scoop.</p>
+            <span class="gallery-zoom-hint">🔍 Click to view full picture</span>
+          </div>
+        </div>
+
+        <!-- Item 10: Coffee - Flat White Espresso Bar -->
+        <div class="gallery-card" data-category="coffee" data-img="images/environment_espressobar.webp" data-title="Artisanal Flat White & Pour-Over" data-desc="Single-origin 100% Arabica roasted fresh and pulled with silky microfoam latte art.">
+          <span class="gallery-category-badge">Coffee & Sips</span>
+          <img src="images/environment_espressobar.webp" alt="Artisanal Flat White at espresso counter" class="gallery-img" loading="lazy">
+          <div class="gallery-overlay">
+            <h3 class="gallery-title">Artisanal Flat White</h3>
+            <p class="gallery-desc">Single-origin 100% Arabica pulled fresh with velvety textured microfoam.</p>
+            <span class="gallery-zoom-hint">🔍 Click to view full picture</span>
+          </div>
+        </div>
+
+        <!-- Item 11: Spaces - Storefront -->
+        <div class="gallery-card" data-category="spaces" data-img="images/hedgehog_storefront.jpg" data-title="Fairy-Lit Sector 7-C Storefront" data-desc="Warm outdoor string lights, glass entrance with neon sign at Inner Market, Sector 7-C, Chandigarh.">
+          <span class="gallery-category-badge">Cafe Spaces</span>
+          <img src="images/hedgehog_storefront.jpg" alt="The Hedgehog Cafe storefront in Sector 7-C Chandigarh" class="gallery-img" loading="lazy">
+          <div class="gallery-overlay">
+            <h3 class="gallery-title">Fairy-Lit Storefront Facade</h3>
+            <p class="gallery-desc">Warm outdoor bulb strings and glass entrance at Inner Market, Sector 7-C.</p>
+            <span class="gallery-zoom-hint">🔍 Click to view full picture</span>
+          </div>
+        </div>
+
+        <!-- Item 12: Spaces - Wood Feature Wall -->
+        <div class="gallery-card" data-category="spaces" data-img="images/hedgehog_wood_dining.jpg" data-title="Timber Feature Wall & Work Desks" data-desc="Warm timber-paneled walls with directional spot lighting for reading and remote work.">
+          <span class="gallery-category-badge">Cafe Spaces</span>
+          <img src="images/hedgehog_wood_dining.jpg" alt="Timber feature wall and study desks" class="gallery-img" loading="lazy">
+          <div class="gallery-overlay">
+            <h3 class="gallery-title">Timber Wall & Work Desks</h3>
+            <p class="gallery-desc">Directional spot lighting, study chairs and wood-paneled reading sanctuary.</p>
+            <span class="gallery-zoom-hint">🔍 Click to view full picture</span>
+          </div>
+        </div>
+
+        <!-- Item 13: Spaces - Main Dining Sanctuary -->
+        <div class="gallery-card" data-category="spaces" data-img="images/hedgehog_hall_seating.jpg" data-title="The Book-Borrowing Dining Hall" data-desc="Spacious wooden tables featuring our open 'Borrow The Books We Have' community philosophy.">
+          <span class="gallery-category-badge">Cafe Spaces</span>
+          <img src="images/hedgehog_hall_seating.jpg" alt="Dining hall with book borrowing signs" class="gallery-img" loading="lazy">
+          <div class="gallery-overlay">
+            <h3 class="gallery-title">The Book-Borrowing Hall</h3>
+            <p class="gallery-desc">Spacious walnut tables celebrating our 'Like The Books? Borrow Them' policy.</p>
+            <span class="gallery-zoom-hint">🔍 Click to view full picture</span>
+          </div>
+        </div>
+
+        <!-- Item 14: Spaces - Bakery Showcase & Art Counter -->
+        <div class="gallery-card" data-category="spaces" data-img="images/hedgehog_counter_bakery.jpg" data-title="Bakery Showcase & Art Wall" data-desc="Freshly baked daily tarts, cakes, and local photography exhibitions on concrete panels.">
+          <span class="gallery-category-badge">Cafe Spaces</span>
+          <img src="images/hedgehog_counter_bakery.jpg" alt="Bakery showcase and art gallery wall" class="gallery-img" loading="lazy">
+          <div class="gallery-overlay">
+            <h3 class="gallery-title">Bakery Showcase & Art Wall</h3>
+            <p class="gallery-desc">Freshly baked daily cakes, pastry case, and curated art exhibitions.</p>
+            <span class="gallery-zoom-hint">🔍 Click to view full picture</span>
           </div>
         </div>
       </div>
 
-      <div style="text-align:center;">
-        <a href="https://www.instagram.com/the_hedgehog_cafe" target="_blank" class="btn btn-secondary">
-          FOLLOW @THE_HEDGEHOG_CAFE ↗
+      <!-- Action buttons below gallery -->
+      <div style="display:flex;justify-content:center;gap:14px;flex-wrap:wrap;align-items:center;">
+        <a href="https://maps.app.goo.gl/3u6c6mWEafWDr9nb6" target="_blank" rel="noopener" class="btn btn-primary" title="View The Hedgehog Cafe on Google Maps">
+          EXPLORE ALL 1,100+ PHOTOS ON GOOGLE MAPS ↗
+        </a>
+        <a href="https://www.instagram.com/the_hedgehog_cafe" target="_blank" rel="noopener" class="btn btn-secondary">
+          FOLLOW @THE_HEDGEHOG_CAFE ON INSTAGRAM ↗
         </a>
       </div>
     </section>
@@ -2128,6 +2341,20 @@
         <button type="button" class="btn btn-primary" id="btnAckTerms" style="width:100%;margin-top:12px;">
           Close House Rules
         </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL 5: IMAGE LIGHTBOX VIEWER -->
+  <div class="modal-overlay" id="lightboxModal" style="padding:15px;background:rgba(8,6,5,0.92);">
+    <div style="position:relative;max-width:920px;width:100%;max-height:92vh;display:flex;flex-direction:column;align-items:center;background:#150f0c;border:1px solid var(--amber);border-radius:var(--radius-lg);padding:24px;box-shadow:0 30px 80px rgba(0,0,0,0.95);animation:modalPop 0.3s var(--ease-smooth);">
+      <button type="button" class="modal-close-btn" id="closeLightboxModal" style="top:12px;right:16px;">×</button>
+      <div style="width:100%;max-height:65vh;overflow:hidden;border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;background:#0d0907;">
+        <img id="lightboxImg" src="" alt="The Hedgehog Cafe Moment" style="max-width:100%;max-height:65vh;object-fit:contain;border-radius:var(--radius-sm);">
+      </div>
+      <div style="margin-top:16px;text-align:center;width:100%;">
+        <h3 id="lightboxTitle" style="color:#fff;font-family:var(--font-serif);font-size:1.35rem;margin-bottom:6px;"></h3>
+        <p id="lightboxDesc" style="color:var(--muted);font-size:0.92rem;line-height:1.5;max-width:680px;margin:0 auto;"></p>
       </div>
     </div>
   </div>
@@ -2818,6 +3045,45 @@
         });
       });
 
+      // Categorized Gallery Filtering Interactivity
+      document.querySelectorAll('.gallery-filter-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.gallery-filter-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          const filter = btn.dataset.filter;
+
+          document.querySelectorAll('.gallery-card').forEach(card => {
+            if (filter === 'all' || card.dataset.category === filter) {
+              card.style.display = 'block';
+            } else {
+              card.style.display = 'none';
+            }
+          });
+        });
+      });
+
+      // Gallery Image Lightbox Viewer
+      const lightboxModal = document.getElementById('lightboxModal');
+      const lightboxImg = document.getElementById('lightboxImg');
+      const lightboxTitle = document.getElementById('lightboxTitle');
+      const lightboxDesc = document.getElementById('lightboxDesc');
+      const closeLightbox = document.getElementById('closeLightboxModal');
+
+      document.querySelectorAll('.gallery-card').forEach(card => {
+        card.addEventListener('click', () => {
+          if (lightboxModal && lightboxImg) {
+            lightboxImg.src = card.dataset.img || '';
+            if (lightboxTitle) lightboxTitle.textContent = card.dataset.title || '';
+            if (lightboxDesc) lightboxDesc.textContent = card.dataset.desc || '';
+            lightboxModal.classList.add('open');
+          }
+        });
+      });
+
+      if (closeLightbox && lightboxModal) {
+        closeLightbox.addEventListener('click', () => lightboxModal.classList.remove('open'));
+      }
+
       // Privacy Policy & Terms Modal Interactivity
       const privacyModal = document.getElementById('privacyModal');
       const termsModal = document.getElementById('termsModal');
@@ -2854,6 +3120,7 @@
         if (e.target === orderModal) orderModal.classList.remove('open');
         if (e.target === privacyModal) privacyModal.classList.remove('open');
         if (e.target === termsModal) termsModal.classList.remove('open');
+        if (e.target === lightboxModal) lightboxModal.classList.remove('open');
       });
 
     })();
