@@ -1128,8 +1128,8 @@
     /* Site Footer */
     .site-footer {
       border-top: 1px solid var(--line);
-      background: #0f0c0a;
-      padding: 50px 4vw 36px;
+      background: #0d0a08;
+      padding: 60px 4vw 40px;
       font-size: 0.86rem;
       color: var(--muted);
       position: relative;
@@ -1138,24 +1138,82 @@
     .footer-inner {
       max-width: 1280px;
       margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.4fr 1.2fr 1fr;
+      gap: 40px;
+      align-items: flex-start;
+    }
+    .footer-col {
       display: flex;
-      justify-content: space-between;
-      align-items: center;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .footer-col-title {
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--amber);
+      margin-bottom: 2px;
+    }
+    .footer-social-row {
+      display: flex;
+      gap: 10px;
       flex-wrap: wrap;
-      gap: 20px;
+      align-items: center;
     }
-    .footer-links {
-      display: flex;
-      gap: 24px;
-      list-style: none;
-    }
-    .footer-links a {
-      color: var(--muted);
+    .footer-social-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-pill);
+      color: var(--cream);
+      font-size: 0.82rem;
+      font-weight: 500;
       text-decoration: none;
+      transition: all 0.25s var(--ease-smooth);
+    }
+    .footer-social-btn svg {
+      color: var(--amber);
+      transition: transform 0.25s;
+    }
+    .footer-social-btn:hover {
+      background: rgba(227, 164, 105, 0.15);
+      border-color: var(--amber);
+      color: #fff;
+      transform: translateY(-2px);
+    }
+    .footer-social-btn:hover svg {
+      transform: scale(1.12);
+    }
+    .footer-legal-links {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .footer-policy-btn {
+      background: none;
+      border: none;
+      padding: 0;
+      color: var(--muted);
+      font-size: 0.84rem;
+      cursor: pointer;
+      text-align: left;
+      text-decoration: underline;
+      text-underline-offset: 3px;
       transition: color 0.2s;
     }
-    .footer-links a:hover {
+    .footer-policy-btn:hover {
       color: var(--amber);
+    }
+    @media (max-width: 900px) {
+      .footer-inner {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
     }
 
     /* ==========================================================================
@@ -1180,12 +1238,40 @@
       border: 1px solid var(--amber);
       border-radius: var(--radius-lg);
       width: 100%;
-      max-width: 520px;
+      max-width: 540px;
+      max-height: 90vh;
+      overflow-y: auto;
       padding: 36px 32px;
       box-shadow: 0 30px 80px rgba(0, 0, 0, 0.85);
       position: relative;
       animation: modalPop 0.3s var(--ease-smooth);
       color-scheme: dark;
+    }
+    .policy-content {
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.65;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-top: 14px;
+    }
+    .policy-section-title {
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.96rem;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .policy-highlight {
+      background: rgba(227, 164, 105, 0.08);
+      border-left: 3px solid var(--amber);
+      padding: 10px 14px;
+      border-radius: 4px;
+      color: #f3ece4;
+      font-size: 0.88rem;
     }
     @keyframes modalPop {
       0% { transform: scale(0.95) translateY(10px); opacity: 0; }
@@ -1833,14 +1919,49 @@
     <!-- SITE FOOTER -->
     <footer class="site-footer" role="contentinfo">
       <div class="footer-inner">
-        <div>
-          <strong style="color:#fff;font-size:1.05rem;font-family:var(--font-serif)">The Hedgehog Cafe</strong>
-          <p style="margin-top:2px;font-size:0.8rem;color:var(--muted);"><a href="https://maps.app.goo.gl/3u6c6mWEafWDr9nb6" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;" title="Open in Google Maps">SCF 12, Sector 7-C, Chandigarh, 160019 ↗</a></p>
+        <!-- Col 1: Brand & Contact -->
+        <div class="footer-col">
+          <strong style="color:#fff;font-size:1.15rem;font-family:var(--font-serif)">The Hedgehog Cafe 🦔</strong>
+          <span style="font-size:0.75rem;color:var(--amber);letter-spacing:0.04em;">ਦ ਹੈਜ਼ਹੋਗ ਕੈਫੇ · SECTOR 7-C, CHANDIGARH</span>
+          <p style="margin-top:4px;font-size:0.84rem;color:var(--muted);line-height:1.6;">
+            <a href="https://maps.app.goo.gl/3u6c6mWEafWDr9nb6" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;" title="Open in Google Maps">
+              SCF 12, Inner Market, Sector 7-C, Chandigarh, 160019 ↗
+            </a>
+          </p>
+          <div style="font-size:0.82rem;color:var(--muted);margin-top:2px;">
+            Phone: <a href="tel:01724730478" style="color:var(--amber);text-decoration:none;font-weight:600;">0172 473 0478</a>
+          </div>
         </div>
 
+        <!-- Col 2: Social Media Handles -->
+        <div class="footer-col">
+          <span class="footer-col-title">Connect With Us</span>
+          <div class="footer-social-row">
+            <a href="https://www.instagram.com/the_hedgehog_cafe" target="_blank" rel="noopener" class="footer-social-btn" title="Follow on Instagram" aria-label="Instagram">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+              <span>@the_hedgehog_cafe</span>
+            </a>
+            <a href="https://www.facebook.com/thehedgehogcafe" target="_blank" rel="noopener" class="footer-social-btn" title="Follow on Facebook" aria-label="Facebook">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+              <span>Facebook</span>
+            </a>
+            <a href="https://x.com/thehedgehogcafe" target="_blank" rel="noopener" class="footer-social-btn" title="Follow on X" aria-label="X (Twitter)">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4l11.733 16h4.267l-11.733 -16z"></path><path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772"></path></svg>
+              <span>X (Twitter)</span>
+            </a>
+          </div>
+        </div>
 
-        <div style="font-size:0.78rem;color:var(--muted-dark)">
-          © 2026 The Hedgehog Cafe. All rights reserved.
+        <!-- Col 3: Privacy & Policy and Rights -->
+        <div class="footer-col">
+          <span class="footer-col-title">Legal & Security</span>
+          <div class="footer-legal-links">
+            <button type="button" class="footer-policy-btn" id="btnOpenPrivacyPolicy">Privacy & Policy</button>
+            <button type="button" class="footer-policy-btn" id="btnOpenTermsModal">Terms & House Rules</button>
+          </div>
+          <div style="font-size:0.78rem;color:var(--muted-dark);margin-top:14px;">
+            © 2026 The Hedgehog Cafe. All rights reserved.
+          </div>
         </div>
       </div>
     </footer>
@@ -1958,6 +2079,96 @@
           Send Order to Kitchen Slip →
         </button>
       </form>
+    </div>
+  </div>
+
+  <!-- MODAL 3: PRIVACY & POLICY -->
+  <div class="modal-overlay" id="privacyModal">
+    <div class="modal-box">
+      <button type="button" class="modal-close-btn" id="closePrivacyModal">×</button>
+      <h2 class="modal-title">Privacy & Policy</h2>
+      <p class="modal-sub">How The Hedgehog Cafe respects, secures, and protects your guest data.</p>
+
+      <div class="policy-content">
+        <div>
+          <div class="policy-section-title">
+            <span>🛡️</span>
+            <span>1. Information We Collect</span>
+          </div>
+          <p>When booking a table or ordering in-café, we may collect your name, phone number, party size, and seating or dietary notes to provide seamless table hospitality and confirm your reservation.</p>
+        </div>
+
+        <div class="policy-highlight">
+          <strong>Strict Guest Guarantee:</strong> We do not sell, rent, or trade guest contact information to advertising brokers, marketing agencies, or any external third parties.
+        </div>
+
+        <div>
+          <div class="policy-section-title">
+            <span>🍽️</span>
+            <span>2. How Your Information Is Used</span>
+          </div>
+          <p>Your details are used solely to send SMS confirmation receipts, prepare reserved seats at Sector 7-C, and coordinate kitchen food orders directly to your table.</p>
+        </div>
+
+        <div>
+          <div class="policy-section-title">
+            <span>💾</span>
+            <span>3. Local Storage & Security</span>
+          </div>
+          <p>Orders and reservation slips are processed securely in your browser session and transmitted to our verified on-site cafe dashboard for immediate kitchen fulfillment.</p>
+        </div>
+
+        <div>
+          <div class="policy-section-title">
+            <span>📍</span>
+            <span>4. Direct Inquiries & Data Removal</span>
+          </div>
+          <p>You may request removal of booking history anytime by visiting our counter at Inner Market, Sector 7-C, Chandigarh, or contacting our concierge at <a href="tel:01724730478" style="color:var(--amber);text-decoration:underline;">0172 473 0478</a>.</p>
+        </div>
+
+        <button type="button" class="btn btn-primary" id="btnAckPrivacy" style="width:100%;margin-top:12px;">
+          Understood & Close
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL 4: TERMS & HOUSE RULES -->
+  <div class="modal-overlay" id="termsModal">
+    <div class="modal-box">
+      <button type="button" class="modal-close-btn" id="closeTermsModal">×</button>
+      <h2 class="modal-title">Terms & House Rules</h2>
+      <p class="modal-sub">Creating a serene, welcoming reading & artisanal cafe space for everyone.</p>
+
+      <div class="policy-content">
+        <div>
+          <div class="policy-section-title">
+            <span>📚</span>
+            <span>1. Library & Book Etiquette</span>
+          </div>
+          <p>Our library collection is freely accessible for all patrons. Please handle books with gentle care, avoid dog-earing pages, and return books to the shelves before departing.</p>
+        </div>
+
+        <div>
+          <div class="policy-section-title">
+            <span>⏰</span>
+            <span>2. Reservation Holding Policy</span>
+          </div>
+          <p>Reserved tables are held for up to 15 minutes past the reserved time slot. If you are delayed, kindly contact us so we can maintain your designated table.</p>
+        </div>
+
+        <div>
+          <div class="policy-section-title">
+            <span>💻</span>
+            <span>3. Quiet Study & Remote Work</span>
+          </div>
+          <p>High-speed Wi-Fi and charging points are provided for your work and study sessions. We kindly ask guests to use headphones for calls and audio to preserve the tranquil atmosphere.</p>
+        </div>
+
+        <button type="button" class="btn btn-primary" id="btnAckTerms" style="width:100%;margin-top:12px;">
+          Close House Rules
+        </button>
+      </div>
     </div>
   </div>
 
@@ -2663,10 +2874,42 @@
         });
       });
 
+      // Privacy Policy & Terms Modal Interactivity
+      const privacyModal = document.getElementById('privacyModal');
+      const termsModal = document.getElementById('termsModal');
+      const btnOpenPrivacy = document.getElementById('btnOpenPrivacyPolicy');
+      const btnOpenTerms = document.getElementById('btnOpenTermsModal');
+      const closePrivacy = document.getElementById('closePrivacyModal');
+      const closeTerms = document.getElementById('closeTermsModal');
+      const btnAckPrivacy = document.getElementById('btnAckPrivacy');
+      const btnAckTerms = document.getElementById('btnAckTerms');
+
+      if (btnOpenPrivacy && privacyModal) {
+        btnOpenPrivacy.addEventListener('click', () => privacyModal.classList.add('open'));
+      }
+      if (closePrivacy && privacyModal) {
+        closePrivacy.addEventListener('click', () => privacyModal.classList.remove('open'));
+      }
+      if (btnAckPrivacy && privacyModal) {
+        btnAckPrivacy.addEventListener('click', () => privacyModal.classList.remove('open'));
+      }
+
+      if (btnOpenTerms && termsModal) {
+        btnOpenTerms.addEventListener('click', () => termsModal.classList.add('open'));
+      }
+      if (closeTerms && termsModal) {
+        closeTerms.addEventListener('click', () => termsModal.classList.remove('open'));
+      }
+      if (btnAckTerms && termsModal) {
+        btnAckTerms.addEventListener('click', () => termsModal.classList.remove('open'));
+      }
+
       // Close modal on outside click
       window.addEventListener('click', (e) => {
         if (e.target === reserveModal) reserveModal.classList.remove('open');
         if (e.target === orderModal) orderModal.classList.remove('open');
+        if (e.target === privacyModal) privacyModal.classList.remove('open');
+        if (e.target === termsModal) termsModal.classList.remove('open');
       });
 
     })();
