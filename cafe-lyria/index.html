@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>The Hedgehog Cafe (ਦ ਹੈਜ਼ਹੋਗ ਕੈਫੇ) — Chandigarh | 3D Book & Coffee Experience</title>
+  <title>The Hedgehog Cafe — Sector 7-C, Chandigarh | Book & Coffee Sanctuary</title>
   <meta name="description" content="A Little Café. A Lot of Comfort. Books, artisan coffee, wood-fired pizzas, burgers, and comforting food in a book-lined space in Sector 7-C, Chandigarh.">
   <meta name="theme-color" content="#161210">
 
@@ -197,31 +197,27 @@
     }
 
     .brand-wrap {
-      display: flex;
+      display: inline-flex;
       align-items: center;
-      gap: 12px;
       text-decoration: none;
+      transition: opacity 0.25s var(--ease-smooth);
+    }
+    .brand-wrap:hover {
+      opacity: 0.88;
     }
     .brand-logo-text {
       font-family: var(--font-serif);
       font-weight: 700;
-      font-size: 1.35rem;
+      font-size: 1.45rem;
       color: #fff;
       letter-spacing: -0.01em;
-      display: flex;
+      display: inline-flex;
       align-items: center;
-      gap: 8px;
     }
     .brand-logo-text em {
       font-style: normal;
       color: var(--amber);
-    }
-    .brand-gurmukhi {
-      font-size: 0.78rem;
-      color: var(--muted);
-      font-family: var(--font-body);
-      border-left: 1px solid var(--line);
-      padding-left: 10px;
+      margin-left: 5px;
     }
 
     .nav-links {
@@ -1387,8 +1383,8 @@
 
   <!-- Preloader Screen: "BREWING THE EXPERIENCE..." -->
   <div class="preloader-overlay" id="preloader">
-    <div class="hedgehog-loader-emblem">🦔</div>
-    <div class="preloader-text">Brewing The Experience…</div>
+    <div class="preloader-text" style="font-size:1.6rem;letter-spacing:0.04em;text-transform:none;color:#fff;">The Hedgehog <span style="color:var(--amber);">Cafe</span></div>
+    <div style="font-size:0.75rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--amber);margin-top:-10px;">Brewing The Experience…</div>
     <div class="preloader-bar-wrap">
       <div class="preloader-bar"></div>
     </div>
@@ -1405,9 +1401,8 @@
 
     <!-- FLOATING NAVIGATION BAR -->
     <header class="navbar" id="navbar" role="banner">
-      <a href="#hero" class="brand-wrap">
-        <span class="brand-logo-text">THE HEDGEHOG <em>CAFE</em> 🦔</span>
-        <span class="brand-gurmukhi">ਦ ਹੈਜ਼ਹੋਗ ਕੈਫੇ</span>
+      <a href="#hero" class="brand-wrap" aria-label="The Hedgehog Cafe">
+        <span class="brand-logo-text">The Hedgehog <em>Cafe</em></span>
       </a>
 
       <nav role="navigation">
@@ -1882,8 +1877,8 @@
       <div class="footer-inner">
         <!-- Col 1: Brand & Contact -->
         <div class="footer-col">
-          <strong style="color:#fff;font-size:1.15rem;font-family:var(--font-serif)">The Hedgehog Cafe 🦔</strong>
-          <span style="font-size:0.75rem;color:var(--amber);letter-spacing:0.04em;">ਦ ਹੈਜ਼ਹੋਗ ਕੈਫੇ · SECTOR 7-C, CHANDIGARH</span>
+          <strong style="color:#fff;font-size:1.2rem;font-family:var(--font-serif)">The Hedgehog Cafe</strong>
+          <span style="font-size:0.75rem;color:var(--amber);letter-spacing:0.06em;text-transform:uppercase;">Sector 7-C · Chandigarh</span>
           <p style="margin-top:4px;font-size:0.84rem;color:var(--muted);line-height:1.6;">
             <a href="https://maps.app.goo.gl/3u6c6mWEafWDr9nb6" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;" title="Open in Google Maps">
               SCF 12, Inner Market, Sector 7-C, Chandigarh, 160019 ↗
