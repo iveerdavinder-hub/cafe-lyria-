@@ -1026,6 +1026,11 @@
         </div>
       </div>
 
+      <!-- Auto WhatsApp Toggle Button -->
+      <button type="button" class="btn ghost sm" id="btnToggleAutoWhatsApp" title="When ON, WhatsApp chat opens automatically with confirmation message whenever you confirm or cancel" style="font-size:0.8rem;display:flex;align-items:center;gap:5px;border-color:rgba(37,211,102,0.35);color:#25d366">
+        <span>⚡</span> <span id="autoWhatsAppLabel">Auto-WhatsApp: <strong>ON</strong></span>
+      </button>
+
       <a href="index.html" class="btn ghost sm" target="_blank" id="btnStorefrontLink" title="View customer website">Storefront ↗</a>
       
       <!-- Owner Real-time Notification Center Bell -->
@@ -3394,6 +3399,41 @@
       }
     }
 
+    const AUTO_OPEN_WA_KEY = 'the_hedgehog_auto_open_whatsapp';
+    function isAutoWhatsAppEnabled() {
+      const val = localStorage.getItem(AUTO_OPEN_WA_KEY);
+      return val === null ? true : val === 'true'; // Default is ON (instant open)
+    }
+
+    function updateAutoWhatsAppUI() {
+      const enabled = isAutoWhatsAppEnabled();
+      const label = document.getElementById('autoWhatsAppLabel');
+      const btn = document.getElementById('btnToggleAutoWhatsApp');
+      if (label) {
+        label.innerHTML = `Auto-WhatsApp: <strong>${enabled ? 'ON' : 'OFF'}</strong>`;
+      }
+      if (btn) {
+        if (enabled) {
+          btn.style.color = '#25d366';
+          btn.style.borderColor = 'rgba(37,211,102,0.4)';
+        } else {
+          btn.style.color = 'var(--muted)';
+          btn.style.borderColor = 'var(--line)';
+        }
+      }
+    }
+
+    const btnToggleAutoWhatsApp = document.getElementById('btnToggleAutoWhatsApp');
+    if (btnToggleAutoWhatsApp) {
+      btnToggleAutoWhatsApp.addEventListener('click', () => {
+        const next = !isAutoWhatsAppEnabled();
+        localStorage.setItem(AUTO_OPEN_WA_KEY, String(next));
+        updateAutoWhatsAppUI();
+        showToast(`Auto-WhatsApp is now ${next ? 'ON (instant WhatsApp chat open)' : 'OFF (manual send)'}`, '⚡');
+      });
+    }
+    updateAutoWhatsAppUI();
+
     function openCustomerNotifyModal(info) {
       if (!info) return;
       currentNotifyData = info;
@@ -3423,10 +3463,53 @@
         if (match) customerPhone = match[1].trim();
       }
 
+      const message = generateCustomerNotificationMessage(info);
       if (phoneInput) phoneInput.value = customerPhone;
-      if (msgTextarea) msgTextarea.value = generateCustomerNotificationMessage(info);
+      if (msgTextarea) msgTextarea.value = message;
 
+      // 1. Dispatch real-time cloud alert to customer device/session
+      dispatchCloudCustomerAlert(info);
+
+      // 2. Open notification dialog
       if (modal) modal.classList.add('open');
+
+      // 3. Auto-open WhatsApp chat if enabled and phone number exists
+      if (isAutoWhatsAppEnabled() && customerPhone) {
+        dispatchWhatsApp(customerPhone, message);
+      }
+    }
+
+    function dispatchCloudCustomerAlert(info) {
+      if (!info || !info.id) return;
+      try {
+        const cloudTopic = CLOUD_SYNC_TOPIC;
+        const msg = generateCustomerNotificationMessage(info);
+        const payload = {
+          type: 'customer_status_alert',
+          category: info.category,
+          id: info.id,
+          phone: info.phone,
+          name: info.name,
+          status: info.status,
+          date: info.date,
+          time: info.time,
+          table: info.table,
+          items: info.items,
+          total: info.total,
+          message: msg,
+          timestamp: Date.now()
+        };
+        fetch(`https://ntfy.sh/${cloudTopic}`, {
+          method: 'POST',
+          headers: {
+            'Title': `${info.category === 'reservation' ? 'Reservation' : 'Order'} ${info.status}: ${info.id}`,
+            'Priority': 'high',
+            'Tags': info.status === 'Cancelled' ? 'x,warning' : 'white_check_mark,bell',
+            'Content-Type': 'text/plain; charset=utf-8'
+          },
+          body: JSON.stringify(payload)
+        }).catch(err => console.log('Cloud status alert notice:', err));
+      } catch (err) {}
     }
 
     function closeCustomerNotifyModal() {
