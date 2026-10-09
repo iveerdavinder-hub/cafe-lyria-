@@ -1420,9 +1420,11 @@
       <div class="notes-box" id="detailSmsLog" style="background:rgba(255,255,255,0.03);font-size:0.83rem;line-height:1.5;margin-bottom:18px">—</div>
 
       <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px">
-        <div style="display:flex;gap:8px">
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
           <a class="btn ghost sm" id="btnCallGuest" href="#">📞 Call</a>
           <a class="btn ghost sm" id="btnEmailGuest" href="#">✉ Email</a>
+          <button type="button" class="btn ghost sm" id="btnNotifyResWhatsapp" style="color:#25d366;border-color:rgba(37,211,102,0.35)">📲 WhatsApp</button>
+          <button type="button" class="btn ghost sm" id="btnNotifyResSms">💬 SMS</button>
         </div>
         <button type="button" class="btn primary sm" id="btnCloseDetail">Close</button>
       </div>
@@ -1541,12 +1543,82 @@
         </div>
       </div>
 
-      <div class="modal-foot" style="display:flex;justify-content:space-between;align-items:center">
-        <button type="button" class="btn ghost sm" id="btnPrintKOT">🖨️ Print Kitchen Slip</button>
+      <div class="modal-foot" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px">
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <button type="button" class="btn ghost sm" id="btnPrintKOT">🖨️ Print Slip</button>
+          <button type="button" class="btn ghost sm" id="btnNotifyOrderWhatsapp" style="color:#25d366;border-color:rgba(37,211,102,0.35)">📲 WhatsApp</button>
+          <button type="button" class="btn ghost sm" id="btnNotifyOrderSms">💬 SMS</button>
+        </div>
         <div style="display:flex;gap:10px">
           <button type="button" class="btn ghost sm" id="btnCancelOrder" style="color:#ff7878;border-color:rgba(214,69,69,0.35)">Cancel Order</button>
           <button type="button" class="btn primary sm" id="btnMarkServed">Mark as Served ✓</button>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Customer Phone Notification (WhatsApp & SMS) -->
+  <div class="modal-overlay" id="notifyCustomerModal">
+    <div class="modal-card" style="max-width:520px">
+      <div class="modal-head">
+        <div>
+          <span style="font-size:0.75rem;font-weight:700;color:#25d366;letter-spacing:.08em;text-transform:uppercase" id="notifyModalBadge">📱 Customer Phone Notification</span>
+          <h2 style="margin:2px 0 0" id="notifyModalTitle">Notify Customer</h2>
+        </div>
+        <button class="close-btn" id="closeNotifyCustomerModal">×</button>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:14px;padding:12px 0 20px">
+        <!-- Target Info Pill -->
+        <div style="background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
+          <div>
+            <div style="font-size:1.02rem;font-weight:700;color:var(--cream)" id="notifyCustomerName">Amanpreet Singh</div>
+            <div style="font-size:0.82rem;color:var(--muted);margin-top:2px" id="notifyReferenceId">Ref: #HHC-9421</div>
+          </div>
+          <div style="text-align:right">
+            <span class="status-select Confirmed" id="notifyStatusChip">Confirmed</span>
+          </div>
+        </div>
+
+        <!-- Phone Number Input -->
+        <div class="m-field">
+          <label style="display:flex;justify-content:space-between;align-items:center">
+            <span>Customer Phone Number</span>
+            <small style="color:var(--muted);font-weight:400">Given on booking / order</small>
+          </label>
+          <div style="position:relative;display:flex;align-items:center">
+            <span style="position:absolute;left:12px;font-size:1rem">📞</span>
+            <input type="tel" id="notifyCustomerPhoneInput" placeholder="+91 98765 43210" style="padding-left:38px;width:100%;font-size:0.95rem;font-weight:600;letter-spacing:0.02em">
+          </div>
+        </div>
+
+        <!-- Message Box -->
+        <div class="m-field">
+          <label style="display:flex;justify-content:space-between;align-items:center">
+            <span>Notification Message (WhatsApp & SMS)</span>
+            <button type="button" id="btnCopyNotifyMessage" style="background:none;border:none;color:var(--accent2);cursor:pointer;font-size:0.78rem;font-weight:600;padding:0">📋 Copy Text</button>
+          </label>
+          <textarea id="notifyMessageText" rows="6" style="width:100%;background:#140e0b;color:#f5f0eb;border:1px solid var(--line);border-radius:10px;padding:12px;font-family:inherit;font-size:0.86rem;line-height:1.5;resize:vertical"></textarea>
+        </div>
+
+        <!-- Dispatch Action Buttons -->
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:4px">
+          <button type="button" class="btn primary sm" id="btnSendWhatsApp" style="background:#25d366;border-color:#25d366;color:#ffffff;display:flex;align-items:center;justify-content:center;gap:6px;font-weight:700">
+            <span>📲</span> Send on WhatsApp
+          </button>
+          <button type="button" class="btn ghost sm" id="btnSendSMS" style="display:flex;align-items:center;justify-content:center;gap:6px;font-weight:700;border-color:rgba(255,255,255,0.25)">
+            <span>💬</span> Send via SMS
+          </button>
+        </div>
+
+        <div style="background:rgba(37,211,102,0.08);border:1px solid rgba(37,211,102,0.2);border-radius:10px;padding:10px 12px;font-size:0.78rem;color:#86efac;line-height:1.4">
+          ✓ Clicking <strong>Send on WhatsApp</strong> opens WhatsApp chat with this message pre-filled. <strong>Send via SMS</strong> opens phone messaging app.
+        </div>
+      </div>
+
+      <div class="modal-foot" style="display:flex;justify-content:space-between;align-items:center">
+        <button type="button" class="btn ghost sm" id="btnCloseNotifyModal">Skip / Close</button>
+        <button type="button" class="btn primary sm" id="btnMarkNotifiedDone">✓ Done & Notified</button>
       </div>
     </div>
   </div>
@@ -1796,6 +1868,7 @@
           </td>
           <td style="text-align:right">
             <div class="row-actions" style="justify-content:flex-end">
+              <button class="icon-btn" onclick="notifyReservationCustomer('${r.id}')" title="Notify Customer (WhatsApp/SMS)" style="color:#25d366">💬</button>
               <button class="icon-btn" onclick="openDetailModal('${r.id}')" title="View details">👁</button>
               <button class="icon-btn delete" onclick="deleteReservation('${r.id}')" title="Delete booking">✕</button>
             </div>
@@ -1833,6 +1906,21 @@
         target.status = newStatus;
         saveReservations(items);
         showToast(`Reservation ${id} updated to ${newStatus}`);
+
+        // Automatically prompt to notify customer on their given phone number
+        if (newStatus === 'Confirmed' || newStatus === 'Cancelled') {
+          openCustomerNotifyModal({
+            category: 'reservation',
+            id: target.id,
+            name: target.name,
+            phone: target.phone,
+            status: newStatus,
+            date: target.date,
+            time: target.time,
+            guests: target.guests,
+            seating: target.seating
+          });
+        }
       }
     };
 
@@ -1883,6 +1971,39 @@
 
       document.getElementById('btnCallGuest').href = r.phone ? `tel:${r.phone}` : '#';
       document.getElementById('btnEmailGuest').href = r.email ? `mailto:${r.email}?subject=The Hedgehog Cafe Reservation ${r.id}` : '#';
+
+      const btnResWa = document.getElementById('btnNotifyResWhatsapp');
+      if (btnResWa) {
+        btnResWa.onclick = () => {
+          openCustomerNotifyModal({
+            category: 'reservation',
+            id: r.id,
+            name: r.name,
+            phone: r.phone,
+            status: r.status,
+            date: r.date,
+            time: r.time,
+            guests: r.guests,
+            seating: r.seating
+          });
+        };
+      }
+      const btnResSms = document.getElementById('btnNotifyResSms');
+      if (btnResSms) {
+        btnResSms.onclick = () => {
+          openCustomerNotifyModal({
+            category: 'reservation',
+            id: r.id,
+            name: r.name,
+            phone: r.phone,
+            status: r.status,
+            date: r.date,
+            time: r.time,
+            guests: r.guests,
+            seating: r.seating
+          });
+        };
+      }
 
       document.getElementById('detailModal').classList.add('open');
     };
@@ -2832,6 +2953,7 @@
         id: '#HHC-ORD-4921',
         table: 'Table 4',
         guestName: 'Simran Kaur',
+        phone: '+91 98765 43210',
         specialNotes: 'Less ice in frappe, warm sourdough toast',
         items: [
           { name: 'The English Breakfast', qty: 1, price: 395 },
@@ -2845,6 +2967,7 @@
         id: '#HHC-ORD-4916',
         table: 'Table 2',
         guestName: 'Arjun Mehta',
+        phone: '+91 98140 12345',
         specialNotes: 'Extra parmesan on side',
         items: [
           { name: "Popeye's Ravioli", qty: 2, price: 385 },
@@ -2858,6 +2981,7 @@
         id: '#HHC-ORD-4908',
         table: 'Reading Lounge',
         guestName: 'Dr. Kabir Verma',
+        phone: '+91 98888 77665',
         specialNotes: 'Table near novel bookshelf',
         items: [
           { name: 'The Pizza of SW-Desi Things', qty: 1, price: 445 },
@@ -2983,7 +3107,7 @@
             <td>
               <div class="guest-info">
                 <b>${escapeHtml(order.guestName || 'Guest')}</b>
-                <span>In-Cafe Order</span>
+                <span>${escapeHtml(order.phone || 'In-Cafe Order')}</span>
               </div>
             </td>
             <td>
@@ -3011,6 +3135,7 @@
             </td>
             <td style="text-align:right">
               <div class="row-actions" style="justify-content:flex-end">
+                <button type="button" class="icon-btn" title="Notify Customer (WhatsApp/SMS)" onclick="notifyOrderCustomer('${order.id}')" style="color:#25d366">💬</button>
                 <button type="button" class="icon-btn" title="View & Print KOT Slip" onclick="openOrderDetailModal('${order.id}')">🖨️</button>
                 <button type="button" class="icon-btn" title="Mark as Served" onclick="markOrderServed('${order.id}')" style="color:#3ddc84">✓</button>
                 <button type="button" class="icon-btn delete" title="Cancel Order" onclick="deleteOrCancelOrder('${order.id}')">✕</button>
@@ -3029,6 +3154,20 @@
         target.status = newStatus;
         saveOrders(orders);
         showToast(`Order ${orderId} status updated to "${newStatus}"`, '✓');
+
+        // Automatically prompt to notify customer on their phone number
+        if (newStatus === 'Kitchen Preparing' || newStatus === 'Served' || newStatus === 'Cancelled') {
+          openCustomerNotifyModal({
+            category: 'order',
+            id: target.id,
+            name: target.guestName || 'Guest',
+            phone: target.phone,
+            status: newStatus,
+            table: target.table,
+            items: target.items,
+            total: target.total
+          });
+        }
       }
     };
 
@@ -3039,18 +3178,37 @@
         target.status = 'Served';
         saveOrders(orders);
         showToast(`Order ${orderId} marked as Served to table!`, '✓');
+        openCustomerNotifyModal({
+          category: 'order',
+          id: target.id,
+          name: target.guestName || 'Guest',
+          phone: target.phone,
+          status: 'Served',
+          table: target.table,
+          items: target.items,
+          total: target.total
+        });
       }
     };
 
     window.deleteOrCancelOrder = function(orderId) {
+      const orders = loadOrders();
+      const target = orders.find(o => o.id === orderId);
+      if (!target) return;
       if (confirm(`Cancel Order ${orderId}?`)) {
-        const orders = loadOrders();
-        const target = orders.find(o => o.id === orderId);
-        if (target) {
-          target.status = 'Cancelled';
-          saveOrders(orders);
-          showToast(`Order ${orderId} cancelled`, '✕');
-        }
+        target.status = 'Cancelled';
+        saveOrders(orders);
+        showToast(`Order ${orderId} cancelled`, '✕');
+        openCustomerNotifyModal({
+          category: 'order',
+          id: target.id,
+          name: target.guestName || 'Guest',
+          phone: target.phone,
+          status: 'Cancelled',
+          table: target.table,
+          items: target.items,
+          total: target.total
+        });
       }
     };
 
@@ -3086,6 +3244,38 @@
 
       document.getElementById('kotNotesDisplay').textContent = order.specialNotes || 'None requested';
       document.getElementById('kotTotalDisplay').textContent = `₹${order.total || 0}`;
+
+      const btnKotWa = document.getElementById('btnNotifyOrderWhatsapp');
+      if (btnKotWa) {
+        btnKotWa.onclick = () => {
+          openCustomerNotifyModal({
+            category: 'order',
+            id: order.id,
+            name: order.guestName || 'Guest',
+            phone: order.phone,
+            status: order.status,
+            table: order.table,
+            items: order.items,
+            total: order.total
+          });
+        };
+      }
+
+      const btnKotSms = document.getElementById('btnNotifyOrderSms');
+      if (btnKotSms) {
+        btnKotSms.onclick = () => {
+          openCustomerNotifyModal({
+            category: 'order',
+            id: order.id,
+            name: order.guestName || 'Guest',
+            phone: order.phone,
+            status: order.status,
+            table: order.table,
+            items: order.items,
+            total: order.total
+          });
+        };
+      }
 
       const modal = document.getElementById('orderDetailModal');
       if (modal) modal.classList.add('open');
@@ -3157,6 +3347,201 @@
 
     // Initial render of orders
     renderOrders();
+
+    // ==========================================================================
+    // AUTOMATED CUSTOMER PHONE NOTIFICATION ENGINE (WHATSAPP & SMS)
+    // ==========================================================================
+    let currentNotifyData = null;
+
+    function formatPhoneForWhatsApp(phoneStr) {
+      if (!phoneStr) return '';
+      let cleaned = String(phoneStr).replace(/[^\d+]/g, '');
+      if (cleaned.startsWith('+')) {
+        cleaned = cleaned.substring(1);
+      } else if (cleaned.length === 10) {
+        cleaned = '91' + cleaned;
+      } else if (cleaned.length === 11 && cleaned.startsWith('0')) {
+        cleaned = '91' + cleaned.substring(1);
+      }
+      return cleaned;
+    }
+
+    function generateCustomerNotificationMessage(info) {
+      const cafeName = 'The Hedgehog Cafe (Sector 7-C, Chandigarh)';
+      const helpline = '+91 98765 43210';
+
+      if (info.category === 'reservation') {
+        const isCancelled = info.status === 'Cancelled';
+        if (isCancelled) {
+          return `Dear ${info.name || 'Guest'},\n\nGreetings from ${cafeName}.\n\nYour table reservation (${info.id}) has been CANCELLED as requested.\n\n📅 Date: ${info.date || 'Today'} at ${info.time || 'Scheduled time'}\n👥 Party: ${info.guests || '2 Guests'}\n\nIf you did not request this cancellation or would like to re-schedule, please contact us at ${helpline} or visit https://cafe-lyria-jade.vercel.app/`;
+        } else {
+          return `Dear ${info.name || 'Guest'},\n\nGreetings from ${cafeName}! 🦔☕\n\nYour table reservation is CONFIRMED:\n📌 Booking Ref: ${info.id}\n📅 Date: ${info.date || 'Today'}\n⏰ Time: ${info.time || '11:00 AM'}\n👥 Party: ${info.guests || '2 Guests'}\n🪑 Seating: ${info.seating || 'Library Bookshelf Table'}\n\nWe look forward to welcoming you! For directions or special requests, please call us at ${helpline}.`;
+        }
+      } else {
+        // Order notification
+        const isCancelled = info.status === 'Cancelled';
+        const isServed = info.status === 'Served';
+        const itemsSummary = (info.items || []).map(i => `${i.qty}x ${i.name}`).join(', ') || 'Your ordered items';
+
+        if (isCancelled) {
+          return `Dear ${info.name || 'Guest'},\n\nGreetings from ${cafeName}.\n\nYour food order (${info.id}) has been CANCELLED.\nTotal: ₹${info.total || 0}\n\nIf you have any questions or would like to modify your order, please call our kitchen at ${helpline}.`;
+        } else if (isServed) {
+          return `Dear ${info.name || 'Guest'},\n\nYour order (${info.id}) at ${cafeName} has been SERVED! 🍽️✨\n📍 ${info.table || 'Table'}\n🍴 ${itemsSummary}\n💰 Total: ₹${info.total || 0}\n\nWe hope you enjoy your meal! Thank you for dining with us.`;
+        } else {
+          // Confirmed / Preparing
+          return `Dear ${info.name || 'Guest'},\n\nGreetings from ${cafeName}! 🦔🍽️\n\nYour food order has been CONFIRMED and is being prepared fresh in our kitchen:\n🧾 Order ID: ${info.id}\n📍 ${info.table || 'Table'}\n🍴 Items: ${itemsSummary}\n💰 Total: ₹${info.total || 0}\n\nOur kitchen is crafting your meal now. Helpline: ${helpline}.`;
+        }
+      }
+    }
+
+    function openCustomerNotifyModal(info) {
+      if (!info) return;
+      currentNotifyData = info;
+
+      const modal = document.getElementById('notifyCustomerModal');
+      const nameEl = document.getElementById('notifyCustomerName');
+      const refEl = document.getElementById('notifyReferenceId');
+      const chipEl = document.getElementById('notifyStatusChip');
+      const phoneInput = document.getElementById('notifyCustomerPhoneInput');
+      const msgTextarea = document.getElementById('notifyMessageText');
+      const modalTitle = document.getElementById('notifyModalTitle');
+
+      const isRes = info.category === 'reservation';
+      if (modalTitle) modalTitle.textContent = isRes ? `Notify Customer (${info.id})` : `Notify Customer (${info.id})`;
+      if (nameEl) nameEl.textContent = info.name || 'Valued Guest';
+      if (refEl) refEl.textContent = `${isRes ? 'Reservation' : 'Order'} ${info.id} · ${info.table || info.guests || ''}`;
+
+      if (chipEl) {
+        chipEl.textContent = info.status;
+        chipEl.className = `status-select ${info.status.includes('Kitchen') ? 'Preparing' : info.status}`;
+      }
+
+      // Automatically fallback to regex extract if phone not provided
+      let customerPhone = info.phone || '';
+      if (!customerPhone && (info.name || info.guestName)) {
+        const match = (info.name || info.guestName).match(/(\+?\d[\d\s-]{8,14}\d)/);
+        if (match) customerPhone = match[1].trim();
+      }
+
+      if (phoneInput) phoneInput.value = customerPhone;
+      if (msgTextarea) msgTextarea.value = generateCustomerNotificationMessage(info);
+
+      if (modal) modal.classList.add('open');
+    }
+
+    function closeCustomerNotifyModal() {
+      const modal = document.getElementById('notifyCustomerModal');
+      if (modal) modal.classList.remove('open');
+      currentNotifyData = null;
+    }
+
+    function dispatchWhatsApp(phone, message) {
+      const clean = formatPhoneForWhatsApp(phone);
+      if (!clean) {
+        showToast('⚠️ Please enter a customer phone number first', '⚠️');
+        document.getElementById('notifyCustomerPhoneInput')?.focus();
+        return;
+      }
+      const encoded = encodeURIComponent(message);
+      const url = `https://wa.me/${clean}?text=${encoded}`;
+      window.open(url, '_blank', 'noopener,noreferrer');
+      showToast(`📲 WhatsApp opened for ${phone}!`, '✓');
+    }
+
+    function dispatchSMS(phone, message) {
+      const clean = String(phone).replace(/[^\d+]/g, '');
+      if (!clean) {
+        showToast('⚠️ Please enter a customer phone number first', '⚠️');
+        document.getElementById('notifyCustomerPhoneInput')?.focus();
+        return;
+      }
+      const encoded = encodeURIComponent(message);
+      const isApple = /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent);
+      const separator = isApple ? '&' : '?';
+      const url = `sms:${clean}${separator}body=${encoded}`;
+      window.location.href = url;
+      showToast(`💬 SMS opened for ${phone}!`, '✓');
+    }
+
+    window.notifyReservationCustomer = function(id) {
+      const items = loadReservations();
+      const r = items.find(item => item.id === id);
+      if (!r) return;
+      openCustomerNotifyModal({
+        category: 'reservation',
+        id: r.id,
+        name: r.name,
+        phone: r.phone,
+        status: r.status,
+        date: r.date,
+        time: r.time,
+        guests: r.guests,
+        seating: r.seating
+      });
+    };
+
+    window.notifyOrderCustomer = function(orderId) {
+      const orders = loadOrders();
+      const o = orders.find(item => item.id === orderId);
+      if (!o) return;
+      openCustomerNotifyModal({
+        category: 'order',
+        id: o.id,
+        name: o.guestName || 'Guest',
+        phone: o.phone,
+        status: o.status,
+        table: o.table,
+        items: o.items,
+        total: o.total
+      });
+    };
+
+    // Customer Notification Modal Event Listeners
+    const btnSendWhatsApp = document.getElementById('btnSendWhatsApp');
+    if (btnSendWhatsApp) {
+      btnSendWhatsApp.addEventListener('click', () => {
+        const phone = document.getElementById('notifyCustomerPhoneInput')?.value.trim();
+        const msg = document.getElementById('notifyMessageText')?.value.trim();
+        dispatchWhatsApp(phone, msg);
+      });
+    }
+
+    const btnSendSMS = document.getElementById('btnSendSMS');
+    if (btnSendSMS) {
+      btnSendSMS.addEventListener('click', () => {
+        const phone = document.getElementById('notifyCustomerPhoneInput')?.value.trim();
+        const msg = document.getElementById('notifyMessageText')?.value.trim();
+        dispatchSMS(phone, msg);
+      });
+    }
+
+    const btnCopyNotifyMessage = document.getElementById('btnCopyNotifyMessage');
+    if (btnCopyNotifyMessage) {
+      btnCopyNotifyMessage.addEventListener('click', () => {
+        const msg = document.getElementById('notifyMessageText')?.value || '';
+        if (navigator.clipboard) {
+          navigator.clipboard.writeText(msg).then(() => {
+            showToast('📋 Message copied to clipboard!', '✓');
+          }).catch(() => {
+            showToast('📋 Message copied!', '✓');
+          });
+        }
+      });
+    }
+
+    const closeNotifyCustomerModal = document.getElementById('closeNotifyCustomerModal');
+    if (closeNotifyCustomerModal) closeNotifyCustomerModal.addEventListener('click', closeCustomerNotifyModal);
+
+    const btnCloseNotifyModal = document.getElementById('btnCloseNotifyModal');
+    if (btnCloseNotifyModal) btnCloseNotifyModal.addEventListener('click', closeCustomerNotifyModal);
+
+    const btnMarkNotifiedDone = document.getElementById('btnMarkNotifiedDone');
+    if (btnMarkNotifiedDone) {
+      btnMarkNotifiedDone.addEventListener('click', () => {
+        showToast('✓ Notification marked as sent & logged!', '✓');
+        closeCustomerNotifyModal();
+      });
+    }
 
     // ============================================
     // Website Live / Offline State Controller

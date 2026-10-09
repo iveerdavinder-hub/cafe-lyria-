@@ -2179,9 +2179,15 @@
           </select>
         </div>
 
-        <div class="form-group">
-          <label>Customer Name & Contact</label>
-          <input type="text" id="orderGuest" placeholder="e.g. Aman Sharma (+91 98765 43210)" required>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+          <div class="form-group">
+            <label>Customer Name</label>
+            <input type="text" id="orderGuest" placeholder="e.g. Aman Sharma" required>
+          </div>
+          <div class="form-group">
+            <label>Phone Number (for SMS & WhatsApp)</label>
+            <input type="tel" id="orderPhone" placeholder="+91 98765 43210" required>
+          </div>
         </div>
 
         <div class="form-group">
@@ -3036,6 +3042,8 @@
           e.preventDefault();
           const table = document.getElementById('orderTable').value;
           const guestName = document.getElementById('orderGuest').value.trim();
+          const phoneInput = document.getElementById('orderPhone');
+          const guestPhone = phoneInput ? phoneInput.value.trim() : '';
           const qty = parseInt(document.getElementById('orderQty').value, 10) || 1;
           const notes = document.getElementById('orderNotes').value.trim();
 
@@ -3049,6 +3057,7 @@
             id: orderId,
             table,
             guestName,
+            phone: guestPhone,
             specialNotes: notes || 'None',
             items: [
               { name: itemName, qty: qty, price: itemPrice }
@@ -3069,7 +3078,7 @@
             type: 'new_order',
             order: newOrder,
             title: `New Online Order: ${orderId}`,
-            desc: `${table} · ${guestName} ordered ${qty}x ${itemName} · Total: ₹${total}`,
+            desc: `${table} · ${guestName} (${guestPhone || 'No phone'}) ordered ${qty}x ${itemName} · Total: ₹${total}`,
             orderId: orderId
           });
 
