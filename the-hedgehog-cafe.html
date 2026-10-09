@@ -1008,49 +1008,49 @@
       text-decoration: underline;
     }
 
-    /* Stylized 3D Miniature Canvas / Map Card */
+    /* Stylized Interactive Google Map Card */
     .mini-map-card {
       background: #17120f;
       border: 1px solid var(--line);
       border-radius: var(--radius-md);
-      height: 340px;
+      height: 380px;
       position: relative;
       overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.7);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
     }
-    .map-pin-pulse {
-      width: 18px;
-      height: 18px;
-      background: var(--amber);
-      border-radius: 50%;
-      position: relative;
-      box-shadow: 0 0 25px var(--amber);
+    .mini-map-card:hover {
+      border-color: var(--amber);
+      box-shadow: 0 20px 48px rgba(0, 0, 0, 0.6), 0 0 25px rgba(217, 119, 54, 0.2);
     }
-    .map-pin-pulse::after {
-      content: '';
+    .mini-map-card iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      border-radius: inherit;
+      display: block;
+    }
+    .map-direct-link {
       position: absolute;
-      inset: -8px;
-      border: 2px solid var(--amber);
-      border-radius: 50%;
-      animation: pulseRing 1.8s infinite;
-    }
-    @keyframes pulseRing {
-      0% { transform: scale(0.8); opacity: 1; }
-      100% { transform: scale(2.2); opacity: 0; }
-    }
-    .map-tag {
-      margin-top: 18px;
-      background: rgba(18, 14, 12, 0.85);
+      bottom: 14px;
+      right: 14px;
+      background: rgba(18, 14, 12, 0.9);
       border: 1px solid var(--amber);
-      padding: 6px 16px;
-      border-radius: var(--radius-pill);
-      font-weight: 700;
-      font-size: 0.84rem;
       color: #fff;
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 7px 14px;
+      border-radius: var(--radius-pill);
+      text-decoration: none;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+      transition: all 0.25s ease;
+      z-index: 5;
+    }
+    .map-direct-link:hover {
+      background: var(--amber);
+      color: #120e0b;
+      box-shadow: 0 6px 20px rgba(217, 119, 54, 0.5);
     }
 
     /* ==========================================================================
@@ -1984,11 +1984,20 @@
           </div>
         </div>
 
-        <a href="https://maps.app.goo.gl/3u6c6mWEafWDr9nb6" target="_blank" rel="noopener" class="mini-map-card" style="text-decoration:none;cursor:pointer;" title="View The Hedgehog Cafe on Google Maps">
-          <div class="map-pin-pulse"></div>
-          <div class="map-tag">📍 The Hedgehog Cafe · Sector 7-C ↗</div>
-          <div style="font-size:0.75rem;color:var(--muted);margin-top:8px;">Inner Market Chandigarh · Click for Directions ↗</div>
-        </a>
+        <div class="mini-map-card">
+          <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3429.6231572911226!2d76.7981886!3d30.7362098!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390fed164d29a7d7%3A0xb9c1a4d56fd10e5c!2sThe%20Hedgehog%20Cafe!5e0!3m2!1sen!2sin!4v1710000000000!5m2!1sen!2sin" 
+            width="100%" 
+            height="100%" 
+            allowfullscreen="" 
+            loading="lazy" 
+            referrerpolicy="no-referrer-when-downgrade"
+            title="The Hedgehog Cafe on Google Maps">
+          </iframe>
+          <a href="https://maps.app.goo.gl/3u6c6mWEafWDr9nb6" target="_blank" rel="noopener" class="map-direct-link" title="Open The Hedgehog Cafe in Google Maps">
+            📍 Directions on Google Maps ↗
+          </a>
+        </div>
       </div>
     </section>
 
