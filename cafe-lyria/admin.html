@@ -621,6 +621,8 @@
     }
     .notif-item.new-res{border-left:3px solid #3ddc84}
     .notif-item.cancel-res{border-left:3px solid #ef4444}
+    .notif-item.new-order{border-left:3px solid #f59e0b}
+    .notif-item.new-inquiry{border-left:3px solid #3b82f6}
     .row-pulse-new{
       animation:rowGlow 2.5s ease 3;
     }
@@ -2238,13 +2240,24 @@
 
     function addOwnerNotification(notif) {
       const list = loadOwnerNotifications();
+      // Deduplicate notifications with identical bookingId, orderId, or id
+      const isDup = list.some(item => {
+        if (notif.id && item.id === notif.id) return true;
+        if (notif.bookingId && item.bookingId === notif.bookingId && item.type === notif.type) return true;
+        if (notif.orderId && item.orderId === notif.orderId && item.type === notif.type) return true;
+        return false;
+      });
+      if (isDup) {
+        renderNotificationsUI();
+        return;
+      }
       list.unshift({
-        id: 'notif-' + Date.now(),
+        id: notif.id || ('notif-' + Date.now() + '-' + Math.floor(Math.random() * 1000)),
         unread: true,
-        timestamp: new Date().toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' }),
+        timestamp: notif.timestamp || new Date().toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' }),
         ...notif
       });
-      if (list.length > 25) list.pop();
+      if (list.length > 30) list.pop();
       saveOwnerNotifications(list);
     }
 
@@ -2267,13 +2280,13 @@
         if (list.length === 0) {
           notifListEl.innerHTML = `
             <div style="text-align:center;padding:24px 10px;color:var(--muted);font-size:0.8rem">
-              No new alerts. When customers reserve or cancel, notifications ring here in real-time.
+              No new alerts. When customers reserve or order, notifications ring here in real-time.
             </div>`;
           return;
         }
 
         notifListEl.innerHTML = list.map(item => `
-          <div class="notif-item ${item.type === 'cancel' ? 'cancel-res' : 'new-res'}" onclick="handleNotifClick('${item.bookingId || ''}')">
+          <div class="notif-item ${item.type === 'cancel' ? 'cancel-res' : (item.type === 'new_order' ? 'new-order' : (item.type === 'new_inquiry' ? 'new-inquiry' : 'new-res'))}" onclick="handleNotifClick('${item.bookingId || ''}', '${item.orderId || ''}')">
             <div style="display:flex;justify-content:space-between;align-items:center">
               <strong style="color:#fff;font-size:0.83rem">${escapeHtml(item.title)}</strong>
               <small style="color:var(--muted);font-size:0.72rem">${item.timestamp}</small>
@@ -2284,8 +2297,10 @@
       }
     }
 
-    window.handleNotifClick = function(bookingId) {
-      if (bookingId && typeof openDetailModal === 'function') {
+    window.handleNotifClick = function(bookingId, orderId) {
+      if (orderId && typeof switchTab === 'function') {
+        switchTab('orders');
+      } else if (bookingId && typeof openDetailModal === 'function') {
         openDetailModal(bookingId);
       }
       const dropdown = document.getElementById('notifDropdown');
@@ -2363,15 +2378,35 @@
       playNotificationChime(false);
       showToast(`🍽️ NEW ORDER: ${order.id} for ${order.table} · ₹${order.total}`, '🍽️');
       addOwnerNotification({
-        title: `New Table Order: ${order.id}`,
+        title: `New Online Order: ${order.id}`,
         desc: `${order.table} · ${order.guestName || 'Guest'} ordered ${(order.items || []).map(i => i.qty + 'x ' + i.name).join(', ')} · Total: ₹${order.total}`,
-        type: 'new'
+        orderId: order.id,
+        type: 'new_order'
       });
       sendDesktopNotification(
         `The Hedgehog Cafe: New Table Order`,
         `Order ${order.id} for ${order.table} (${order.guestName || 'Guest'}): ₹${order.total}`
       );
       if (typeof renderOrders === 'function') renderOrders();
+    }
+
+    // Modern BroadcastChannel API for zero-delay cross-tab notifications
+    if ('BroadcastChannel' in window) {
+      try {
+        const syncChannel = new BroadcastChannel('the_hedgehog_cafe_sync');
+        syncChannel.onmessage = (e) => {
+          const payload = e.data || {};
+          if (payload.type === 'new_reservation') {
+            handleNewReservationNotification(payload.booking);
+          } else if (payload.type === 'cancelled_reservation') {
+            handleCancelledReservationNotification(payload.booking);
+          } else if (payload.type === 'new_order') {
+            handleNewOrderNotification(payload.order);
+          } else if (payload.type === 'new_inquiry') {
+            handleNewInquiryNotification(payload.inquiry);
+          }
+        };
+      } catch(err){}
     }
 
     // Listen to Storage Events (Real-time updates when customer reserves, orders, or cancels on index.html)
@@ -2399,7 +2434,7 @@
         addOwnerNotification({
           title: `New Customer Inquiry`,
           desc: `Received inquiry via Contact Form on storefront`,
-          type: 'new'
+          type: 'new_inquiry'
         });
       }
     });

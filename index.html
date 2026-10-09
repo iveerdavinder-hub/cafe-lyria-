@@ -1491,7 +1491,8 @@
         </ul>
       </nav>
 
-      <div class="nav-actions">
+      <div class="nav-actions" style="display:flex;align-items:center;gap:10px;">
+        <button type="button" class="btn btn-ghost" id="btnNavOrder" style="padding:9px 16px;font-size:0.84rem;">Order Online</button>
         <button type="button" class="btn btn-primary" id="btnNavReserve">Reserve Table</button>
       </div>
     </header>
@@ -1514,8 +1515,9 @@
         </p>
 
         <div class="hero-cta-group">
-          <a href="#menu" class="btn btn-primary">EXPLORE THE MENU</a>
-          <a href="#location" class="btn btn-secondary">VISIT THE CAFE</a>
+          <button type="button" class="btn btn-primary" id="btnHeroReserve">RESERVE A TABLE</button>
+          <button type="button" class="btn btn-secondary" id="btnHeroOrder">ORDER FOOD ONLINE</button>
+          <a href="#menu" class="btn btn-ghost" style="padding:10px 18px;font-size:0.84rem;">EXPLORE MENU ↓</a>
         </div>
 
         <div class="scroll-indicator">
@@ -1559,7 +1561,11 @@
       <div class="section-header">
         <span class="section-eyebrow">Artisan Kitchen</span>
         <h2 class="section-heading">Something Delicious Is Waiting.</h2>
-        <p class="section-desc">Handcrafted comfort dishes cooked with care. Click any item to view details or place an in-café table order.</p>
+        <p class="section-desc">Handcrafted comfort dishes cooked with care. Click any item or order food online directly to your table or doorstep.</p>
+        <div style="margin-top:16px;display:flex;justify-content:center;gap:12px;flex-wrap:wrap;">
+          <button type="button" class="btn btn-primary" id="btnMenuOrderOnline">ORDER FOOD ONLINE ✦</button>
+          <button type="button" class="btn btn-secondary" id="btnMenuReserve">RESERVE A TABLE</button>
+        </div>
       </div>
 
       <div class="menu-filter-bar">
@@ -2062,6 +2068,7 @@
           <div class="footer-legal-links">
             <button type="button" class="footer-policy-btn" id="btnOpenPrivacyPolicy">Privacy & Policy</button>
             <button type="button" class="footer-policy-btn" id="btnOpenTermsModal">Terms & House Rules</button>
+            <a href="admin.html" class="footer-policy-btn" target="_blank" rel="noopener" style="color:var(--amber);text-decoration:none;">🔐 Owner Admin Portal ↗</a>
           </div>
           <div style="font-size:0.78rem;color:var(--muted-dark);margin-top:14px;">
             © 2026 The Hedgehog Cafe. All rights reserved.
@@ -2137,46 +2144,65 @@
     </div>
   </div>
 
-  <!-- MODAL 2: IN-CAFE TABLE ORDERING -->
+  <!-- MODAL 2: ORDER FOOD ONLINE & IN-CAFE -->
   <div class="modal-overlay" id="orderModal">
     <div class="modal-box">
       <button type="button" class="modal-close-btn" id="closeOrderModal">×</button>
-      <h2 class="modal-title" id="orderModalTitle">Order Item</h2>
-      <p class="modal-sub">Place an in-café order directly to the kitchen from your seat.</p>
+      <h2 class="modal-title" id="orderModalTitle">Order Food Online</h2>
+      <p class="modal-sub">Place an online delivery, takeaway, or in-café table order directly to our kitchen.</p>
 
       <form class="modal-form" id="orderForm">
+        <div class="form-group" id="orderItemSelectGroup">
+          <label>Select Dish / Beverage</label>
+          <select id="orderItemSelect" required style="background-color:#140e0b;color:#ffffff;color-scheme:dark;">
+            <option value="The English Breakfast" data-price="395" selected>The English Breakfast (₹395)</option>
+            <option value="Popeye's Ravioli" data-price="385">Popeye's Ravioli (₹385)</option>
+            <option value="The Pizza of SW-Desi Things" data-price="445">The Pizza of SW-Desi Things (₹445)</option>
+            <option value="Signature Cold Coffee Frappe" data-price="245">Signature Cold Coffee Frappe (₹245)</option>
+            <option value="Cappuccino Tart with Ice Cream" data-price="265">Cappuccino Tart with Ice Cream (₹265)</option>
+            <option value="Artisan Flat White & Cortado" data-price="195">Artisan Flat White & Cortado (₹195)</option>
+          </select>
+        </div>
+
         <div class="form-group">
-          <label>Select Table / Seating Area</label>
+          <label>Order Type / Table / Delivery</label>
           <select id="orderTable" required style="background-color:#140e0b;color:#ffffff;color-scheme:dark;">
+            <option value="Online Order (Home Delivery)" style="background-color:#16100c;color:#ffffff;">🛵 Online Order (Home Delivery)</option>
+            <option value="Online Order (Takeaway Pickup)" style="background-color:#16100c;color:#ffffff;">🛍️ Online Order (Takeaway Pickup)</option>
             <option value="Table 1 · Window" style="background-color:#16100c;color:#ffffff;">Table 1 · Window</option>
             <option value="Table 2 · Window" style="background-color:#16100c;color:#ffffff;">Table 2 · Window</option>
             <option value="Table 3 · Bookshelf" style="background-color:#16100c;color:#ffffff;">Table 3 · Bookshelf</option>
             <option value="Table 4 · Central Library" selected style="background-color:#16100c;color:#ffffff;">Table 4 · Central Library</option>
             <option value="Table 5 · Cozy Booth" style="background-color:#16100c;color:#ffffff;">Table 5 · Cozy Booth</option>
             <option value="Reading Lounge Couch" style="background-color:#16100c;color:#ffffff;">Reading Lounge Couch</option>
-            <option value="Front Counter / Takeaway" style="background-color:#16100c;color:#ffffff;">Front Counter / Takeaway</option>
+            <option value="Front Counter" style="background-color:#16100c;color:#ffffff;">Front Counter</option>
           </select>
         </div>
+
         <div class="form-group">
-          <label>Your Name / Table Note</label>
-          <input type="text" id="orderGuest" placeholder="e.g. Aman" required>
+          <label>Customer Name & Contact</label>
+          <input type="text" id="orderGuest" placeholder="e.g. Aman Sharma (+91 98765 43210)" required>
         </div>
+
         <div class="form-group">
           <label>Quantity</label>
           <select id="orderQty" style="background-color:#140e0b;color:#ffffff;color-scheme:dark;">
             <option value="1" selected style="background-color:#16100c;color:#ffffff;">1 Portion</option>
             <option value="2" style="background-color:#16100c;color:#ffffff;">2 Portions</option>
             <option value="3" style="background-color:#16100c;color:#ffffff;">3 Portions</option>
+            <option value="4" style="background-color:#16100c;color:#ffffff;">4 Portions</option>
+            <option value="5" style="background-color:#16100c;color:#ffffff;">5 Portions</option>
           </select>
         </div>
+
         <div class="form-group">
-          <label>Special Preparation Instructions</label>
-          <input type="text" id="orderNotes" placeholder="e.g. Less ice, extra parmesan, warm toast">
+          <label>Special Instructions / Delivery Address</label>
+          <input type="text" id="orderNotes" placeholder="e.g. Less spicy, extra sauce, delivery address">
         </div>
 
         <div style="display:flex;justify-content:space-between;align-items:center;padding:12px;background:rgba(255,255,255,0.05);border-radius:8px;margin-top:6px;">
           <span style="color:var(--muted)">Total Price:</span>
-          <strong style="color:var(--amber);font-size:1.25rem;" id="orderTotalDisplay">₹0</strong>
+          <strong style="color:var(--amber);font-size:1.25rem;" id="orderTotalDisplay">₹395</strong>
         </div>
 
         <button type="submit" class="btn btn-primary" style="margin-top:10px;width:100%;">
@@ -2804,17 +2830,61 @@
         setTimeout(() => toastPill.classList.remove('show'), 3400);
       }
 
+      // Unified Cross-Tab & Admin Notification Dispatcher
+      function pushAdminNotification(notifData) {
+        // 1. Direct persistence to Owner Notification Center in localStorage
+        const NOTIFS_KEY = 'the_hedgehog_cafe_owner_notifications';
+        try {
+          const list = JSON.parse(localStorage.getItem(NOTIFS_KEY) || '[]');
+          const newEntry = {
+            id: 'notif-' + Date.now() + '-' + Math.floor(Math.random() * 1000),
+            unread: true,
+            timestamp: new Date().toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' }),
+            ...notifData
+          };
+          list.unshift(newEntry);
+          if (list.length > 30) list.pop();
+          localStorage.setItem(NOTIFS_KEY, JSON.stringify(list));
+        } catch (e) {
+          console.error('Error saving admin notification', e);
+        }
+
+        // 2. Broadcast via localStorage storage event (ensures unique value with timestamp)
+        try {
+          localStorage.setItem('the_hedgehog_cafe_latest_notification', JSON.stringify({
+            ...notifData,
+            _ts: Date.now()
+          }));
+        } catch (e) {}
+
+        // 3. Broadcast via BroadcastChannel (instant zero-delay multi-tab sync)
+        try {
+          if ('BroadcastChannel' in window) {
+            const bc = new BroadcastChannel('the_hedgehog_cafe_sync');
+            bc.postMessage({
+              ...notifData,
+              _ts: Date.now()
+            });
+            bc.close();
+          }
+        } catch (e) {}
+      }
+
       // Open Reserve Modal
       function openReserve() {
         if (reserveModal) {
           const resDate = document.getElementById('resDate');
-          if (resDate) resDate.value = new Date().toISOString().split('T')[0];
+          if (resDate && !resDate.value) resDate.value = new Date().toISOString().split('T')[0];
           reserveModal.classList.add('open');
         }
       }
 
-      document.querySelectorAll('#btnNavReserve, #btnLocationReserve, #btnFinalReserve, #btnBookStudyTable').forEach(b => {
-        b.addEventListener('click', openReserve);
+      // Wire ALL Reserve Buttons across website
+      document.querySelectorAll('#btnNavReserve, #btnHeroReserve, #btnMenuReserve, #btnLocationReserve, #btnFinalReserve, #btnBookStudyTable').forEach(b => {
+        b.addEventListener('click', (e) => {
+          e.preventDefault();
+          openReserve();
+        });
       });
 
       const closeReserve = document.getElementById('closeReserveModal');
@@ -2844,7 +2914,7 @@
             time,
             guests,
             seating,
-            notes,
+            notes: notes || 'None',
             status: 'Confirmed',
             createdAt: new Date().toISOString()
           };
@@ -2855,11 +2925,14 @@
           list.unshift(newBooking);
           localStorage.setItem(KEY, JSON.stringify(list));
 
-          // Cross-tab broadcast for real-time notification
-          localStorage.setItem('the_hedgehog_cafe_latest_notification', JSON.stringify({
+          // Push instant notification to Admin Panel
+          pushAdminNotification({
             type: 'new_reservation',
-            booking: newBooking
-          }));
+            booking: newBooking,
+            title: 'New Table Reservation',
+            desc: `${name} (${guests}) · ${date} at ${time} · ${seating} · ${bookingId}`,
+            bookingId: bookingId
+          });
 
           reserveModal.classList.remove('open');
           reserveForm.reset();
@@ -2867,28 +2940,72 @@
         });
       }
 
-      // Menu In-Café Ordering Modal
-      let currentOrderItem = { name: 'English Breakfast', price: 395 };
+      // Menu & Online Ordering Logic
+      const orderItemSelect = document.getElementById('orderItemSelect');
+      const orderQtySelect = document.getElementById('orderQty');
+      const orderTotalDisplay = document.getElementById('orderTotalDisplay');
+
+      function updateOrderTotal() {
+        if (!orderItemSelect || !orderQtySelect || !orderTotalDisplay) return;
+        const selectedOpt = orderItemSelect.options[orderItemSelect.selectedIndex];
+        const unitPrice = parseInt(selectedOpt ? selectedOpt.dataset.price : '395', 10) || 395;
+        const qty = parseInt(orderQtySelect.value, 10) || 1;
+        const total = unitPrice * qty;
+        orderTotalDisplay.textContent = `₹${total}`;
+      }
+
+      if (orderItemSelect) {
+        orderItemSelect.addEventListener('change', updateOrderTotal);
+      }
+      if (orderQtySelect) {
+        orderQtySelect.addEventListener('change', updateOrderTotal);
+      }
+
       window.openOrderModal = function (name, price) {
-        currentOrderItem = { name, price };
         const modalTitle = document.getElementById('orderModalTitle');
-        const totalDisplay = document.getElementById('orderTotalDisplay');
-        const qtySelect = document.getElementById('orderQty');
-        if (modalTitle) modalTitle.textContent = `Order: ${name}`;
-        if (qtySelect) qtySelect.value = '1';
-        if (totalDisplay) totalDisplay.textContent = `₹${price}`;
+        if (modalTitle) {
+          modalTitle.textContent = name ? `Order: ${name}` : 'Order Food Online';
+        }
+        if (orderItemSelect && name) {
+          for (let i = 0; i < orderItemSelect.options.length; i++) {
+            if (orderItemSelect.options[i].value.toLowerCase().includes(name.toLowerCase()) ||
+                name.toLowerCase().includes(orderItemSelect.options[i].value.toLowerCase())) {
+              orderItemSelect.selectedIndex = i;
+              break;
+            }
+          }
+        }
+        if (orderQtySelect) orderQtySelect.value = '1';
+        updateOrderTotal();
         if (orderModal) orderModal.classList.add('open');
       };
 
-      const orderQtySelect = document.getElementById('orderQty');
-      if (orderQtySelect) {
-        orderQtySelect.addEventListener('change', (e) => {
-          const qty = parseInt(e.target.value, 10) || 1;
-          const total = currentOrderItem.price * qty;
-          const totalDisplay = document.getElementById('orderTotalDisplay');
-          if (totalDisplay) totalDisplay.textContent = `₹${total}`;
+      // Wire ALL Order Buttons
+      document.querySelectorAll('#btnNavOrder, #btnHeroOrder, #btnMenuOrderOnline').forEach(b => {
+        b.addEventListener('click', (e) => {
+          e.preventDefault();
+          window.openOrderModal();
         });
-      }
+      });
+
+      // Wire food cards and their quick-order buttons
+      document.querySelectorAll('.food-card').forEach(card => {
+        const titleEl = card.querySelector('.food-card-title');
+        const priceEl = card.querySelector('.food-price');
+        const itemName = titleEl ? titleEl.textContent.trim() : 'The English Breakfast';
+        const itemPrice = priceEl ? parseInt(priceEl.textContent.replace(/[^0-9]/g, ''), 10) || 395 : 395;
+
+        const btn = card.querySelector('.btn-order-quick');
+        if (btn) {
+          btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            window.openOrderModal(itemName, itemPrice);
+          });
+        }
+        card.addEventListener('click', () => {
+          window.openOrderModal(itemName, itemPrice);
+        });
+      });
 
       const closeOrder = document.getElementById('closeOrderModal');
       if (closeOrder) {
@@ -2904,7 +3021,11 @@
           const guestName = document.getElementById('orderGuest').value.trim();
           const qty = parseInt(document.getElementById('orderQty').value, 10) || 1;
           const notes = document.getElementById('orderNotes').value.trim();
-          const total = currentOrderItem.price * qty;
+
+          const selectedOpt = orderItemSelect ? orderItemSelect.options[orderItemSelect.selectedIndex] : null;
+          const itemName = selectedOpt ? selectedOpt.value : 'Dish';
+          const itemPrice = parseInt(selectedOpt ? selectedOpt.dataset.price : '395', 10) || 395;
+          const total = itemPrice * qty;
 
           const orderId = '#HHC-ORD-' + Math.floor(1000 + Math.random() * 9000);
           const newOrder = {
@@ -2913,28 +3034,31 @@
             guestName,
             specialNotes: notes || 'None',
             items: [
-              { name: currentOrderItem.name, qty: qty, price: currentOrderItem.price }
+              { name: itemName, qty: qty, price: itemPrice }
             ],
             total,
             createdAt: new Date().toISOString(),
             status: 'Kitchen Preparing'
           };
 
-          // Push to LocalStorage Orders for Owner Admin Panel
+          // Save to LocalStorage Orders for Owner Admin Panel
           const ORDER_KEY = 'thehedgehog_table_orders';
           const list = JSON.parse(localStorage.getItem(ORDER_KEY) || '[]');
           list.unshift(newOrder);
           localStorage.setItem(ORDER_KEY, JSON.stringify(list));
 
-          // Broadcast notification to Admin Panel
-          localStorage.setItem('the_hedgehog_cafe_latest_notification', JSON.stringify({
+          // Push instant notification to Admin Panel
+          pushAdminNotification({
             type: 'new_order',
-            order: newOrder
-          }));
+            order: newOrder,
+            title: `New Online Order: ${orderId}`,
+            desc: `${table} · ${guestName} ordered ${qty}x ${itemName} · Total: ₹${total}`,
+            orderId: orderId
+          });
 
           orderModal.classList.remove('open');
           orderForm.reset();
-          showToast(`Order sent to kitchen for ${table}! Ref: ${orderId}`);
+          showToast(`Order sent to kitchen! Ref: ${orderId}`);
         });
       }
 
@@ -3045,13 +3169,23 @@
         btnAckTerms.addEventListener('click', () => termsModal.classList.remove('open'));
       }
 
-      // Close modal on outside click
+      // Close modal on outside click or Escape key
       window.addEventListener('click', (e) => {
         if (e.target === reserveModal) reserveModal.classList.remove('open');
         if (e.target === orderModal) orderModal.classList.remove('open');
         if (e.target === privacyModal) privacyModal.classList.remove('open');
         if (e.target === termsModal) termsModal.classList.remove('open');
         if (e.target === lightboxModal) lightboxModal.classList.remove('open');
+      });
+
+      window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          if (reserveModal) reserveModal.classList.remove('open');
+          if (orderModal) orderModal.classList.remove('open');
+          if (privacyModal) privacyModal.classList.remove('open');
+          if (termsModal) termsModal.classList.remove('open');
+          if (lightboxModal) lightboxModal.classList.remove('open');
+        }
       });
 
     })();
