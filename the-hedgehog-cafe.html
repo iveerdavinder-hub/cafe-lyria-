@@ -2868,6 +2868,22 @@
             bc.close();
           }
         } catch (e) {}
+
+        // 4. Cross-Device Real-Time Cloud Sync (Broadcast to admin panel on ANY device worldwide)
+        try {
+          const cloudTopic = 'the_hedgehog_cafe_sec7c_live_sync_v1';
+          const title = notifData.type === 'new_order' ? 'New Online Food Order' : 'New Table Reservation';
+          const tags = notifData.type === 'new_order' ? 'plate_with_cutlery,bell' : 'coffee,bell';
+          fetch(`https://ntfy.sh/${cloudTopic}`, {
+            method: 'POST',
+            headers: {
+              'Title': title,
+              'Priority': 'high',
+              'Tags': tags
+            },
+            body: JSON.stringify(notifData)
+          }).catch(err => console.log('Cloud sync dispatch notice:', err));
+        } catch (e) {}
       }
 
       // Open Reserve Modal

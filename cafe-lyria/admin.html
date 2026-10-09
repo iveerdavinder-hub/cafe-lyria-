@@ -2406,8 +2406,103 @@
             handleNewInquiryNotification(payload.inquiry);
           }
         };
-      } catch(err){}
+      } catch (err) {}
     }
+
+    // ==========================================================================
+    // CROSS-DEVICE REAL-TIME CLOUD SYNC (RECEIVE FROM ANY DEVICE WORLDWIDE)
+    // ==========================================================================
+    const CLOUD_SYNC_TOPIC = 'the_hedgehog_cafe_sec7c_live_sync_v1';
+
+    function mergeCloudReservation(booking, triggerAlert = true) {
+      if (!booking || !booking.id) return;
+      const list = loadReservations();
+      const exists = list.some(r => r.id === booking.id);
+      if (!exists) {
+        list.unshift(booking);
+        saveReservations(list);
+        if (triggerAlert) {
+          handleNewReservationNotification(booking);
+        } else {
+          renderDashboard();
+        }
+      }
+    }
+
+    function mergeCloudOrder(order, triggerAlert = true) {
+      if (!order || !order.id) return;
+      const list = loadOrders();
+      const exists = list.some(o => o.id === order.id);
+      if (!exists) {
+        list.unshift(order);
+        saveOrders(list);
+        if (triggerAlert) {
+          handleNewOrderNotification(order);
+        } else {
+          if (typeof renderOrders === 'function') renderOrders();
+        }
+      }
+    }
+
+    function initCloudSyncListener() {
+      if (typeof EventSource === 'undefined') return;
+      try {
+        const sseUrl = `https://ntfy.sh/${CLOUD_SYNC_TOPIC}/sse`;
+        const es = new EventSource(sseUrl);
+        es.onmessage = (e) => {
+          try {
+            const data = JSON.parse(e.data);
+            if (data.event === 'message' && data.message) {
+              const payload = JSON.parse(data.message);
+              if (payload.type === 'new_reservation' && payload.booking) {
+                mergeCloudReservation(payload.booking, true);
+              } else if (payload.type === 'new_order' && payload.order) {
+                mergeCloudOrder(payload.order, true);
+              }
+            }
+          } catch(err){}
+        };
+        es.onerror = () => {
+          // EventSource automatically reconnects
+        };
+      } catch(err){
+        console.log('Cloud sync connection notice:', err);
+      }
+    }
+
+    function syncPastCloudEvents() {
+      fetch(`https://ntfy.sh/${CLOUD_SYNC_TOPIC}/json?poll=1&since=all`)
+        .then(res => res.text())
+        .then(text => {
+          if (!text) return;
+          const lines = text.trim().split('\n');
+          lines.forEach(line => {
+            try {
+              const data = JSON.parse(line);
+              if (data.event === 'message' && data.message) {
+                const payload = JSON.parse(data.message);
+                if (payload.type === 'new_reservation' && payload.booking) {
+                  mergeCloudReservation(payload.booking, false);
+                } else if (payload.type === 'new_order' && payload.order) {
+                  mergeCloudOrder(payload.order, false);
+                }
+              }
+            } catch(e){}
+          });
+        })
+        .catch(err => console.log('Cloud sync poll notice:', err));
+    }
+
+    // Initialize cross-device cloud sync
+    initCloudSyncListener();
+    syncPastCloudEvents();
+    setInterval(syncPastCloudEvents, 30000);
+    document.addEventListener('visibilitychange', () => {
+      if (document.visibilityState === 'visible') {
+        syncPastCloudEvents();
+      }
+    });
+    window.addEventListener('focus', () => syncPastCloudEvents());
 
     // Listen to Storage Events (Real-time updates when customer reserves, orders, or cancels on index.html)
     window.addEventListener('storage', (e) => {
