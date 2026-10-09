@@ -1368,6 +1368,266 @@
     }
 
     /* ==========================================================================
+       SECTION 6: CAFE MOMENTS - UNLUMEN VERTICAL TEAM-STACK DECK
+       ========================================================================== */
+    .gallery-view-switch-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 22px;
+      flex-wrap: wrap;
+    }
+    .gallery-vertical-stage {
+      position: relative;
+      width: 100%;
+      max-width: 820px;
+      min-height: 720px;
+      margin: 20px auto 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding-top: 195px;
+      padding-bottom: 25px;
+      perspective: 1200px;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+    .gallery-vertical-stage.is-hidden,
+    .gallery-grid.is-hidden {
+      display: none !important;
+    }
+    .gallery-vertical-stack {
+      position: relative;
+      width: min(540px, 92vw);
+      height: 250px;
+      margin: 0 auto 195px auto;
+    }
+    .vdeck-card {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 250px;
+      border-radius: 24px;
+      background: #17110d;
+      border: 1px solid rgba(227, 164, 105, 0.22);
+      box-shadow: 0 16px 45px rgba(0, 0, 0, 0.72);
+      overflow: hidden;
+      cursor: pointer;
+      display: flex;
+      flex-direction: row;
+      transform-origin: center center;
+      will-change: transform, box-shadow, border-color;
+      transition: transform 0.6s cubic-bezier(0.2, 0.9, 0.25, 1),
+                  box-shadow 0.4s ease,
+                  border-color 0.3s ease,
+                  opacity 0.3s ease,
+                  filter 0.3s ease;
+    }
+    .vdeck-card.is-hidden {
+      display: none !important;
+    }
+    .vdeck-card:focus-visible {
+      outline: 2px solid var(--amber);
+      outline-offset: 4px;
+    }
+    .vdeck-thumb {
+      position: relative;
+      width: 44%;
+      height: 100%;
+      overflow: hidden;
+      background: #120d0a;
+      flex-shrink: 0;
+    }
+    .vdeck-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s var(--ease-smooth);
+    }
+    .vdeck-card:hover .vdeck-thumb img {
+      transform: scale(1.08);
+    }
+    .vdeck-badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: rgba(18, 14, 12, 0.88);
+      border: 1px solid rgba(227, 164, 105, 0.3);
+      padding: 4px 10px;
+      border-radius: var(--radius-pill);
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: var(--amber);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      backdrop-filter: blur(8px);
+      z-index: 2;
+    }
+    .vdeck-body {
+      width: 56%;
+      padding: 20px 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background: linear-gradient(135deg, #18120e 0%, #130e0b 100%);
+    }
+    .vdeck-meta {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--amber);
+      margin-bottom: 4px;
+    }
+    .vdeck-title {
+      font-family: var(--font-serif);
+      font-size: 1.18rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 6px;
+      line-height: 1.25;
+    }
+    .vdeck-desc {
+      font-size: 0.8rem;
+      color: var(--muted);
+      line-height: 1.48;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .vdeck-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 10px;
+      border-top: 1px solid rgba(227, 164, 105, 0.14);
+      margin-top: 6px;
+    }
+    .vdeck-cta-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: rgba(227, 164, 105, 0.14);
+      border: 1px solid rgba(227, 164, 105, 0.32);
+      color: #fff;
+      padding: 5px 13px;
+      border-radius: var(--radius-pill);
+      font-size: 0.74rem;
+      font-weight: 600;
+      transition: all 0.3s var(--ease-smooth);
+      cursor: pointer;
+    }
+    .vdeck-cta-pill span.pill-plus {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 17px;
+      height: 17px;
+      border-radius: 50%;
+      background: var(--amber);
+      color: #120e0b;
+      font-weight: 900;
+      font-size: 0.72rem;
+      line-height: 1;
+      transition: transform 0.3s var(--ease-smooth);
+    }
+    .vdeck-card:hover .vdeck-cta-pill {
+      background: var(--amber);
+      color: #120e0b;
+      border-color: var(--amber);
+      box-shadow: 0 4px 16px rgba(227, 164, 105, 0.4);
+    }
+    .vdeck-card:hover .vdeck-cta-pill span.pill-plus {
+      transform: rotate(90deg);
+      background: #120e0b;
+      color: var(--amber);
+    }
+    .vdeck-controls-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 10px;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 40;
+    }
+    .vdeck-hint-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(227, 164, 105, 0.18);
+      padding: 6px 16px;
+      border-radius: var(--radius-pill);
+      font-size: 0.78rem;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+    }
+    .vdeck-hint-pill span.pulse {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--amber);
+      box-shadow: 0 0 8px var(--amber);
+    }
+    .vdeck-nav-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--line);
+      color: #fff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-size: 0.95rem;
+    }
+    .vdeck-nav-btn:hover {
+      background: var(--amber);
+      color: #120e0b;
+      border-color: var(--amber);
+    }
+    @media (max-width: 680px) {
+      .gallery-vertical-stage {
+        min-height: 400px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        margin: 10px auto 25px;
+      }
+      .gallery-vertical-stack {
+        width: min(440px, 92vw);
+        height: 220px;
+        margin: 0 auto 25px auto;
+      }
+      .vdeck-card {
+        height: 220px;
+      }
+      .vdeck-thumb {
+        width: 38%;
+      }
+      .vdeck-body {
+        width: 62%;
+        padding: 14px 16px;
+      }
+      .vdeck-title {
+        font-size: 1.02rem;
+        margin-bottom: 4px;
+      }
+      .vdeck-desc {
+        -webkit-line-clamp: 2;
+        font-size: 0.74rem;
+      }
+    }
+
+    /* ==========================================================================
        SECTION 8: LOCATION & CONTACT (Chandigarh Sector 7)
        ========================================================================== */
     .location-box {
@@ -2379,6 +2639,18 @@
         <p class="section-desc">Authentic glimpses of our specialty drinks, kitchen creations, and welcoming spaces in Sector 7-C.</p>
       </div>
 
+      <!-- View Format Switcher: Unlumen Vertical Team-Stack Deck vs Full Grid -->
+      <div class="gallery-view-switch-row">
+        <div class="view-toggle-pill" role="tablist" aria-label="Cafe Moments View Format">
+          <button type="button" class="view-toggle-btn active" id="galleryToggleDeck" data-view="deck" role="tab" aria-selected="true">
+            <span>🎴</span> Vertical Stack Deck
+          </button>
+          <button type="button" class="view-toggle-btn" id="galleryToggleGrid" data-view="grid" role="tab" aria-selected="false">
+            <span>▦</span> Full Photo Grid
+          </button>
+        </div>
+      </div>
+
       <!-- Category Filter Pills -->
       <div class="gallery-filter-wrap">
         <button type="button" class="gallery-filter-btn active" data-filter="all">All Photos</button>
@@ -2386,8 +2658,177 @@
         <button type="button" class="gallery-filter-btn" data-filter="spaces">Cafe Spaces & Facade</button>
       </div>
 
+      <!-- Unlumen Team-Stack Component in Vertical Direction -->
+      <div class="gallery-vertical-stage" id="galleryVerticalStage">
+        <div class="gallery-vertical-stack" id="galleryVerticalStack" aria-label="Interactive Vertical Photo Deck">
+          <!-- Moment Card 1 -->
+          <div class="vdeck-card" data-category="coffee" data-img="images/coffee.webp" data-title="Signature Cold Coffee Frappe" data-desc="Double shot arabica blend churned with chilled milk, velvety cream, and dark cocoa dust." tabindex="0">
+            <div class="vdeck-thumb">
+              <img src="images/coffee.webp" alt="Signature Cold Coffee Frappe" loading="lazy">
+              <span class="vdeck-badge">Coffee & Sips</span>
+            </div>
+            <div class="vdeck-body">
+              <div>
+                <div class="vdeck-meta">Moment 01 · Signature Brew</div>
+                <h3 class="vdeck-title">Signature Cold Coffee Frappe</h3>
+                <p class="vdeck-desc">Double-shot arabica blend churned with chilled cream and dark cocoa dust.</p>
+              </div>
+              <div class="vdeck-footer">
+                <span style="font-size:0.75rem; color:var(--muted); font-weight:600;">Sector 7-C Bar</span>
+                <div class="vdeck-cta-pill">
+                  <span>View High-Res</span>
+                  <span class="pill-plus">🔍</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Moment Card 2 -->
+          <div class="vdeck-card" data-category="coffee" data-img="images/hedgehog_frappe_dessert.jpg" data-title="Cappuccino Tart with Vanilla Bean" data-desc="Crisp buttery tart pastry filled with espresso ganache and accompanied by rich vanilla ice cream." tabindex="0">
+            <div class="vdeck-thumb">
+              <img src="images/hedgehog_frappe_dessert.jpg" alt="Cappuccino Tart with Gelato" loading="lazy">
+              <span class="vdeck-badge">Coffee & Sips</span>
+            </div>
+            <div class="vdeck-body">
+              <div>
+                <div class="vdeck-meta">Moment 02 · Artisan Bakery</div>
+                <h3 class="vdeck-title">Cappuccino Tart with Gelato</h3>
+                <p class="vdeck-desc">Buttery cocoa tart pastry filled with espresso ganache & vanilla bean scoop.</p>
+              </div>
+              <div class="vdeck-footer">
+                <span style="font-size:0.75rem; color:var(--muted); font-weight:600;">Daily Bakery</span>
+                <div class="vdeck-cta-pill">
+                  <span>View High-Res</span>
+                  <span class="pill-plus">🔍</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Moment Card 3 -->
+          <div class="vdeck-card" data-category="coffee" data-img="images/environment_espressobar.webp" data-title="Artisanal Flat White & Pour-Over" data-desc="Single-origin 100% Arabica roasted fresh and pulled with silky microfoam latte art." tabindex="0">
+            <div class="vdeck-thumb">
+              <img src="images/environment_espressobar.webp" alt="Artisanal Flat White" loading="lazy">
+              <span class="vdeck-badge">Coffee & Sips</span>
+            </div>
+            <div class="vdeck-body">
+              <div>
+                <div class="vdeck-meta">Moment 03 · Specialty Espresso</div>
+                <h3 class="vdeck-title">Artisanal Flat White</h3>
+                <p class="vdeck-desc">Single-origin 100% Arabica pulled fresh with velvety textured microfoam.</p>
+              </div>
+              <div class="vdeck-footer">
+                <span style="font-size:0.75rem; color:var(--muted); font-weight:600;">Espresso Bar</span>
+                <div class="vdeck-cta-pill">
+                  <span>View High-Res</span>
+                  <span class="pill-plus">🔍</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Moment Card 4 -->
+          <div class="vdeck-card" data-category="spaces" data-img="images/hedgehog_storefront.jpg" data-title="Fairy-Lit Sector 7-C Storefront" data-desc="Warm outdoor string lights, glass entrance with neon sign at Inner Market, Sector 7-C, Chandigarh." tabindex="0">
+            <div class="vdeck-thumb">
+              <img src="images/hedgehog_storefront.jpg" alt="Fairy-Lit Storefront Facade" loading="lazy">
+              <span class="vdeck-badge">Cafe Spaces</span>
+            </div>
+            <div class="vdeck-body">
+              <div>
+                <div class="vdeck-meta">Moment 04 · Evening Ambience</div>
+                <h3 class="vdeck-title">Fairy-Lit Storefront Facade</h3>
+                <p class="vdeck-desc">Warm outdoor bulb strings and glass entrance at Inner Market, Sector 7-C.</p>
+              </div>
+              <div class="vdeck-footer">
+                <span style="font-size:0.75rem; color:var(--muted); font-weight:600;">Inner Market</span>
+                <div class="vdeck-cta-pill">
+                  <span>View High-Res</span>
+                  <span class="pill-plus">🔍</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Moment Card 5 -->
+          <div class="vdeck-card" data-category="spaces" data-img="images/hedgehog_wood_dining.jpg" data-title="Timber Feature Wall & Work Desks" data-desc="Warm timber-paneled walls with directional spot lighting for reading and remote work." tabindex="0">
+            <div class="vdeck-thumb">
+              <img src="images/hedgehog_wood_dining.jpg" alt="Timber Wall & Work Desks" loading="lazy">
+              <span class="vdeck-badge">Cafe Spaces</span>
+            </div>
+            <div class="vdeck-body">
+              <div>
+                <div class="vdeck-meta">Moment 05 · Study Haven</div>
+                <h3 class="vdeck-title">Timber Wall & Work Desks</h3>
+                <p class="vdeck-desc">Directional spot lighting, study chairs and wood-paneled reading sanctuary.</p>
+              </div>
+              <div class="vdeck-footer">
+                <span style="font-size:0.75rem; color:var(--muted); font-weight:600;">Reading Corner</span>
+                <div class="vdeck-cta-pill">
+                  <span>View High-Res</span>
+                  <span class="pill-plus">🔍</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Moment Card 6 -->
+          <div class="vdeck-card" data-category="spaces" data-img="images/hedgehog_hall_seating.jpg" data-title="The Book-Borrowing Dining Hall" data-desc="Spacious wooden tables featuring our open 'Borrow The Books We Have' community philosophy." tabindex="0">
+            <div class="vdeck-thumb">
+              <img src="images/hedgehog_hall_seating.jpg" alt="The Book-Borrowing Hall" loading="lazy">
+              <span class="vdeck-badge">Cafe Spaces</span>
+            </div>
+            <div class="vdeck-body">
+              <div>
+                <div class="vdeck-meta">Moment 06 · Dining Hall</div>
+                <h3 class="vdeck-title">The Book-Borrowing Hall</h3>
+                <p class="vdeck-desc">Spacious walnut tables celebrating our 'Like The Books? Borrow Them' policy.</p>
+              </div>
+              <div class="vdeck-footer">
+                <span style="font-size:0.75rem; color:var(--muted); font-weight:600;">Library Dining</span>
+                <div class="vdeck-cta-pill">
+                  <span>View High-Res</span>
+                  <span class="pill-plus">🔍</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Moment Card 7 -->
+          <div class="vdeck-card" data-category="spaces" data-img="images/hedgehog_counter_bakery.jpg" data-title="Bakery Showcase & Art Wall" data-desc="Freshly baked daily tarts, cakes, and local photography exhibitions on concrete panels." tabindex="0">
+            <div class="vdeck-thumb">
+              <img src="images/hedgehog_counter_bakery.jpg" alt="Bakery Showcase & Art Wall" loading="lazy">
+              <span class="vdeck-badge">Cafe Spaces</span>
+            </div>
+            <div class="vdeck-body">
+              <div>
+                <div class="vdeck-meta">Moment 07 · Artisan Counter</div>
+                <h3 class="vdeck-title">Bakery Showcase & Art Wall</h3>
+                <p class="vdeck-desc">Freshly baked daily cakes, pastry case, and curated art exhibitions.</p>
+              </div>
+              <div class="vdeck-footer">
+                <span style="font-size:0.75rem; color:var(--muted); font-weight:600;">Main Counter</span>
+                <div class="vdeck-cta-pill">
+                  <span>View High-Res</span>
+                  <span class="pill-plus">🔍</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Vertical Deck Navigation & Helper Bar -->
+        <div class="vdeck-controls-row">
+          <button type="button" class="vdeck-nav-btn" id="btnVdeckPrev" title="Previous Moment" aria-label="Previous Moment">↑</button>
+          <div class="vdeck-hint-pill">
+            <span class="pulse"></span>
+            <span id="vdeckHintText">Hover to fan vertically · Click any moment to view full photo</span>
+          </div>
+          <button type="button" class="vdeck-nav-btn" id="btnVdeckNext" title="Next Moment" aria-label="Next Moment">↓</button>
+        </div>
+      </div>
+
       <!-- Photo Grid -->
-      <div class="gallery-grid" id="galleryGrid">
+      <div class="gallery-grid is-hidden" id="galleryGrid">
 
         <!-- Item 8: Coffee - Signature Cold Coffee Frappe -->
         <div class="gallery-card" data-category="coffee" data-img="images/coffee.webp" data-title="Signature Cold Coffee Frappe" data-desc="Double shot arabica blend churned with chilled milk, velvety cream, and dark cocoa dust.">
@@ -4075,6 +4516,302 @@
         });
       });
 
+      // =====================================================================
+      // UNLUMEN UI TEAM-STACK COMPONENT (VERTICAL DIRECTION): CAFE MOMENTS
+      // =====================================================================
+      function initGalleryVerticalStack() {
+        const stage = document.getElementById('galleryVerticalStage');
+        const stack = document.getElementById('galleryVerticalStack');
+        const grid = document.getElementById('galleryGrid');
+        const toggleDeck = document.getElementById('galleryToggleDeck');
+        const toggleGrid = document.getElementById('galleryToggleGrid');
+        const btnPrev = document.getElementById('btnVdeckPrev');
+        const btnNext = document.getElementById('btnVdeckNext');
+        const hintText = document.getElementById('vdeckHintText');
+        const lightboxModal = document.getElementById('lightboxModal');
+        const lightboxImg = document.getElementById('lightboxImg');
+        const lightboxTitle = document.getElementById('lightboxTitle');
+        const lightboxDesc = document.getElementById('lightboxDesc');
+
+        if (!stage || !stack) return;
+
+        let cards = Array.from(stack.querySelectorAll('.vdeck-card'));
+        let currentFilter = 'all';
+        let isHovered = false;
+        let activeHoveredCard = null;
+
+        // View Mode Switcher: Vertical Stack vs Full Gallery Grid
+        function setGalleryView(mode) {
+          if (mode === 'grid') {
+            stage.classList.add('is-hidden');
+            grid.classList.remove('is-hidden');
+            if (toggleGrid) {
+              toggleGrid.classList.add('active');
+              toggleGrid.setAttribute('aria-selected', 'true');
+            }
+            if (toggleDeck) {
+              toggleDeck.classList.remove('active');
+              toggleDeck.setAttribute('aria-selected', 'false');
+            }
+          } else {
+            stage.classList.remove('is-hidden');
+            grid.classList.add('is-hidden');
+            if (toggleDeck) {
+              toggleDeck.classList.add('active');
+              toggleDeck.setAttribute('aria-selected', 'true');
+            }
+            if (toggleGrid) {
+              toggleGrid.classList.remove('active');
+              toggleGrid.setAttribute('aria-selected', 'false');
+            }
+            layoutCards();
+          }
+        }
+
+        if (toggleDeck) toggleDeck.addEventListener('click', () => setGalleryView('deck'));
+        if (toggleGrid) toggleGrid.addEventListener('click', () => setGalleryView('grid'));
+
+        function getVisibleCards() {
+          return cards.filter(card => {
+            if (currentFilter === 'all') return true;
+            return card.dataset.category === currentFilter;
+          });
+        }
+
+        // Deterministic organic jitter offsets & rotations for vertical stack
+        const jitterRotations = [-3.2, 2.5, -2.2, 3.4, -2.8, 2.2, -1.9];
+        const jitterOffsetsX = [0, 4, -4, 5, -3, 3, -2];
+        const jitterOffsetsY = [0, 10, 20, 30, 40, 50, 60];
+
+        function layoutCards() {
+          const visible = getVisibleCards();
+          const total = visible.length;
+          const isMobile = window.innerWidth <= 680;
+
+          // Hide cards not matching current filter
+          cards.forEach(c => {
+            if (!visible.includes(c)) {
+              c.classList.add('is-hidden');
+              c.style.transform = '';
+              c.style.zIndex = '0';
+              c.style.opacity = '0';
+            } else {
+              c.classList.remove('is-hidden');
+            }
+          });
+
+          if (total === 0) {
+            if (hintText) hintText.textContent = 'No photos in this category';
+            return;
+          }
+
+          if (hintText) {
+            hintText.textContent = isMobile
+              ? `Tap or swipe vertically to cycle (${total} moments) · Tap to view full photo`
+              : `Hover to fan out all ${total} moments vertically · Click any moment to view full photo`;
+          }
+
+          const centerIndex = (total - 1) / 2;
+          const stepY = total > 5 ? 58 : (total > 3 ? 68 : 82);
+
+          visible.forEach((card, idx) => {
+            const diff = idx - centerIndex;
+            const spreadY = diff * stepY;
+            const spreadX = Math.sin(diff * 0.85) * 18;
+            const spreadRot = diff * 1.8;
+
+            // Hovered single card in vertical fanned state
+            if (isHovered && card === activeHoveredCard) {
+              card.style.transform = `translate(${spreadX}px, ${spreadY}px) scale(1.05) rotate(0deg)`;
+              card.style.zIndex = '100';
+              card.style.opacity = '1';
+              card.style.filter = 'none';
+              card.style.boxShadow = '0 28px 75px rgba(0, 0, 0, 0.95), 0 0 35px rgba(227, 164, 105, 0.45)';
+              card.style.borderColor = 'var(--amber)';
+              return;
+            }
+
+            if (isHovered && !isMobile) {
+              // Fanned out distribution in VERTICAL DIRECTION
+              card.style.transform = `translate(${spreadX}px, ${spreadY}px) rotate(${spreadRot}deg) scale(1)`;
+              card.style.zIndex = (idx + 10).toString();
+              card.style.opacity = activeHoveredCard ? '0.82' : '1';
+              card.style.filter = 'none';
+              card.style.boxShadow = '0 16px 45px rgba(0, 0, 0, 0.72)';
+              card.style.borderColor = 'rgba(227, 164, 105, 0.22)';
+            } else {
+              // Collapsed vertical stack with organic deterministic jitter
+              const jRot = jitterRotations[idx % jitterRotations.length];
+              const jX = jitterOffsetsX[idx % jitterOffsetsX.length];
+              const jY = jitterOffsetsY[idx % jitterOffsetsY.length];
+              const stackScale = 1 - (idx * 0.025);
+              const stackZ = (total - idx) * 2;
+              const stackOpacity = idx > 4 ? 0.35 : (1 - idx * 0.1);
+              const stackBlur = idx > 2 ? `blur(${idx * 0.35}px)` : 'none';
+
+              card.style.transform = `translate(${jX}px, ${jY}px) rotate(${jRot}deg) scale(${stackScale})`;
+              card.style.zIndex = stackZ.toString();
+              card.style.opacity = stackOpacity.toString();
+              card.style.filter = stackBlur;
+              card.style.boxShadow = '0 16px 45px rgba(0, 0, 0, 0.72)';
+              card.style.borderColor = 'rgba(227, 164, 105, 0.22)';
+            }
+          });
+        }
+
+        // Hover stage listeners
+        stage.addEventListener('mouseenter', () => {
+          if (window.innerWidth > 680) {
+            isHovered = true;
+            layoutCards();
+          }
+        });
+        stage.addEventListener('mouseleave', () => {
+          isHovered = false;
+          activeHoveredCard = null;
+          layoutCards();
+        });
+
+        // Function to open Lightbox from card
+        function openCardInLightbox(card) {
+          if (lightboxModal && lightboxImg) {
+            lightboxImg.src = card.dataset.img || '';
+            if (lightboxTitle) lightboxTitle.textContent = card.dataset.title || '';
+            if (lightboxDesc) lightboxDesc.textContent = card.dataset.desc || '';
+            lightboxModal.classList.add('open');
+          }
+        }
+
+        // Individual card hover & click
+        cards.forEach(card => {
+          card.addEventListener('mouseenter', () => {
+            if (window.innerWidth > 680) {
+              activeHoveredCard = card;
+              layoutCards();
+            }
+          });
+          card.addEventListener('mouseleave', () => {
+            if (window.innerWidth > 680) {
+              activeHoveredCard = null;
+              layoutCards();
+            }
+          });
+
+          const ctaBtn = card.querySelector('.vdeck-cta-pill');
+          if (ctaBtn) {
+            ctaBtn.addEventListener('click', (e) => {
+              e.stopPropagation();
+              openCardInLightbox(card);
+            });
+          }
+
+          card.addEventListener('click', () => {
+            const visible = getVisibleCards();
+            if (window.innerWidth <= 680) {
+              if (visible[0] === card) {
+                openCardInLightbox(card);
+              } else {
+                const cardIdx = cards.indexOf(card);
+                if (cardIdx > -1) {
+                  const [selected] = cards.splice(cardIdx, 1);
+                  cards.unshift(selected);
+                  layoutCards();
+                }
+              }
+            } else {
+              openCardInLightbox(card);
+            }
+          });
+
+          card.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              openCardInLightbox(card);
+            }
+          });
+        });
+
+        // Cycle next / prev vertically
+        function cycleNext() {
+          const visible = getVisibleCards();
+          if (visible.length <= 1) return;
+          const topCard = visible[0];
+          const topIdx = cards.indexOf(topCard);
+          if (topIdx > -1) {
+            cards.splice(topIdx, 1);
+            cards.push(topCard);
+            layoutCards();
+          }
+        }
+
+        function cyclePrev() {
+          const visible = getVisibleCards();
+          if (visible.length <= 1) return;
+          const bottomCard = visible[visible.length - 1];
+          const btmIdx = cards.indexOf(bottomCard);
+          if (btmIdx > -1) {
+            cards.splice(btmIdx, 1);
+            cards.unshift(bottomCard);
+            layoutCards();
+          }
+        }
+
+        if (btnNext) btnNext.addEventListener('click', (e) => { e.stopPropagation(); cycleNext(); });
+        if (btnPrev) btnPrev.addEventListener('click', (e) => { e.stopPropagation(); cyclePrev(); });
+
+        // Keyboard arrow navigation on stage
+        stage.addEventListener('keydown', (e) => {
+          if (e.key === 'ArrowUp') {
+            e.preventDefault();
+            cyclePrev();
+          } else if (e.key === 'ArrowDown') {
+            e.preventDefault();
+            cycleNext();
+          }
+        });
+
+        // Touch vertical swipe support for mobile
+        let touchStartY = 0;
+        let touchStartX = 0;
+        stage.addEventListener('touchstart', (e) => {
+          if (e.touches && e.touches.length > 0) {
+            touchStartY = e.touches[0].clientY;
+            touchStartX = e.touches[0].clientX;
+          }
+        }, { passive: true });
+
+        stage.addEventListener('touchend', (e) => {
+          if (e.changedTouches && e.changedTouches.length > 0) {
+            const diffY = e.changedTouches[0].clientY - touchStartY;
+            const diffX = e.changedTouches[0].clientX - touchStartX;
+            if (Math.abs(diffY) > 35 && Math.abs(diffY) > Math.abs(diffX)) {
+              if (diffY < 0) {
+                cycleNext();
+              } else {
+                cyclePrev();
+              }
+            }
+          }
+        }, { passive: true });
+
+        // Synchronize category filters with vertical deck
+        window.filterGalleryByCategory = function(category) {
+          currentFilter = category;
+          isHovered = false;
+          activeHoveredCard = null;
+          layoutCards();
+        };
+
+        window.addEventListener('resize', () => {
+          layoutCards();
+        });
+
+        layoutCards();
+      }
+
+      // Initialize the Vertical Team Stack in Cafe Moments immediately
+      initGalleryVerticalStack();
+
       // Categorized Gallery Filtering Interactivity
       document.querySelectorAll('.gallery-filter-btn').forEach(btn => {
         btn.addEventListener('click', () => {
@@ -4082,6 +4819,7 @@
           btn.classList.add('active');
           const filter = btn.dataset.filter;
 
+          // Update full gallery grid
           document.querySelectorAll('.gallery-card').forEach(card => {
             if (filter === 'all' || card.dataset.category === filter) {
               card.style.display = 'block';
@@ -4089,6 +4827,11 @@
               card.style.display = 'none';
             }
           });
+
+          // Update Unlumen vertical team-stack deck
+          if (typeof window.filterGalleryByCategory === 'function') {
+            window.filterGalleryByCategory(filter);
+          }
         });
       });
 
