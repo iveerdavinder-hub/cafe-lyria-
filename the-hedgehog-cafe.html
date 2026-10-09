@@ -611,7 +611,7 @@
       justify-content: center;
       flex-wrap: wrap;
       gap: 10px;
-      margin-bottom: 48px;
+      margin-bottom: 32px;
     }
     .menu-filter-btn {
       background: var(--bg-card);
@@ -633,6 +633,307 @@
       color: #120e0c;
       border-color: var(--amber);
       font-weight: 700;
+    }
+
+    /* ==========================================================================
+       SECTION 3: INTERACTIVE MENU & UNLUMEN TEAM-STACK DECK
+       ========================================================================== */
+    .menu-view-switch-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 22px;
+      flex-wrap: wrap;
+    }
+    .view-toggle-pill {
+      display: inline-flex;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--line);
+      padding: 4px;
+      border-radius: var(--radius-pill);
+      gap: 4px;
+    }
+    .view-toggle-btn {
+      background: transparent;
+      border: none;
+      color: var(--muted);
+      padding: 7px 18px;
+      border-radius: var(--radius-pill);
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      transition: all 0.25s var(--ease-smooth);
+    }
+    .view-toggle-btn.active {
+      background: var(--amber);
+      color: #120e0b;
+      box-shadow: 0 4px 14px rgba(227, 164, 105, 0.35);
+      font-weight: 700;
+    }
+    .menu-deck-stage.is-hidden,
+    .menu-cards-grid.is-hidden {
+      display: none !important;
+    }
+
+    /* Unlumen-style Team Stack Deck Container */
+    .menu-deck-stage {
+      position: relative;
+      width: 100%;
+      max-width: 1200px;
+      min-height: 520px;
+      margin: 10px auto 30px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      perspective: 1200px;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+    .menu-deck-stack {
+      position: relative;
+      width: 320px;
+      height: 460px;
+      margin: 0 auto;
+    }
+    .deck-card {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 320px;
+      height: 460px;
+      border-radius: 26px;
+      background: #18120e;
+      border: 1px solid rgba(227, 164, 105, 0.22);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.65);
+      overflow: hidden;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      transform-origin: center 85%;
+      will-change: transform, box-shadow, border-color;
+      transition: transform 0.6s cubic-bezier(0.2, 0.9, 0.25, 1), 
+                  box-shadow 0.4s ease, 
+                  border-color 0.3s ease,
+                  opacity 0.3s ease,
+                  filter 0.3s ease;
+    }
+    .deck-card.is-hidden {
+      display: none !important;
+    }
+    .deck-card:focus-visible {
+      outline: 2px solid var(--amber);
+      outline-offset: 4px;
+    }
+
+    /* Card Thumbnail & Badges */
+    .deck-card-thumb {
+      position: relative;
+      width: 100%;
+      height: 220px;
+      overflow: hidden;
+      background: #140e0b;
+      flex-shrink: 0;
+    }
+    .deck-card-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s var(--ease-smooth);
+    }
+    .deck-card:hover .deck-card-thumb img {
+      transform: scale(1.06);
+    }
+    .deck-badge {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      background: rgba(18, 14, 12, 0.85);
+      border: 1px solid rgba(227, 164, 105, 0.3);
+      padding: 4px 12px;
+      border-radius: var(--radius-pill);
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--amber);
+      letter-spacing: 0.04em;
+      backdrop-filter: blur(8px);
+      z-index: 2;
+    }
+    .deck-price-tag {
+      position: absolute;
+      bottom: 12px;
+      right: 14px;
+      background: rgba(18, 14, 12, 0.9);
+      border: 1px solid rgba(227, 164, 105, 0.35);
+      padding: 4px 12px;
+      border-radius: var(--radius-pill);
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: -0.01em;
+      backdrop-filter: blur(8px);
+      z-index: 2;
+    }
+
+    .deck-card-body {
+      padding: 20px 22px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      justify-content: space-between;
+      background: linear-gradient(180deg, #18120e 0%, #140e0b 100%);
+    }
+    .deck-card-meta {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--amber);
+      margin-bottom: 4px;
+    }
+    .deck-card-title {
+      font-family: var(--font-serif);
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 6px;
+      line-height: 1.25;
+    }
+    .deck-card-desc {
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .deck-card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 14px;
+      border-top: 1px solid rgba(227, 164, 105, 0.15);
+      margin-top: 8px;
+    }
+
+    /* Spring-Animated CTA Pill (Signature Unlumen Pattern) */
+    .deck-cta-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(227, 164, 105, 0.14);
+      border: 1px solid rgba(227, 164, 105, 0.35);
+      color: #fff;
+      padding: 6px 14px;
+      border-radius: var(--radius-pill);
+      font-size: 0.78rem;
+      font-weight: 600;
+      transition: all 0.3s var(--ease-smooth);
+      cursor: pointer;
+    }
+    .deck-cta-pill span.pill-plus {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--amber);
+      color: #120e0b;
+      font-weight: 900;
+      font-size: 0.78rem;
+      line-height: 1;
+      transition: transform 0.3s var(--ease-smooth);
+    }
+    .deck-card:hover .deck-cta-pill {
+      background: var(--amber);
+      color: #120e0b;
+      border-color: var(--amber);
+      box-shadow: 0 6px 20px rgba(227, 164, 105, 0.45);
+    }
+    .deck-card:hover .deck-cta-pill span.pill-plus {
+      transform: rotate(90deg);
+      background: #120e0b;
+      color: var(--amber);
+    }
+
+    /* Deck controls & helper indicator */
+    .deck-hint-bar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      margin-top: 24px;
+      flex-wrap: wrap;
+    }
+    .deck-hint-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(227, 164, 105, 0.18);
+      padding: 6px 16px;
+      border-radius: var(--radius-pill);
+      font-size: 0.78rem;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+    }
+    .deck-hint-pill span.pulse {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--amber);
+      box-shadow: 0 0 8px var(--amber);
+    }
+    .deck-nav-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--line);
+      color: #fff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-size: 0.95rem;
+    }
+    .deck-nav-btn:hover {
+      background: var(--amber);
+      color: #120e0b;
+      border-color: var(--amber);
+    }
+
+    /* Responsive Deck Stacking */
+    @media (max-width: 1024px) {
+      .menu-deck-stage {
+        min-height: 490px;
+      }
+      .menu-deck-stack,
+      .deck-card {
+        width: 290px;
+        height: 430px;
+      }
+      .deck-card-thumb {
+        height: 200px;
+      }
+    }
+    @media (max-width: 768px) {
+      .menu-deck-stage {
+        min-height: 470px;
+      }
+      .menu-deck-stack,
+      .deck-card {
+        width: 280px;
+        height: 415px;
+      }
+      .deck-card-thumb {
+        height: 190px;
+      }
     }
 
     .menu-cards-grid {
@@ -1705,6 +2006,18 @@
         <p class="section-desc">Handcrafted comfort food and fresh brews. Tap any dish to order directly to your table.</p>
       </div>
 
+      <!-- View Format Switcher: Unlumen Team-Stack Deck vs Full Grid -->
+      <div class="menu-view-switch-row">
+        <div class="view-toggle-pill" role="tablist" aria-label="Menu View Format">
+          <button type="button" class="view-toggle-btn active" id="viewToggleDeck" data-view="deck" role="tab" aria-selected="true">
+            <span>🎴</span> Team Stack Deck
+          </button>
+          <button type="button" class="view-toggle-btn" id="viewToggleGrid" data-view="grid" role="tab" aria-selected="false">
+            <span>▦</span> Full Menu Grid
+          </button>
+        </div>
+      </div>
+
       <div class="menu-filter-bar">
         <button type="button" class="menu-filter-btn active" data-filter="all">All Favorites</button>
         <button type="button" class="menu-filter-btn" data-filter="breakfast">Breakfast</button>
@@ -1713,7 +2026,160 @@
         <button type="button" class="menu-filter-btn" data-filter="dessert">Desserts</button>
       </div>
 
-      <div class="menu-cards-grid" id="menuCardsGrid">
+      <!-- Unlumen Team-Stack Interactive Fanning Card Deck -->
+      <div class="menu-deck-stage" id="menuDeckStage">
+        <div class="menu-deck-stack" id="menuDeckStack" aria-label="Interactive Food Cards Deck">
+          <!-- Deck Card 1: Breakfast -->
+          <div class="deck-card" data-category="breakfast" data-name="The English Breakfast" data-price="395" tabindex="0">
+            <div class="deck-card-thumb">
+              <img src="images/hedgehog_english_breakfast.jpg" alt="The English Breakfast" loading="lazy">
+              <span class="deck-badge">Most Popular</span>
+              <span class="deck-price-tag">₹395</span>
+            </div>
+            <div class="deck-card-body">
+              <div>
+                <div class="deck-card-meta">Hearty Morning Classic</div>
+                <h3 class="deck-card-title">The English Breakfast</h3>
+                <p class="deck-card-desc">Eggs to order, chicken sausages, grilled tomatoes, buttered mushrooms, baked beans & toasted sourdough.</p>
+              </div>
+              <div class="deck-card-footer">
+                <span style="font-size:0.75rem; color:var(--muted); font-weight:600;">Breakfast Classic</span>
+                <div class="deck-cta-pill">
+                  <span>Order to Table</span>
+                  <span class="pill-plus">+</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Deck Card 2: Mains / Pasta -->
+          <div class="deck-card" data-category="mains" data-name="Popeye's Ravioli" data-price="385" tabindex="0">
+            <div class="deck-card-thumb">
+              <img src="images/hedgehog_ravioli_pizza.jpg" alt="Popeye's Ravioli" loading="lazy">
+              <span class="deck-badge">Chef's Special</span>
+              <span class="deck-price-tag">₹385</span>
+            </div>
+            <div class="deck-card-body">
+              <div>
+                <div class="deck-card-meta">Handmade Italian Pasta</div>
+                <h3 class="deck-card-title">Popeye's Ravioli</h3>
+                <p class="deck-card-desc">Handmade pasta parcels filled with fresh spinach, ricotta, bathed in a velvety roasted garlic parmesan sauce.</p>
+              </div>
+              <div class="deck-card-footer">
+                <span style="font-size:0.75rem; color:var(--muted); font-weight:600;">Chef's Special</span>
+                <div class="deck-cta-pill">
+                  <span>Order to Table</span>
+                  <span class="pill-plus">+</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Deck Card 3: Mains / Pizza -->
+          <div class="deck-card" data-category="mains" data-name="The Pizza of SW-Desi Things" data-price="445" tabindex="0">
+            <div class="deck-card-thumb">
+              <img src="images/hedgehog_hero.jpg" alt="The Pizza of SW-Desi Things" loading="lazy">
+              <span class="deck-badge">Wood Fired</span>
+              <span class="deck-price-tag">₹445</span>
+            </div>
+            <div class="deck-card-body">
+              <div>
+                <div class="deck-card-meta">Wood Fired Thin Crust</div>
+                <h3 class="deck-card-title">The Pizza of SW-Desi Things</h3>
+                <p class="deck-card-desc">Crisp thin-crust pizza with spiced paneer, roasted bell peppers, fresh mozzarella, and a hint of local green chutney drizzle.</p>
+              </div>
+              <div class="deck-card-footer">
+                <span style="font-size:0.75rem; color:var(--muted); font-weight:600;">Artisan Pizza</span>
+                <div class="deck-cta-pill">
+                  <span>Order to Table</span>
+                  <span class="pill-plus">+</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Deck Card 4: Coffee Frappe -->
+          <div class="deck-card" data-category="coffee" data-name="Signature Cold Coffee Frappe" data-price="245" tabindex="0">
+            <div class="deck-card-thumb">
+              <img src="images/coffee.webp" alt="Signature Cold Coffee Frappe" loading="lazy">
+              <span class="deck-badge">Signature Brew</span>
+              <span class="deck-price-tag">₹245</span>
+            </div>
+            <div class="deck-card-body">
+              <div>
+                <div class="deck-card-meta">Chilled House Specialty</div>
+                <h3 class="deck-card-title">Signature Cold Coffee Frappe</h3>
+                <p class="deck-card-desc">Double-shot rich espresso blended with chilled milk, vanilla bean cream, and fine Belgian cocoa dusting.</p>
+              </div>
+              <div class="deck-card-footer">
+                <span style="font-size:0.75rem; color:var(--muted); font-weight:600;">Cold Brew Bar</span>
+                <div class="deck-cta-pill">
+                  <span>Order to Table</span>
+                  <span class="pill-plus">+</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Deck Card 5: Dessert -->
+          <div class="deck-card" data-category="dessert" data-name="Cappuccino Tart with Ice Cream" data-price="265" tabindex="0">
+            <div class="deck-card-thumb">
+              <img src="images/hedgehog_frappe_dessert.jpg" alt="Cappuccino Tart with Ice Cream" loading="lazy">
+              <span class="deck-badge">Dessert Special</span>
+              <span class="deck-price-tag">₹265</span>
+            </div>
+            <div class="deck-card-body">
+              <div>
+                <div class="deck-card-meta">Artisan Bakery Creation</div>
+                <h3 class="deck-card-title">Cappuccino Tart with Ice Cream</h3>
+                <p class="deck-card-desc">Crisp buttery pastry shell filled with decadent coffee ganache, served with artisan Madagascar vanilla gelato.</p>
+              </div>
+              <div class="deck-card-footer">
+                <span style="font-size:0.75rem; color:var(--muted); font-weight:600;">Daily Bakery</span>
+                <div class="deck-cta-pill">
+                  <span>Order to Table</span>
+                  <span class="pill-plus">+</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Deck Card 6: Hot Coffee -->
+          <div class="deck-card" data-category="coffee" data-name="Artisan Flat White & Cortado" data-price="195" tabindex="0">
+            <div class="deck-card-thumb">
+              <img src="images/environment_espressobar.webp" alt="Artisan Flat White & Cortado" loading="lazy">
+              <span class="deck-badge">Single Origin</span>
+              <span class="deck-price-tag">₹195</span>
+            </div>
+            <div class="deck-card-body">
+              <div>
+                <div class="deck-card-meta">Specialty Espresso Bar</div>
+                <h3 class="deck-card-title">Artisan Flat White & Cortado</h3>
+                <p class="deck-card-desc">Equal parts rich espresso and silky microfoam milk, poured with intricate latte art and single-origin roast.</p>
+              </div>
+              <div class="deck-card-footer">
+                <span style="font-size:0.75rem; color:var(--muted); font-weight:600;">Hot Coffee Bar</span>
+                <div class="deck-cta-pill">
+                  <span>Order to Table</span>
+                  <span class="pill-plus">+</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Deck Controls & Guide Pill -->
+        <div class="deck-hint-bar">
+          <button type="button" class="deck-nav-btn" id="btnDeckPrev" title="Previous Dish" aria-label="Previous Dish">←</button>
+          <div class="deck-hint-pill">
+            <span class="pulse"></span>
+            <span id="deckHintText">Hover or tap cards to fan out & explore · Tap to order</span>
+          </div>
+          <button type="button" class="deck-nav-btn" id="btnDeckNext" title="Next Dish" aria-label="Next Dish">→</button>
+        </div>
+      </div>
+
+      <div class="menu-cards-grid is-hidden" id="menuCardsGrid">
         <!-- Dish 1 -->
         <div class="food-card" data-category="breakfast" onclick="openOrderModal('The English Breakfast', 395)">
           <div class="food-thumb-wrap">
@@ -3276,6 +3742,295 @@
         });
       }
 
+      // =====================================================================
+      // UNLUMEN UI TEAM-STACK COMPONENT: INTERACTIVE MENU CARD DECK
+      // =====================================================================
+      function initMenuDeckStack() {
+        const stage = document.getElementById('menuDeckStage');
+        const stack = document.getElementById('menuDeckStack');
+        const grid = document.getElementById('menuCardsGrid');
+        const viewToggleDeck = document.getElementById('viewToggleDeck');
+        const viewToggleGrid = document.getElementById('viewToggleGrid');
+        const btnPrev = document.getElementById('btnDeckPrev');
+        const btnNext = document.getElementById('btnDeckNext');
+        const hintText = document.getElementById('deckHintText');
+
+        if (!stage || !stack) return;
+
+        let cards = Array.from(stack.querySelectorAll('.deck-card'));
+        let currentFilter = 'all';
+        let isHovered = false;
+        let activeHoveredCard = null;
+
+        // View Mode Switcher
+        function setViewMode(mode) {
+          if (mode === 'grid') {
+            stage.classList.add('is-hidden');
+            grid.classList.remove('is-hidden');
+            if (viewToggleGrid) {
+              viewToggleGrid.classList.add('active');
+              viewToggleGrid.setAttribute('aria-selected', 'true');
+            }
+            if (viewToggleDeck) {
+              viewToggleDeck.classList.remove('active');
+              viewToggleDeck.setAttribute('aria-selected', 'false');
+            }
+          } else {
+            stage.classList.remove('is-hidden');
+            grid.classList.add('is-hidden');
+            if (viewToggleDeck) {
+              viewToggleDeck.classList.add('active');
+              viewToggleDeck.setAttribute('aria-selected', 'true');
+            }
+            if (viewToggleGrid) {
+              viewToggleGrid.classList.remove('active');
+              viewToggleGrid.setAttribute('aria-selected', 'false');
+            }
+            layoutCards();
+          }
+        }
+
+        if (viewToggleDeck) {
+          viewToggleDeck.addEventListener('click', () => setViewMode('deck'));
+        }
+        if (viewToggleGrid) {
+          viewToggleGrid.addEventListener('click', () => setViewMode('grid'));
+        }
+
+        // Get visible cards based on current category filter
+        function getVisibleCards() {
+          return cards.filter(card => {
+            if (currentFilter === 'all') return true;
+            return card.dataset.category === currentFilter;
+          });
+        }
+
+        // Deterministic organic jitter angles & offsets (Unlumen style Math.sin curve)
+        const jitterRotations = [-4.5, 3.8, -2.4, 4.2, -3.5, 2.8];
+        const jitterOffsetsX = [0, 4, -3, 5, -4, 2];
+        const jitterOffsetsY = [0, 6, 12, 18, 24, 30];
+
+        // Layout cards according to state (stacked vs fanned out)
+        function layoutCards() {
+          const visible = getVisibleCards();
+          const total = visible.length;
+          const isMobile = window.innerWidth <= 680;
+          const isTablet = window.innerWidth > 680 && window.innerWidth <= 1024;
+
+          // Hide cards not matching current filter
+          cards.forEach(c => {
+            if (!visible.includes(c)) {
+              c.classList.add('is-hidden');
+              c.style.transform = '';
+              c.style.zIndex = '0';
+              c.style.opacity = '0';
+            } else {
+              c.classList.remove('is-hidden');
+            }
+          });
+
+          if (total === 0) {
+            if (hintText) hintText.textContent = 'No dishes in this category';
+            return;
+          }
+
+          if (hintText) {
+            hintText.textContent = isMobile 
+              ? `Tap card or arrows to cycle (${total} dishes) · Tap Order to order`
+              : `Hover to fan out all ${total} dishes · Click any dish to order`;
+          }
+
+          const centerIndex = (total - 1) / 2;
+
+          visible.forEach((card, idx) => {
+            // If hovering this specific card during fanned state
+            if (isHovered && card === activeHoveredCard) {
+              const diff = idx - centerIndex;
+              const stepX = isTablet ? 95 : (total > 4 ? 175 : 210);
+              const spreadX = isMobile ? 0 : diff * stepX;
+              const spreadY = isMobile ? -10 : (Math.pow(Math.abs(diff), 1.25) * 10 - 22);
+
+              card.style.transform = `translate(${spreadX}px, ${spreadY}px) scale(1.06) rotate(0deg)`;
+              card.style.zIndex = '100';
+              card.style.opacity = '1';
+              card.style.filter = 'none';
+              card.style.boxShadow = '0 28px 70px rgba(0,0,0,0.88), 0 0 35px rgba(227,164,105,0.35)';
+              card.style.borderColor = 'var(--amber)';
+              return;
+            }
+
+            if (isHovered && !isMobile) {
+              // Fanned out distribution
+              const diff = idx - centerIndex;
+              const stepX = isTablet ? 95 : (total > 4 ? 175 : 210);
+              const spreadX = diff * stepX;
+              const spreadY = Math.pow(Math.abs(diff), 1.25) * 12;
+              const spreadRot = diff * (isTablet ? 3.5 : 4.5);
+              const cardScale = isTablet ? 0.94 : 1.0;
+
+              card.style.transform = `translate(${spreadX}px, ${spreadY}px) rotate(${spreadRot}deg) scale(${cardScale})`;
+              card.style.zIndex = (idx + 10).toString();
+              card.style.opacity = activeHoveredCard ? '0.85' : '1';
+              card.style.filter = 'none';
+              card.style.boxShadow = '0 16px 40px rgba(0, 0, 0, 0.65)';
+              card.style.borderColor = 'rgba(227, 164, 105, 0.22)';
+            } else {
+              // Stacked deck with organic deterministic jitter
+              const jRot = jitterRotations[idx % jitterRotations.length];
+              const jX = jitterOffsetsX[idx % jitterOffsetsX.length];
+              const jY = jitterOffsetsY[idx % jitterOffsetsY.length];
+              const stackScale = 1 - (idx * 0.025);
+              const stackZ = (total - idx) * 2;
+              const stackOpacity = idx > 4 ? 0.45 : (1 - idx * 0.1);
+              const stackBlur = idx > 2 ? `blur(${idx * 0.3}px)` : 'none';
+
+              card.style.transform = `translate(${jX}px, ${jY}px) rotate(${jRot}deg) scale(${stackScale})`;
+              card.style.zIndex = stackZ.toString();
+              card.style.opacity = stackOpacity.toString();
+              card.style.filter = stackBlur;
+              card.style.boxShadow = '0 16px 40px rgba(0, 0, 0, 0.65)';
+              card.style.borderColor = 'rgba(227, 164, 105, 0.22)';
+            }
+          });
+        }
+
+        // Hover stage listeners
+        stage.addEventListener('mouseenter', () => {
+          if (window.innerWidth > 680) {
+            isHovered = true;
+            layoutCards();
+          }
+        });
+        stage.addEventListener('mouseleave', () => {
+          isHovered = false;
+          activeHoveredCard = null;
+          layoutCards();
+        });
+
+        // Individual card hover & interaction
+        cards.forEach(card => {
+          card.addEventListener('mouseenter', () => {
+            if (window.innerWidth > 680) {
+              activeHoveredCard = card;
+              layoutCards();
+            }
+          });
+          card.addEventListener('mouseleave', () => {
+            if (window.innerWidth > 680) {
+              activeHoveredCard = null;
+              layoutCards();
+            }
+          });
+
+          // Order handling
+          const itemName = card.dataset.name || 'The English Breakfast';
+          const itemPrice = parseInt(card.dataset.price, 10) || 395;
+
+          const ctaBtn = card.querySelector('.deck-cta-pill');
+          if (ctaBtn) {
+            ctaBtn.addEventListener('click', (e) => {
+              e.stopPropagation();
+              if (typeof window.openOrderModal === 'function') {
+                window.openOrderModal(itemName, itemPrice);
+              }
+            });
+          }
+
+          card.addEventListener('click', () => {
+            const visible = getVisibleCards();
+            if (window.innerWidth <= 680) {
+              if (visible[0] === card) {
+                if (typeof window.openOrderModal === 'function') {
+                  window.openOrderModal(itemName, itemPrice);
+                }
+              } else {
+                const cardIdx = cards.indexOf(card);
+                if (cardIdx > -1) {
+                  const [selected] = cards.splice(cardIdx, 1);
+                  cards.unshift(selected);
+                  layoutCards();
+                }
+              }
+            } else {
+              if (typeof window.openOrderModal === 'function') {
+                window.openOrderModal(itemName, itemPrice);
+              }
+            }
+          });
+        });
+
+        // Cycle next / prev
+        function cycleNext() {
+          const visible = getVisibleCards();
+          if (visible.length <= 1) return;
+          const topCard = visible[0];
+          const topIdx = cards.indexOf(topCard);
+          if (topIdx > -1) {
+            cards.splice(topIdx, 1);
+            cards.push(topCard);
+            layoutCards();
+          }
+        }
+
+        function cyclePrev() {
+          const visible = getVisibleCards();
+          if (visible.length <= 1) return;
+          const bottomCard = visible[visible.length - 1];
+          const btmIdx = cards.indexOf(bottomCard);
+          if (btmIdx > -1) {
+            cards.splice(btmIdx, 1);
+            cards.unshift(bottomCard);
+            layoutCards();
+          }
+        }
+
+        if (btnNext) btnNext.addEventListener('click', (e) => { e.stopPropagation(); cycleNext(); });
+        if (btnPrev) btnPrev.addEventListener('click', (e) => { e.stopPropagation(); cyclePrev(); });
+
+        // Touch swipe support for mobile
+        let touchStartX = 0;
+        let touchStartY = 0;
+        stage.addEventListener('touchstart', (e) => {
+          if (e.touches && e.touches.length > 0) {
+            touchStartX = e.touches[0].clientX;
+            touchStartY = e.touches[0].clientY;
+          }
+        }, { passive: true });
+
+        stage.addEventListener('touchend', (e) => {
+          if (e.changedTouches && e.changedTouches.length > 0) {
+            const diffX = e.changedTouches[0].clientX - touchStartX;
+            const diffY = e.changedTouches[0].clientY - touchStartY;
+            if (Math.abs(diffX) > 40 && Math.abs(diffX) > Math.abs(diffY)) {
+              if (diffX < 0) {
+                cycleNext();
+              } else {
+                cyclePrev();
+              }
+            }
+          }
+        }, { passive: true });
+
+        // Synchronize category filters with deck
+        window.filterDeckByCategory = function(category) {
+          currentFilter = category;
+          isHovered = false;
+          activeHoveredCard = null;
+          layoutCards();
+        };
+
+        // Window resize re-calculation
+        window.addEventListener('resize', () => {
+          layoutCards();
+        });
+
+        // Initial layout
+        layoutCards();
+      }
+
+      // Initialize the Team Stack Deck immediately
+      initMenuDeckStack();
+
       // Menu Category Filters
       document.querySelectorAll('.menu-filter-btn').forEach(btn => {
         btn.addEventListener('click', () => {
@@ -3283,6 +4038,7 @@
           btn.classList.add('active');
           const filter = btn.dataset.filter;
 
+          // Update full grid
           document.querySelectorAll('.food-card').forEach(card => {
             if (filter === 'all' || card.dataset.category === filter) {
               card.style.display = 'flex';
@@ -3290,6 +4046,11 @@
               card.style.display = 'none';
             }
           });
+
+          // Update Unlumen team-stack deck
+          if (typeof window.filterDeckByCategory === 'function') {
+            window.filterDeckByCategory(filter);
+          }
         });
       });
 
