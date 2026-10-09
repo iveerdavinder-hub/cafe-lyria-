@@ -2879,7 +2879,8 @@
             headers: {
               'Title': title,
               'Priority': 'high',
-              'Tags': tags
+              'Tags': tags,
+              'Content-Type': 'text/plain; charset=utf-8'
             },
             body: JSON.stringify(notifData)
           }).catch(err => console.log('Cloud sync dispatch notice:', err));
