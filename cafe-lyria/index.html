@@ -53,9 +53,10 @@
       --font-sans: 'Plus Jakarta Sans', sans-serif;
       --font-mono: 'JetBrains Mono', monospace;
       
-      --radius-sm: 8px;
-      --radius-md: 16px;
-      --radius-lg: 24px;
+      --radius-sm: 10px;
+      --radius-md: 18px;
+      --radius-lg: 26px;
+      --radius-xl: 30px;
       --radius-pill: 9999px;
       
       --shadow-soft: 0 16px 40px rgba(0, 0, 0, 0.45);
@@ -311,18 +312,29 @@
     }
 
     /* ==========================================================================
-       SECTION 1: HERO VIEWPORT (3D Character & Environment Experience)
+       SECTION 1: HERO VIEWPORT (Big-Focused Hero Image & Refined Editorial Typography)
        ========================================================================== */
     .hero-section {
       min-height: 100vh;
       display: flex;
       align-items: center;
-      padding: 130px 4vw 60px;
+      padding: 130px 5vw 70px;
       position: relative;
       z-index: 10;
     }
+    .hero-container {
+      width: 100%;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      align-items: center;
+      gap: 52px;
+    }
     .hero-content {
-      max-width: 660px;
+      max-width: 600px;
       position: relative;
     }
     .hero-badge {
@@ -330,7 +342,7 @@
       align-items: center;
       gap: 8px;
       background: rgba(227, 164, 105, 0.12);
-      border: 1px solid rgba(227, 164, 105, 0.3);
+      border: 1px solid rgba(227, 164, 105, 0.28);
       padding: 6px 14px;
       border-radius: var(--radius-pill);
       font-size: 0.8rem;
@@ -340,6 +352,12 @@
       text-transform: uppercase;
       margin-bottom: 22px;
       backdrop-filter: blur(8px);
+      text-decoration: none;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .hero-badge:hover {
+      background: rgba(227, 164, 105, 0.2);
+      border-color: var(--amber);
     }
     .hero-badge span.pulse-dot {
       width: 7px;
@@ -351,12 +369,12 @@
 
     .hero-title {
       font-family: var(--font-serif);
-      font-size: clamp(3rem, 5.6vw, 4.8rem);
+      font-size: clamp(2.8rem, 4.8vw, 4.4rem);
       font-weight: 700;
-      line-height: 1.06;
+      line-height: 1.08;
       letter-spacing: -0.02em;
       color: #fff;
-      margin-bottom: 22px;
+      margin-bottom: 20px;
     }
     .hero-title em {
       font-style: italic;
@@ -364,11 +382,11 @@
     }
 
     .hero-sub {
-      font-size: 1.18rem;
+      font-size: 1.12rem;
       color: var(--cream-soft);
-      line-height: 1.7;
-      margin-bottom: 38px;
-      max-width: 560px;
+      line-height: 1.68;
+      margin-bottom: 34px;
+      max-width: 520px;
       font-weight: 300;
     }
 
@@ -376,64 +394,138 @@
       display: flex;
       align-items: center;
       flex-wrap: wrap;
-      gap: 16px;
-      margin-bottom: 48px;
+      gap: 14px;
+      margin-bottom: 36px;
     }
 
-    .scroll-indicator {
-      display: inline-flex;
+    .hero-meta-row {
+      display: flex;
       align-items: center;
-      gap: 10px;
-      font-size: 0.78rem;
-      font-family: var(--font-mono);
-      letter-spacing: 0.14em;
-      color: var(--muted);
-      text-transform: uppercase;
-      animation: bounceDown 2.2s infinite ease-in-out;
+      gap: 20px;
+      flex-wrap: wrap;
+      padding-top: 22px;
+      border-top: 1px solid rgba(227, 164, 105, 0.15);
     }
-    @keyframes bounceDown {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(6px); }
+    .hero-meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
     }
-
-    /* Hero Floating HUD Tag (Shows 3D scene details) */
-    .scene-meta-hud {
-      position: absolute;
-      right: 4vw;
-      bottom: 50px;
-      background: var(--bg-card);
-      border: 1px solid var(--line);
-      border-radius: var(--radius-md);
-      padding: 14px 20px;
-      backdrop-filter: blur(14px);
-      max-width: 280px;
-      z-index: 10;
-      box-shadow: var(--shadow-soft);
-    }
-    .hud-header {
-      font-size: 0.72rem;
-      font-family: var(--font-mono);
-      color: var(--amber);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      margin-bottom: 4px;
-    }
-    .hud-title {
-      font-size: 0.95rem;
+    .hero-meta-val {
+      font-size: 1.02rem;
       font-weight: 700;
       color: #fff;
     }
-    .hud-caption {
-      font-size: 0.78rem;
+    .hero-meta-lbl {
+      font-size: 0.74rem;
       color: var(--muted);
-      margin-top: 2px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .hero-meta-sep {
+      width: 1px;
+      height: 28px;
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    /* Big-Focused Hero Image Card */
+    .hero-image-wrap {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      width: 100%;
+    }
+    .hero-image-card {
+      position: relative;
+      width: 100%;
+      height: 480px;
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      border: 1px solid rgba(227, 164, 105, 0.24);
+      box-shadow: 0 28px 65px rgba(0, 0, 0, 0.65), 0 0 40px rgba(227, 164, 105, 0.1);
+      background: #191310;
+      transition: transform 0.4s var(--ease-smooth), box-shadow 0.4s var(--ease-smooth), border-color 0.4s;
+    }
+    .hero-image-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 34px 80px rgba(0, 0, 0, 0.75), 0 0 55px rgba(227, 164, 105, 0.18);
+      border-color: rgba(227, 164, 105, 0.4);
+    }
+    .hero-big-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 38%;
+      display: block;
+      transition: transform 0.7s var(--ease-smooth);
+    }
+    .hero-image-card:hover .hero-big-img {
+      transform: scale(1.04);
+    }
+    .hero-image-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(18, 14, 12, 0.05) 0%, rgba(18, 14, 12, 0.35) 60%, rgba(18, 14, 12, 0.85) 100%);
+      pointer-events: none;
+    }
+    .hero-image-badge {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      right: 20px;
+      background: rgba(18, 14, 12, 0.82);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(227, 164, 105, 0.25);
+      border-radius: 20px;
+      padding: 12px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+    }
+    .hero-badge-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .hero-badge-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: #4ade80;
+      box-shadow: 0 0 10px #4ade80;
+      flex-shrink: 0;
+    }
+    .hero-badge-text strong {
+      display: block;
+      color: #fff;
+      font-size: 0.92rem;
+      font-weight: 600;
+    }
+    .hero-badge-text span {
+      display: block;
+      color: var(--amber);
+      font-size: 0.75rem;
+      letter-spacing: 0.02em;
+    }
+    .hero-badge-rating {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--gold);
+      background: rgba(245, 158, 11, 0.12);
+      border: 1px solid rgba(245, 158, 11, 0.25);
+      padding: 4px 10px;
+      border-radius: var(--radius-pill);
+      white-space: nowrap;
     }
 
     /* ==========================================================================
-       SECTION 2: THE CAFÉ EXPERIENCE ("More Than Just Coffee")
+       SECTION 2: THE CAFÉ EXPERIENCE
        ========================================================================== */
     .section-wrap {
-      padding: 110px 4vw;
+      padding: 115px 5vw;
       max-width: 1280px;
       margin: 0 auto;
       position: relative;
@@ -441,51 +533,54 @@
     }
     .section-header {
       text-align: center;
-      max-width: 720px;
-      margin: 0 auto 64px;
+      max-width: 680px;
+      margin: 0 auto 52px;
     }
     .section-eyebrow {
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       font-weight: 700;
-      letter-spacing: 0.16em;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--amber);
-      margin-bottom: 12px;
+      margin-bottom: 10px;
       display: block;
     }
     .section-heading {
       font-family: var(--font-serif);
-      font-size: clamp(2.4rem, 4.2vw, 3.4rem);
+      font-size: clamp(2.3rem, 4vw, 3.2rem);
       font-weight: 700;
       color: #fff;
-      margin-bottom: 16px;
+      margin-bottom: 14px;
       line-height: 1.15;
     }
     .section-desc {
-      font-size: 1.08rem;
+      font-size: 1.05rem;
       color: var(--muted);
-      line-height: 1.7;
+      line-height: 1.68;
+      max-width: 580px;
+      margin: 0 auto;
     }
 
     .experience-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
+      gap: 26px;
     }
     .exp-card {
       background: var(--bg-card);
       border: 1px solid var(--line);
       border-radius: var(--radius-lg);
-      padding: 36px 28px;
+      padding: 34px 28px;
       backdrop-filter: blur(14px);
       transition: transform 0.3s var(--ease-smooth), border-color 0.3s, box-shadow 0.3s;
       position: relative;
       overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
     }
     .exp-card:hover {
-      transform: translateY(-8px);
-      border-color: var(--amber);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+      transform: translateY(-5px);
+      border-color: rgba(227, 164, 105, 0.45);
+      box-shadow: 0 20px 42px rgba(0, 0, 0, 0.55), 0 0 25px rgba(227, 164, 105, 0.1);
     }
     .exp-emblem {
       font-size: 2.5rem;
@@ -543,7 +638,7 @@
     .menu-cards-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 28px;
+      gap: 26px;
     }
     .food-card {
       background: var(--bg-card);
@@ -555,15 +650,16 @@
       display: flex;
       flex-direction: column;
       position: relative;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
     }
     .food-card:hover {
-      transform: translateY(-8px) rotateX(4deg);
+      transform: translateY(-5px);
       border-color: rgba(227, 164, 105, 0.45);
-      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.65);
+      box-shadow: 0 22px 48px rgba(0, 0, 0, 0.6), 0 0 25px rgba(227, 164, 105, 0.12);
     }
     .food-thumb-wrap {
       width: 100%;
-      height: 200px;
+      height: 210px;
       position: relative;
       overflow: hidden;
       background: #1e1713;
@@ -575,7 +671,7 @@
       transition: transform 0.6s var(--ease-smooth);
     }
     .food-card:hover .food-thumb-img {
-      transform: scale(1.08);
+      transform: scale(1.06);
     }
     .food-badge {
       position: absolute;
@@ -741,7 +837,7 @@
     .reviews-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
+      gap: 26px;
     }
     .review-card {
       background: var(--bg-card);
@@ -752,11 +848,13 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      transition: transform 0.3s var(--ease-smooth), border-color 0.3s;
+      transition: transform 0.3s var(--ease-smooth), border-color 0.3s, box-shadow 0.3s;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
     }
     .review-card:hover {
-      transform: translateY(-6px);
-      border-color: var(--amber);
+      transform: translateY(-5px);
+      border-color: rgba(227, 164, 105, 0.45);
+      box-shadow: 0 20px 42px rgba(0, 0, 0, 0.55);
     }
     .review-stars {
       color: var(--gold);
@@ -805,15 +903,15 @@
        ========================================================================== */
     .study-spot-card {
       background: linear-gradient(135deg, rgba(35, 27, 22, 0.85) 0%, rgba(20, 16, 13, 0.95) 100%);
-      border: 1px solid var(--line);
-      border-radius: var(--radius-lg);
-      padding: 56px 4vw;
+      border: 1px solid rgba(227, 164, 105, 0.2);
+      border-radius: var(--radius-xl);
+      padding: 50px 4vw;
       display: grid;
       grid-template-columns: 1.1fr 0.9fr;
       align-items: center;
       gap: 40px;
       backdrop-filter: blur(16px);
-      box-shadow: var(--shadow-soft);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
     }
     .study-checklist {
       list-style: none;
@@ -837,9 +935,9 @@
     .study-preview-image {
       width: 100%;
       height: 360px;
-      border-radius: var(--radius-md);
+      border-radius: 22px;
       object-fit: cover;
-      border: 1px solid var(--line);
+      border: 1px solid rgba(227, 164, 105, 0.2);
       box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
     }
 
@@ -878,12 +976,12 @@
     .gallery-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 22px;
+      gap: 24px;
       margin-bottom: 40px;
     }
     .gallery-card {
       height: 300px;
-      border-radius: var(--radius-md);
+      border-radius: 24px;
       overflow: hidden;
       position: relative;
       cursor: pointer;
@@ -893,9 +991,9 @@
       transition: transform 0.35s var(--ease-smooth), box-shadow 0.35s var(--ease-smooth), border-color 0.35s;
     }
     .gallery-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
-      border-color: var(--amber);
+      transform: translateY(-5px);
+      box-shadow: 0 20px 42px rgba(0, 0, 0, 0.6), 0 0 25px rgba(227, 164, 105, 0.12);
+      border-color: rgba(227, 164, 105, 0.45);
     }
     .gallery-img {
       width: 100%;
@@ -973,14 +1071,15 @@
        ========================================================================== */
     .location-box {
       background: var(--bg-card);
-      border: 1px solid var(--line);
-      border-radius: var(--radius-lg);
-      padding: 56px 4vw;
+      border: 1px solid rgba(227, 164, 105, 0.2);
+      border-radius: var(--radius-xl);
+      padding: 50px 4vw;
       display: grid;
       grid-template-columns: 1fr 1fr;
       align-items: center;
       gap: 48px;
       backdrop-filter: blur(16px);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
     }
     .location-address {
       font-size: 1.25rem;
@@ -1011,8 +1110,8 @@
     /* Stylized Interactive Google Map Card */
     .mini-map-card {
       background: #17120f;
-      border: 1px solid var(--line);
-      border-radius: var(--radius-md);
+      border: 1px solid rgba(227, 164, 105, 0.2);
+      border-radius: 24px;
       height: 380px;
       position: relative;
       overflow: hidden;
@@ -1432,6 +1531,9 @@
        RESPONSIVE BREAKPOINTS
        ========================================================================== */
     @media (max-width: 1024px) {
+      .hero-grid { grid-template-columns: 1fr; gap: 44px; }
+      .hero-content { max-width: 100%; }
+      .hero-image-card { height: 420px; max-width: 100%; }
       .experience-grid { grid-template-columns: repeat(2, 1fr); }
       .library-banner { grid-template-columns: 1fr; }
       .ambience-gallery { grid-template-columns: repeat(2, 1fr); }
@@ -1439,16 +1541,18 @@
       .study-spot-card { grid-template-columns: 1fr; }
       .insta-grid { grid-template-columns: repeat(2, 1fr); }
       .location-box { grid-template-columns: 1fr; }
-      .scene-meta-hud { display: none; }
     }
 
     @media (max-width: 768px) {
       .nav-links { display: none; }
       .experience-grid { grid-template-columns: 1fr; }
       .ambience-gallery { grid-template-columns: 1fr; }
-      .hero-title { font-size: 2.8rem; }
-      .hero-section { padding-top: 110px; }
-      .section-wrap { padding: 70px 5vw; }
+      .hero-title { font-size: 2.6rem; }
+      .hero-section { padding-top: 110px; padding-bottom: 50px; }
+      .hero-image-card { height: 320px; border-radius: 22px; }
+      .section-wrap { padding: 75px 5vw; }
+      .hero-meta-row { gap: 14px; }
+      .hero-meta-sep { display: none; }
     }
   </style>
 </head>
@@ -1500,39 +1604,75 @@
 
     <!-- SECTION 1: HERO VIEWPORT -->
     <section class="hero-section" id="hero">
-      <div class="hero-content">
-        <a href="https://maps.app.goo.gl/3u6c6mWEafWDr9nb6" target="_blank" rel="noopener" class="hero-badge" style="text-decoration:none;" title="Open The Hedgehog Cafe on Google Maps">
-          <span class="pulse-dot"></span>
-          <span>Inner Market, Sector 7-C · Chandigarh ↗</span>
-        </a>
+      <div class="hero-container">
+        <div class="hero-grid">
+          <!-- Left: Refined Editorial Hero Content -->
+          <div class="hero-content">
+            <a href="https://maps.app.goo.gl/3u6c6mWEafWDr9nb6" target="_blank" rel="noopener" class="hero-badge" title="Open The Hedgehog Cafe on Google Maps">
+              <span class="pulse-dot"></span>
+              <span>Inner Market, Sector 7-C, Chandigarh ↗</span>
+            </a>
 
-        <h1 class="hero-title">
-          A Little Café.<br>
-          <em>A Lot of Comfort.</em>
-        </h1>
+            <h1 class="hero-title">
+              A Little Café.<br>
+              <em>A Lot of Comfort.</em>
+            </h1>
 
-        <p class="hero-sub">
-          Coffee, food, books & good conversations — tucked away in the heart of Chandigarh.
-        </p>
+            <p class="hero-sub">
+              Specialty coffee, comforting food, books and good conversations tucked away in the heart of Chandigarh.
+            </p>
 
-        <div class="hero-cta-group">
-          <button type="button" class="btn btn-primary" id="btnHeroReserve">RESERVE A TABLE</button>
-          <button type="button" class="btn btn-secondary" id="btnHeroOrder">ORDER FOOD ONLINE</button>
-          <a href="#menu" class="btn btn-ghost" style="padding:10px 18px;font-size:0.84rem;">EXPLORE MENU ↓</a>
-        </div>
+            <div class="hero-cta-group">
+              <button type="button" class="btn btn-primary" id="btnHeroReserve">Reserve a Table ✦</button>
+              <button type="button" class="btn btn-secondary" id="btnHeroOrder">Order Online</button>
+              <a href="#menu" class="btn btn-ghost">Explore Menu ↓</a>
+            </div>
 
-        <div class="scroll-indicator">
-          SCROLL TO EXPLORE ↓
+            <div class="hero-meta-row">
+              <div class="hero-meta-item">
+                <span class="hero-meta-val">4.3 ★</span>
+                <span class="hero-meta-lbl">1,900+ Reviews</span>
+              </div>
+              <div class="hero-meta-sep"></div>
+              <div class="hero-meta-item">
+                <span class="hero-meta-val">10 AM – 11:30 PM</span>
+                <span class="hero-meta-lbl">Open Every Day</span>
+              </div>
+              <div class="hero-meta-sep"></div>
+              <div class="hero-meta-item">
+                <span class="hero-meta-val">Free Wi-Fi</span>
+                <span class="hero-meta-lbl">Work &amp; Books</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Big-Focused Hero Image Card -->
+          <div class="hero-image-wrap">
+            <div class="hero-image-card">
+              <img src="images/hedgehog_hero.jpg" alt="The Hedgehog Cafe Interior, Sector 7-C Chandigarh" class="hero-big-img" fetchpriority="high">
+              <div class="hero-image-overlay"></div>
+              <div class="hero-image-badge">
+                <div class="hero-badge-left">
+                  <span class="hero-badge-dot"></span>
+                  <div class="hero-badge-text">
+                    <strong>The Hedgehog Cafe</strong>
+                    <span>Inner Market, Sector 7-C</span>
+                  </div>
+                </div>
+                <div class="hero-badge-rating">4.3 ★</div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- SECTION 2: THE CAFÉ EXPERIENCE ("More Than Just Coffee") -->
+    <!-- SECTION 2: THE CAFÉ EXPERIENCE -->
     <section class="section-wrap" id="experience">
       <div class="section-header">
-        <span class="section-eyebrow">The Atmosphere</span>
-        <h2 class="section-heading">More Than Just Coffee.</h2>
-        <p class="section-desc">A wood-panelled sanctuary lined with novels, soft jazz, and the aroma of freshly ground beans.</p>
+        <span class="section-eyebrow">Atmosphere</span>
+        <h2 class="section-heading">The Experience.</h2>
+        <p class="section-desc">A wood-panelled sanctuary filled with books, mellow jazz, and fresh coffee.</p>
       </div>
 
       <div class="experience-grid">
@@ -1557,16 +1697,12 @@
       </div>
     </section>
 
-    <!-- SECTION 3: INTERACTIVE 3D MENU -->
+    <!-- SECTION 3: INTERACTIVE MENU -->
     <section class="section-wrap" id="menu">
       <div class="section-header">
-        <span class="section-eyebrow">Artisan Kitchen</span>
-        <h2 class="section-heading">Something Delicious Is Waiting.</h2>
-        <p class="section-desc">Handcrafted comfort dishes cooked with care. Click any item or order food online directly to your table or doorstep.</p>
-        <div style="margin-top:16px;display:flex;justify-content:center;gap:12px;flex-wrap:wrap;">
-          <button type="button" class="btn btn-primary" id="btnMenuOrderOnline">ORDER FOOD ONLINE ✦</button>
-          <button type="button" class="btn btn-secondary" id="btnMenuReserve">RESERVE A TABLE</button>
-        </div>
+        <span class="section-eyebrow">Kitchen</span>
+        <h2 class="section-heading">Artisan Menu.</h2>
+        <p class="section-desc">Handcrafted comfort food and fresh brews. Tap any dish to order directly to your table.</p>
       </div>
 
       <div class="menu-filter-bar">
@@ -1689,12 +1825,12 @@
     </section>
 
 
-    <!-- SECTION 5: SOCIAL PROOF & REVIEWS -->
+    <!-- SECTION 4: SOCIAL PROOF & REVIEWS -->
     <section class="section-wrap" id="reviews">
       <div class="rating-hero-block">
-        <span class="section-eyebrow">Customer Community</span>
+        <span class="section-eyebrow">Community</span>
         <div class="big-star-score">4.3 <span>★</span></div>
-        <div class="rating-sub">Loved by Chandigarh · Based on 1,935+ Verified Google Reviews</div>
+        <div class="rating-sub">Loved across Chandigarh with over 1,900 verified Google reviews</div>
       </div>
 
       <div class="reviews-grid">
@@ -1742,15 +1878,14 @@
       </div>
     </section>
 
-    <!-- SECTION 6: WORK / STUDY SPOT -->
+    <!-- SECTION 5: WORK / STUDY SPOT -->
     <section class="section-wrap" id="study">
       <div class="study-spot-card">
         <div>
-          <span class="section-eyebrow">Remote Work & Study</span>
-          <h2 class="section-heading" style="text-align:left;">Your Favourite Work Spot.</h2>
-          <p style="color:var(--cream-soft);font-size:1.1rem;line-height:1.7;">
-            Bring your laptop. Grab a coffee. Stay awhile.<br>
-            Tired of sterile co-working spaces? The Hedgehog Cafe offers quiet, book-lined work corners with ample power outlets.
+          <span class="section-eyebrow">Workspace</span>
+          <h2 class="section-heading" style="text-align:left;">Your Daily Work Spot.</h2>
+          <p style="color:var(--cream-soft);font-size:1.06rem;line-height:1.7;">
+            Quiet corners, comfortable seating, high-speed Wi-Fi, and power outlets for focused work or slow reading.
           </p>
 
           <ul class="study-checklist">
@@ -1770,12 +1905,12 @@
       </div>
     </section>
 
-    <!-- SECTION 7: CATEGORIZED PHOTO GALLERY (SECTOR 7-C & GOOGLE MAPS) -->
+    <!-- SECTION 6: CATEGORIZED PHOTO GALLERY (SECTOR 7-C) -->
     <section class="section-wrap" id="gallery">
       <div class="section-header">
-        <span class="section-eyebrow">Real Cafe Moments</span>
-        <h2 class="section-heading">Life at The Hedgehog.</h2>
-        <p class="section-desc">Authentic glimpses from our Sector 7-C sanctuary — browse our specialty brews, artisanal beverages, and cozy cafe spaces.</p>
+        <span class="section-eyebrow">Moments</span>
+        <h2 class="section-heading">Cafe Moments.</h2>
+        <p class="section-desc">Authentic glimpses of our specialty drinks, kitchen creations, and welcoming spaces in Sector 7-C.</p>
       </div>
 
       <!-- Category Filter Pills -->
@@ -1877,12 +2012,12 @@
       </div>
     </section>
 
-    <!-- SECTION: FREQUENTLY ASKED QUESTIONS (FAQS) -->
+    <!-- SECTION 7: FREQUENTLY ASKED QUESTIONS (FAQS) -->
     <section class="section-wrap" id="faqs">
       <div class="section-header">
-        <span class="section-eyebrow">Frequent Queries</span>
-        <h2 class="section-heading">Frequently Asked Questions.</h2>
-        <p class="section-desc">Everything you need to know about our coffees, kitchen, library, work corners, and visiting us in Sector 7-C.</p>
+        <span class="section-eyebrow">FAQ</span>
+        <h2 class="section-heading">Frequently Asked.</h2>
+        <p class="section-desc">Quick answers about our timings, menu, library, quiet seating, and ordering.</p>
       </div>
 
       <div class="faq-container">
@@ -1962,7 +2097,7 @@
     <section class="section-wrap" id="location">
       <div class="location-box">
         <div>
-          <span class="section-eyebrow">Find Our Door</span>
+          <span class="section-eyebrow">Visit</span>
           <h2 class="section-heading" style="text-align:left;">Come Find Us.</h2>
           <a href="https://maps.app.goo.gl/3u6c6mWEafWDr9nb6" target="_blank" rel="noopener" class="location-address" style="display:block;text-decoration:none;" title="Open The Hedgehog Cafe on Google Maps">
             The Hedgehog Cafe<br>
@@ -2011,7 +2146,7 @@
     <!-- FINAL CTA: "See You Over Coffee" -->
     <section class="final-cta-section">
       <h2 class="final-cta-heading">See You Over Coffee.</h2>
-      <p class="final-cta-sub">Good food. Good books. Good company.</p>
+      <p class="final-cta-sub">Reserve your table or order online today.</p>
       
       <div style="display:flex;justify-content:center;gap:16px;flex-wrap:wrap;">
         <button type="button" class="btn btn-primary" id="btnFinalReserve">
