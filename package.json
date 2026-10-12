@@ -1,0 +1,22 @@
+{
+  "name": "the-hedgehog-cafe",
+  "version": "1.0.0",
+  "description": "The Hedgehog Cafe - Specialty Coffee, Books & Artisan Bistro in Sector 7-C, Chandigarh",
+  "main": "index.html",
+  "scripts": {
+    "start": "powershell -ExecutionPolicy Bypass -File serve.ps1"
+  },
+  "dependencies": {
+    "liquid-gl": "^3.0.0"
+  },
+  "keywords": [
+    "liquidGL",
+    "liquid-glass",
+    "webgpu",
+    "webgl",
+    "threejs",
+    "lenis"
+  ],
+  "author": "The Hedgehog Cafe",
+  "license": "MIT"
+}

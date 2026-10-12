@@ -209,6 +209,24 @@
       box-shadow: 0 8px 30px rgba(45, 34, 27, 0.5);
     }
 
+    /* liquidGL - Apple Liquid Glass Container Utilities & Layering */
+    .brand-wrap,
+    .navbar nav,
+    .nav-actions {
+      position: relative;
+      z-index: 3;
+    }
+    .liquidGL,
+    .liquid-glass {
+      position: relative;
+      border-radius: inherit;
+    }
+    .liquidGL > *,
+    .liquid-glass > * {
+      position: relative;
+      z-index: 3;
+    }
+
     .brand-wrap {
       display: inline-flex;
       align-items: center;
@@ -2308,7 +2326,7 @@
 <body>
 
   <!-- Preloader Screen: "BREWING THE EXPERIENCE..." -->
-  <div class="preloader-overlay" id="preloader">
+  <div class="preloader-overlay" id="preloader" data-liquid-ignore="true">
     <div class="preloader-text" style="font-size:1.6rem;letter-spacing:0.04em;text-transform:none;color:#FFF7EB;">The Hedgehog <span style="color:#D6B783;">Cafe</span></div>
     <div style="font-size:0.75rem;letter-spacing:0.18em;text-transform:uppercase;color:#D6B783;margin-top:-10px;">Brewing The Experience…</div>
     <div class="preloader-bar-wrap">
@@ -2317,16 +2335,16 @@
   </div>
 
   <!-- WebGL 3D Canvas Container (Fixed Behind All Content) -->
-  <div id="hero-canvas-container" aria-hidden="true"></div>
+  <div id="hero-canvas-container" aria-hidden="true" data-liquid-ignore="true"></div>
 
   <!-- Ambient Cinema Glow Overlay -->
-  <div class="cinema-vignette" aria-hidden="true"></div>
+  <div class="cinema-vignette" aria-hidden="true" data-liquid-ignore="true"></div>
 
   <!-- Main Website Content Flow -->
   <div class="site-flow">
 
-    <!-- FLOATING NAVIGATION BAR -->
-    <header class="navbar" id="navbar" role="banner">
+    <!-- FLOATING NAVIGATION BAR WITH LIQUID GLASS -->
+    <header class="navbar liquidGL" id="navbar" role="banner">
       <a href="#hero" class="brand-wrap" aria-label="The Hedgehog Cafe">
         <span class="brand-logo-text">The Hedgehog <em>Cafe</em></span>
       </a>
@@ -3415,7 +3433,7 @@
   </div>
 
   <!-- MODAL 1: TABLE RESERVATION -->
-  <div class="modal-overlay" id="reserveModal">
+  <div class="modal-overlay" id="reserveModal" data-liquid-ignore="true">
     <div class="modal-box">
       <button type="button" class="modal-close-btn" id="closeReserveModal">×</button>
       <h2 class="modal-title">Reserve a Table</h2>
@@ -3480,7 +3498,7 @@
   </div>
 
   <!-- MODAL 2: ORDER FOOD ONLINE & IN-CAFE -->
-  <div class="modal-overlay" id="orderModal">
+  <div class="modal-overlay" id="orderModal" data-liquid-ignore="true">
     <div class="modal-box">
       <button type="button" class="modal-close-btn" id="closeOrderModal">×</button>
       <h2 class="modal-title" id="orderModalTitle">Order Food Online</h2>
@@ -3554,7 +3572,7 @@
   </div>
 
   <!-- MODAL: LIVE STATUS ALERT FROM OWNER -->
-  <div class="modal-overlay" id="customerStatusAlertModal">
+  <div class="modal-overlay" id="customerStatusAlertModal" data-liquid-ignore="true">
     <div class="modal-box" style="max-width:460px;text-align:center;">
       <button type="button" class="modal-close-btn" id="closeCustAlertModal">×</button>
       <span style="font-size:3rem;display:inline-block;margin:6px 0;" id="custAlertIcon">🎉</span>
@@ -3575,7 +3593,7 @@
   </div>
 
   <!-- MODAL: TRACK RESERVATION / ORDER STATUS -->
-  <div class="modal-overlay" id="trackStatusModal">
+  <div class="modal-overlay" id="trackStatusModal" data-liquid-ignore="true">
     <div class="modal-box" style="max-width:480px;">
       <button type="button" class="modal-close-btn" id="closeTrackModal">×</button>
       <h2 class="modal-title">Track Booking / Order</h2>
@@ -3598,7 +3616,7 @@
   </div>
 
   <!-- MODAL 3: PRIVACY & POLICY -->
-  <div class="modal-overlay" id="privacyModal">
+  <div class="modal-overlay" id="privacyModal" data-liquid-ignore="true">
     <div class="modal-box">
       <button type="button" class="modal-close-btn" id="closePrivacyModal">×</button>
       <h2 class="modal-title">Privacy & Policy</h2>
@@ -3649,7 +3667,7 @@
   </div>
 
   <!-- MODAL 4: TERMS & HOUSE RULES -->
-  <div class="modal-overlay" id="termsModal">
+  <div class="modal-overlay" id="termsModal" data-liquid-ignore="true">
     <div class="modal-box">
       <button type="button" class="modal-close-btn" id="closeTermsModal">×</button>
       <h2 class="modal-title">Terms & House Rules</h2>
@@ -3688,7 +3706,7 @@
   </div>
 
   <!-- MODAL 5: IMAGE LIGHTBOX VIEWER -->
-  <div class="modal-overlay" id="lightboxModal" style="padding:15px;background:rgba(45,34,27,0.82);">
+  <div class="modal-overlay" id="lightboxModal" style="padding:15px;background:rgba(45,34,27,0.82);" data-liquid-ignore="true">
     <div style="position:relative;max-width:920px;width:100%;max-height:92vh;display:flex;flex-direction:column;align-items:center;background:#5B4638;border:1.5px solid #D6B783;border-radius:var(--radius-lg);padding:24px;box-shadow:0 30px 80px rgba(35,25,20,0.6);animation:modalPop 0.3s var(--ease-smooth);">
       <button type="button" class="modal-close-btn" id="closeLightboxModal" style="top:12px;right:16px;color:#E5D9CB;">×</button>
       <div style="width:100%;max-height:65vh;overflow:hidden;border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;background:#6B5545;">
@@ -3702,7 +3720,7 @@
   </div>
 
   <!-- Toast Notification Pill -->
-  <div class="toast-pill" id="toastPill">
+  <div class="toast-pill" id="toastPill" data-liquid-ignore="true">
     <span id="toastIcon">✓</span>
     <span id="toastMsg">Action completed successfully</span>
   </div>
@@ -3718,6 +3736,11 @@
   <!-- Lenis Momentum Scrolling -->
   <script src="lenis.min.js"></script>
 
+  <!-- liquidGL Library (Liquid Glass - WebGPU/WebGL) -->
+  <script src="liquidGL.js"></script>
+  <!-- Optional: liquidGL Helper GUI (for live tuning & debugging) -->
+  <script src="liquidGL-helper.js"></script>
+
   <!-- ==========================================================================
        THREE.JS 3D SCENE: STYLIZED HEDGEHOG, WARM CAFE & AMBIENCE
        ========================================================================== -->
@@ -3725,13 +3748,99 @@
     (function () {
       'use strict';
 
-      // 1. Hide Preloader after assets render
+      // ==========================================================================
+      // LIQUID GLASS (liquidGL - WebGPU/WebGL) ENGINE INITIALIZATION
+      // ==========================================================================
+      let navbarLiquidGlass = null;
+      function initLiquidGlass() {
+        if (typeof liquidGL !== 'function' || navbarLiquidGlass) return;
+
+        try {
+          const urlParams = new URLSearchParams(window.location.search);
+          const showHelper = urlParams.has('helper') || urlParams.has('liquidGL-helper');
+
+          navbarLiquidGlass = liquidGL({
+            target: ".navbar",
+            snapshot: "body",
+            resolution: 1.5,
+            engine: "auto",
+            zIndex: 100,
+            refraction: 0.016,
+            aberration: 0.35,
+            bevelDepth: 0.08,
+            bevelWidth: 0.12,
+            frost: 0.8,
+            shadow: true,
+            specular: true,
+            reveal: "none",
+            tilt: false,
+            draggable: false,
+            interaction: "fluid",
+            interactionStrength: 0.45,
+            interactionRadius: 0.35,
+            interactionViscosity: 0.65,
+            magnify: 1.0,
+            tint: "rgba(91, 70, 56, 0.42)",
+            helper: showHelper,
+            on: {
+              init(instance) {
+                console.log('✦ liquidGL: Liquid Glass Engine running (WebGPU/WebGL)', instance);
+              }
+            }
+          });
+
+          // Also glassify any custom elements marked with .liquid-glass
+          if (document.querySelectorAll('.liquid-glass:not(.navbar)').length > 0) {
+            liquidGL({
+              target: ".liquid-glass:not(.navbar)",
+              snapshot: "body",
+              resolution: 1.5,
+              engine: "auto",
+              refraction: 0.02,
+              aberration: 0.4,
+              bevelDepth: 0.09,
+              bevelWidth: 0.14,
+              frost: 1.0,
+              shadow: true,
+              specular: true,
+              reveal: "fade",
+              tilt: true,
+              tiltFactor: 6,
+              interaction: "fluid",
+              magnify: 1.02,
+              tint: "rgba(120, 97, 79, 0.35)",
+            });
+          }
+
+          // Register dynamic animated elements so liquidGL refracts them cleanly
+          if (typeof liquidGL.registerDynamic === 'function') {
+            const dynamicEls = document.querySelectorAll('#hero-canvas-container, .cinema-vignette');
+            if (dynamicEls.length > 0) {
+              liquidGL.registerDynamic(Array.from(dynamicEls));
+            }
+          }
+
+          window.navbarLiquidGlass = navbarLiquidGlass;
+        } catch (err) {
+          console.warn('liquidGL initialization notice:', err);
+        }
+      }
+
+      // 1. Hide Preloader after assets render & launch liquidGL
       window.addEventListener('load', () => {
         setTimeout(() => {
           const preloader = document.getElementById('preloader');
           if (preloader) preloader.classList.add('hidden');
+          initLiquidGlass();
         }, 800);
       });
+
+      // Safety fallback to ensure liquid glass initialises if load event already fired
+      if (document.readyState === 'complete' || document.readyState === 'interactive') {
+        setTimeout(() => {
+          if (!navbarLiquidGlass) initLiquidGlass();
+        }, 1200);
+      }
 
       // 2. Navbar Scroll Darken
       window.addEventListener('scroll', () => {
