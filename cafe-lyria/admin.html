@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Garden Cafe (ਗਾਰਡਨ ਕੈਫੇ) — Owner Admin Portal</title>
+  <title>R6 Caffe — Model Town, Ludhiana | Manager Portal</title>
   <meta name="robots" content="noindex, nofollow">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
@@ -974,7 +974,7 @@
           </svg>
         </div>
       </div>
-      <div class="lock-brand">Garden <em>Cafe</em></div>
+      <div class="lock-brand">R6 <em>Caffe</em></div>
       <span class="lock-security-badge">RESTRICTED ACCESS · 74 - D, SARABHA NAGAR, LUDHIANA</span>
       <h2 class="lock-title">Enter Owner Passcode</h2>
       <p class="lock-desc">This management dashboard is restricted to Garden Cafe owners and managers.</p>
@@ -1007,7 +1007,7 @@
   <!-- Top Navigation Bar -->
   <header class="topbar">
     <div class="brand">
-      <a href="index.html" class="brand-logo">Garden <em>Cafe</em></a>
+      <a href="index.html" class="brand-logo">R6 <em>Caffe</em></a>
       <span class="badge-admin">Owner Portal</span>
       <span class="clock-display" id="clockDisplay" style="color:var(--muted);font-size:.82rem;font-weight:600;padding:2px 8px;border-left:1px solid var(--line);margin-left:8px"></span>
     </div>
@@ -1085,7 +1085,7 @@
     <div class="dash-head">
       <div>
         <h1>Floor Plan & Table Bookings</h1>
-        <p>Live floor plan manager for Garden Cafe · 74 - D, D-Block, Sarabha Nagar, Ludhiana</p>
+        <p>Live floor plan manager for Garden Cafe · 74 - D, D-Block, Model Town, Ludhiana</p>
       </div>
       <div style="display:flex;gap:10px;flex-wrap:wrap">
         <button class="btn primary sm" id="btnViewReservations">✦ Table Bookings (<span id="badgeResCount">0</span>)</button>
@@ -1577,8 +1577,8 @@
         <!-- Target Info Pill -->
         <div style="background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
           <div>
-            <div style="font-size:1.02rem;font-weight:700;color:var(--cream)" id="notifyCustomerName">Kashu Khan</div>
-            <div style="font-size:0.82rem;color:var(--muted);margin-top:2px" id="notifyReferenceId">Ref: #GCL-9421</div>
+            <div style="font-size:1.02rem;font-weight:700;color:var(--cream)" id="notifyCustomerName">Jaspreet Singh</div>
+            <div style="font-size:0.82rem;color:var(--muted);margin-top:2px" id="notifyReferenceId">Ref: #R6C-9421</div>
           </div>
           <div style="text-align:right">
             <span class="status-select Confirmed" id="notifyStatusChip">Confirmed</span>
@@ -1646,67 +1646,67 @@
 
     const defaultReservations = [
       {
-        id: '#GCL-9421',
-        name: 'Kashu Khan',
-        email: 'kashukhan@example.com',
+        id: '#R6C-9421',
+        name: 'Jaspreet Singh',
+        email: 'jaspreet.s@example.com',
         phone: '+91 98765 43210',
         guests: '2 Guests',
         date: getTodayString(0),
         time: '11:00 AM',
-        seating: 'Garden Verandah Table',
-        notes: 'Table near flowering planters · Hot Chocolate & Garlic Bread',
+        seating: 'Cozy Corner Table',
+        notes: 'Casual meetup · Cold Coffee with Ice Cream & Loaded Garlic Bread',
         status: 'Confirmed',
         createdAt: new Date().toISOString()
       },
       {
-        id: '#GCL-8812',
-        name: 'Zoya Aslam',
-        email: 'zoya.aslam@example.com',
+        id: '#R6C-8812',
+        name: 'Simranjeet Kaur',
+        email: 'simranjeet@example.com',
         phone: '+91 98140 22319',
         guests: '4 Guests',
         date: getTodayString(0),
         time: '01:00 PM',
-        seating: 'Outdoor Lawn Cabana',
-        notes: 'Family brunch · Garden Fresh Pizza & Cafe Latte',
+        seating: 'Window View Table',
+        notes: 'College lunch catchup · Artisan Thin Crust Pizza & Choco Frappe',
         status: 'Seated',
         createdAt: new Date().toISOString()
       },
       {
-        id: '#GCL-7630',
-        name: 'Shivani Kothiyal',
-        email: 'shivani.k@example.com',
+        id: '#R6C-7630',
+        name: 'Harman Dhillon',
+        email: 'harman.d@example.com',
         phone: '+91 99887 11200',
-        guests: '6 Guests',
+        guests: '5 Guests',
         date: getTodayString(0),
         time: '03:30 PM',
-        seating: 'Garden Celebration Area',
-        notes: 'Birthday celebration in garden · Pan O Lasagne, Stuffed Paneer Tikka & Paan Mojito',
+        seating: 'Group Study Table',
+        notes: 'Group study session with power outlets · Creamy Penne Alfredo & Peri Peri Fries',
         status: 'Confirmed',
         createdAt: new Date().toISOString()
       },
       {
-        id: '#GCL-6194',
-        name: 'Harpreet Gill',
-        email: 'harpreet@punjablaw.in',
+        id: '#R6C-6194',
+        name: 'Gurpreet Singh',
+        email: 'gurpreet.s@example.com',
         phone: '+91 98720 55431',
-        guests: '4 Guests',
+        guests: '2 Guests',
         date: getTodayString(1),
         time: '12:30 PM',
-        seating: 'Open-Air Garden Cabana',
-        notes: 'Family garden brunch · Garden Fresh Pizza & Hot Chocolate',
+        seating: 'Casual Lounge Booth',
+        notes: 'Quick lunch · Gourmet Veg Club Sandwich & Cafe Latte',
         status: 'Confirmed',
         createdAt: new Date().toISOString()
       },
       {
-        id: '#GCL-5042',
+        id: '#R6C-5042',
         name: 'Tanya Sharma',
-        email: 'tanya.s@designstudio.in',
+        email: 'tanya.s@example.com',
         phone: '+91 97800 66712',
         guests: '2 Guests',
         date: getTodayString(2),
         time: '04:15 PM',
-        seating: 'Fairy-Lit Verandah Table',
-        notes: 'Outdoor garden seating · Garlic Bread with Cheese & Chicken, Cafe Latte',
+        seating: 'Window View Table',
+        notes: 'Afternoon coffee · Handcrafted Veggie Burger & Virgin Mint Mojito',
         status: 'Confirmed',
         createdAt: new Date().toISOString()
       }
@@ -2176,7 +2176,7 @@
         const encodedUri = encodeURI(csvContent);
         const link = document.createElement('a');
         link.setAttribute('href', encodedUri);
-        link.setAttribute('download', `garden_cafe_orders_${new Date().toISOString().split('T')[0]}.csv`);
+        link.setAttribute('download', `r6_caffe_orders_${new Date().toISOString().split('T')[0]}.csv`);
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
@@ -2236,7 +2236,7 @@
       const encodedUri = encodeURI(csvContent);
       const link = document.createElement('a');
       link.setAttribute('href', encodedUri);
-      link.setAttribute('download', `garden_cafe_reservations_${getTodayString(0)}.csv`);
+      link.setAttribute('download', `r6_caffe_reservations_${getTodayString(0)}.csv`);
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
@@ -2671,8 +2671,8 @@
         name: 'Simran Walia',
         email: 'simran.w@example.com',
         phone: '+91 98765 12340',
-        reason: 'Birthday Party & Garden Gathering',
-        message: 'Hello Garden Cafe team, looking to host a birthday gathering for ~15 people in your outdoor garden seating on Saturday evening. Would love to know if we can reserve the fairy-lit verandah!',
+        reason: 'College Project Group',
+        message: 'Hello R6 Caffe team, looking to reserve the group study tables for our college project team (~10 people) on Friday afternoon near GNGC. Would love to know if power outlets are available!',
         status: 'Unread',
         createdAt: new Date(Date.now() - 3600000 * 4).toISOString()
       },
@@ -2681,8 +2681,8 @@
         name: 'Gaurav Khanna',
         email: 'gaurav.k@ludhianamedia.in',
         phone: '+91 98140 55667',
-        reason: 'Garden Acoustic Evening',
-        message: 'Loved the lush outdoor garden atmosphere and pizzas at Garden Cafe in Sarabha Nagar! Inquiring about hosting an acoustic music and poetry gathering for 20 guests.',
+        reason: 'Bulk Snack Box Order',
+        message: 'Loved the chill vibes and loaded peri peri fries at your Model Town cafe! Inquiring about ordering bulk snack boxes and cold coffees for our local team meet.',
         status: 'Replied',
         createdAt: new Date(Date.now() - 86400000).toISOString()
       }
@@ -2955,45 +2955,45 @@
 
     const defaultOrders = [
       {
-        id: '#GCL-ORD-4921',
-        table: 'Garden Table 4',
-        guestName: 'Kashu Khan',
+        id: '#R6C-ORD-4921',
+        table: 'Table 4',
+        guestName: 'Jaspreet Singh',
         phone: '+91 98765 43210',
-        specialNotes: 'Extra hot chocolate topping, warm cutlery',
+        specialNotes: 'Extra ice cream scoop on cold coffee, warm garlic bread',
         items: [
-          { name: 'Hot Chocolate', qty: 2, price: 220 },
-          { name: 'Garlic Bread With Cheese And Chicken', qty: 1, price: 340 }
+          { name: 'Cold Coffee with Ice Cream', qty: 2, price: 160 },
+          { name: 'Cheesy Loaded Garlic Bread', qty: 1, price: 180 }
         ],
-        total: 780,
+        total: 500,
         createdAt: new Date(Date.now() - 12 * 60 * 1000).toISOString(),
         status: 'Kitchen Preparing'
       },
       {
-        id: '#GCL-ORD-4916',
-        table: 'Verandah Table 2',
-        guestName: 'Zoya Aslam',
+        id: '#R6C-ORD-4916',
+        table: 'Table 2',
+        guestName: 'Simranjeet Kaur',
         phone: '+91 98140 12345',
-        specialNotes: 'Extra oregano, fast service appreciated',
+        specialNotes: 'Crisp crust on pizza, fast service appreciated',
         items: [
-          { name: 'Garden Fresh Pizza', qty: 1, price: 420 },
-          { name: 'Cafe Latte', qty: 2, price: 210 }
+          { name: 'Artisan Thin Crust Pizza', qty: 1, price: 260 },
+          { name: 'Classic Choco Frappe', qty: 2, price: 180 }
         ],
-        total: 840,
+        total: 620,
         createdAt: new Date(Date.now() - 35 * 60 * 1000).toISOString(),
         status: 'Served'
       },
       {
-        id: '#GCL-ORD-4908',
-        table: 'Lawn Cabana 1',
-        guestName: 'Shivani Kothiyal',
+        id: '#R6C-ORD-4908',
+        table: 'Booth 1',
+        guestName: 'Harman Dhillon',
         phone: '+91 98888 77665',
-        specialNotes: 'Birthday celebration table, fairy lights on',
+        specialNotes: 'Extra cheese dip on peri peri fries',
         items: [
-          { name: 'Pan O Lasagne', qty: 1, price: 380 },
-          { name: 'Stuffed Paneer Tikka', qty: 1, price: 320 },
-          { name: 'Paan & Strawberry Mojito', qty: 2, price: 190 }
+          { name: 'Creamy Penne Alfredo', qty: 1, price: 240 },
+          { name: 'Crispy Peri Peri Loaded Fries', qty: 1, price: 150 },
+          { name: 'Virgin Mint Mojito', qty: 2, price: 140 }
         ],
-        total: 1080,
+        total: 670,
         createdAt: new Date(Date.now() - 75 * 60 * 1000).toISOString(),
         status: 'Served'
       }
@@ -3373,7 +3373,7 @@
     }
 
     function generateCustomerNotificationMessage(info) {
-      const cafeName = 'Garden Cafe (Sarabha Nagar, Ludhiana)';
+      const cafeName = 'Garden Cafe (Model Town, Ludhiana)';
       const helpline = '+91 98765 43210';
 
       if (info.category === 'reservation') {

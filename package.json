@@ -1,7 +1,7 @@
 {
-  "name": "garden-cafe",
+  "name": "r6-caffe",
   "version": "1.0.0",
-  "description": "Garden Cafe (ਗਾਰਡਨ ਕੈਫੇ) - Open-Air Garden Dining, Specialty Coffee & Artisan Bistro in Sarabha Nagar, Ludhiana",
+  "description": "R6 Caffe - Vegetarian Cafe, Deli & Specialty Coffee in Model Town, Ludhiana",
   "main": "index.html",
   "scripts": {
     "start": "powershell -ExecutionPolicy Bypass -File serve.ps1"
@@ -10,8 +10,9 @@
     "liquid-gl": "^3.0.0"
   },
   "keywords": [
-    "garden-cafe",
+    "r6-caffe",
     "ludhiana",
+    "model-town",
     "liquidGL",
     "liquid-glass",
     "webgpu",
@@ -19,6 +20,6 @@
     "threejs",
     "lenis"
   ],
-  "author": "Garden Cafe",
+  "author": "R6 Caffe",
   "license": "MIT"
 }
