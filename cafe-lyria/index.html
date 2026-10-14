@@ -905,6 +905,18 @@
     /* ==========================================================================
        CARD HAND GALLERY COMPONENT (SHADCN / MOTION SPECIFICATION)
        ========================================================================== */
+    .card-hand-gallery-stage {
+      position: relative;
+      width: 100%;
+      padding: 32px 20px 20px;
+      border-radius: var(--radius-xl);
+      background: rgba(35, 59, 45, 0.45);
+      border: 1px solid rgba(68, 94, 78, 0.45);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow: 0 16px 40px rgba(10, 18, 13, 0.35);
+      margin: 16px auto 30px;
+    }
     .card-hand-gallery-wrap {
       display: flex;
       width: 100%;
@@ -2683,27 +2695,27 @@
           <div class="hand-fan-stage" id="handFanStage">
             <!-- Card 1 -->
             <div class="hand-slot-card active" data-id="artisan-pizza" data-title="Artisan Margherita Pizza" data-desc="Hand-stretched thin crust baked with fresh basil, San Marzano tomato pomodoro, and creamy buffalo mozzarella." data-price="220">
-              <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=800&auto=format&fit=crop" alt="Artisan Margherita Pizza" draggable="false">
+              <img src="images/artisan_pizza.jpg" alt="Artisan Margherita Pizza" draggable="false" loading="eager" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=800&auto=format&fit=crop';">
             </div>
 
             <!-- Card 2 -->
             <div class="hand-slot-card" data-id="cold-coffee" data-title="Signature Cold Coffee" data-desc="Chilled double espresso blended with velvety whole milk, crowned with a rich vanilla ice cream scoop and cocoa dust." data-price="160">
-              <img src="https://images.unsplash.com/photo-1517701604599-bb29b565090c?q=80&w=800&auto=format&fit=crop" alt="Signature Cold Coffee" draggable="false">
+              <img src="images/cold_coffee.jpg" alt="Signature Cold Coffee" draggable="false" loading="eager" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1517701604599-bb29b565090c?q=80&w=800&auto=format&fit=crop';">
             </div>
 
             <!-- Card 3 -->
             <div class="hand-slot-card" data-id="penne-alfredo" data-title="Creamy Penne Alfredo" data-desc="Al dente penne pasta coated in velvety garlic parmesan cream with button mushrooms, tender zucchini, and Italian herbs." data-price="240">
-              <img src="https://images.unsplash.com/photo-1621996346565-e3d5d6281786?q=80&w=800&auto=format&fit=crop" alt="Creamy Penne Alfredo" draggable="false">
+              <img src="images/penne_alfredo.jpg" alt="Creamy Penne Alfredo" draggable="false" loading="eager" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1645112411341-6c4fd023714a?q=80&w=800&auto=format&fit=crop';">
             </div>
 
             <!-- Card 4 -->
             <div class="hand-slot-card" data-id="garlic-bread" data-title="Cheesy Loaded Garlic Bread" data-desc="Artisanal sourdough baguette toasted with garlic herb butter, layered with molten mozzarella and crushed chili." data-price="180">
-              <img src="https://images.unsplash.com/photo-1619895092538-128341789043?q=80&w=800&auto=format&fit=crop" alt="Cheesy Loaded Garlic Bread" draggable="false">
+              <img src="images/garlic_bread.jpg" alt="Cheesy Loaded Garlic Bread" draggable="false" loading="eager" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1573140247632-f8fd74997d5c?q=80&w=800&auto=format&fit=crop';">
             </div>
 
             <!-- Card 5 -->
             <div class="hand-slot-card" data-id="peri-peri-fries" data-title="Crispy Peri Peri Fries" data-desc="Golden crispy shoe-string potatoes tossed in fiery African peri peri spices, drizzled with warm cheddar cheese sauce." data-price="150">
-              <img src="https://images.unsplash.com/photo-1576107232684-1279f3908594?q=80&w=800&auto=format&fit=crop" alt="Crispy Peri Peri Fries" draggable="false">
+              <img src="images/peri_peri_fries.jpg" alt="Crispy Peri Peri Fries" draggable="false" loading="eager" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1573080496219-bb080dd4f877?q=80&w=800&auto=format&fit=crop';">
             </div>
           </div>
 
@@ -5186,6 +5198,15 @@
         camera.position.x += (targetCameraX - camera.position.x) * 0.04;
         camera.position.y += ((targetCameraY - scrollFactor * 0.5) - camera.position.y) * 0.04;
         camera.position.z += ((6.2 - scrollFactor * 1.5) - camera.position.z) * 0.04;
+
+        // Smoothly fade out the 3D hero canvas as user scrolls past hero into content sections
+        const heroEl = document.getElementById('hero');
+        const heroH = heroEl ? heroEl.offsetHeight : window.innerHeight;
+        const scrollFade = Math.max(0, 1 - Math.pow(Math.min(1, scrollY / (heroH * 0.7)), 1.5));
+        if (container) {
+          container.style.opacity = scrollFade.toFixed(3);
+          container.style.visibility = scrollFade <= 0.005 ? 'hidden' : 'visible';
+        }
 
         // 2. Head rotation easing
         headGroup.rotation.y += (targetHeadRotY - headGroup.rotation.y) * 0.06;

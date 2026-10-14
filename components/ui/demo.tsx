@@ -22,21 +22,21 @@ const cards: FanCardItem[] = [
   },
   {
     id: "penne-alfredo",
-    src: "https://images.unsplash.com/photo-1621996346565-e3d5d6281786?q=80&w=800&auto=format&fit=crop",
+    src: "https://images.unsplash.com/photo-1645112411341-6c4fd023714a?q=80&w=800&auto=format&fit=crop",
     title: "Creamy Penne Alfredo",
     description:
       "Al dente penne pasta coated in velvety garlic parmesan cream with button mushrooms, tender zucchini, and Italian herbs.",
   },
   {
     id: "garlic-bread",
-    src: "https://images.unsplash.com/photo-1619895092538-128341789043?q=80&w=800&auto=format&fit=crop",
+    src: "https://images.unsplash.com/photo-1573140247632-f8fd74997d5c?q=80&w=800&auto=format&fit=crop",
     title: "Cheesy Loaded Garlic Bread",
     description:
       "Artisanal sourdough baguette toasted with garlic herb butter, layered with molten mozzarella and crushed chili.",
   },
   {
     id: "peri-peri-fries",
-    src: "https://images.unsplash.com/photo-1576107232684-1279f3908594?q=80&w=800&auto=format&fit=crop",
+    src: "https://images.unsplash.com/photo-1573080496219-bb080dd4f877?q=80&w=800&auto=format&fit=crop",
     title: "Crispy Peri Peri Fries",
     description:
       "Golden crispy shoe-string potatoes tossed in fiery African peri peri spices, drizzled with warm cheddar cheese sauce.",
