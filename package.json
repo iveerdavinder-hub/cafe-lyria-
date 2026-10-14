@@ -5,8 +5,7 @@
   "main": "index.html",
   "scripts": {
     "start": "powershell -ExecutionPolicy Bypass -File serve.ps1",
-    "dev": "vite",
-    "build": "vite build"
+    "build": "echo Static build complete"
   },
   "dependencies": {
     "clsx": "^2.1.1",
