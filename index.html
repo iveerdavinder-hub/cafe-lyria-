@@ -308,28 +308,76 @@
     }
 
     .nav-links {
+      position: relative;
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 4px;
       list-style: none;
-      padding: 5px 8px;
-      background: rgba(14, 25, 18, 0.65);
-      border: 1px solid rgba(68, 94, 78, 0.4);
+      padding: 5px 6px;
+      background: rgba(14, 25, 18, 0.75);
+      border: 1px solid rgba(68, 94, 78, 0.45);
       border-radius: var(--radius-pill);
-      backdrop-filter: blur(12px);
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), 0 4px 20px rgba(0, 0, 0, 0.25);
+      backdrop-filter: blur(14px);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 4px 20px rgba(0, 0, 0, 0.35);
     }
+
+    /* Animated Morphing Pill that glides behind the active/clicked button */
+    .nav-active-pill {
+      position: absolute;
+      top: 5px;
+      left: 0;
+      height: calc(100% - 10px);
+      width: 60px;
+      border-radius: var(--radius-pill);
+      background: linear-gradient(135deg, #D8CCA3 0%, #E8DFC0 50%, #D8CCA3 100%);
+      box-shadow: 0 2px 14px rgba(216, 204, 163, 0.5), 0 0 25px rgba(216, 204, 163, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      pointer-events: none;
+      z-index: 1;
+      transform: translateX(6px);
+      transition: transform 0.38s cubic-bezier(0.16, 1, 0.3, 1),
+                  width 0.38s cubic-bezier(0.16, 1, 0.3, 1),
+                  opacity 0.25s ease;
+      animation: pillBreathe 2.8s ease-in-out infinite alternate;
+      overflow: hidden;
+    }
+    .nav-active-pill::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+      transform: translateX(-100%);
+      animation: pillShimmer 3.6s infinite cubic-bezier(0.4, 0, 0.2, 1);
+      pointer-events: none;
+    }
+
+    @keyframes pillBreathe {
+      0% {
+        box-shadow: 0 2px 12px rgba(216, 204, 163, 0.45), 0 0 18px rgba(216, 204, 163, 0.25);
+        filter: brightness(1);
+      }
+      100% {
+        box-shadow: 0 4px 22px rgba(216, 204, 163, 0.7), 0 0 32px rgba(216, 204, 163, 0.45);
+        filter: brightness(1.08);
+      }
+    }
+    @keyframes pillShimmer {
+      0% { transform: translateX(-100%); }
+      40%, 100% { transform: translateX(200%); }
+    }
+
     .nav-item {
+      position: relative;
+      z-index: 2;
       font-size: 0.8rem;
       font-weight: 600;
       letter-spacing: 0.06em;
       text-transform: uppercase;
       color: #D6CEBE;
       text-decoration: none;
-      position: relative;
       padding: 7px 13px;
       border-radius: var(--radius-pill);
-      border: 1px solid transparent;
       outline: none;
       user-select: none;
       -webkit-tap-highlight-color: transparent;
@@ -338,35 +386,21 @@
       align-items: center;
       justify-content: center;
       transition: color 0.25s cubic-bezier(0.16, 1, 0.3, 1),
-                  background 0.25s cubic-bezier(0.16, 1, 0.3, 1),
-                  border-color 0.25s cubic-bezier(0.16, 1, 0.3, 1),
-                  transform 0.2s cubic-bezier(0.16, 1, 0.3, 1),
-                  box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+                  transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .nav-item:hover {
       color: #FFFFFF;
-      background: rgba(216, 204, 163, 0.12);
-      border-color: rgba(216, 204, 163, 0.32);
-      transform: translateY(-2px);
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25), 0 0 12px rgba(216, 204, 163, 0.15);
+      transform: translateY(-1.5px);
     }
     .nav-item:active,
     .nav-item.clicked {
-      transform: scale(0.92) translateY(0);
+      transform: scale(0.91) translateY(0);
       transition: transform 0.08s ease;
     }
     .nav-item.active {
       color: #132219;
-      background: #D8CCA3;
-      border-color: #D8CCA3;
       font-weight: 700;
-      box-shadow: 0 2px 14px rgba(216, 204, 163, 0.45), 0 0 20px rgba(216, 204, 163, 0.25);
-    }
-    .nav-item.active:hover {
-      color: #132219;
-      background: #E8DEC0;
-      border-color: #E8DEC0;
-      transform: translateY(-1px);
+      text-shadow: 0 1px 1px rgba(255, 255, 255, 0.18);
     }
     .nav-item:focus-visible {
       outline: 2px solid #D8CCA3;
@@ -375,8 +409,8 @@
 
     @media (max-width: 1120px) and (min-width: 769px) {
       .nav-links {
-        gap: 3px;
-        padding: 4px 6px;
+        gap: 2px;
+        padding: 4px 5px;
       }
       .nav-item {
         font-size: 0.74rem;
@@ -2695,8 +2729,9 @@
       </a>
 
       <nav role="navigation">
-        <ul class="nav-links">
-          <li><a href="#hero" class="nav-item">Home</a></li>
+        <ul class="nav-links" id="navLinksList">
+          <div class="nav-active-pill" id="navActivePill" aria-hidden="true"></div>
+          <li><a href="#hero" class="nav-item active">Home</a></li>
           <li><a href="#experience" class="nav-item">Experience</a></li>
           <li><a href="#menu" class="nav-item">Menu</a></li>
           <li><a href="#gallery" class="nav-item">Moments</a></li>
@@ -6095,6 +6130,8 @@
       // NAVBAR SMOOTH SCROLLING, ANIMATIONS & SCROLLSPY
       // =====================================================================
       function initNavbarNav() {
+        const navList = document.getElementById('navLinksList');
+        const activePill = document.getElementById('navActivePill');
         const navLinks = Array.from(document.querySelectorAll('.nav-links .nav-item'));
         const brandWrap = document.querySelector('.brand-wrap');
         const navbarHeight = 78;
@@ -6110,48 +6147,90 @@
           { hash: '#location', el: document.getElementById('location') }
         ].filter(s => s.el);
 
+        let isAutoScrolling = false;
+
+        // Animate the gliding pill behind target item
+        function updatePillPosition(targetLink) {
+          if (!activePill || !targetLink || !navList) return;
+          const linkRect = targetLink.getBoundingClientRect();
+          const listRect = navList.getBoundingClientRect();
+          const leftOffset = linkRect.left - listRect.left;
+          const width = linkRect.width;
+
+          activePill.style.transform = `translateX(${leftOffset}px)`;
+          activePill.style.width = `${width}px`;
+          activePill.style.opacity = '1';
+        }
+
         function setActive(hash) {
+          let foundLink = null;
           navLinks.forEach(link => {
             if (link.getAttribute('href') === hash) {
               link.classList.add('active');
+              foundLink = link;
             } else {
               link.classList.remove('active');
             }
           });
+          if (foundLink) {
+            updatePillPosition(foundLink);
+          }
         }
 
         function scrollToSection(hash) {
-          if (hash === '#hero' || hash === '#') {
-            if (window.lenis && typeof window.lenis.scrollTo === 'function') {
-              window.lenis.scrollTo(0, { duration: 1.1 });
-            } else {
-              window.scrollTo({ top: 0, behavior: 'smooth' });
-            }
-            setActive('#hero');
-            if (history.pushState) history.pushState(null, null, '#hero');
-            return;
+          const isHome = (hash === '#hero' || hash === '#' || hash === '');
+          let targetY = 0;
+
+          if (!isHome) {
+            const targetEl = document.querySelector(hash);
+            if (!targetEl) return;
+            const rect = targetEl.getBoundingClientRect();
+            targetY = Math.max(0, Math.round(rect.top + (window.pageYOffset || document.documentElement.scrollTop) - navbarHeight + 2));
           }
 
-          const target = document.querySelector(hash);
-          if (target) {
-            if (window.lenis && typeof window.lenis.scrollTo === 'function') {
-              window.lenis.scrollTo(target, { offset: -navbarHeight + 4, duration: 1.1 });
-            } else {
-              const top = target.getBoundingClientRect().top + window.pageYOffset - navbarHeight + 4;
-              window.scrollTo({ top, behavior: 'smooth' });
+          // Immediately update active pill and button state
+          setActive(isHome ? '#hero' : hash);
+
+          isAutoScrolling = true;
+
+          // 1. Lenis scroll with force:true (bypasses any locks)
+          if (window.lenis && typeof window.lenis.scrollTo === 'function') {
+            try {
+              window.lenis.scrollTo(targetY, {
+                duration: 1.0,
+                force: true,
+                onComplete: () => { isAutoScrolling = false; }
+              });
+            } catch (err) {
+              window.scrollTo({ top: targetY, behavior: 'smooth' });
+              setTimeout(() => { isAutoScrolling = false; }, 1050);
             }
-            setActive(hash);
-            if (history.pushState) history.pushState(null, null, hash);
+          } else {
+            window.scrollTo({ top: targetY, behavior: 'smooth' });
+            setTimeout(() => { isAutoScrolling = false; }, 1050);
           }
+
+          // Native scroll backup in case virtual scroll is interrupted
+          setTimeout(() => {
+            const currentY = window.pageYOffset || document.documentElement.scrollTop;
+            if (Math.abs(currentY - targetY) > 80) {
+              window.scrollTo({ top: targetY, behavior: 'smooth' });
+            }
+            isAutoScrolling = false;
+          }, 1100);
+
+          try {
+            history.pushState(null, null, isHome ? '#hero' : hash);
+          } catch(e) {}
         }
 
-        // Attach click listeners to all nav links
+        // Attach tactile click listeners to all nav links
         navLinks.forEach(link => {
           link.addEventListener('click', function(e) {
             e.preventDefault();
             const href = this.getAttribute('href');
             this.classList.add('clicked');
-            setTimeout(() => this.classList.remove('clicked'), 350);
+            setTimeout(() => this.classList.remove('clicked'), 300);
             if (href) scrollToSection(href);
           });
         });
@@ -6164,19 +6243,24 @@
           });
         }
 
-        // Real-time Scrollspy
+        // Real-time Scrollspy (when user manually scrolls)
         let ticking = false;
         function onScroll() {
-          const scrollPos = window.scrollY || window.pageYOffset;
+          if (isAutoScrolling) {
+            ticking = false;
+            return;
+          }
 
-          // Top of page always highlights Home
+          const scrollPos = window.pageYOffset || document.documentElement.scrollTop || 0;
+
+          // Top of page always activates Home
           if (scrollPos < 150) {
             setActive('#hero');
             ticking = false;
             return;
           }
 
-          // Bottom of page highlights Visit / Location
+          // Bottom of page activates Visit
           if (window.innerHeight + scrollPos >= document.documentElement.scrollHeight - 60) {
             setActive('#location');
             ticking = false;
@@ -6205,8 +6289,27 @@
           }
         }, { passive: true });
 
-        // Initial call
-        onScroll();
+        // Lenis scroll event hook (if lenis is present)
+        if (window.lenis && typeof window.lenis.on === 'function') {
+          window.lenis.on('scroll', () => {
+            if (!ticking) {
+              window.requestAnimationFrame(onScroll);
+              ticking = true;
+            }
+          });
+        }
+
+        // Resize handler to recalculate pill position
+        window.addEventListener('resize', () => {
+          const currentActive = document.querySelector('.nav-links .nav-item.active');
+          if (currentActive) updatePillPosition(currentActive);
+        });
+
+        // Initial layout of pill
+        setTimeout(() => {
+          const initialActive = document.querySelector('.nav-links .nav-item.active') || navLinks[0];
+          if (initialActive) updatePillPosition(initialActive);
+        }, 80);
       }
 
       initNavbarNav();
