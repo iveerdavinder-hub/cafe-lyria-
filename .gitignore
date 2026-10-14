@@ -5,6 +5,7 @@
 scratch/
 scratch_repo/
 *.log
+*.bak
 
 # OS generated
 Thumbs.db

@@ -1,7 +1,7 @@
 {
-  "name": "the-hedgehog-cafe",
+  "name": "garden-cafe",
   "version": "1.0.0",
-  "description": "The Hedgehog Cafe - Specialty Coffee, Books & Artisan Bistro in Sector 7-C, Chandigarh",
+  "description": "Garden Cafe (ਗਾਰਡਨ ਕੈਫੇ) - Open-Air Garden Dining, Specialty Coffee & Artisan Bistro in Sarabha Nagar, Ludhiana",
   "main": "index.html",
   "scripts": {
     "start": "powershell -ExecutionPolicy Bypass -File serve.ps1"
@@ -10,6 +10,8 @@
     "liquid-gl": "^3.0.0"
   },
   "keywords": [
+    "garden-cafe",
+    "ludhiana",
     "liquidGL",
     "liquid-glass",
     "webgpu",
@@ -17,6 +19,6 @@
     "threejs",
     "lenis"
   ],
-  "author": "The Hedgehog Cafe",
+  "author": "Garden Cafe",
   "license": "MIT"
 }

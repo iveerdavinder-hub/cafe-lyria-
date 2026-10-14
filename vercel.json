@@ -6,9 +6,10 @@
     { "source": "/motion", "destination": "/motion.html" },
     { "source": "/experience", "destination": "/3d-experience.html" },
     { "source": "/admin", "destination": "/admin.html" },
-    { "source": "/cafe", "destination": "/the-hedgehog-cafe.html" },
-    { "source": "/the-hedgehog-cafe", "destination": "/the-hedgehog-cafe.html" },
-    { "source": "/cafe-lyria", "destination": "/the-hedgehog-cafe.html" },
+    { "source": "/garden-cafe", "destination": "/index.html" },
+    { "source": "/cafe", "destination": "/index.html" },
+    { "source": "/the-hedgehog-cafe", "destination": "/index.html" },
+    { "source": "/cafe-lyria", "destination": "/index.html" },
     { "source": "/cafe-lyria/(.*)", "destination": "/$1" }
   ]
 }

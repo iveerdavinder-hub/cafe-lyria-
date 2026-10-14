@@ -1,17 +1,27 @@
-# The Hedgehog Cafe (ਦ ਹੈਜ਼ਹੋਗ ਕੈਫੇ) — Sector 7-C, Chandigarh
+# Garden Cafe (ਗਾਰਡਨ ਕੈਫੇ) — Sarabha Nagar, Ludhiana
 
-A wood-panelled, book-lined literary cafe and bistro located at **SCF 12, Inner Market, Sector 7-C, Sector 7, Chandigarh, 160019**. Featuring an extensive library with 1,000+ curated books, artisanal coffee, all-day breakfast, handmade pastas, gourmet fusion pizzas, and handcrafted desserts.
+An enchanting open-air garden cafe and bistro located at **74 - D, D-Block, Sarabha Nagar, Ludhiana, Punjab 141001** (Plus Code: `VRR9+VX Ludhiana, Punjab`). Featuring lush open garden seating, cozy outdoor verandah, fairy-lit evening ambience, handcrafted pizzas, slow-baked lasagne, signature hot chocolate, artisan coffees, refreshing mojitos, and family-friendly hospitality.
 
-### Key Features
-- **Literary Ambience**: Wood-panelled walls, floor-to-ceiling bookshelves, library ladders, reading lamps, and dedicated study tables with power outlets.
-- **Menu Highlights**: The English Breakfast (₹395), Popeye's Ravioli (₹385), The Enchilada Has Landed (₹375), Alfredo in Wonderland (₹365), The Pizza of SW-Desi Things (₹445), Light Club Veg Sandwich (₹295), Sauteed Garlic Mushrooms on Toast (₹285), Signature Frappes (₹245), Cappuccino Tart with Ice Cream (₹265), and Buttermilk Pancakes (₹285).
-- **Table Reservation System**: Self-service booking with seating zones:
-  - *Library Bookshelf Table*
-  - *Cozy Reading Armchairs*
-  - *Study & Work Desk (Near Power Outlets)*
-  - *Main Bistro Dining Table*
-- **Automated 1-Hour Free Cancellation**: Self-service cancellation policy permitting free cancellation up to 1 hour prior to reservation time with confirmation code `#HHC-XXXX`.
-- **Multi-Channel Notifications**: Real-time SMS confirmation simulation, email receipt dispatch, Google Calendar link, and offline `.ics` calendar invite downloads.
-- **Direct Reserve & Order Online**: Embedded Google Reserve link (`dine/c/d-zY6CkcTGY`), Google Online Ordering viewer, and Zomato menu integration.
-- **Owner Admin Portal (`admin.html`)**: Passcode-protected floor plan manager (default passcode `1660` or `1270`), real-time booking alerts with audio chime, status workflow, search/filtering, and CSV export.
-- **Local Business & SEO Metadata**: Complete Open Graph, Twitter cards, Schema.org JSON-LD structured data for Google Rich Results, rating 4.3 ★ (1,935 reviews), and ₹200–₹1,000 price range.
+### Key Highlights
+- **Google Rating**: 4.0 ★ (1,198+ verified reviews) · ₹400–600 per person
+- **Service Options**: Dine-in · Takeaway · No-contact delivery
+- **Hours**: 11:00 AM – 11:00 PM (Daily · Opens 11 am, Closes 11 pm)
+- **Direct Contact**: 📞 062396 04749 / WhatsApp: +91 62396 04749
+- **Menu Highlights**:
+  - *Garden Fresh Pizza* (₹480)
+  - *Garlic Bread with Cheese & Chicken* (₹340)
+  - *Pan O Lasagne / Veg Lasagna* (₹420)
+  - *Signature Hot Chocolate* (₹240)
+  - *Stuffed Paneer Tikka* (₹380)
+  - *Paan & Strawberry Mojito* (₹250)
+  - *Cafe Latte & Irish Coffee* (₹210 / ₹260)
+  - *Classic Expresso* (₹160)
+  - *Chimichanga* (₹390)
+  - *Crispy Golden Fries* (₹220)
+- **Table Reservation & Live Kitchen Ordering**:
+  - Lush Garden Lawn Table
+  - Covered Verandah Table
+  - Indoor Air-Conditioned Table
+  - Family & Celebration Table
+- **Real-Time Cross-Device Admin Portal (`admin.html`)**: Live floor plan management, instant notifications, live status workflow, customer order tracking, and CSV exports.
+- **Modern Web Architecture**: liquidGL WebGPU/WebGL liquid glass navigation bar, Three.js 3D ambient scene, Lenis smooth scrolling, Unlumen UI Team-Stack fanning menu deck & orbital moments wheel.

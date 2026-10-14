@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>The Hedgehog Cafe — Owner Admin Portal</title>
+  <title>Garden Cafe (ਗਾਰਡਨ ਕੈਫੇ) — Owner Admin Portal</title>
   <meta name="robots" content="noindex, nofollow">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
@@ -974,10 +974,10 @@
           </svg>
         </div>
       </div>
-      <div class="lock-brand">The Hedgehog <em>Cafe</em></div>
-      <span class="lock-security-badge">RESTRICTED ACCESS · SCF 12, SECTOR 7-C, CHANDIGARH</span>
+      <div class="lock-brand">Garden <em>Cafe</em></div>
+      <span class="lock-security-badge">RESTRICTED ACCESS · 74 - D, SARABHA NAGAR, LUDHIANA</span>
       <h2 class="lock-title">Enter Owner Passcode</h2>
-      <p class="lock-desc">This management dashboard is restricted to The Hedgehog Cafe owners and managers.</p>
+      <p class="lock-desc">This management dashboard is restricted to Garden Cafe owners and managers.</p>
 
       <form id="ownerLockForm" class="lock-form" autocomplete="off">
         <div class="lock-input-group">
@@ -999,7 +999,7 @@
             <span>🔑</span> Change Password
           </button>
         </div>
-        <a href="index.html" class="lock-return-link">← Return to The Hedgehog Cafe Storefront</a>
+        <a href="index.html" class="lock-return-link">← Return to Garden Cafe Storefront</a>
       </div>
     </div>
   </div>
@@ -1007,7 +1007,7 @@
   <!-- Top Navigation Bar -->
   <header class="topbar">
     <div class="brand">
-      <a href="index.html" class="brand-logo">The Hedgehog <em>Cafe</em></a>
+      <a href="index.html" class="brand-logo">Garden <em>Cafe</em></a>
       <span class="badge-admin">Owner Portal</span>
       <span class="clock-display" id="clockDisplay" style="color:var(--muted);font-size:.82rem;font-weight:600;padding:2px 8px;border-left:1px solid var(--line);margin-left:8px"></span>
     </div>
@@ -1073,7 +1073,7 @@
     <div class="offline-banner" id="offlineAlertBanner" style="display:none">
       <div class="offline-banner-content">
         <span class="offline-badge">🔴 WEBSITE IS CURRENTLY OFFLINE</span>
-        <p>Public visitors accessing <strong>thehedgehogcafe.in</strong> are currently seeing the maintenance notice. Online table reservations are paused.</p>
+        <p>Public visitors accessing <strong>gardencafe.in</strong> are currently seeing the maintenance notice. Online table reservations are paused.</p>
       </div>
       <div class="offline-banner-actions">
         <a href="index.html?mode=customer" target="_blank" class="btn ghost sm">Preview Notice (Customer View) ↗</a>
@@ -1085,7 +1085,7 @@
     <div class="dash-head">
       <div>
         <h1>Floor Plan & Table Bookings</h1>
-        <p>Live floor plan manager for The Hedgehog Cafe · SCF 12, Sector 7-C, Chandigarh</p>
+        <p>Live floor plan manager for Garden Cafe · 74 - D, D-Block, Sarabha Nagar, Ludhiana</p>
       </div>
       <div style="display:flex;gap:10px;flex-wrap:wrap">
         <button class="btn primary sm" id="btnViewReservations">✦ Table Bookings (<span id="badgeResCount">0</span>)</button>
@@ -1577,8 +1577,8 @@
         <!-- Target Info Pill -->
         <div style="background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
           <div>
-            <div style="font-size:1.02rem;font-weight:700;color:var(--cream)" id="notifyCustomerName">Amanpreet Singh</div>
-            <div style="font-size:0.82rem;color:var(--muted);margin-top:2px" id="notifyReferenceId">Ref: #HHC-9421</div>
+            <div style="font-size:1.02rem;font-weight:700;color:var(--cream)" id="notifyCustomerName">Kashu Khan</div>
+            <div style="font-size:0.82rem;color:var(--muted);margin-top:2px" id="notifyReferenceId">Ref: #GCL-9421</div>
           </div>
           <div style="text-align:right">
             <span class="status-select Confirmed" id="notifyStatusChip">Confirmed</span>
@@ -1646,67 +1646,67 @@
 
     const defaultReservations = [
       {
-        id: '#HHC-9421',
-        name: 'Amanpreet Singh',
-        email: 'amanpreet@example.com',
+        id: '#GCL-9421',
+        name: 'Kashu Khan',
+        email: 'kashukhan@example.com',
         phone: '+91 98765 43210',
         guests: '2 Guests',
         date: getTodayString(0),
         time: '11:00 AM',
-        seating: 'Library Bookshelf Table',
-        notes: 'Table near classic novels · English Breakfast & Frappe',
+        seating: 'Garden Verandah Table',
+        notes: 'Table near flowering planters · Hot Chocolate & Garlic Bread',
         status: 'Confirmed',
         createdAt: new Date().toISOString()
       },
       {
-        id: '#HHC-8812',
-        name: 'Simran Kaur',
-        email: 'simran.k@chd.edu.in',
+        id: '#GCL-8812',
+        name: 'Zoya Aslam',
+        email: 'zoya.aslam@example.com',
         phone: '+91 98140 22319',
         guests: '4 Guests',
         date: getTodayString(0),
         time: '01:00 PM',
-        seating: 'Bistro Dining Table',
-        notes: 'Team brunch · Popeye\'s Ravioli & Desi fusion pizza',
+        seating: 'Outdoor Lawn Cabana',
+        notes: 'Family brunch · Garden Fresh Pizza & Cafe Latte',
         status: 'Seated',
         createdAt: new Date().toISOString()
       },
       {
-        id: '#HHC-7630',
-        name: 'Rohan Verma',
-        email: 'rohan.v@techchd.com',
+        id: '#GCL-7630',
+        name: 'Shivani Kothiyal',
+        email: 'shivani.k@example.com',
         phone: '+91 99887 11200',
-        guests: '1 Guest',
+        guests: '6 Guests',
         date: getTodayString(0),
         time: '03:30 PM',
-        seating: 'Study & Work Desk',
-        notes: 'Solo study session with power outlet & cold coffee frappe',
+        seating: 'Garden Celebration Area',
+        notes: 'Birthday celebration in garden · Pan O Lasagne, Stuffed Paneer Tikka & Paan Mojito',
         status: 'Confirmed',
         createdAt: new Date().toISOString()
       },
       {
-        id: '#HHC-6194',
+        id: '#GCL-6194',
         name: 'Harpreet Gill',
         email: 'harpreet@punjablaw.in',
         phone: '+91 98720 55431',
         guests: '4 Guests',
         date: getTodayString(1),
         time: '12:30 PM',
-        seating: 'Cozy Reading Armchairs',
-        notes: 'Family evening catchup · Pancakes & Cappuccino Tart',
+        seating: 'Open-Air Garden Cabana',
+        notes: 'Family garden brunch · Garden Fresh Pizza & Hot Chocolate',
         status: 'Confirmed',
         createdAt: new Date().toISOString()
       },
       {
-        id: '#HHC-5042',
+        id: '#GCL-5042',
         name: 'Tanya Sharma',
         email: 'tanya.s@designstudio.in',
         phone: '+91 97800 66712',
         guests: '2 Guests',
         date: getTodayString(2),
         time: '04:15 PM',
-        seating: 'Library Bookshelf Table',
-        notes: 'Book club discussion · Alfredo in Wonderland pasta',
+        seating: 'Fairy-Lit Verandah Table',
+        notes: 'Outdoor garden seating · Garlic Bread with Cheese & Chicken, Cafe Latte',
         status: 'Confirmed',
         createdAt: new Date().toISOString()
       }
@@ -1975,7 +1975,7 @@
       }
 
       document.getElementById('btnCallGuest').href = r.phone ? `tel:${r.phone}` : '#';
-      document.getElementById('btnEmailGuest').href = r.email ? `mailto:${r.email}?subject=The Hedgehog Cafe Reservation ${r.id}` : '#';
+      document.getElementById('btnEmailGuest').href = r.email ? `mailto:${r.email}?subject=Garden Cafe Reservation ${r.id}` : '#';
 
       const btnResWa = document.getElementById('btnNotifyResWhatsapp');
       if (btnResWa) {
@@ -2176,7 +2176,7 @@
         const encodedUri = encodeURI(csvContent);
         const link = document.createElement('a');
         link.setAttribute('href', encodedUri);
-        link.setAttribute('download', `the_hedgehog_cafe_orders_${new Date().toISOString().split('T')[0]}.csv`);
+        link.setAttribute('download', `garden_cafe_orders_${new Date().toISOString().split('T')[0]}.csv`);
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
@@ -2205,7 +2205,7 @@
         const encodedUri = encodeURI(csvContent);
         const link = document.createElement('a');
         link.setAttribute('href', encodedUri);
-        link.setAttribute('download', `the_hedgehog_cafe_inquiries_${new Date().toISOString().split('T')[0]}.csv`);
+        link.setAttribute('download', `garden_cafe_inquiries_${new Date().toISOString().split('T')[0]}.csv`);
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
@@ -2236,7 +2236,7 @@
       const encodedUri = encodeURI(csvContent);
       const link = document.createElement('a');
       link.setAttribute('href', encodedUri);
-      link.setAttribute('download', `the_hedgehog_cafe_reservations_${getTodayString(0)}.csv`);
+      link.setAttribute('download', `garden_cafe_reservations_${getTodayString(0)}.csv`);
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
@@ -2248,7 +2248,7 @@
       const clockEl = document.getElementById('clockDisplay');
       if (clockEl) {
         const now = new Date();
-        clockEl.textContent = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }) + ' · Chandigarh';
+        clockEl.textContent = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }) + ' · Ludhiana';
       }
     }
     setInterval(updateClock, 1000);
@@ -2476,7 +2476,7 @@
         type: 'new'
       });
       sendDesktopNotification(
-        `The Hedgehog Cafe: New Table Reservation`,
+        `Garden Cafe: New Table Reservation`,
         `${booking.name} reserved ${booking.guests} on ${booking.date} at ${booking.time} (${booking.id})`
       );
       renderDashboard();
@@ -2493,7 +2493,7 @@
         type: 'cancel'
       });
       sendDesktopNotification(
-        `The Hedgehog Cafe: Table Cancelled by Guest`,
+        `Garden Cafe: Table Cancelled by Guest`,
         `Reservation ${booking.id} for ${booking.name || 'Guest'} was cancelled via 1-hr SMS link.`
       );
       renderDashboard();
@@ -2510,7 +2510,7 @@
         type: 'new_order'
       });
       sendDesktopNotification(
-        `The Hedgehog Cafe: New Table Order`,
+        `Garden Cafe: New Table Order`,
         `Order ${order.id} for ${order.table} (${order.guestName || 'Guest'}): ₹${order.total}`
       );
       if (typeof renderOrders === 'function') renderOrders();
@@ -2538,7 +2538,7 @@
     // ==========================================================================
     // CROSS-DEVICE REAL-TIME CLOUD SYNC (RECEIVE FROM ANY DEVICE WORLDWIDE)
     // ==========================================================================
-    const CLOUD_SYNC_TOPIC = 'the_hedgehog_cafe_sec7c_live_sync_v1';
+    const CLOUD_SYNC_TOPIC = 'garden_cafe_ludhiana_live_sync_v1';
 
     function mergeCloudReservation(booking, triggerAlert = true) {
       if (!booking || !booking.id) return;
@@ -2669,20 +2669,20 @@
       {
         id: '#INQ-1042',
         name: 'Simran Walia',
-        email: 'simran.w@panjabuniv.ac.in',
+        email: 'simran.w@example.com',
         phone: '+91 98765 12340',
-        reason: 'Book Club & Event',
-        message: 'Hello Hedgehog Cafe team, looking to host a monthly literary book club meet for ~14 people on Saturday morning. Would love to know if we can reserve the library section!',
+        reason: 'Birthday Party & Garden Gathering',
+        message: 'Hello Garden Cafe team, looking to host a birthday gathering for ~15 people in your outdoor garden seating on Saturday evening. Would love to know if we can reserve the fairy-lit verandah!',
         status: 'Unread',
         createdAt: new Date(Date.now() - 3600000 * 4).toISOString()
       },
       {
         id: '#INQ-1038',
         name: 'Gaurav Khanna',
-        email: 'gaurav.k@chandigarhmedia.in',
+        email: 'gaurav.k@ludhianamedia.in',
         phone: '+91 98140 55667',
-        reason: 'Live Acoustic Session',
-        message: 'Loved the quiet reading atmosphere and pizzas at your Sector 7 cafe! Inquiring about hosting an acoustic poetry and music evening.',
+        reason: 'Garden Acoustic Evening',
+        message: 'Loved the lush outdoor garden atmosphere and pizzas at Garden Cafe in Sarabha Nagar! Inquiring about hosting an acoustic music and poetry gathering for 20 guests.',
         status: 'Replied',
         createdAt: new Date(Date.now() - 86400000).toISOString()
       }
@@ -2874,7 +2874,7 @@
       const emailLink = document.getElementById('inqDetailEmail');
       if (emailLink) {
         emailLink.textContent = inq.email;
-        emailLink.href = `mailto:${inq.email}?subject=Regarding your The Hedgehog Cafe inquiry (${inq.id})`;
+        emailLink.href = `mailto:${inq.email}?subject=Regarding your Garden Cafe inquiry (${inq.id})`;
       }
 
       const phoneWrap = document.getElementById('inqDetailPhoneWrap');
@@ -2890,7 +2890,7 @@
 
       const btnReply = document.getElementById('btnReplyInquiryEmail');
       if (btnReply) {
-        btnReply.href = `mailto:${inq.email}?subject=Regarding your The Hedgehog Cafe inquiry (${inq.id})&body=Hi ${inq.name},%0D%0A%0D%0AThank you for reaching out to The Hedgehog Cafe.%0D%0A%0D%0A`;
+        btnReply.href = `mailto:${inq.email}?subject=Regarding your Garden Cafe inquiry (${inq.id})&body=Hi ${inq.name},%0D%0A%0D%0AThank you for reaching out to Garden Cafe.%0D%0A%0D%0A`;
       }
 
       const btnToggle = document.getElementById('btnToggleInqStatus');
@@ -2955,44 +2955,45 @@
 
     const defaultOrders = [
       {
-        id: '#HHC-ORD-4921',
-        table: 'Table 4',
-        guestName: 'Simran Kaur',
+        id: '#GCL-ORD-4921',
+        table: 'Garden Table 4',
+        guestName: 'Kashu Khan',
         phone: '+91 98765 43210',
-        specialNotes: 'Less ice in frappe, warm sourdough toast',
+        specialNotes: 'Extra hot chocolate topping, warm cutlery',
         items: [
-          { name: 'The English Breakfast', qty: 1, price: 395 },
-          { name: 'Signature Frappe', qty: 1, price: 245 }
+          { name: 'Hot Chocolate', qty: 2, price: 220 },
+          { name: 'Garlic Bread With Cheese And Chicken', qty: 1, price: 340 }
         ],
-        total: 640,
+        total: 780,
         createdAt: new Date(Date.now() - 12 * 60 * 1000).toISOString(),
         status: 'Kitchen Preparing'
       },
       {
-        id: '#HHC-ORD-4916',
-        table: 'Table 2',
-        guestName: 'Arjun Mehta',
+        id: '#GCL-ORD-4916',
+        table: 'Verandah Table 2',
+        guestName: 'Zoya Aslam',
         phone: '+91 98140 12345',
-        specialNotes: 'Extra parmesan on side',
+        specialNotes: 'Extra oregano, fast service appreciated',
         items: [
-          { name: "Popeye's Ravioli", qty: 2, price: 385 },
-          { name: 'Cafe Cappuccino & Latte', qty: 2, price: 195 }
+          { name: 'Garden Fresh Pizza', qty: 1, price: 420 },
+          { name: 'Cafe Latte', qty: 2, price: 210 }
         ],
-        total: 1160,
+        total: 840,
         createdAt: new Date(Date.now() - 35 * 60 * 1000).toISOString(),
         status: 'Served'
       },
       {
-        id: '#HHC-ORD-4908',
-        table: 'Reading Lounge',
-        guestName: 'Dr. Kabir Verma',
+        id: '#GCL-ORD-4908',
+        table: 'Lawn Cabana 1',
+        guestName: 'Shivani Kothiyal',
         phone: '+91 98888 77665',
-        specialNotes: 'Table near novel bookshelf',
+        specialNotes: 'Birthday celebration table, fairy lights on',
         items: [
-          { name: 'The Pizza of SW-Desi Things', qty: 1, price: 445 },
-          { name: 'Cappuccino Tart with Ice Cream', qty: 1, price: 265 }
+          { name: 'Pan O Lasagne', qty: 1, price: 380 },
+          { name: 'Stuffed Paneer Tikka', qty: 1, price: 320 },
+          { name: 'Paan & Strawberry Mojito', qty: 2, price: 190 }
         ],
-        total: 710,
+        total: 1080,
         createdAt: new Date(Date.now() - 75 * 60 * 1000).toISOString(),
         status: 'Served'
       }
@@ -3372,7 +3373,7 @@
     }
 
     function generateCustomerNotificationMessage(info) {
-      const cafeName = 'The Hedgehog Cafe (Sector 7-C, Chandigarh)';
+      const cafeName = 'Garden Cafe (Sarabha Nagar, Ludhiana)';
       const helpline = '+91 98765 43210';
 
       if (info.category === 'reservation') {
