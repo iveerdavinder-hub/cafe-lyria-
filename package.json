@@ -4,8 +4,7 @@
   "description": "R6 Caffe - Vegetarian Cafe, Deli & Specialty Coffee in Model Town, Ludhiana",
   "main": "index.html",
   "scripts": {
-    "start": "powershell -ExecutionPolicy Bypass -File serve.ps1",
-    "build": "echo Static build complete"
+    "start": "powershell -ExecutionPolicy Bypass -File serve.ps1"
   },
   "dependencies": {
     "clsx": "^2.1.1",
