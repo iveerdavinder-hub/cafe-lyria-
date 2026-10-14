@@ -8,17 +8,13 @@ A cozy vegetarian cafe, deli, and specialty coffee haven situated at **510-R, Mo
 - **Service Options**: Dine-in · Takeaway · No-contact delivery
 - **Hours**: 8:00 AM – 10:30 PM (Daily · Opens 8 am, Closes 10:30 pm)
 - **Direct Contact**: 📞 +91 88475 72934 / WhatsApp: +91 88475 72934
-- **Menu Highlights**:
-  - *Artisan Thin Crust Pizza* (₹260)
-  - *Cheesy Loaded Garlic Bread* (₹180)
-  - *Creamy Penne Alfredo* (₹240)
-  - *Cold Coffee with Ice Cream* (₹160)
-  - *Classic Choco Frappe* (₹180)
-  - *Crispy Peri Peri Loaded Fries* (₹150)
-  - *Gourmet Veg Club Sandwich* (₹160)
-  - *Handcrafted Veggie Burger* (₹150)
-  - *Virgin Mint Mojito* (₹140)
-  - *Cafe Latte & Cappuccino* (₹140)
+- **Curated 32-Item Handcrafted Menu across 6 Categories**:
+  - **Pizzas & Garlic Breads (5 items)**: Artisan Margherita Pizza (₹220), Farm Fresh Veggie Pizza (₹260), Paneer Tikka & Capsicum Pizza (₹280), Cheesy Loaded Garlic Bread (₹180), Spicy Jalapeño & Corn Garlic Bread (₹190)
+  - **Specialty Coffees & Frappes (8 items)**: Classic Espresso Double Shot (₹120), Silky Cafe Latte (₹140), Rich Cafe Cappuccino (₹140), Cafe Mocha Decadence (₹170), Signature Cold Coffee with Ice Cream (₹160), Classic Choco Frappe (₹180), Caramel Hazelnut Frappe (₹190), Vietnamese Iced Coffee (₹160)
+  - **Pastas & Lasagne (4 items)**: Creamy Penne Alfredo (₹240), Spicy Arrabiata Pasta (₹230), Creamy Pink Sauce Penne (₹250), Oven-Baked Veg Lasagna (₹270)
+  - **Burgers, Sandwiches & Wraps (8 items)**: Handcrafted Veggie Burger (₹150), Crispy Paneer Makhani Burger (₹170), Mexican Bean & Cheese Wrap (₹160), Tandoori Paneer Kathi Roll (₹170), Gourmet Veg Club Sandwich (₹160), Grilled Cheese & Corn Panini (₹150), Mushroom & Caramelized Onion Panini (₹170), Paneer Tikka Herb Sandwich (₹160)
+  - **Fries & Quick Bites (4 items)**: Crispy Peri Peri Loaded Fries (₹150), Classic Salted Crispy Fries (₹120), Loaded Mexican Cheese Nachos (₹170), Crispy Veggie Spring Rolls (₹150)
+  - **Coolers & Shakes (3 items)**: Virgin Mint Mojito (₹140), Blue Curacao Lemon Cooler (₹150), Belgian Chocolate Thick Shake (₹190)
 - **Table Reservation & Live Kitchen Ordering**:
   - Cozy Corner Table
   - Window View Table

@@ -2512,17 +2512,20 @@
       </div>
 
       <div class="menu-filter-bar">
-        <button type="button" class="menu-filter-btn active" data-filter="all">All Highlights</button>
-        <button type="button" class="menu-filter-btn" data-filter="mains">Pizzas &amp; Pastas</button>
-        <button type="button" class="menu-filter-btn" data-filter="coffee">Coffee &amp; Sips</button>
-        <button type="button" class="menu-filter-btn" data-filter="snacks">Bites &amp; Starters</button>
+        <button type="button" class="menu-filter-btn active" data-filter="all">All Items (32)</button>
+        <button type="button" class="menu-filter-btn" data-filter="pizza">Pizzas &amp; Garlic Breads (5)</button>
+        <button type="button" class="menu-filter-btn" data-filter="coffee">Specialty Coffees (8)</button>
+        <button type="button" class="menu-filter-btn" data-filter="pasta">Pastas &amp; Lasagne (4)</button>
+        <button type="button" class="menu-filter-btn" data-filter="burgers">Burgers &amp; Sandwiches (8)</button>
+        <button type="button" class="menu-filter-btn" data-filter="snacks">Fries &amp; Quick Bites (4)</button>
+        <button type="button" class="menu-filter-btn" data-filter="beverages">Coolers &amp; Shakes (3)</button>
       </div>
 
       <!-- Unlumen Team-Stack Interactive Fanning Card Deck -->
       <div class="menu-deck-stage" id="menuDeckStage">
         <div class="menu-deck-stack" id="menuDeckStack" aria-label="Interactive Food Cards Deck">
           <!-- Deck Card 1: Artisan Thin Crust Pizza -->
-          <div class="deck-card" data-category="mains" data-name="Artisan Thin Crust Pizza" data-price="260" tabindex="0">
+          <div class="deck-card" data-category="pizza" data-name="Artisan Thin Crust Pizza" data-price="260" tabindex="0">
             <div class="deck-card-thumb">
               <img src="images/hedgehog_hero.jpg" alt="Artisan Thin Crust Pizza" loading="lazy">
               <span class="deck-badge">Chef Favorite</span>
@@ -2545,7 +2548,7 @@
           </div>
 
           <!-- Deck Card 2: Cheesy Loaded Garlic Bread -->
-          <div class="deck-card" data-category="mains" data-name="Cheesy Loaded Garlic Bread" data-price="180" tabindex="0">
+          <div class="deck-card" data-category="pizza" data-name="Cheesy Loaded Garlic Bread" data-price="180" tabindex="0">
             <div class="deck-card-thumb">
               <img src="images/hedgehog_ravioli_pizza.jpg" alt="Cheesy Loaded Garlic Bread" loading="lazy">
               <span class="deck-badge">Crowd Favorite</span>
@@ -2568,7 +2571,7 @@
           </div>
 
           <!-- Deck Card 3: Creamy Penne Alfredo -->
-          <div class="deck-card" data-category="mains" data-name="Creamy Penne Alfredo" data-price="240" tabindex="0">
+          <div class="deck-card" data-category="pasta" data-name="Creamy Penne Alfredo" data-price="240" tabindex="0">
             <div class="deck-card-thumb">
               <img src="images/hedgehog_lasagna_gratin.jpg" alt="Creamy Penne Alfredo" loading="lazy">
               <span class="deck-badge">Creamy Pasta</span>
@@ -2613,7 +2616,53 @@
             </div>
           </div>
 
-          <!-- Deck Card 5: Crispy Peri Peri Loaded Fries -->
+          <!-- Deck Card 5: Handcrafted Veggie Burger -->
+          <div class="deck-card" data-category="burgers" data-name="Handcrafted Veggie Burger" data-price="150" tabindex="0">
+            <div class="deck-card-thumb">
+              <img src="images/environment_lounge.webp" alt="Handcrafted Veggie Burger" loading="lazy">
+              <span class="deck-badge">Crisp Patty</span>
+              <span class="deck-price-tag">₹150</span>
+            </div>
+            <div class="deck-card-body">
+              <div>
+                <div class="deck-card-meta">Brioche Bun Special</div>
+                <h3 class="deck-card-title">Handcrafted Veggie Burger</h3>
+                <p class="deck-card-desc">Golden spiced vegetable patty tucked into a toasted sesame brioche bun with cheddar slice and house relish.</p>
+              </div>
+              <div class="deck-card-footer">
+                <span style="font-size:0.75rem; color:var(--muted); font-weight:600;">Brioche Burger</span>
+                <div class="deck-cta-pill">
+                  <span>Order to Table</span>
+                  <span class="pill-plus">+</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Deck Card 6: Gourmet Veg Club Sandwich -->
+          <div class="deck-card" data-category="burgers" data-name="Gourmet Veg Club Sandwich" data-price="160" tabindex="0">
+            <div class="deck-card-thumb">
+              <img src="images/hedgehog_zucchini_boat.jpg" alt="Gourmet Veg Club Sandwich" loading="lazy">
+              <span class="deck-badge">Triple Layer</span>
+              <span class="deck-price-tag">₹160</span>
+            </div>
+            <div class="deck-card-body">
+              <div>
+                <div class="deck-card-meta">Triple Layered Deli</div>
+                <h3 class="deck-card-title">Gourmet Veg Club Sandwich</h3>
+                <p class="deck-card-desc">Triple-layered grilled sandwich loaded with cheddar, crisp cucumber, juicy tomatoes, and herbed deli spread.</p>
+              </div>
+              <div class="deck-card-footer">
+                <span style="font-size:0.75rem; color:var(--muted); font-weight:600;">Deli Sandwich</span>
+                <div class="deck-cta-pill">
+                  <span>Order to Table</span>
+                  <span class="pill-plus">+</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Deck Card 7: Crispy Peri Peri Loaded Fries -->
           <div class="deck-card" data-category="snacks" data-name="Crispy Peri Peri Loaded Fries" data-price="150" tabindex="0">
             <div class="deck-card-thumb">
               <img src="images/hedgehog_english_breakfast.jpg" alt="Crispy Peri Peri Loaded Fries" loading="lazy">
@@ -2636,7 +2685,7 @@
             </div>
           </div>
 
-          <!-- Deck Card 6: Classic Choco Frappe -->
+          <!-- Deck Card 8: Classic Choco Frappe -->
           <div class="deck-card" data-category="coffee" data-name="Classic Choco Frappe" data-price="180" tabindex="0">
             <div class="deck-card-thumb">
               <img src="images/environment_freddo.webp" alt="Classic Choco Frappe" loading="lazy">
@@ -2658,6 +2707,29 @@
               </div>
             </div>
           </div>
+
+          <!-- Deck Card 9: Virgin Mint Mojito -->
+          <div class="deck-card" data-category="beverages" data-name="Virgin Mint Mojito" data-price="140" tabindex="0">
+            <div class="deck-card-thumb">
+              <img src="images/hedgehog_iced_matcha.jpg" alt="Virgin Mint Mojito" loading="lazy">
+              <span class="deck-badge">Chilled Soda</span>
+              <span class="deck-price-tag">₹140</span>
+            </div>
+            <div class="deck-card-body">
+              <div>
+                <div class="deck-card-meta">Refreshing Fizz</div>
+                <h3 class="deck-card-title">Virgin Mint Mojito</h3>
+                <p class="deck-card-desc">Freshly muddled garden mint, tangy lime wedges, raw cane sugar, and chilled sparkling soda over crushed ice.</p>
+              </div>
+              <div class="deck-card-footer">
+                <span style="font-size:0.75rem; color:var(--muted); font-weight:600;">Cooler Sip</span>
+                <div class="deck-cta-pill">
+                  <span>Order to Table</span>
+                  <span class="pill-plus">+</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
         <!-- Deck Controls & Guide Pill -->
@@ -2672,183 +2744,676 @@
       </div>
 
       <!-- Full Menu Grid (Shown when switched to Full Menu Grid) -->
+      <!-- Full Menu Grid (32 Items across All Categories) -->
       <div class="menu-cards-grid is-hidden" id="menuCardsGrid">
-        <!-- Dish 1: Artisan Thin Crust Pizza -->
-        <div class="food-card" data-category="mains" onclick="openOrderModal('Artisan Thin Crust Pizza', 260)">
+        <!-- Item 1: Artisan Margherita Pizza -->
+        <div class="food-card" data-category="pizza" onclick="openOrderModal('Artisan Margherita Pizza', 220)">
           <div class="food-thumb-wrap">
-            <img src="images/hedgehog_hero.jpg" alt="Artisan Thin Crust Pizza" class="food-thumb-img" loading="lazy">
-            <span class="food-badge">Top Pick</span>
+            <img src="images/hedgehog_hero.jpg" alt="Artisan Margherita Pizza" class="food-thumb-img" loading="lazy">
+            <span class="food-badge">Italian Classic</span>
           </div>
           <div class="food-card-body">
             <div>
-              <h3 class="food-card-title">Artisan Thin Crust Pizza</h3>
-              <p class="food-card-desc">Freshly rolled crust, aromatic basil tomato sauce, bell peppers, sweet corn, olives, and melted mozzarella.</p>
+              <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:6px;">
+                <h3 class="food-card-title">Artisan Margherita Pizza</h3>
+                <span class="food-diet-badge veg" style="flex-shrink:0;font-size:0.7rem;padding:2px 8px;border-radius:4px;border:1px solid #65A30D;color:#A3E635;background:rgba(101,163,13,0.15);">Veg</span>
+              </div>
+              <p class="food-card-desc">Fresh sweet basil, slow-simmered San Marzano tomato sauce, mozzarella, and extra virgin olive oil on hand-stretched thin crust.</p>
             </div>
             <div class="food-card-footer">
-              <span class="food-price">₹260</span>
-              <button type="button" class="btn-order-quick">Order to Table +</button>
+              <span class="food-price">₹220</span>
+              <button type="button" class="btn-order-quick" data-item="Artisan Margherita Pizza" data-price="220">Order to Table +</button>
             </div>
           </div>
         </div>
 
-        <!-- Dish 2: Cheesy Loaded Garlic Bread -->
-        <div class="food-card" data-category="mains" onclick="openOrderModal('Cheesy Loaded Garlic Bread', 180)">
+        <!-- Item 2: Farm Fresh Veggie Pizza -->
+        <div class="food-card" data-category="pizza" onclick="openOrderModal('Farm Fresh Veggie Pizza', 260)">
+          <div class="food-thumb-wrap">
+            <img src="images/hedgehog_ravioli_pizza.jpg" alt="Farm Fresh Veggie Pizza" class="food-thumb-img" loading="lazy">
+            <span class="food-badge">Best Seller</span>
+          </div>
+          <div class="food-card-body">
+            <div>
+              <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:6px;">
+                <h3 class="food-card-title">Farm Fresh Veggie Pizza</h3>
+                <span class="food-diet-badge veg" style="flex-shrink:0;font-size:0.7rem;padding:2px 8px;border-radius:4px;border:1px solid #65A30D;color:#A3E635;background:rgba(101,163,13,0.15);">Veg</span>
+              </div>
+              <p class="food-card-desc">Crisp bell peppers, golden sweet corn, sliced black olives, red onions, jalapeños, and bubbly melted mozzarella.</p>
+            </div>
+            <div class="food-card-footer">
+              <span class="food-price">₹260</span>
+              <button type="button" class="btn-order-quick" data-item="Farm Fresh Veggie Pizza" data-price="260">Order to Table +</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 3: Paneer Tikka & Capsicum Pizza -->
+        <div class="food-card" data-category="pizza" onclick="openOrderModal('Paneer Tikka & Capsicum Pizza', 280)">
+          <div class="food-thumb-wrap">
+            <img src="images/hedgehog_hero.jpg" alt="Paneer Tikka & Capsicum Pizza" class="food-thumb-img" loading="lazy">
+            <span class="food-badge">Chef's Special</span>
+          </div>
+          <div class="food-card-body">
+            <div>
+              <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:6px;">
+                <h3 class="food-card-title">Paneer Tikka & Capsicum Pizza</h3>
+                <span class="food-diet-badge veg" style="flex-shrink:0;font-size:0.7rem;padding:2px 8px;border-radius:4px;border:1px solid #65A30D;color:#A3E635;background:rgba(101,163,13,0.15);">Veg</span>
+              </div>
+              <p class="food-card-desc">Tandoor-marinated paneer cubes, roasted green capsicum, red onions, and melted mozzarella with a light herb mint drizzle.</p>
+            </div>
+            <div class="food-card-footer">
+              <span class="food-price">₹280</span>
+              <button type="button" class="btn-order-quick" data-item="Paneer Tikka & Capsicum Pizza" data-price="280">Order to Table +</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 4: Cheesy Loaded Garlic Bread -->
+        <div class="food-card" data-category="pizza" onclick="openOrderModal('Cheesy Loaded Garlic Bread', 180)">
           <div class="food-thumb-wrap">
             <img src="images/hedgehog_ravioli_pizza.jpg" alt="Cheesy Loaded Garlic Bread" class="food-thumb-img" loading="lazy">
             <span class="food-badge">Crowd Favorite</span>
           </div>
           <div class="food-card-body">
             <div>
-              <h3 class="food-card-title">Cheesy Loaded Garlic Bread</h3>
-              <p class="food-card-desc">Crisp toasted baguettes smothered with fragrant garlic herb butter and rich bubbling melted cheese.</p>
+              <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:6px;">
+                <h3 class="food-card-title">Cheesy Loaded Garlic Bread</h3>
+                <span class="food-diet-badge veg" style="flex-shrink:0;font-size:0.7rem;padding:2px 8px;border-radius:4px;border:1px solid #65A30D;color:#A3E635;background:rgba(101,163,13,0.15);">Veg</span>
+              </div>
+              <p class="food-card-desc">Toasted artisan baguette slices infused with aromatic garlic herb butter and covered in thick molten mozzarella.</p>
             </div>
             <div class="food-card-footer">
               <span class="food-price">₹180</span>
-              <button type="button" class="btn-order-quick">Order to Table +</button>
+              <button type="button" class="btn-order-quick" data-item="Cheesy Loaded Garlic Bread" data-price="180">Order to Table +</button>
             </div>
           </div>
         </div>
 
-        <!-- Dish 3: Creamy Penne Alfredo -->
-        <div class="food-card" data-category="mains" onclick="openOrderModal('Creamy Penne Alfredo', 240)">
+        <!-- Item 5: Spicy Jalapeño & Corn Garlic Bread -->
+        <div class="food-card" data-category="pizza" onclick="openOrderModal('Spicy Jalapeño & Corn Garlic Bread', 190)">
           <div class="food-thumb-wrap">
-            <img src="images/hedgehog_lasagna_gratin.jpg" alt="Creamy Penne Alfredo" class="food-thumb-img" loading="lazy">
-            <span class="food-badge">Chef's Special</span>
+            <img src="images/hedgehog_ravioli_pizza.jpg" alt="Spicy Jalapeño & Corn Garlic Bread" class="food-thumb-img" loading="lazy">
+            <span class="food-badge">Spicy Bite</span>
           </div>
           <div class="food-card-body">
             <div>
-              <h3 class="food-card-title">Creamy Penne Alfredo</h3>
+              <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:6px;">
+                <h3 class="food-card-title">Spicy Jalapeño & Corn Garlic Bread</h3>
+                <span class="food-diet-badge veg" style="flex-shrink:0;font-size:0.7rem;padding:2px 8px;border-radius:4px;border:1px solid #65A30D;color:#A3E635;background:rgba(101,163,13,0.15);">Veg</span>
+              </div>
+              <p class="food-card-desc">Crispy garlic bread topped with sweet golden corn, zesty Mexican jalapeños, and a fiery herb cheese crust.</p>
+            </div>
+            <div class="food-card-footer">
+              <span class="food-price">₹190</span>
+              <button type="button" class="btn-order-quick" data-item="Spicy Jalapeño & Corn Garlic Bread" data-price="190">Order to Table +</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 6: Classic Espresso Double Shot -->
+        <div class="food-card" data-category="coffee" onclick="openOrderModal('Classic Espresso Double Shot', 120)">
+          <div class="food-thumb-wrap">
+            <img src="images/environment_espressobar.webp" alt="Classic Espresso Double Shot" class="food-thumb-img" loading="lazy">
+            <span class="food-badge">Bold Roast</span>
+          </div>
+          <div class="food-card-body">
+            <div>
+              <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:6px;">
+                <h3 class="food-card-title">Classic Espresso Double Shot</h3>
+                <span class="food-diet-badge veg" style="flex-shrink:0;font-size:0.7rem;padding:2px 8px;border-radius:4px;border:1px solid #65A30D;color:#A3E635;background:rgba(101,163,13,0.15);">Beverage</span>
+              </div>
+              <p class="food-card-desc">Intense double-shot espresso pulled from single-origin dark roast beans with rich hazelnut-colored crema.</p>
+            </div>
+            <div class="food-card-footer">
+              <span class="food-price">₹120</span>
+              <button type="button" class="btn-order-quick" data-item="Classic Espresso Double Shot" data-price="120">Order to Table +</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 7: Silky Cafe Latte -->
+        <div class="food-card" data-category="coffee" onclick="openOrderModal('Silky Cafe Latte', 140)">
+          <div class="food-thumb-wrap">
+            <img src="images/coffee.webp" alt="Silky Cafe Latte" class="food-thumb-img" loading="lazy">
+            <span class="food-badge">Barista Special</span>
+          </div>
+          <div class="food-card-body">
+            <div>
+              <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:6px;">
+                <h3 class="food-card-title">Silky Cafe Latte</h3>
+                <span class="food-diet-badge veg" style="flex-shrink:0;font-size:0.7rem;padding:2px 8px;border-radius:4px;border:1px solid #65A30D;color:#A3E635;background:rgba(101,163,13,0.15);">Beverage</span>
+              </div>
+              <p class="food-card-desc">Freshly pulled espresso shot gently poured with creamy steamed milk and delicate velvety microfoam art.</p>
+            </div>
+            <div class="food-card-footer">
+              <span class="food-price">₹140</span>
+              <button type="button" class="btn-order-quick" data-item="Silky Cafe Latte" data-price="140">Order to Table +</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 8: Rich Cafe Cappuccino -->
+        <div class="food-card" data-category="coffee" onclick="openOrderModal('Rich Cafe Cappuccino', 140)">
+          <div class="food-thumb-wrap">
+            <img src="images/horchata_latte.jpg" alt="Rich Cafe Cappuccino" class="food-thumb-img" loading="lazy">
+            <span class="food-badge">Morning Favorite</span>
+          </div>
+          <div class="food-card-body">
+            <div>
+              <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:6px;">
+                <h3 class="food-card-title">Rich Cafe Cappuccino</h3>
+                <span class="food-diet-badge veg" style="flex-shrink:0;font-size:0.7rem;padding:2px 8px;border-radius:4px;border:1px solid #65A30D;color:#A3E635;background:rgba(101,163,13,0.15);">Beverage</span>
+              </div>
+              <p class="food-card-desc">Perfect balance of espresso, equal parts steamed milk, and airy froth lightly dusted with cinnamon cocoa.</p>
+            </div>
+            <div class="food-card-footer">
+              <span class="food-price">₹140</span>
+              <button type="button" class="btn-order-quick" data-item="Rich Cafe Cappuccino" data-price="140">Order to Table +</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 9: Cafe Mocha Decadence -->
+        <div class="food-card" data-category="coffee" onclick="openOrderModal('Cafe Mocha Decadence', 170)">
+          <div class="food-thumb-wrap">
+            <img src="images/coffee.webp" alt="Cafe Mocha Decadence" class="food-thumb-img" loading="lazy">
+            <span class="food-badge">Sweet Blend</span>
+          </div>
+          <div class="food-card-body">
+            <div>
+              <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:6px;">
+                <h3 class="food-card-title">Cafe Mocha Decadence</h3>
+                <span class="food-diet-badge veg" style="flex-shrink:0;font-size:0.7rem;padding:2px 8px;border-radius:4px;border:1px solid #65A30D;color:#A3E635;background:rgba(101,163,13,0.15);">Beverage</span>
+              </div>
+              <p class="food-card-desc">Rich espresso blended with velvety dark chocolate ganache, steamed whole milk, and chocolate crema.</p>
+            </div>
+            <div class="food-card-footer">
+              <span class="food-price">₹170</span>
+              <button type="button" class="btn-order-quick" data-item="Cafe Mocha Decadence" data-price="170">Order to Table +</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 10: Signature Cold Coffee with Ice Cream -->
+        <div class="food-card" data-category="coffee" onclick="openOrderModal('Signature Cold Coffee with Ice Cream', 160)">
+          <div class="food-thumb-wrap">
+            <img src="images/environment_freddo.webp" alt="Signature Cold Coffee with Ice Cream" class="food-thumb-img" loading="lazy">
+            <span class="food-badge">Customer Favorite</span>
+          </div>
+          <div class="food-card-body">
+            <div>
+              <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:6px;">
+                <h3 class="food-card-title">Signature Cold Coffee with Ice Cream</h3>
+                <span class="food-diet-badge veg" style="flex-shrink:0;font-size:0.7rem;padding:2px 8px;border-radius:4px;border:1px solid #65A30D;color:#A3E635;background:rgba(101,163,13,0.15);">Beverage</span>
+              </div>
+              <p class="food-card-desc">Chilled espresso blended with thick milk and crowned with a generous scoop of rich vanilla ice cream.</p>
+            </div>
+            <div class="food-card-footer">
+              <span class="food-price">₹160</span>
+              <button type="button" class="btn-order-quick" data-item="Signature Cold Coffee with Ice Cream" data-price="160">Order to Table +</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 11: Classic Choco Frappe -->
+        <div class="food-card" data-category="coffee" onclick="openOrderModal('Classic Choco Frappe', 180)">
+          <div class="food-thumb-wrap">
+            <img src="images/hedgehog_frappe_dessert.jpg" alt="Classic Choco Frappe" class="food-thumb-img" loading="lazy">
+            <span class="food-badge">Popular Sip</span>
+          </div>
+          <div class="food-card-body">
+            <div>
+              <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:6px;">
+                <h3 class="food-card-title">Classic Choco Frappe</h3>
+                <span class="food-diet-badge veg" style="flex-shrink:0;font-size:0.7rem;padding:2px 8px;border-radius:4px;border:1px solid #65A30D;color:#A3E635;background:rgba(101,163,13,0.15);">Beverage</span>
+              </div>
+              <p class="food-card-desc">Blended espresso with dark chocolate ganache, chilled whole milk, and crushed ice, finished with cocoa dust.</p>
+            </div>
+            <div class="food-card-footer">
+              <span class="food-price">₹180</span>
+              <button type="button" class="btn-order-quick" data-item="Classic Choco Frappe" data-price="180">Order to Table +</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 12: Caramel Hazelnut Frappe -->
+        <div class="food-card" data-category="coffee" onclick="openOrderModal('Caramel Hazelnut Frappe', 190)">
+          <div class="food-thumb-wrap">
+            <img src="images/environment_freddo.webp" alt="Caramel Hazelnut Frappe" class="food-thumb-img" loading="lazy">
+            <span class="food-badge">Nutty Sweet</span>
+          </div>
+          <div class="food-card-body">
+            <div>
+              <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:6px;">
+                <h3 class="food-card-title">Caramel Hazelnut Frappe</h3>
+                <span class="food-diet-badge veg" style="flex-shrink:0;font-size:0.7rem;padding:2px 8px;border-radius:4px;border:1px solid #65A30D;color:#A3E635;background:rgba(101,163,13,0.15);">Beverage</span>
+              </div>
+              <p class="food-card-desc">Thick frappe infused with roasted hazelnut syrup, double espresso, cold cream, and golden caramel drizzle.</p>
+            </div>
+            <div class="food-card-footer">
+              <span class="food-price">₹190</span>
+              <button type="button" class="btn-order-quick" data-item="Caramel Hazelnut Frappe" data-price="190">Order to Table +</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 13: Vietnamese Iced Coffee -->
+        <div class="food-card" data-category="coffee" onclick="openOrderModal('Vietnamese Iced Coffee', 160)">
+          <div class="food-thumb-wrap">
+            <img src="images/environment_windowbar.webp" alt="Vietnamese Iced Coffee" class="food-thumb-img" loading="lazy">
+            <span class="food-badge">Specialty Brew</span>
+          </div>
+          <div class="food-card-body">
+            <div>
+              <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:6px;">
+                <h3 class="food-card-title">Vietnamese Iced Coffee</h3>
+                <span class="food-diet-badge veg" style="flex-shrink:0;font-size:0.7rem;padding:2px 8px;border-radius:4px;border:1px solid #65A30D;color:#A3E635;background:rgba(101,163,13,0.15);">Beverage</span>
+              </div>
+              <p class="food-card-desc">Slow-dripped dark roast coffee served over sweet condensed milk and crushed ice for a smooth, bold kick.</p>
+            </div>
+            <div class="food-card-footer">
+              <span class="food-price">₹160</span>
+              <button type="button" class="btn-order-quick" data-item="Vietnamese Iced Coffee" data-price="160">Order to Table +</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 14: Creamy Penne Alfredo -->
+        <div class="food-card" data-category="pasta" onclick="openOrderModal('Creamy Penne Alfredo', 240)">
+          <div class="food-thumb-wrap">
+            <img src="images/hedgehog_lasagna_gratin.jpg" alt="Creamy Penne Alfredo" class="food-thumb-img" loading="lazy">
+            <span class="food-badge">Rich & Creamy</span>
+          </div>
+          <div class="food-card-body">
+            <div>
+              <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:6px;">
+                <h3 class="food-card-title">Creamy Penne Alfredo</h3>
+                <span class="food-diet-badge veg" style="flex-shrink:0;font-size:0.7rem;padding:2px 8px;border-radius:4px;border:1px solid #65A30D;color:#A3E635;background:rgba(101,163,13,0.15);">Veg</span>
+              </div>
               <p class="food-card-desc">Al dente penne pasta tossed in a velvety garlic parmesan cream sauce with sautéed mushrooms, zucchini, and herbs.</p>
             </div>
             <div class="food-card-footer">
               <span class="food-price">₹240</span>
-              <button type="button" class="btn-order-quick">Order to Table +</button>
+              <button type="button" class="btn-order-quick" data-item="Creamy Penne Alfredo" data-price="240">Order to Table +</button>
             </div>
           </div>
         </div>
 
-        <!-- Dish 4: Cold Coffee with Ice Cream -->
-        <div class="food-card" data-category="coffee" onclick="openOrderModal('Cold Coffee with Ice Cream', 160)">
+        <!-- Item 15: Spicy Arrabiata Pasta -->
+        <div class="food-card" data-category="pasta" onclick="openOrderModal('Spicy Arrabiata Pasta', 230)">
           <div class="food-thumb-wrap">
-            <img src="images/coffee.webp" alt="Cold Coffee with Ice Cream" class="food-thumb-img" loading="lazy">
-            <span class="food-badge">Signature</span>
+            <img src="images/hedgehog_lasagna_gratin.jpg" alt="Spicy Arrabiata Pasta" class="food-thumb-img" loading="lazy">
+            <span class="food-badge">Fiery Red</span>
           </div>
           <div class="food-card-body">
             <div>
-              <h3 class="food-card-title">Cold Coffee with Ice Cream</h3>
-              <p class="food-card-desc">Chilled espresso blended with creamy milk and topped with a luscious scoop of rich vanilla ice cream.</p>
+              <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:6px;">
+                <h3 class="food-card-title">Spicy Arrabiata Pasta</h3>
+                <span class="food-diet-badge veg" style="flex-shrink:0;font-size:0.7rem;padding:2px 8px;border-radius:4px;border:1px solid #65A30D;color:#A3E635;background:rgba(101,163,13,0.15);">Veg</span>
+              </div>
+              <p class="food-card-desc">Penne pasta tossed in a zesty garlic tomato marinara with bird's eye chili, black olives, and fresh basil leaves.</p>
             </div>
             <div class="food-card-footer">
-              <span class="food-price">₹160</span>
-              <button type="button" class="btn-order-quick">Order to Table +</button>
+              <span class="food-price">₹230</span>
+              <button type="button" class="btn-order-quick" data-item="Spicy Arrabiata Pasta" data-price="230">Order to Table +</button>
             </div>
           </div>
         </div>
 
-        <!-- Dish 5: Crispy Peri Peri Loaded Fries -->
-        <div class="food-card" data-category="snacks" onclick="openOrderModal('Crispy Peri Peri Loaded Fries', 150)">
+        <!-- Item 16: Creamy Pink Sauce Penne -->
+        <div class="food-card" data-category="pasta" onclick="openOrderModal('Creamy Pink Sauce Penne', 250)">
           <div class="food-thumb-wrap">
-            <img src="images/hedgehog_english_breakfast.jpg" alt="Crispy Peri Peri Loaded Fries" class="food-thumb-img" loading="lazy">
-            <span class="food-badge">Hot Special</span>
+            <img src="images/hedgehog_lasagna_gratin.jpg" alt="Creamy Pink Sauce Penne" class="food-thumb-img" loading="lazy">
+            <span class="food-badge">House Favorite</span>
           </div>
           <div class="food-card-body">
             <div>
-              <h3 class="food-card-title">Crispy Peri Peri Loaded Fries</h3>
-              <p class="food-card-desc">Crunchy golden potato fries tossed in zesty peri peri spices and generously drizzled with warm cheddar sauce.</p>
+              <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:6px;">
+                <h3 class="food-card-title">Creamy Pink Sauce Penne</h3>
+                <span class="food-diet-badge veg" style="flex-shrink:0;font-size:0.7rem;padding:2px 8px;border-radius:4px;border:1px solid #65A30D;color:#A3E635;background:rgba(101,163,13,0.15);">Veg</span>
+              </div>
+              <p class="food-card-desc">The harmony of both worlds — tangy sun-dried tomato sauce blended with garlic herb cream and mozzarella.</p>
             </div>
             <div class="food-card-footer">
-              <span class="food-price">₹150</span>
-              <button type="button" class="btn-order-quick">Order to Table +</button>
+              <span class="food-price">₹250</span>
+              <button type="button" class="btn-order-quick" data-item="Creamy Pink Sauce Penne" data-price="250">Order to Table +</button>
             </div>
           </div>
         </div>
 
-        <!-- Dish 6: Classic Choco Frappe -->
-        <div class="food-card" data-category="coffee" onclick="openOrderModal('Classic Choco Frappe', 180)">
+        <!-- Item 17: Oven-Baked Veg Lasagna -->
+        <div class="food-card" data-category="pasta" onclick="openOrderModal('Oven-Baked Veg Lasagna', 270)">
           <div class="food-thumb-wrap">
-            <img src="images/environment_freddo.webp" alt="Classic Choco Frappe" class="food-thumb-img" loading="lazy">
-            <span class="food-badge">Frappe</span>
+            <img src="images/hedgehog_lasagna_gratin.jpg" alt="Oven-Baked Veg Lasagna" class="food-thumb-img" loading="lazy">
+            <span class="food-badge">Oven Gratin</span>
           </div>
           <div class="food-card-body">
             <div>
-              <h3 class="food-card-title">Classic Choco Frappe</h3>
-              <p class="food-card-desc">Rich double espresso blended with dark chocolate ganache, cold milk, and crushed ice, finished with cocoa.</p>
+              <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:6px;">
+                <h3 class="food-card-title">Oven-Baked Veg Lasagna</h3>
+                <span class="food-diet-badge veg" style="flex-shrink:0;font-size:0.7rem;padding:2px 8px;border-radius:4px;border:1px solid #65A30D;color:#A3E635;background:rgba(101,163,13,0.15);">Veg</span>
+              </div>
+              <p class="food-card-desc">Slow-baked layered pasta sheets with seasoned garden vegetables, pomodoro sauce, and golden mozzarella gratin.</p>
             </div>
             <div class="food-card-footer">
-              <span class="food-price">₹180</span>
-              <button type="button" class="btn-order-quick">Order to Table +</button>
+              <span class="food-price">₹270</span>
+              <button type="button" class="btn-order-quick" data-item="Oven-Baked Veg Lasagna" data-price="270">Order to Table +</button>
             </div>
           </div>
         </div>
 
-        <!-- Dish 7: Gourmet Veg Club Sandwich -->
-        <div class="food-card" data-category="snacks" onclick="openOrderModal('Gourmet Veg Club Sandwich', 160)">
-          <div class="food-thumb-wrap">
-            <img src="images/hedgehog_zucchini_boat.jpg" alt="Gourmet Veg Club Sandwich" class="food-thumb-img" loading="lazy">
-            <span class="food-badge">Deli Special</span>
-          </div>
-          <div class="food-card-body">
-            <div>
-              <h3 class="food-card-title">Gourmet Veg Club Sandwich</h3>
-              <p class="food-card-desc">Triple layered grilled sandwich with cheese, tomatoes, crisp lettuce, cucumber, and herbed deli spread.</p>
-            </div>
-            <div class="food-card-footer">
-              <span class="food-price">₹160</span>
-              <button type="button" class="btn-order-quick">Order to Table +</button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Dish 8: Handcrafted Veggie Burger -->
-        <div class="food-card" data-category="snacks" onclick="openOrderModal('Handcrafted Veggie Burger', 150)">
+        <!-- Item 18: Handcrafted Veggie Burger -->
+        <div class="food-card" data-category="burgers" onclick="openOrderModal('Handcrafted Veggie Burger', 150)">
           <div class="food-thumb-wrap">
             <img src="images/environment_lounge.webp" alt="Handcrafted Veggie Burger" class="food-thumb-img" loading="lazy">
             <span class="food-badge">Crisp Patty</span>
           </div>
           <div class="food-card-body">
             <div>
-              <h3 class="food-card-title">Handcrafted Veggie Burger</h3>
-              <p class="food-card-desc">Crispy spiced vegetable patty in a toasted sesame bun with melted cheese slice and house sauce.</p>
+              <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:6px;">
+                <h3 class="food-card-title">Handcrafted Veggie Burger</h3>
+                <span class="food-diet-badge veg" style="flex-shrink:0;font-size:0.7rem;padding:2px 8px;border-radius:4px;border:1px solid #65A30D;color:#A3E635;background:rgba(101,163,13,0.15);">Veg</span>
+              </div>
+              <p class="food-card-desc">Golden spiced vegetable patty tucked into a toasted sesame brioche bun with cheddar slice and house relish.</p>
             </div>
             <div class="food-card-footer">
               <span class="food-price">₹150</span>
-              <button type="button" class="btn-order-quick">Order to Table +</button>
+              <button type="button" class="btn-order-quick" data-item="Handcrafted Veggie Burger" data-price="150">Order to Table +</button>
             </div>
           </div>
         </div>
 
-        <!-- Dish 9: Virgin Mint Mojito -->
-        <div class="food-card" data-category="coffee" onclick="openOrderModal('Virgin Mint Mojito', 140)">
+        <!-- Item 19: Crispy Paneer Makhani Burger -->
+        <div class="food-card" data-category="burgers" onclick="openOrderModal('Crispy Paneer Makhani Burger', 170)">
+          <div class="food-thumb-wrap">
+            <img src="images/environment_lounge.webp" alt="Crispy Paneer Makhani Burger" class="food-thumb-img" loading="lazy">
+            <span class="food-badge">Fusion Special</span>
+          </div>
+          <div class="food-card-body">
+            <div>
+              <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:6px;">
+                <h3 class="food-card-title">Crispy Paneer Makhani Burger</h3>
+                <span class="food-diet-badge veg" style="flex-shrink:0;font-size:0.7rem;padding:2px 8px;border-radius:4px;border:1px solid #65A30D;color:#A3E635;background:rgba(101,163,13,0.15);">Veg</span>
+              </div>
+              <p class="food-card-desc">Panko-crusted cottage cheese patty glazed in creamy makhani sauce, crisp lettuce, and pickled onions.</p>
+            </div>
+            <div class="food-card-footer">
+              <span class="food-price">₹170</span>
+              <button type="button" class="btn-order-quick" data-item="Crispy Paneer Makhani Burger" data-price="170">Order to Table +</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 20: Mexican Bean & Cheese Wrap -->
+        <div class="food-card" data-category="burgers" onclick="openOrderModal('Mexican Bean & Cheese Wrap', 160)">
+          <div class="food-thumb-wrap">
+            <img src="images/integral_hero.jpg" alt="Mexican Bean & Cheese Wrap" class="food-thumb-img" loading="lazy">
+            <span class="food-badge">Deli Roll</span>
+          </div>
+          <div class="food-card-body">
+            <div>
+              <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:6px;">
+                <h3 class="food-card-title">Mexican Bean & Cheese Wrap</h3>
+                <span class="food-diet-badge veg" style="flex-shrink:0;font-size:0.7rem;padding:2px 8px;border-radius:4px;border:1px solid #65A30D;color:#A3E635;background:rgba(101,163,13,0.15);">Veg</span>
+              </div>
+              <p class="food-card-desc">Warm toasted flour tortilla loaded with seasoned pinto beans, salsa, sweet corn, jalapeños, and cheddar cheese.</p>
+            </div>
+            <div class="food-card-footer">
+              <span class="food-price">₹160</span>
+              <button type="button" class="btn-order-quick" data-item="Mexican Bean & Cheese Wrap" data-price="160">Order to Table +</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 21: Tandoori Paneer Kathi Roll -->
+        <div class="food-card" data-category="burgers" onclick="openOrderModal('Tandoori Paneer Kathi Roll', 170)">
+          <div class="food-thumb-wrap">
+            <img src="images/integral_hero.jpg" alt="Tandoori Paneer Kathi Roll" class="food-thumb-img" loading="lazy">
+            <span class="food-badge">Desi Grill</span>
+          </div>
+          <div class="food-card-body">
+            <div>
+              <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:6px;">
+                <h3 class="food-card-title">Tandoori Paneer Kathi Roll</h3>
+                <span class="food-diet-badge veg" style="flex-shrink:0;font-size:0.7rem;padding:2px 8px;border-radius:4px;border:1px solid #65A30D;color:#A3E635;background:rgba(101,163,13,0.15);">Veg</span>
+              </div>
+              <p class="food-card-desc">Char-grilled paneer tikka cubes rolled in flaky flatbread with tangy mint chutney, sliced onions, and chaat masala.</p>
+            </div>
+            <div class="food-card-footer">
+              <span class="food-price">₹170</span>
+              <button type="button" class="btn-order-quick" data-item="Tandoori Paneer Kathi Roll" data-price="170">Order to Table +</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 22: Gourmet Veg Club Sandwich -->
+        <div class="food-card" data-category="burgers" onclick="openOrderModal('Gourmet Veg Club Sandwich', 160)">
+          <div class="food-thumb-wrap">
+            <img src="images/hedgehog_zucchini_boat.jpg" alt="Gourmet Veg Club Sandwich" class="food-thumb-img" loading="lazy">
+            <span class="food-badge">Triple Layer</span>
+          </div>
+          <div class="food-card-body">
+            <div>
+              <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:6px;">
+                <h3 class="food-card-title">Gourmet Veg Club Sandwich</h3>
+                <span class="food-diet-badge veg" style="flex-shrink:0;font-size:0.7rem;padding:2px 8px;border-radius:4px;border:1px solid #65A30D;color:#A3E635;background:rgba(101,163,13,0.15);">Veg</span>
+              </div>
+              <p class="food-card-desc">Triple-layered grilled sandwich loaded with cheddar, crisp cucumber, juicy tomatoes, and herbed deli spread.</p>
+            </div>
+            <div class="food-card-footer">
+              <span class="food-price">₹160</span>
+              <button type="button" class="btn-order-quick" data-item="Gourmet Veg Club Sandwich" data-price="160">Order to Table +</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 23: Grilled Cheese & Corn Panini -->
+        <div class="food-card" data-category="burgers" onclick="openOrderModal('Grilled Cheese & Corn Panini', 150)">
+          <div class="food-thumb-wrap">
+            <img src="images/hedgehog_zucchini_boat.jpg" alt="Grilled Cheese & Corn Panini" class="food-thumb-img" loading="lazy">
+            <span class="food-badge">Golden Press</span>
+          </div>
+          <div class="food-card-body">
+            <div>
+              <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:6px;">
+                <h3 class="food-card-title">Grilled Cheese & Corn Panini</h3>
+                <span class="food-diet-badge veg" style="flex-shrink:0;font-size:0.7rem;padding:2px 8px;border-radius:4px;border:1px solid #65A30D;color:#A3E635;background:rgba(101,163,13,0.15);">Veg</span>
+              </div>
+              <p class="food-card-desc">Sourdough panini pressed golden with sweet corn, aromatic oregano, and a molten double cheese core.</p>
+            </div>
+            <div class="food-card-footer">
+              <span class="food-price">₹150</span>
+              <button type="button" class="btn-order-quick" data-item="Grilled Cheese & Corn Panini" data-price="150">Order to Table +</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 24: Mushroom & Caramelized Onion Panini -->
+        <div class="food-card" data-category="burgers" onclick="openOrderModal('Mushroom & Caramelized Onion Panini', 170)">
+          <div class="food-thumb-wrap">
+            <img src="images/hedgehog_zucchini_boat.jpg" alt="Mushroom & Caramelized Onion Panini" class="food-thumb-img" loading="lazy">
+            <span class="food-badge">Gourmet Melt</span>
+          </div>
+          <div class="food-card-body">
+            <div>
+              <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:6px;">
+                <h3 class="food-card-title">Mushroom & Caramelized Onion Panini</h3>
+                <span class="food-diet-badge veg" style="flex-shrink:0;font-size:0.7rem;padding:2px 8px;border-radius:4px;border:1px solid #65A30D;color:#A3E635;background:rgba(101,163,13,0.15);">Veg</span>
+              </div>
+              <p class="food-card-desc">Button mushrooms sautéed in garlic butter with slow-caramelized sweet onions and stretchy melted mozzarella.</p>
+            </div>
+            <div class="food-card-footer">
+              <span class="food-price">₹170</span>
+              <button type="button" class="btn-order-quick" data-item="Mushroom & Caramelized Onion Panini" data-price="170">Order to Table +</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 25: Paneer Tikka Herb Sandwich -->
+        <div class="food-card" data-category="burgers" onclick="openOrderModal('Paneer Tikka Herb Sandwich', 160)">
+          <div class="food-thumb-wrap">
+            <img src="images/hedgehog_zucchini_boat.jpg" alt="Paneer Tikka Herb Sandwich" class="food-thumb-img" loading="lazy">
+            <span class="food-badge">Herb Grilled</span>
+          </div>
+          <div class="food-card-body">
+            <div>
+              <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:6px;">
+                <h3 class="food-card-title">Paneer Tikka Herb Sandwich</h3>
+                <span class="food-diet-badge veg" style="flex-shrink:0;font-size:0.7rem;padding:2px 8px;border-radius:4px;border:1px solid #65A30D;color:#A3E635;background:rgba(101,163,13,0.15);">Veg</span>
+              </div>
+              <p class="food-card-desc">Spiced tandoori paneer slices with fresh mint mayo and crunchy capsicum grilled on seeded whole-wheat bread.</p>
+            </div>
+            <div class="food-card-footer">
+              <span class="food-price">₹160</span>
+              <button type="button" class="btn-order-quick" data-item="Paneer Tikka Herb Sandwich" data-price="160">Order to Table +</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 26: Crispy Peri Peri Loaded Fries -->
+        <div class="food-card" data-category="snacks" onclick="openOrderModal('Crispy Peri Peri Loaded Fries', 150)">
+          <div class="food-thumb-wrap">
+            <img src="images/hedgehog_english_breakfast.jpg" alt="Crispy Peri Peri Loaded Fries" class="food-thumb-img" loading="lazy">
+            <span class="food-badge">Hot Pick</span>
+          </div>
+          <div class="food-card-body">
+            <div>
+              <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:6px;">
+                <h3 class="food-card-title">Crispy Peri Peri Loaded Fries</h3>
+                <span class="food-diet-badge veg" style="flex-shrink:0;font-size:0.7rem;padding:2px 8px;border-radius:4px;border:1px solid #65A30D;color:#A3E635;background:rgba(101,163,13,0.15);">Veg</span>
+              </div>
+              <p class="food-card-desc">Crunchy golden potato fries tossed in fiery African peri peri seasoning, drizzled with warm cheddar cheese sauce.</p>
+            </div>
+            <div class="food-card-footer">
+              <span class="food-price">₹150</span>
+              <button type="button" class="btn-order-quick" data-item="Crispy Peri Peri Loaded Fries" data-price="150">Order to Table +</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 27: Classic Salted Crispy Fries -->
+        <div class="food-card" data-category="snacks" onclick="openOrderModal('Classic Salted Crispy Fries', 120)">
+          <div class="food-thumb-wrap">
+            <img src="images/hedgehog_english_breakfast.jpg" alt="Classic Salted Crispy Fries" class="food-thumb-img" loading="lazy">
+            <span class="food-badge">Crisp Crunch</span>
+          </div>
+          <div class="food-card-body">
+            <div>
+              <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:6px;">
+                <h3 class="food-card-title">Classic Salted Crispy Fries</h3>
+                <span class="food-diet-badge veg" style="flex-shrink:0;font-size:0.7rem;padding:2px 8px;border-radius:4px;border:1px solid #65A30D;color:#A3E635;background:rgba(101,163,13,0.15);">Veg</span>
+              </div>
+              <p class="food-card-desc">Deep-fried crunchy shoe-string potatoes seasoned with sea salt and served with spiced tomato ketchup and mayo.</p>
+            </div>
+            <div class="food-card-footer">
+              <span class="food-price">₹120</span>
+              <button type="button" class="btn-order-quick" data-item="Classic Salted Crispy Fries" data-price="120">Order to Table +</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 28: Loaded Mexican Cheese Nachos -->
+        <div class="food-card" data-category="snacks" onclick="openOrderModal('Loaded Mexican Cheese Nachos', 170)">
+          <div class="food-thumb-wrap">
+            <img src="images/hedgehog_ravioli_pizza.jpg" alt="Loaded Mexican Cheese Nachos" class="food-thumb-img" loading="lazy">
+            <span class="food-badge">Sharing Platter</span>
+          </div>
+          <div class="food-card-body">
+            <div>
+              <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:6px;">
+                <h3 class="food-card-title">Loaded Mexican Cheese Nachos</h3>
+                <span class="food-diet-badge veg" style="flex-shrink:0;font-size:0.7rem;padding:2px 8px;border-radius:4px;border:1px solid #65A30D;color:#A3E635;background:rgba(101,163,13,0.15);">Veg</span>
+              </div>
+              <p class="food-card-desc">Crispy corn tortilla chips topped with warm cheese fondue, fresh tomato salsa, jalapeños, and sliced black olives.</p>
+            </div>
+            <div class="food-card-footer">
+              <span class="food-price">₹170</span>
+              <button type="button" class="btn-order-quick" data-item="Loaded Mexican Cheese Nachos" data-price="170">Order to Table +</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 29: Crispy Veggie Spring Rolls -->
+        <div class="food-card" data-category="snacks" onclick="openOrderModal('Crispy Veggie Spring Rolls', 150)">
+          <div class="food-thumb-wrap">
+            <img src="images/hedgehog_counter_bakery.jpg" alt="Crispy Veggie Spring Rolls" class="food-thumb-img" loading="lazy">
+            <span class="food-badge">Asian Crunch</span>
+          </div>
+          <div class="food-card-body">
+            <div>
+              <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:6px;">
+                <h3 class="food-card-title">Crispy Veggie Spring Rolls</h3>
+                <span class="food-diet-badge veg" style="flex-shrink:0;font-size:0.7rem;padding:2px 8px;border-radius:4px;border:1px solid #65A30D;color:#A3E635;background:rgba(101,163,13,0.15);">Veg</span>
+              </div>
+              <p class="food-card-desc">Golden fried crispy rolls stuffed with shredded cabbage, carrots, and spring onions, served with sweet chili dip.</p>
+            </div>
+            <div class="food-card-footer">
+              <span class="food-price">₹150</span>
+              <button type="button" class="btn-order-quick" data-item="Crispy Veggie Spring Rolls" data-price="150">Order to Table +</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 30: Virgin Mint Mojito -->
+        <div class="food-card" data-category="beverages" onclick="openOrderModal('Virgin Mint Mojito', 140)">
           <div class="food-thumb-wrap">
             <img src="images/hedgehog_iced_matcha.jpg" alt="Virgin Mint Mojito" class="food-thumb-img" loading="lazy">
-            <span class="food-badge">Cooler</span>
+            <span class="food-badge">Chilled Soda</span>
           </div>
           <div class="food-card-body">
             <div>
-              <h3 class="food-card-title">Virgin Mint Mojito</h3>
-              <p class="food-card-desc">Freshly muddled garden mint, tangy lime wedges, raw cane sugar, and sparkling soda over crushed ice.</p>
+              <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:6px;">
+                <h3 class="food-card-title">Virgin Mint Mojito</h3>
+                <span class="food-diet-badge veg" style="flex-shrink:0;font-size:0.7rem;padding:2px 8px;border-radius:4px;border:1px solid #65A30D;color:#A3E635;background:rgba(101,163,13,0.15);">Beverage</span>
+              </div>
+              <p class="food-card-desc">Freshly muddled garden mint, tangy lime wedges, raw cane sugar, and chilled sparkling soda over crushed ice.</p>
             </div>
             <div class="food-card-footer">
               <span class="food-price">₹140</span>
-              <button type="button" class="btn-order-quick">Order to Table +</button>
+              <button type="button" class="btn-order-quick" data-item="Virgin Mint Mojito" data-price="140">Order to Table +</button>
             </div>
           </div>
         </div>
 
-        <!-- Dish 10: Cafe Latte & Cappuccino -->
-        <div class="food-card" data-category="coffee" onclick="openOrderModal('Cafe Latte & Cappuccino', 140)">
+        <!-- Item 31: Blue Curacao Lemon Cooler -->
+        <div class="food-card" data-category="beverages" onclick="openOrderModal('Blue Curacao Lemon Cooler', 150)">
           <div class="food-thumb-wrap">
-            <img src="images/environment_counter.webp" alt="Cafe Latte & Cappuccino" class="food-thumb-img" loading="lazy">
-            <span class="food-badge">Hot Brew</span>
+            <img src="images/matcha.webp" alt="Blue Curacao Lemon Cooler" class="food-thumb-img" loading="lazy">
+            <span class="food-badge">Citrus Fizz</span>
           </div>
           <div class="food-card-body">
             <div>
-              <h3 class="food-card-title">Cafe Latte &amp; Cappuccino</h3>
-              <p class="food-card-desc">Freshly pulled espresso shot from premium beans, balanced with silky steamed milk and delicate foam art.</p>
+              <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:6px;">
+                <h3 class="food-card-title">Blue Curacao Lemon Cooler</h3>
+                <span class="food-diet-badge veg" style="flex-shrink:0;font-size:0.7rem;padding:2px 8px;border-radius:4px;border:1px solid #65A30D;color:#A3E635;background:rgba(101,163,13,0.15);">Beverage</span>
+              </div>
+              <p class="food-card-desc">Electric blue citrus cooler infused with zesty lemon juice, crushed ice, mint leaves, and refreshing fizz.</p>
             </div>
             <div class="food-card-footer">
-              <span class="food-price">₹140</span>
-              <button type="button" class="btn-order-quick">Order to Table +</button>
+              <span class="food-price">₹150</span>
+              <button type="button" class="btn-order-quick" data-item="Blue Curacao Lemon Cooler" data-price="150">Order to Table +</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 32: Belgian Chocolate Thick Shake -->
+        <div class="food-card" data-category="beverages" onclick="openOrderModal('Belgian Chocolate Thick Shake', 190)">
+          <div class="food-thumb-wrap">
+            <img src="images/pastries.webp" alt="Belgian Chocolate Thick Shake" class="food-thumb-img" loading="lazy">
+            <span class="food-badge">Decadent</span>
+          </div>
+          <div class="food-card-body">
+            <div>
+              <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:6px;">
+                <h3 class="food-card-title">Belgian Chocolate Thick Shake</h3>
+                <span class="food-diet-badge veg" style="flex-shrink:0;font-size:0.7rem;padding:2px 8px;border-radius:4px;border:1px solid #65A30D;color:#A3E635;background:rgba(101,163,13,0.15);">Beverage</span>
+              </div>
+              <p class="food-card-desc">Dense, ultra-creamy milkshake churned with rich Belgian dark chocolate ganache, milk, and chocolate chips.</p>
+            </div>
+            <div class="food-card-footer">
+              <span class="food-price">₹190</span>
+              <button type="button" class="btn-order-quick" data-item="Belgian Chocolate Thick Shake" data-price="190">Order to Table +</button>
             </div>
           </div>
         </div>
@@ -3662,17 +4227,38 @@
         <div class="form-group" id="orderItemSelectGroup">
           <label>Select Dish / Beverage</label>
           <select id="orderItemSelect" required>
-            <option value="Garden Fresh Pizza" data-price="480" selected>Garden Fresh Pizza (₹480)</option>
-            <option value="Garlic Bread With Cheese And Chicken" data-price="340">Cheesy Loaded Garlic Bread (₹340)</option>
-            <option value="Creamy Penne Alfredo / Veg Lasagna" data-price="420">Creamy Penne Alfredo / Veg Lasagna (₹420)</option>
-            <option value="Crispy Peri Peri Loaded Fries" data-price="380">Crispy Peri Peri Loaded Fries (₹380)</option>
-            <option value="Signature Cold Coffee with Ice Cream" data-price="240">Signature Cold Coffee with Ice Cream (₹240)</option>
-            <option value="Classic Choco Frappe" data-price="250">Classic Choco Frappe (₹250)</option>
-            <option value="Cafe Latte" data-price="210">Cafe Latte (₹210)</option>
-            <option value="Irish Coffee" data-price="260">Irish Coffee (₹260)</option>
-            <option value="Classic Expresso" data-price="160">Classic Expresso (₹160)</option>
-            <option value="Chimichanga" data-price="390">Chimichanga (₹390)</option>
-            <option value="Crispy Golden Fries" data-price="220">Crispy Golden Fries (₹220)</option>
+            <option value="Artisan Margherita Pizza" data-price="220">Artisan Margherita Pizza (₹220)</option>
+            <option value="Farm Fresh Veggie Pizza" data-price="260">Farm Fresh Veggie Pizza (₹260)</option>
+            <option value="Paneer Tikka & Capsicum Pizza" data-price="280">Paneer Tikka & Capsicum Pizza (₹280)</option>
+            <option value="Cheesy Loaded Garlic Bread" data-price="180">Cheesy Loaded Garlic Bread (₹180)</option>
+            <option value="Spicy Jalapeño & Corn Garlic Bread" data-price="190">Spicy Jalapeño & Corn Garlic Bread (₹190)</option>
+            <option value="Classic Espresso Double Shot" data-price="120">Classic Espresso Double Shot (₹120)</option>
+            <option value="Silky Cafe Latte" data-price="140">Silky Cafe Latte (₹140)</option>
+            <option value="Rich Cafe Cappuccino" data-price="140">Rich Cafe Cappuccino (₹140)</option>
+            <option value="Cafe Mocha Decadence" data-price="170">Cafe Mocha Decadence (₹170)</option>
+            <option value="Signature Cold Coffee with Ice Cream" data-price="160">Signature Cold Coffee with Ice Cream (₹160)</option>
+            <option value="Classic Choco Frappe" data-price="180">Classic Choco Frappe (₹180)</option>
+            <option value="Caramel Hazelnut Frappe" data-price="190">Caramel Hazelnut Frappe (₹190)</option>
+            <option value="Vietnamese Iced Coffee" data-price="160">Vietnamese Iced Coffee (₹160)</option>
+            <option value="Creamy Penne Alfredo" data-price="240">Creamy Penne Alfredo (₹240)</option>
+            <option value="Spicy Arrabiata Pasta" data-price="230">Spicy Arrabiata Pasta (₹230)</option>
+            <option value="Creamy Pink Sauce Penne" data-price="250">Creamy Pink Sauce Penne (₹250)</option>
+            <option value="Oven-Baked Veg Lasagna" data-price="270">Oven-Baked Veg Lasagna (₹270)</option>
+            <option value="Handcrafted Veggie Burger" data-price="150">Handcrafted Veggie Burger (₹150)</option>
+            <option value="Crispy Paneer Makhani Burger" data-price="170">Crispy Paneer Makhani Burger (₹170)</option>
+            <option value="Mexican Bean & Cheese Wrap" data-price="160">Mexican Bean & Cheese Wrap (₹160)</option>
+            <option value="Tandoori Paneer Kathi Roll" data-price="170">Tandoori Paneer Kathi Roll (₹170)</option>
+            <option value="Gourmet Veg Club Sandwich" data-price="160">Gourmet Veg Club Sandwich (₹160)</option>
+            <option value="Grilled Cheese & Corn Panini" data-price="150">Grilled Cheese & Corn Panini (₹150)</option>
+            <option value="Mushroom & Caramelized Onion Panini" data-price="170">Mushroom & Caramelized Onion Panini (₹170)</option>
+            <option value="Paneer Tikka Herb Sandwich" data-price="160">Paneer Tikka Herb Sandwich (₹160)</option>
+            <option value="Crispy Peri Peri Loaded Fries" data-price="150">Crispy Peri Peri Loaded Fries (₹150)</option>
+            <option value="Classic Salted Crispy Fries" data-price="120">Classic Salted Crispy Fries (₹120)</option>
+            <option value="Loaded Mexican Cheese Nachos" data-price="170">Loaded Mexican Cheese Nachos (₹170)</option>
+            <option value="Crispy Veggie Spring Rolls" data-price="150">Crispy Veggie Spring Rolls (₹150)</option>
+            <option value="Virgin Mint Mojito" data-price="140">Virgin Mint Mojito (₹140)</option>
+            <option value="Blue Curacao Lemon Cooler" data-price="150">Blue Curacao Lemon Cooler (₹150)</option>
+            <option value="Belgian Chocolate Thick Shake" data-price="190">Belgian Chocolate Thick Shake (₹190)</option>
           </select>
         </div>
 
