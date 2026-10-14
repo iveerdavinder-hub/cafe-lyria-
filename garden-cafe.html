@@ -901,6 +901,152 @@
       border-color: #D6B783;
     }
 
+    
+    /* ==========================================================================
+       CARD HAND GALLERY COMPONENT (SHADCN / MOTION SPECIFICATION)
+       ========================================================================== */
+    .card-hand-gallery-wrap {
+      display: flex;
+      width: 100%;
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
+      margin: 16px auto 36px;
+      position: relative;
+    }
+    @media (min-width: 640px) {
+      .card-hand-gallery-wrap {
+        flex-direction: row;
+        align-items: center;
+        gap: 24px;
+      }
+    }
+    @media (min-width: 1024px) {
+      .card-hand-gallery-wrap {
+        gap: 40px;
+      }
+    }
+    .hand-side-left {
+      width: 100%;
+      flex-shrink: 0;
+      text-align: center;
+    }
+    @media (min-width: 640px) {
+      .hand-side-left {
+        width: 160px;
+        text-align: right;
+      }
+    }
+    @media (min-width: 768px) {
+      .hand-side-left {
+        width: 192px;
+      }
+    }
+    @media (min-width: 1024px) {
+      .hand-side-left {
+        width: 224px;
+      }
+    }
+    .hand-card-num {
+      font-family: var(--font-mono, monospace);
+      font-size: 0.78rem;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+    }
+    .hand-card-title {
+      margin-top: 8px;
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 1.65rem;
+      color: var(--cream-soft);
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      transition: all 0.3s ease;
+    }
+    .hand-fan-stage {
+      position: relative;
+      width: 100%;
+      min-width: 0;
+      flex: 1;
+      height: 420px;
+      margin: 0 auto;
+    }
+    .hand-slot-card {
+      position: absolute;
+      left: 50%;
+      bottom: 24px;
+      transform-origin: 50% 120%;
+      transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.3s ease;
+      cursor: pointer;
+    }
+    .hand-slot-card img {
+      width: 180px;
+      aspect-ratio: 5 / 7;
+      border-radius: 14px;
+      border: 1px solid rgba(214, 183, 131, 0.4);
+      background: var(--bg-card);
+      object-fit: cover;
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45);
+      user-select: none;
+      -webkit-user-drag: none;
+      display: block;
+      transition: filter 0.3s, border-color 0.3s;
+    }
+    .hand-slot-card:hover img {
+      border-color: #D6B783;
+      box-shadow: 0 24px 50px rgba(0, 0, 0, 0.65), 0 0 20px rgba(214, 183, 131, 0.3);
+    }
+    .hand-slot-card.active img {
+      border-color: #D6B783;
+      box-shadow: 0 28px 60px rgba(0, 0, 0, 0.75), 0 0 30px rgba(214, 183, 131, 0.45);
+    }
+    .hand-side-right {
+      width: 100%;
+      flex-shrink: 0;
+      text-align: center;
+    }
+    @media (min-width: 640px) {
+      .hand-side-right {
+        width: 160px;
+        text-align: left;
+      }
+    }
+    @media (min-width: 768px) {
+      .hand-side-right {
+        width: 192px;
+      }
+    }
+    @media (min-width: 1024px) {
+      .hand-side-right {
+        width: 224px;
+      }
+    }
+    .hand-card-desc {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.6;
+      transition: all 0.3s ease;
+    }
+    .hand-order-btn {
+      margin-top: 14px;
+      background: #D6B783;
+      color: #3B2A1E;
+      border: 1px solid #D6B783;
+      font-weight: 700;
+      font-size: 0.82rem;
+      padding: 7px 16px;
+      border-radius: var(--radius-pill);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.25s;
+    }
+    .hand-order-btn:hover {
+      background: #E5CDA6;
+      transform: translateY(-1px);
+    }
+
     /* Responsive Deck Stacking */
     @media (max-width: 1024px) {
       .menu-deck-stage {
@@ -2499,14 +2645,17 @@
         <p class="section-desc">Gourmet vegetarian delights, specialty espresso drinks, decadent frappes, and loaded deli favorites. Tap any dish to order directly to your table.</p>
       </div>
 
-      <!-- View Format Switcher: Unlumen Team-Stack Deck vs Full Grid -->
+      <!-- View Format Switcher: Card Hand Fan vs Team Stack Deck vs Full Grid -->
       <div class="menu-view-switch-row">
         <div class="view-toggle-pill" role="tablist" aria-label="Menu View Format">
-          <button type="button" class="view-toggle-btn active" id="viewToggleDeck" data-view="deck" role="tab" aria-selected="true">
+          <button type="button" class="view-toggle-btn active" id="viewToggleHand" data-view="hand" role="tab" aria-selected="true">
+            <span>🃏</span> Card Hand Fan
+          </button>
+          <button type="button" class="view-toggle-btn" id="viewToggleDeck" data-view="deck" role="tab" aria-selected="false">
             <span>🎴</span> Team Stack Deck
           </button>
           <button type="button" class="view-toggle-btn" id="viewToggleGrid" data-view="grid" role="tab" aria-selected="false">
-            <span>▦</span> Full Menu Grid
+            <span>▦</span> Full Menu Grid (32)
           </button>
         </div>
       </div>
@@ -2521,8 +2670,60 @@
         <button type="button" class="menu-filter-btn" data-filter="beverages">Coolers &amp; Shakes (3)</button>
       </div>
 
+            <!-- SHADCN MOTION CARD HAND GALLERY COMPONENT -->
+      <div class="card-hand-gallery-stage" id="cardHandGalleryStage">
+        <div class="card-hand-gallery-wrap max-w-5xl">
+          <!-- Active Card Info: Left Side -->
+          <div class="hand-side-left">
+            <p class="hand-card-num" id="handCardIndex">01 / 05</p>
+            <h3 class="hand-card-title" id="handCardTitle">Artisan Margherita Pizza</h3>
+          </div>
+
+          <!-- Middle: Card Fan Arc -->
+          <div class="hand-fan-stage" id="handFanStage">
+            <!-- Card 1 -->
+            <div class="hand-slot-card active" data-id="artisan-pizza" data-title="Artisan Margherita Pizza" data-desc="Hand-stretched thin crust baked with fresh basil, San Marzano tomato pomodoro, and creamy buffalo mozzarella." data-price="220">
+              <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=800&auto=format&fit=crop" alt="Artisan Margherita Pizza" draggable="false">
+            </div>
+
+            <!-- Card 2 -->
+            <div class="hand-slot-card" data-id="cold-coffee" data-title="Signature Cold Coffee" data-desc="Chilled double espresso blended with velvety whole milk, crowned with a rich vanilla ice cream scoop and cocoa dust." data-price="160">
+              <img src="https://images.unsplash.com/photo-1517701604599-bb29b565090c?q=80&w=800&auto=format&fit=crop" alt="Signature Cold Coffee" draggable="false">
+            </div>
+
+            <!-- Card 3 -->
+            <div class="hand-slot-card" data-id="penne-alfredo" data-title="Creamy Penne Alfredo" data-desc="Al dente penne pasta coated in velvety garlic parmesan cream with button mushrooms, tender zucchini, and Italian herbs." data-price="240">
+              <img src="https://images.unsplash.com/photo-1621996346565-e3d5d6281786?q=80&w=800&auto=format&fit=crop" alt="Creamy Penne Alfredo" draggable="false">
+            </div>
+
+            <!-- Card 4 -->
+            <div class="hand-slot-card" data-id="garlic-bread" data-title="Cheesy Loaded Garlic Bread" data-desc="Artisanal sourdough baguette toasted with garlic herb butter, layered with molten mozzarella and crushed chili." data-price="180">
+              <img src="https://images.unsplash.com/photo-1619895092538-128341789043?q=80&w=800&auto=format&fit=crop" alt="Cheesy Loaded Garlic Bread" draggable="false">
+            </div>
+
+            <!-- Card 5 -->
+            <div class="hand-slot-card" data-id="peri-peri-fries" data-title="Crispy Peri Peri Fries" data-desc="Golden crispy shoe-string potatoes tossed in fiery African peri peri spices, drizzled with warm cheddar cheese sauce." data-price="150">
+              <img src="https://images.unsplash.com/photo-1576107232684-1279f3908594?q=80&w=800&auto=format&fit=crop" alt="Crispy Peri Peri Fries" draggable="false">
+            </div>
+          </div>
+
+          <!-- Active Card Description: Right Side -->
+          <div class="hand-side-right">
+            <p class="hand-card-desc" id="handCardDesc">Hand-stretched thin crust baked with fresh basil, San Marzano tomato pomodoro, and creamy buffalo mozzarella.</p>
+            <button type="button" class="hand-order-btn" id="btnHandOrder">Order to Table +</button>
+          </div>
+        </div>
+
+        <div class="deck-hint-bar" style="margin-top:10px;">
+          <div class="deck-hint-pill">
+            <span class="pulse"></span>
+            <span>Hover or drag card to lift from hand · Click to select &amp; order</span>
+          </div>
+        </div>
+      </div>
+
       <!-- Unlumen Team-Stack Interactive Fanning Card Deck -->
-      <div class="menu-deck-stage" id="menuDeckStage">
+      <div class="menu-deck-stage is-hidden" id="menuDeckStage">
         <div class="menu-deck-stack" id="menuDeckStack" aria-label="Interactive Food Cards Deck">
           <!-- Deck Card 1: Artisan Thin Crust Pizza -->
           <div class="deck-card" data-category="pizza" data-name="Artisan Thin Crust Pizza" data-price="260" tabindex="0">
@@ -5348,34 +5549,49 @@
         let isHovered = false;
         let activeHoveredCard = null;
 
-        // View Mode Switcher
+        // View Mode Switcher (Card Hand Fan, Team Stack Deck, Full Grid)
+        const handStage = document.getElementById('cardHandGalleryStage');
+        const viewToggleHand = document.getElementById('viewToggleHand');
+
         function setViewMode(mode) {
-          if (mode === 'grid') {
+          [viewToggleHand, viewToggleDeck, viewToggleGrid].forEach(b => {
+            if (b) {
+              b.classList.remove('active');
+              b.setAttribute('aria-selected', 'false');
+            }
+          });
+
+          if (mode === 'hand') {
+            if (handStage) handStage.classList.remove('is-hidden');
+            stage.classList.add('is-hidden');
+            grid.classList.add('is-hidden');
+            if (viewToggleHand) {
+              viewToggleHand.classList.add('active');
+              viewToggleHand.setAttribute('aria-selected', 'true');
+            }
+          } else if (mode === 'grid') {
+            if (handStage) handStage.classList.add('is-hidden');
             stage.classList.add('is-hidden');
             grid.classList.remove('is-hidden');
             if (viewToggleGrid) {
               viewToggleGrid.classList.add('active');
               viewToggleGrid.setAttribute('aria-selected', 'true');
             }
-            if (viewToggleDeck) {
-              viewToggleDeck.classList.remove('active');
-              viewToggleDeck.setAttribute('aria-selected', 'false');
-            }
           } else {
+            if (handStage) handStage.classList.add('is-hidden');
             stage.classList.remove('is-hidden');
             grid.classList.add('is-hidden');
             if (viewToggleDeck) {
               viewToggleDeck.classList.add('active');
               viewToggleDeck.setAttribute('aria-selected', 'true');
             }
-            if (viewToggleGrid) {
-              viewToggleGrid.classList.remove('active');
-              viewToggleGrid.setAttribute('aria-selected', 'false');
-            }
             layoutCards();
           }
         }
 
+        if (viewToggleHand) {
+          viewToggleHand.addEventListener('click', () => setViewMode('hand'));
+        }
         if (viewToggleDeck) {
           viewToggleDeck.addEventListener('click', () => setViewMode('deck'));
         }
@@ -5613,6 +5829,136 @@
         // Initial layout
         layoutCards();
       }
+
+      
+      // =====================================================================
+      // CARD HAND GALLERY (SHADCN MOTION SPECIFICATION INTERACTION)
+      // =====================================================================
+      function initCardHandGallery() {
+        const stage = document.getElementById('cardHandGalleryStage');
+        const fanStage = document.getElementById('handFanStage');
+        const titleEl = document.getElementById('handCardTitle');
+        const indexEl = document.getElementById('handCardIndex');
+        const descEl = document.getElementById('handCardDesc');
+        const btnOrder = document.getElementById('btnHandOrder');
+
+        if (!stage || !fanStage) return;
+
+        const cards = Array.from(fanStage.querySelectorAll('.hand-slot-card'));
+        if (cards.length === 0) return;
+
+        let activeIndex = 0;
+        let hoveredIndex = -1;
+
+        const HAND_SCALE = 0.72;
+        const SELECT_VELOCITY = -600;
+
+        function updateSideText() {
+          const activeCard = cards[activeIndex];
+          if (!activeCard) return;
+
+          const title = activeCard.dataset.title || '';
+          const desc = activeCard.dataset.desc || '';
+          const price = parseInt(activeCard.dataset.price || '220', 10);
+
+          if (titleEl) {
+            titleEl.style.opacity = '0';
+            setTimeout(() => {
+              titleEl.textContent = title;
+              titleEl.style.opacity = '1';
+            }, 150);
+          }
+          if (indexEl) {
+            indexEl.textContent = `${String(activeIndex + 1).padStart(2, '0')} / ${String(cards.length).padStart(2, '0')}`;
+          }
+          if (descEl) {
+            descEl.style.opacity = '0';
+            setTimeout(() => {
+              descEl.textContent = desc;
+              descEl.style.opacity = '1';
+            }, 150);
+          }
+          if (btnOrder) {
+            btnOrder.onclick = () => {
+              if (typeof window.openOrderModal === 'function') {
+                window.openOrderModal(title, price);
+              }
+            };
+          }
+        }
+
+        function layoutHand() {
+          const width = 180;
+          const height = width * 1.4;
+          const baseBottom = height * 0.09;
+          const hoverLift = height * 0.34;
+          const activeLift = height * 0.62;
+
+          const count = cards.length;
+          const handCards = cards.filter((_, idx) => idx !== activeIndex);
+          const handCount = handCards.length;
+          const spacing = Math.min(width * 0.52, 90);
+
+          cards.forEach((card, idx) => {
+            const isActive = (idx === activeIndex);
+            if (isActive) {
+              card.classList.add('active');
+              card.style.transform = `translate(-50%, ${-activeLift}px) scale(1) rotate(0deg)`;
+              card.style.zIndex = '100';
+            } else {
+              card.classList.remove('active');
+              const hIdx = handCards.indexOf(card);
+              const offset = hIdx - (handCount - 1) / 2;
+              const stepDeg = handCount > 1 ? Math.min(9, 46 / (handCount - 1)) : 0;
+              const rotate = offset * stepDeg;
+              const fanX = offset * spacing;
+              const fanY = Math.abs(rotate) * 1.9;
+
+              let dy = 0;
+              let scale = HAND_SCALE;
+              let rot = rotate;
+              let zIndex = 10 + hIdx;
+
+              if (idx === hoveredIndex) {
+                dy = -hoverLift - fanY;
+                scale = HAND_SCALE * 1.08;
+                rot = rotate * 0.55;
+                zIndex = 60;
+              }
+
+              card.style.transform = `translate(calc(-50% + ${fanX}px), ${fanY + dy}px) scale(${scale}) rotate(${rot}deg)`;
+              card.style.zIndex = String(zIndex);
+            }
+          });
+        }
+
+        cards.forEach((card, idx) => {
+          card.addEventListener('mouseenter', () => {
+            if (idx !== activeIndex) {
+              hoveredIndex = idx;
+              layoutHand();
+            }
+          });
+          card.addEventListener('mouseleave', () => {
+            if (hoveredIndex === idx) {
+              hoveredIndex = -1;
+              layoutHand();
+            }
+          });
+          card.addEventListener('click', () => {
+            activeIndex = idx;
+            hoveredIndex = -1;
+            updateSideText();
+            layoutHand();
+          });
+        });
+
+        // Initialize hand layout & text
+        updateSideText();
+        layoutHand();
+      }
+
+      initCardHandGallery();
 
       // Initialize the Team Stack Deck immediately
       initMenuDeckStack();
