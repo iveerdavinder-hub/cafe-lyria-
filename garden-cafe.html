@@ -263,12 +263,30 @@
       box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
     }
 
-    /* liquidGL - Apple Liquid Glass Container Utilities & Layering */
+    .navbar {
+      pointer-events: auto !important;
+    }
     .brand-wrap,
     .navbar nav,
     .nav-actions {
       position: relative;
-      z-index: 3;
+      z-index: 10;
+      pointer-events: auto !important;
+    }
+    .nav-links {
+      position: relative;
+      z-index: 12;
+      pointer-events: auto !important;
+    }
+    .nav-item {
+      position: relative !important;
+      z-index: 15 !important;
+      pointer-events: auto !important;
+      cursor: pointer !important;
+    }
+    .nav-active-pill {
+      pointer-events: none !important;
+      z-index: 1;
     }
     .liquidGL,
     .liquid-glass {
@@ -2479,7 +2497,7 @@
   <div class="site-flow">
 
     <!-- FLOATING NAVIGATION BAR WITH LIQUID GLASS -->
-    <header class="navbar liquidGL" id="navbar" role="banner">
+    <header class="navbar" id="navbar" role="banner">
       <a href="#hero" class="brand-wrap" aria-label="R6 Caffe">
         <span class="brand-logo-text">Garden <em>Cafe</em></span>
       </a>
@@ -2930,121 +2948,6 @@
       </div>
     </section>
 
-    <!-- SECTION 4: SOCIAL PROOF & REVIEWS -->
-    <section class="section-wrap" id="reviews">
-      <div class="rating-hero-block">
-        <span class="section-eyebrow">Google Reviews &amp; Ratings</span>
-        <div class="big-star-score">4.9 <span>★</span></div>
-        <div class="rating-sub">Loved across Model Town &amp; Pritam Nagar, Ludhiana · ₹150–250 per person</div>
-        <div style="display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:16px;">
-          <span style="background:rgba(229,57,53,0.15);border:1px solid #E53935;color:#F1F3F5;padding:5px 14px;border-radius:999px;font-size:0.82rem;font-weight:600;">✨ 4.9 Rating</span>
-          <span style="background:rgba(229,57,53,0.15);border:1px solid #E53935;color:#F1F3F5;padding:5px 14px;border-radius:999px;font-size:0.82rem;font-weight:600;">☕ Specialty Coffee</span>
-          <span style="background:rgba(229,57,53,0.15);border:1px solid #E53935;color:#F1F3F5;padding:5px 14px;border-radius:999px;font-size:0.82rem;font-weight:600;">🍔 Gourmet Deli</span>
-          <span style="background:rgba(229,57,53,0.15);border:1px solid #E53935;color:#F1F3F5;padding:5px 14px;border-radius:999px;font-size:0.82rem;font-weight:600;">🍟 Loaded Fries</span>
-          <span style="background:rgba(229,57,53,0.15);border:1px solid #E53935;color:#F1F3F5;padding:5px 14px;border-radius:999px;font-size:0.82rem;font-weight:600;">💰 Pocket Friendly</span>
-        </div>
-      </div>
-
-      <div class="reviews-grid">
-        <div class="review-card">
-          <div>
-            <div class="review-stars">★★★★★</div>
-            <p class="review-quote">“One of the best cozy spots in Model Town, Ludhiana! The coffee is top notch and the peri peri loaded fries and pizzas are delicious. Great pocket-friendly prices and friendly service.”</p>
-          </div>
-          <div class="reviewer-meta">
-            <div class="reviewer-avatar">J</div>
-            <div>
-              <div class="reviewer-name">Jaspreet Singh</div>
-              <div class="reviewer-tag">Local Guide · Model Town Regular</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="review-card">
-          <div>
-            <div class="review-stars">★★★★★</div>
-            <p class="review-quote">“Loved hanging out here with college friends near Guru Nanak Girls College. Super tasty cold coffee with ice cream and grilled sandwiches. The ambience is chill, comfortable, and very welcoming!”</p>
-          </div>
-          <div class="reviewer-meta">
-            <div class="reviewer-avatar">S</div>
-            <div>
-              <div class="reviewer-name">Simranjeet Kaur</div>
-              <div class="reviewer-tag">Verified Review · Ludhiana</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="review-card">
-          <div>
-            <div class="review-stars">★★★★★</div>
-            <p class="review-quote">“Affordable, clean, and delicious vegetarian cafe food. The cheesy garlic bread and Choco Frappe were amazing. Staff is prompt and polite. Highly recommended in Model Town!”</p>
-          </div>
-          <div class="reviewer-meta">
-            <div class="reviewer-avatar">H</div>
-            <div>
-              <div class="reviewer-name">Harman Dhillon</div>
-              <div class="reviewer-tag">Food Explorer · Ludhiana</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- SECTION 5: MODEL TOWN DELI & HANGOUT SPOT -->
-    <section class="section-wrap" id="study">
-      <div class="study-spot-card">
-        <div>
-          <span class="section-eyebrow">Cafe Ambience</span>
-          <h2 class="section-heading" style="text-align:left;">Cozy Model Town Hangout &amp; Study Haven.</h2>
-          <p style="color:var(--cream-soft);font-size:1.06rem;line-height:1.7;">
-            Comfortable booths, warm mocha interiors, accessible power outlets, high-speed Wi-Fi, and an easygoing playlist — the ideal destination near Guru Nanak Girls College for study sessions, friendly catchups, or a solo coffee escape.
-          </p>
-          <div class="study-perks-grid">
-            <div class="perk-item">
-              <span class="perk-icon">📶</span>
-              <div>
-                <strong>High-Speed Wi-Fi</strong>
-                <p>Complimentary for studying, browsing, and remote work.</p>
-              </div>
-            </div>
-            <div class="perk-item">
-              <span class="perk-icon">⚡</span>
-              <div>
-                <strong>Charging Outlets</strong>
-                <p>Power ports by tables to keep your laptops and phones ready.</p>
-              </div>
-            </div>
-            <div class="perk-item">
-              <span class="perk-icon">☕</span>
-              <div>
-                <strong>Brewed on Demand</strong>
-                <p>Artisan espresso, thick frappes, and refreshing coolers.</p>
-              </div>
-            </div>
-            <div class="perk-item">
-              <span class="perk-icon">🍕</span>
-              <div>
-                <strong>Fresh Bites</strong>
-                <p>Hot thin-crust pizzas, sandwiches, and loaded fries.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="study-card-accent">
-          <div class="study-card-inner">
-            <span class="pill-open">Open 8 AM – 10:30 PM</span>
-            <h3 style="font-size:1.35rem;font-weight:700;margin:12px 0 6px;">Pocket-Friendly Bistro</h3>
-            <p style="font-size:0.92rem;color:var(--muted);margin-bottom:16px;">
-              510-R, Model Town Road, Near Guru Nanak Girls College, Pritam Nagar, Ludhiana.
-            </p>
-            <div style="font-size:0.88rem;color:var(--cream);background:rgba(229,57,53,0.15);padding:10px 14px;border-radius:10px;border:1px solid #E53935;">
-              💡 <em>Average cost ~₹350 for two people — delicious taste, maximum comfort!</em>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- SECTION 6: CATEGORIZED PHOTO GALLERY (MODEL TOWN, LUDHIANA) -->
     <section class="section-wrap" id="gallery">
       <div class="section-header">
@@ -3332,6 +3235,123 @@
         </a>
       </div>
     </section>
+
+    <!-- SECTION 4: SOCIAL PROOF & REVIEWS -->
+    <section class="section-wrap" id="reviews">
+      <div class="rating-hero-block">
+        <span class="section-eyebrow">Google Reviews &amp; Ratings</span>
+        <div class="big-star-score">4.9 <span>★</span></div>
+        <div class="rating-sub">Loved across Model Town &amp; Pritam Nagar, Ludhiana · ₹150–250 per person</div>
+        <div style="display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:16px;">
+          <span style="background:rgba(229,57,53,0.15);border:1px solid #E53935;color:#F1F3F5;padding:5px 14px;border-radius:999px;font-size:0.82rem;font-weight:600;">✨ 4.9 Rating</span>
+          <span style="background:rgba(229,57,53,0.15);border:1px solid #E53935;color:#F1F3F5;padding:5px 14px;border-radius:999px;font-size:0.82rem;font-weight:600;">☕ Specialty Coffee</span>
+          <span style="background:rgba(229,57,53,0.15);border:1px solid #E53935;color:#F1F3F5;padding:5px 14px;border-radius:999px;font-size:0.82rem;font-weight:600;">🍔 Gourmet Deli</span>
+          <span style="background:rgba(229,57,53,0.15);border:1px solid #E53935;color:#F1F3F5;padding:5px 14px;border-radius:999px;font-size:0.82rem;font-weight:600;">🍟 Loaded Fries</span>
+          <span style="background:rgba(229,57,53,0.15);border:1px solid #E53935;color:#F1F3F5;padding:5px 14px;border-radius:999px;font-size:0.82rem;font-weight:600;">💰 Pocket Friendly</span>
+        </div>
+      </div>
+
+      <div class="reviews-grid">
+        <div class="review-card">
+          <div>
+            <div class="review-stars">★★★★★</div>
+            <p class="review-quote">“One of the best cozy spots in Model Town, Ludhiana! The coffee is top notch and the peri peri loaded fries and pizzas are delicious. Great pocket-friendly prices and friendly service.”</p>
+          </div>
+          <div class="reviewer-meta">
+            <div class="reviewer-avatar">J</div>
+            <div>
+              <div class="reviewer-name">Jaspreet Singh</div>
+              <div class="reviewer-tag">Local Guide · Model Town Regular</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="review-card">
+          <div>
+            <div class="review-stars">★★★★★</div>
+            <p class="review-quote">“Loved hanging out here with college friends near Guru Nanak Girls College. Super tasty cold coffee with ice cream and grilled sandwiches. The ambience is chill, comfortable, and very welcoming!”</p>
+          </div>
+          <div class="reviewer-meta">
+            <div class="reviewer-avatar">S</div>
+            <div>
+              <div class="reviewer-name">Simranjeet Kaur</div>
+              <div class="reviewer-tag">Verified Review · Ludhiana</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="review-card">
+          <div>
+            <div class="review-stars">★★★★★</div>
+            <p class="review-quote">“Affordable, clean, and delicious vegetarian cafe food. The cheesy garlic bread and Choco Frappe were amazing. Staff is prompt and polite. Highly recommended in Model Town!”</p>
+          </div>
+          <div class="reviewer-meta">
+            <div class="reviewer-avatar">H</div>
+            <div>
+              <div class="reviewer-name">Harman Dhillon</div>
+              <div class="reviewer-tag">Food Explorer · Ludhiana</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5: MODEL TOWN DELI & HANGOUT SPOT -->
+    <section class="section-wrap" id="study">
+      <div class="study-spot-card">
+        <div>
+          <span class="section-eyebrow">Cafe Ambience</span>
+          <h2 class="section-heading" style="text-align:left;">Cozy Model Town Hangout &amp; Study Haven.</h2>
+          <p style="color:var(--cream-soft);font-size:1.06rem;line-height:1.7;">
+            Comfortable booths, warm mocha interiors, accessible power outlets, high-speed Wi-Fi, and an easygoing playlist — the ideal destination near Guru Nanak Girls College for study sessions, friendly catchups, or a solo coffee escape.
+          </p>
+          <div class="study-perks-grid">
+            <div class="perk-item">
+              <span class="perk-icon">📶</span>
+              <div>
+                <strong>High-Speed Wi-Fi</strong>
+                <p>Complimentary for studying, browsing, and remote work.</p>
+              </div>
+            </div>
+            <div class="perk-item">
+              <span class="perk-icon">⚡</span>
+              <div>
+                <strong>Charging Outlets</strong>
+                <p>Power ports by tables to keep your laptops and phones ready.</p>
+              </div>
+            </div>
+            <div class="perk-item">
+              <span class="perk-icon">☕</span>
+              <div>
+                <strong>Brewed on Demand</strong>
+                <p>Artisan espresso, thick frappes, and refreshing coolers.</p>
+              </div>
+            </div>
+            <div class="perk-item">
+              <span class="perk-icon">🍕</span>
+              <div>
+                <strong>Fresh Bites</strong>
+                <p>Hot thin-crust pizzas, sandwiches, and loaded fries.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="study-card-accent">
+          <div class="study-card-inner">
+            <span class="pill-open">Open 8 AM – 10:30 PM</span>
+            <h3 style="font-size:1.35rem;font-weight:700;margin:12px 0 6px;">Pocket-Friendly Bistro</h3>
+            <p style="font-size:0.92rem;color:var(--muted);margin-bottom:16px;">
+              510-R, Model Town Road, Near Guru Nanak Girls College, Pritam Nagar, Ludhiana.
+            </p>
+            <div style="font-size:0.88rem;color:var(--cream);background:rgba(229,57,53,0.15);padding:10px 14px;border-radius:10px;border:1px solid #E53935;">
+              💡 <em>Average cost ~₹350 for two people — delicious taste, maximum comfort!</em>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
 
 <!-- SECTION 7: FREQUENTLY ASKED QUESTIONS (FAQS) -->
     <section class="section-wrap" id="faqs">
@@ -3879,35 +3899,8 @@
           const urlParams = new URLSearchParams(window.location.search);
           const showHelper = urlParams.has('helper') || urlParams.has('liquidGL-helper');
 
-          navbarLiquidGlass = liquidGL({
-            target: ".navbar",
-            snapshot: "body",
-            resolution: 1.5,
-            engine: "auto",
-            zIndex: 100,
-            refraction: 0.016,
-            aberration: 0.35,
-            bevelDepth: 0.08,
-            bevelWidth: 0.12,
-            frost: 0.8,
-            shadow: true,
-            specular: true,
-            reveal: "none",
-            tilt: false,
-            draggable: false,
-            interaction: "fluid",
-            interactionStrength: 0.45,
-            interactionRadius: 0.35,
-            interactionViscosity: 0.65,
-            magnify: 1.0,
-            tint: "rgba(14, 15, 18, 0.42)",
-            helper: showHelper,
-            on: {
-              init(instance) {
-                console.log('✦ liquidGL: Liquid Glass Engine running (WebGPU/WebGL)', instance);
-              }
-            }
-          });
+          // navbar liquidGL disabled to prevent pointer-events interception on navigation buttons
+          navbarLiquidGlass = null;
 
           // Also glassify any custom elements marked with .liquid-glass
           if (document.querySelectorAll('.liquid-glass:not(.navbar)').length > 0) {
@@ -5399,7 +5392,7 @@
       });
 
       // =====================================================================
-      // NAVBAR SMOOTH SCROLLING, ANIMATIONS & SCROLLSPY
+      // NAVBAR SMOOTH SCROLLING, ANIMATIONS & SCROLLSPY (100% BULLETPROOF)
       // =====================================================================
       function initNavbarNav() {
         const navList = document.getElementById('navLinksList');
@@ -5420,14 +5413,15 @@
         ].filter(s => s.el);
 
         let isAutoScrolling = false;
+        let autoScrollTimer = null;
 
         // Animate the gliding pill behind target item
         function updatePillPosition(targetLink) {
           if (!activePill || !targetLink || !navList) return;
           const linkRect = targetLink.getBoundingClientRect();
           const listRect = navList.getBoundingClientRect();
-          const leftOffset = linkRect.left - listRect.left;
-          const width = linkRect.width;
+          const leftOffset = Math.round(linkRect.left - listRect.left);
+          const width = Math.round(linkRect.width);
 
           activePill.style.transform = `translateX(${leftOffset}px)`;
           activePill.style.width = `${width}px`;
@@ -5451,58 +5445,59 @@
 
         function scrollToSection(hash) {
           const isHome = (hash === '#hero' || hash === '#' || hash === '');
-          let targetY = 0;
+          const targetEl = isHome ? document.getElementById('hero') : document.querySelector(hash);
 
-          if (!isHome) {
-            const targetEl = document.querySelector(hash);
-            if (!targetEl) return;
-            const rect = targetEl.getBoundingClientRect();
-            targetY = Math.max(0, Math.round(rect.top + (window.pageYOffset || document.documentElement.scrollTop) - navbarHeight + 2));
-          }
+          if (!targetEl) return;
 
           // Immediately update active pill and button state
           setActive(isHome ? '#hero' : hash);
 
           isAutoScrolling = true;
+          clearTimeout(autoScrollTimer);
 
-          // 1. Lenis scroll with force:true (bypasses any locks)
+          const rect = targetEl.getBoundingClientRect();
+          const currentScroll = window.pageYOffset || document.documentElement.scrollTop || 0;
+          const targetY = isHome ? 0 : Math.max(0, Math.round(rect.top + currentScroll - navbarHeight + 2));
+
+          // 1. Lenis Smooth Scroll
           if (window.lenis && typeof window.lenis.scrollTo === 'function') {
             try {
-              window.lenis.scrollTo(targetY, {
-                duration: 1.0,
-                force: true,
-                onComplete: () => { isAutoScrolling = false; }
+              window.lenis.scrollTo(isHome ? 0 : targetEl, {
+                offset: isHome ? 0 : -navbarHeight,
+                duration: 0.9,
+                immediate: false,
+                force: true
               });
             } catch (err) {
               window.scrollTo({ top: targetY, behavior: 'smooth' });
-              setTimeout(() => { isAutoScrolling = false; }, 1050);
             }
-          } else {
-            window.scrollTo({ top: targetY, behavior: 'smooth' });
-            setTimeout(() => { isAutoScrolling = false; }, 1050);
           }
 
-          // Native scroll backup in case virtual scroll is interrupted
-          setTimeout(() => {
-            const currentY = window.pageYOffset || document.documentElement.scrollTop;
-            if (Math.abs(currentY - targetY) > 80) {
+          // 2. Native Smooth Scroll (guarantees execution on all platforms)
+          window.scrollTo({ top: targetY, behavior: 'smooth' });
+
+          // 3. Fallback verification
+          autoScrollTimer = setTimeout(() => {
+            const finalScroll = window.pageYOffset || document.documentElement.scrollTop || 0;
+            if (Math.abs(finalScroll - targetY) > 80) {
               window.scrollTo({ top: targetY, behavior: 'smooth' });
             }
             isAutoScrolling = false;
-          }, 1100);
+          }, 600);
 
           try {
             history.pushState(null, null, isHome ? '#hero' : hash);
           } catch(e) {}
         }
 
-        // Attach tactile click listeners to all nav links
+        // Attach click listeners to all nav links
         navLinks.forEach(link => {
           link.addEventListener('click', function(e) {
             e.preventDefault();
+            e.stopPropagation();
             const href = this.getAttribute('href');
             this.classList.add('clicked');
-            setTimeout(() => this.classList.remove('clicked'), 300);
+            setTimeout(() => this.classList.remove('clicked'), 250);
             if (href) scrollToSection(href);
           });
         });
@@ -5511,6 +5506,7 @@
         if (brandWrap) {
           brandWrap.addEventListener('click', function(e) {
             e.preventDefault();
+            e.stopPropagation();
             scrollToSection('#hero');
           });
         }
