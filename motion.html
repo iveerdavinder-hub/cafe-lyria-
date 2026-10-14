@@ -1,0 +1,2014 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>AETHER Dynamics — Autonomous 3D Enterprise Architecture</title>
+  <meta name="description" content="A minimalist, high-performance 3D motion experience engineered for modern enterprises. Fluid spatial intelligence, adaptive architecture, and 60 FPS WebGL rendering.">
+  <meta name="theme-color" content="#090a0f">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+
+  <!-- Typography: Plus Jakarta Sans & Inter for clean, modern executive clarity -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Smooth Scrolling (Lenis) -->
+  <link rel="stylesheet" href="lenis.css">
+
+  <style>
+    /* ==========================================================================
+       DESIGN SYSTEM: TOKENS & CSS CUSTOM PROPERTIES
+       Completely Industry-Neutral with Real-Time Material/Palette Switching
+       ========================================================================== */
+    :root {
+      /* Dynamic Theme Variables (Preset: AI & DeepTech) */
+      --bg-base: #090a0f;
+      --bg-surface: rgba(16, 18, 27, 0.72);
+      --bg-surface-elevated: rgba(24, 27, 41, 0.85);
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --border-focus: rgba(255, 255, 255, 0.22);
+      
+      --text-primary: #f8fafc;
+      --text-secondary: #94a3b8;
+      --text-muted: #64748b;
+      
+      --accent: #38bdf8;
+      --accent-rgb: 56, 189, 248;
+      --accent-glow: rgba(56, 189, 248, 0.28);
+      --accent-secondary: #818cf8;
+      --accent-secondary-rgb: 129, 140, 248;
+      
+      --badge-bg: rgba(56, 189, 248, 0.1);
+      --badge-border: rgba(56, 189, 248, 0.25);
+      --badge-text: #38bdf8;
+      
+      --card-gradient: radial-gradient(120% 120% at 50% 0%, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.01) 100%);
+      --glow-specular: radial-gradient(circle at 50% 40%, rgba(56, 189, 248, 0.12) 0%, transparent 70%);
+      
+      --radius-sm: 8px;
+      --radius-md: 16px;
+      --radius-lg: 24px;
+      --radius-pill: 9999px;
+      
+      --font-display: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      
+      --transition-fast: 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      --transition-smooth: 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* Industry Theme Overrides */
+    [data-theme="fintech"] {
+      --bg-base: #08080a;
+      --bg-surface: rgba(18, 18, 22, 0.75);
+      --bg-surface-elevated: rgba(28, 28, 34, 0.88);
+      --accent: #e5b967;
+      --accent-rgb: 229, 185, 103;
+      --accent-glow: rgba(229, 185, 103, 0.25);
+      --accent-secondary: #f3d79b;
+      --accent-secondary-rgb: 243, 215, 155;
+      --badge-bg: rgba(229, 185, 103, 0.1);
+      --badge-border: rgba(229, 185, 103, 0.3);
+      --badge-text: #f3d79b;
+    }
+
+    [data-theme="biotech"] {
+      --bg-base: #060d0d;
+      --bg-surface: rgba(12, 24, 24, 0.75);
+      --bg-surface-elevated: rgba(18, 36, 36, 0.88);
+      --accent: #2dd4bf;
+      --accent-rgb: 45, 212, 191;
+      --accent-glow: rgba(45, 212, 191, 0.25);
+      --accent-secondary: #38bdf8;
+      --accent-secondary-rgb: 56, 189, 248;
+      --badge-bg: rgba(45, 212, 191, 0.1);
+      --badge-border: rgba(45, 212, 191, 0.3);
+      --badge-text: #2dd4bf;
+    }
+
+    [data-theme="consulting"] {
+      --bg-base: #0a0c12;
+      --bg-surface: rgba(18, 22, 34, 0.75);
+      --bg-surface-elevated: rgba(26, 32, 48, 0.88);
+      --accent: #60a5fa;
+      --accent-rgb: 96, 165, 250;
+      --accent-glow: rgba(96, 165, 250, 0.25);
+      --accent-secondary: #93c5fd;
+      --accent-secondary-rgb: 147, 197, 253;
+      --badge-bg: rgba(96, 165, 250, 0.1);
+      --badge-border: rgba(96, 165, 250, 0.3);
+      --badge-text: #93c5fd;
+    }
+
+    [data-theme="creative"] {
+      --bg-base: #0f0b09;
+      --bg-surface: rgba(26, 19, 16, 0.75);
+      --bg-surface-elevated: rgba(38, 28, 24, 0.88);
+      --accent: #fb923c;
+      --accent-rgb: 251, 146, 60;
+      --accent-glow: rgba(251, 146, 60, 0.25);
+      --accent-secondary: #f43f5e;
+      --accent-secondary-rgb: 244, 63, 94;
+      --badge-bg: rgba(251, 146, 60, 0.1);
+      --badge-border: rgba(251, 146, 60, 0.3);
+      --badge-text: #fb923c;
+    }
+
+    /* ==========================================================================
+       BASE RESETS & GLOBAL STYLES
+       ========================================================================== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      font-size: 16px;
+      scroll-behavior: auto; /* Handled smoothly by Lenis */
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      background-color: var(--bg-base);
+      color: var(--text-primary);
+      font-family: var(--font-body);
+      line-height: 1.6;
+      overflow-x: hidden;
+      position: relative;
+      transition: background-color var(--transition-smooth);
+    }
+
+    /* Fixed WebGL Canvas Container */
+    #webgl-canvas-container {
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 1;
+      pointer-events: none; /* Allows cursor and scroll events to pass through seamlessly */
+      overflow: hidden;
+    }
+
+    #webgl-canvas-container canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    /* Ambient Depth Glow Overlay */
+    .viewport-ambient-glow {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 2;
+      background: var(--glow-specular);
+      transition: background var(--transition-smooth);
+      opacity: 0.65;
+    }
+
+    /* Content Wrapper */
+    .content-flow {
+      position: relative;
+      z-index: 10;
+      width: 100%;
+      min-height: 100vh;
+    }
+
+    /* Typography Utilities */
+    h1, h2, h3, h4 {
+      font-family: var(--font-display);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      color: var(--text-primary);
+    }
+
+    p {
+      color: var(--text-secondary);
+      font-size: 1.05rem;
+      line-height: 1.7;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* ==========================================================================
+       NAVIGATION BAR
+       ========================================================================== */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 76px;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 4vw;
+      background: rgba(9, 10, 15, 0.65);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border-subtle);
+      transition: background var(--transition-fast), border-color var(--transition-fast);
+    }
+
+    .brand-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-emblem {
+      width: 32px;
+      height: 32px;
+      border-radius: var(--radius-sm);
+      background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+      display: grid;
+      place-items: center;
+      box-shadow: 0 0 16px var(--accent-glow);
+      transition: transform var(--transition-fast);
+    }
+
+    .brand-emblem:hover {
+      transform: rotate(45deg);
+    }
+
+    .brand-emblem svg {
+      width: 18px;
+      height: 18px;
+      fill: #ffffff;
+    }
+
+    .brand-name {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 1.15rem;
+      letter-spacing: -0.02em;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .brand-name span {
+      color: var(--accent);
+      font-weight: 500;
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding-left: 2px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-item {
+      font-size: 0.92rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      transition: color var(--transition-fast);
+      position: relative;
+    }
+
+    .nav-item:hover {
+      color: #ffffff;
+    }
+
+    .nav-item::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background: var(--accent);
+      transition: width var(--transition-fast);
+    }
+
+    .nav-item:hover::after {
+      width: 100%;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    /* Live Industry Switcher Button inside Nav */
+    .industry-dropdown-trigger {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-pill);
+      padding: 6px 14px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+
+    .industry-dropdown-trigger:hover {
+      border-color: var(--border-focus);
+      background: var(--bg-surface-elevated);
+    }
+
+    .industry-indicator-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 8px var(--accent);
+      transition: background var(--transition-fast);
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 22px;
+      border-radius: var(--radius-pill);
+      font-size: 0.92rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      border: 1px solid transparent;
+      outline: none;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-primary {
+      background: #ffffff;
+      color: #090a0f;
+      box-shadow: 0 4px 20px rgba(255, 255, 255, 0.15);
+    }
+
+    .btn-primary:hover {
+      background: #f1f5f9;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(255, 255, 255, 0.25);
+    }
+
+    .btn-secondary {
+      background: var(--bg-surface);
+      color: var(--text-primary);
+      border-color: var(--border-subtle);
+      backdrop-filter: blur(12px);
+    }
+
+    .btn-secondary:hover {
+      background: var(--bg-surface-elevated);
+      border-color: var(--border-focus);
+      transform: translateY(-2px);
+    }
+
+    /* ==========================================================================
+       HERO SECTION
+       ========================================================================== */
+    .hero-section {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 130px 4vw 80px;
+      position: relative;
+    }
+
+    .hero-container {
+      max-width: 1280px;
+      width: 100%;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      align-items: center;
+      gap: 40px;
+    }
+
+    .hero-content {
+      max-width: 620px;
+      position: relative;
+      z-index: 20;
+    }
+
+    .badge-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      border-radius: var(--radius-pill);
+      background: var(--badge-bg);
+      border: 1px solid var(--badge-border);
+      color: var(--badge-text);
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+      backdrop-filter: blur(10px);
+      transition: all var(--transition-fast);
+    }
+
+    .badge-pill-sparkle {
+      font-size: 0.9rem;
+      line-height: 1;
+    }
+
+    .hero-headline {
+      font-size: clamp(2.8rem, 5.2vw, 4.5rem);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 1.08;
+      margin-bottom: 24px;
+      color: #ffffff;
+    }
+
+    .hero-headline em {
+      font-style: normal;
+      background: linear-gradient(135deg, #ffffff 30%, var(--accent) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-description {
+      font-size: 1.15rem;
+      color: var(--text-secondary);
+      margin-bottom: 36px;
+      max-width: 540px;
+      line-height: 1.7;
+    }
+
+    .hero-cta-group {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 48px;
+    }
+
+    /* 3D Focus Interaction Hint */
+    .spatial-hint-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.78rem;
+      font-family: var(--font-mono);
+      color: var(--text-muted);
+      border-top: 1px solid var(--border-subtle);
+      padding-top: 16px;
+      max-width: 480px;
+    }
+
+    .spatial-hint-tag span {
+      color: var(--accent);
+    }
+
+    /* ==========================================================================
+       INTERACTIVE 3D OBJECT HUD OVERLAY (Desktop Hero Area)
+       ========================================================================== */
+    .hero-3d-hud {
+      position: relative;
+      height: 480px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      pointer-events: none;
+    }
+
+    .hud-meta-card {
+      pointer-events: auto;
+      align-self: flex-end;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 14px 18px;
+      backdrop-filter: blur(16px);
+      max-width: 260px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+      transition: transform var(--transition-fast), border-color var(--transition-fast);
+    }
+
+    .hud-meta-card:hover {
+      border-color: var(--border-focus);
+      transform: translateY(-3px);
+    }
+
+    .hud-label {
+      font-size: 0.72rem;
+      font-family: var(--font-mono);
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 4px;
+    }
+
+    .hud-value {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .hud-chip {
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #10b981;
+      box-shadow: 0 0 8px #10b981;
+    }
+
+    /* Live Telemetry Floating Widget */
+    .telemetry-pills-bar {
+      display: flex;
+      gap: 10px;
+      pointer-events: auto;
+    }
+
+    .telemetry-pill {
+      background: rgba(16, 18, 27, 0.6);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-pill);
+      padding: 6px 14px;
+      font-size: 0.78rem;
+      font-family: var(--font-mono);
+      color: var(--text-secondary);
+      backdrop-filter: blur(12px);
+    }
+
+    /* ==========================================================================
+       SECTION 2: MODULAR ARCHITECTURE (BENTO GRID)
+       ========================================================================== */
+    .section-wrap {
+      padding: 120px 4vw;
+      max-width: 1280px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .section-head {
+      margin-bottom: 64px;
+      max-width: 680px;
+    }
+
+    .section-eyebrow {
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .section-title {
+      font-size: clamp(2.2rem, 3.8vw, 3.2rem);
+      margin-bottom: 18px;
+    }
+
+    .bento-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 24px;
+    }
+
+    .bento-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 36px 32px;
+      backdrop-filter: blur(16px);
+      transition: all var(--transition-smooth);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .bento-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--card-gradient);
+      pointer-events: none;
+      opacity: 0.6;
+      transition: opacity var(--transition-fast);
+    }
+
+    .bento-card:hover {
+      border-color: var(--border-focus);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45);
+    }
+
+    .bento-card:hover::before {
+      opacity: 1;
+    }
+
+    .col-7 { grid-column: span 7; }
+    .col-5 { grid-column: span 5; }
+    .col-4 { grid-column: span 4; }
+    .col-8 { grid-column: span 8; }
+    .col-6 { grid-column: span 6; }
+
+    .bento-icon-box {
+      width: 48px;
+      height: 48px;
+      border-radius: var(--radius-md);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-subtle);
+      display: grid;
+      place-items: center;
+      margin-bottom: 24px;
+      color: var(--accent);
+      transition: transform var(--transition-fast), background var(--transition-fast);
+    }
+
+    .bento-card:hover .bento-icon-box {
+      transform: scale(1.08);
+      background: var(--badge-bg);
+      border-color: var(--badge-border);
+    }
+
+    .bento-card h3 {
+      font-size: 1.45rem;
+      margin-bottom: 12px;
+      color: #ffffff;
+    }
+
+    .bento-card p {
+      font-size: 0.98rem;
+      color: var(--text-secondary);
+      line-height: 1.65;
+    }
+
+    .metric-badge {
+      font-family: var(--font-mono);
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin-top: 24px;
+      display: block;
+      letter-spacing: -0.03em;
+    }
+
+    .metric-badge small {
+      font-size: 0.85rem;
+      color: var(--accent);
+      font-weight: 500;
+      margin-left: 6px;
+    }
+
+    /* ==========================================================================
+       SECTION 3: UNIVERSAL INDUSTRY ADAPTABILITY SHOWCASE
+       ========================================================================== */
+    .industry-showcase-box {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+      backdrop-filter: blur(20px);
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+    }
+
+    .industry-tabs-nav {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 36px;
+      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 20px;
+    }
+
+    .industry-tab-btn {
+      background: transparent;
+      border: 1px solid transparent;
+      border-radius: var(--radius-pill);
+      padding: 8px 18px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+
+    .industry-tab-btn:hover {
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .industry-tab-btn.active {
+      color: #ffffff;
+      background: var(--bg-surface-elevated);
+      border-color: var(--border-focus);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    .industry-content-panel {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .industry-feature-list {
+      list-style: none;
+      margin-top: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .industry-feature-list li {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.95rem;
+      color: var(--text-primary);
+    }
+
+    .industry-feature-list li svg {
+      width: 18px;
+      height: 18px;
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .industry-simulation-card {
+      background: rgba(0, 0, 0, 0.35);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 28px;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+    }
+
+    .sim-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      border-bottom: 1px dashed rgba(255, 255, 255, 0.08);
+      color: var(--text-secondary);
+    }
+
+    .sim-row:last-child {
+      border-bottom: none;
+    }
+
+    .sim-val {
+      color: #ffffff;
+      font-weight: 600;
+    }
+
+    .sim-val.accent {
+      color: var(--accent);
+    }
+
+    /* ==========================================================================
+       SECTION 4: PERFORMANCE & 60 FPS BENCHMARK STRIP
+       ========================================================================== */
+    .metrics-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 40px 32px;
+      margin: 80px 0;
+      backdrop-filter: blur(16px);
+    }
+
+    .metric-cell {
+      text-align: center;
+      position: relative;
+    }
+
+    .metric-cell:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 20%;
+      height: 60%;
+      width: 1px;
+      background: var(--border-subtle);
+    }
+
+    .metric-big-num {
+      font-family: var(--font-display);
+      font-size: clamp(2.4rem, 4vw, 3.4rem);
+      font-weight: 800;
+      line-height: 1;
+      color: #ffffff;
+      margin-bottom: 8px;
+      letter-spacing: -0.04em;
+    }
+
+    .metric-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+    }
+
+    /* ==========================================================================
+       SECTION 5: HIGH-CONVERSION CTA
+       ========================================================================== */
+    .cta-banner {
+      position: relative;
+      background: radial-gradient(100% 140% at 50% 0%, var(--bg-surface-elevated) 0%, var(--bg-surface) 100%);
+      border: 1px solid var(--border-focus);
+      border-radius: var(--radius-lg);
+      padding: 80px 4vw;
+      text-align: center;
+      overflow: hidden;
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+    }
+
+    .cta-banner h2 {
+      font-size: clamp(2.4rem, 4.2vw, 3.8rem);
+      margin-bottom: 20px;
+    }
+
+    .cta-banner p {
+      max-width: 580px;
+      margin: 0 auto 36px;
+      font-size: 1.15rem;
+    }
+
+    /* ==========================================================================
+       FOOTER
+       ========================================================================== */
+    .site-footer {
+      border-top: 1px solid var(--border-subtle);
+      background: rgba(9, 10, 15, 0.85);
+      padding: 60px 4vw 40px;
+      font-size: 0.88rem;
+      color: var(--text-muted);
+    }
+
+    .footer-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+
+    .footer-nav {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+    }
+
+    .footer-nav a:hover {
+      color: #ffffff;
+    }
+
+    /* ==========================================================================
+       FLOATING 3D BRAND / THEME CONTROLLER DOCK
+       ========================================================================== */
+    .theme-controller-dock {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 100;
+      background: rgba(16, 18, 27, 0.85);
+      border: 1px solid var(--border-focus);
+      border-radius: var(--radius-pill);
+      padding: 8px 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      transition: transform var(--transition-fast);
+    }
+
+    .dock-label {
+      font-size: 0.75rem;
+      font-family: var(--font-mono);
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      border-right: 1px solid var(--border-subtle);
+      padding-right: 12px;
+    }
+
+    .dock-swatches {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .dock-swatch-btn {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      border: 2px solid transparent;
+      cursor: pointer;
+      position: relative;
+      transition: transform var(--transition-fast), border-color var(--transition-fast);
+    }
+
+    .dock-swatch-btn:hover {
+      transform: scale(1.2);
+    }
+
+    .dock-swatch-btn.active {
+      border-color: #ffffff;
+      transform: scale(1.15);
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
+    }
+
+    .dock-swatch-btn::after {
+      content: attr(data-tooltip);
+      position: absolute;
+      bottom: calc(100% + 10px);
+      left: 50%;
+      transform: translateX(-50%);
+      background: #111;
+      color: #fff;
+      font-size: 0.7rem;
+      font-family: var(--font-body);
+      padding: 4px 8px;
+      border-radius: 4px;
+      white-space: nowrap;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+    .dock-swatch-btn:hover::after {
+      opacity: 1;
+    }
+
+    /* Performance FPS Indicator */
+    .fps-counter-badge {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: #10b981;
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid rgba(16, 185, 129, 0.25);
+      padding: 3px 8px;
+      border-radius: var(--radius-pill);
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .fps-counter-badge::before {
+      content: '';
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #10b981;
+      box-shadow: 0 0 6px #10b981;
+    }
+
+    /* ==========================================================================
+       RESPONSIVE BREAKPOINTS
+       ========================================================================== */
+    @media (max-width: 1024px) {
+      .hero-container {
+        grid-template-columns: 1fr;
+        gap: 60px;
+        text-align: center;
+      }
+      .hero-content {
+        max-width: 100%;
+        margin: 0 auto;
+      }
+      .hero-cta-group {
+        justify-content: center;
+      }
+      .spatial-hint-tag {
+        margin: 0 auto;
+      }
+      .hero-3d-hud {
+        height: 380px;
+        align-items: center;
+      }
+      .hud-meta-card {
+        align-self: center;
+      }
+      .col-7, .col-5, .col-8, .col-4 {
+        grid-column: span 12;
+      }
+      .industry-content-panel {
+        grid-template-columns: 1fr;
+      }
+      .metrics-strip {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .metric-cell:nth-child(2)::after {
+        display: none;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+      .section-wrap {
+        padding: 80px 5vw;
+      }
+      .metrics-strip {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+      .metric-cell::after {
+        display: none !important;
+      }
+      .theme-controller-dock {
+        bottom: 16px;
+        padding: 6px 12px;
+      }
+      .dock-label {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body data-theme="ai">
+
+  <!-- 3D Canvas Background (WebGL 2.0 / Three.js) -->
+  <div id="webgl-canvas-container" aria-hidden="true"></div>
+
+  <!-- Ambient Cinematic Depth Glow -->
+  <div class="viewport-ambient-glow" aria-hidden="true"></div>
+
+  <!-- Main Website Content Flow -->
+  <div class="content-flow">
+
+    <!-- Top Navigation -->
+    <header class="navbar" role="banner">
+      <div class="brand-wrap">
+        <a href="#hero" class="brand-emblem" aria-label="Aether Dynamics Home">
+          <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        </a>
+        <a href="#hero" class="brand-name">AETHER <span>DYNAMICS</span></a>
+      </div>
+
+      <nav role="navigation">
+        <ul class="nav-links">
+          <li><a href="#architecture" class="nav-item">Architecture</a></li>
+          <li><a href="#capabilities" class="nav-item">Capabilities</a></li>
+          <li><a href="#industries" class="nav-item">Industries</a></li>
+          <li><a href="#benchmarks" class="nav-item">Performance</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <div class="fps-counter-badge" id="fpsDisplay">60 FPS</div>
+        <a href="#demo" class="btn btn-secondary" style="font-size:0.85rem;padding:7px 16px;">View Demo</a>
+        <a href="#contact" class="btn btn-primary" style="font-size:0.85rem;padding:7px 18px;">Book Briefing</a>
+      </div>
+    </header>
+
+    <!-- SECTION 1: HERO VIEWPORT -->
+    <section class="hero-section" id="hero">
+      <div class="hero-container">
+        
+        <div class="hero-content">
+          <div class="badge-pill">
+            <span class="badge-pill-sparkle">✦</span>
+            <span>Spatial Computing & Enterprise AI Architecture</span>
+          </div>
+
+          <h1 class="hero-headline">
+            Intelligent systems built for <em>dimensional scale.</em>
+          </h1>
+
+          <p class="hero-description">
+            A minimalist, high-precision 3D visual intelligence platform engineered for modern organizations. Connecting complex telemetry, autonomous decision graphs, and global infrastructure in real time.
+          </p>
+
+          <div class="hero-cta-group">
+            <a href="#contact" class="btn btn-primary" id="btnHeroPrimary">
+              Schedule Executive Briefing →
+            </a>
+            <button type="button" class="btn btn-secondary" id="btnMorphCore">
+              <span>⟳</span> Morph Geometric State
+            </button>
+          </div>
+
+          <div class="spatial-hint-tag">
+            <span>◆ 3D INTERACTIVITY:</span> Move your cursor to gently tilt the central topological core. Scroll to experience continuous spatial transformation.
+          </div>
+        </div>
+
+        <!-- Hero 3D HUD Indicators (Anchored beside the 3D center) -->
+        <div class="hero-3d-hud" aria-hidden="true">
+          <div class="hud-meta-card">
+            <div class="hud-label">Topological Core State</div>
+            <div class="hud-value" id="hudStateName">
+              <span class="hud-chip"></span> Parametric Torus Knot
+            </div>
+            <small style="font-size:0.75rem;color:var(--text-muted);display:block;margin-top:4px;">
+              60 FPS GPU Physics · Real-time Inertia
+            </small>
+          </div>
+
+          <div class="telemetry-pills-bar">
+            <span class="telemetry-pill">Mesh: Physical Glass & Titanium</span>
+            <span class="telemetry-pill">Specular: Multi-point Studio HDR</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION 2: BENTO ARCHITECTURE GRID -->
+    <section class="section-wrap" id="architecture">
+      <div class="section-head">
+        <span class="section-eyebrow">Modular Intelligence</span>
+        <h2 class="section-title">Engineered with mathematical clarity and zero visual friction.</h2>
+        <p>Every element in our visual and computational engine is designed to communicate trust, reliability, and precision across critical operations.</p>
+      </div>
+
+      <div class="bento-grid">
+        
+        <!-- Bento 1: Dynamic Morphing Compute -->
+        <div class="bento-card col-7">
+          <div>
+            <div class="bento-icon-box">
+              <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            </div>
+            <h3>Parametric Growth & Topological Flow</h3>
+            <p>Our mathematical core continuously adapts its visual form to data density. Zero abrupt jumps, pure continuous interpolation with calibrated physical momentum.</p>
+          </div>
+          <div class="metric-badge">0.045<small>s dampening factor</small></div>
+        </div>
+
+        <!-- Bento 2: Glass Refraction & Occlusion -->
+        <div class="bento-card col-5">
+          <div>
+            <div class="bento-icon-box">
+              <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m4.93 4.93 4.24 4.24M14.83 14.83l4.24 4.24M14.83 9.17l4.24-4.24M4.93 19.07l4.24-4.24"/></svg>
+            </div>
+            <h3>Specular Glass & Titanium</h3>
+            <p>True physical shaders utilizing custom micro-roughness, clearcoat transmission, and Fresnel edge reflections.</p>
+          </div>
+          <div class="metric-badge">100%<small>procedural textures</small></div>
+        </div>
+
+        <!-- Bento 3: 60 FPS Optimization -->
+        <div class="bento-card col-4">
+          <div>
+            <div class="bento-icon-box">
+              <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            </div>
+            <h3>Ultra-Lightweight GPU Load</h3>
+            <p>Under 22,000 polygons total. Highly optimized draw calls ensure silky 60 FPS on any modern laptop or mobile device.</p>
+          </div>
+          <div class="metric-badge">&lt; 1.2<small>MB total payload</small></div>
+        </div>
+
+        <!-- Bento 4: Magnetic Parallax Interaction -->
+        <div class="bento-card col-8">
+          <div>
+            <div class="bento-icon-box">
+              <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+            </div>
+            <h3>Organic Magnetic Feedback</h3>
+            <p>Hovering over interactive UI elements transmits subtle light flares and orbital acceleration to the 3D scene, making the interface feel unified and conscious.</p>
+          </div>
+          <div class="metric-badge">60<small>FPS locked update loop</small></div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION 3: UNIVERSAL INDUSTRY ADAPTABILITY -->
+    <section class="section-wrap" id="industries">
+      <div class="section-head">
+        <span class="section-eyebrow">Universal Adaptability</span>
+        <h2 class="section-title">Built to seamlessly represent any business vertical.</h2>
+        <p>From algorithmic finance and clinical biotech to enterprise SaaS and creative agencies, the 3D material and lighting system transitions effortlessly.</p>
+      </div>
+
+      <div class="industry-showcase-box">
+        <div class="industry-tabs-nav" role="tablist">
+          <button type="button" class="industry-tab-btn active" data-industry="ai">Artificial Intelligence & SaaS</button>
+          <button type="button" class="industry-tab-btn" data-industry="fintech">FinTech & Global Capital</button>
+          <button type="button" class="industry-tab-btn" data-industry="biotech">HealthCare & BioTechnology</button>
+          <button type="button" class="industry-tab-btn" data-industry="consulting">Enterprise Advisory</button>
+          <button type="button" class="industry-tab-btn" data-industry="creative">Brand & Creative Agency</button>
+        </div>
+
+        <div class="industry-content-panel">
+          <div>
+            <h3 id="industryTitle" style="font-size:1.8rem;margin-bottom:12px;">Artificial Intelligence & SaaS</h3>
+            <p id="industryDesc">
+              A high-precision obsidian aesthetic accented with luminous cyan and electric indigo reflections. Embodies continuous neural computation, algorithmic clarity, and deep data flow.
+            </p>
+
+            <ul class="industry-feature-list" id="industryFeatures">
+              <li>
+                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+                <span>Automated parallel decision topology</span>
+              </li>
+              <li>
+                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+                <span>Sub-15ms spatial latency verification</span>
+              </li>
+              <li>
+                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+                <span>Enterprise SOC-2 Type II cryptographic telemetry</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="industry-simulation-card">
+            <div style="font-size:0.75rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:14px;">Live System Parameter Readout</div>
+            <div class="sim-row">
+              <span>Primary Material</span>
+              <span class="sim-val" id="simMat">Frosted Glass & Titanium</span>
+            </div>
+            <div class="sim-row">
+              <span>Lighting Temperature</span>
+              <span class="sim-val" id="simLight">6,200K Neutral Studio</span>
+            </div>
+            <div class="sim-row">
+              <span>Specular Color</span>
+              <span class="sim-val accent" id="simSpec">Electric Cyan (#38bdf8)</span>
+            </div>
+            <div class="sim-row">
+              <span>Physical Roughness</span>
+              <span class="sim-val" id="simRough">0.14 PBR</span>
+            </div>
+            <div class="sim-row">
+              <span>Inertial Orbit Speed</span>
+              <span class="sim-val" id="simSpeed">0.0025 rad/sec</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: ENTERPRISE PERFORMANCE BENCHMARKS -->
+    <section class="section-wrap" id="benchmarks">
+      <div class="metrics-strip">
+        <div class="metric-cell">
+          <div class="metric-big-num">60</div>
+          <div class="metric-title">Locked FPS on Desktop</div>
+        </div>
+        <div class="metric-cell">
+          <div class="metric-big-num">&lt; 15ms</div>
+          <div class="metric-title">Interaction Inertia Damping</div>
+        </div>
+        <div class="metric-cell">
+          <div class="metric-big-num">0%</div>
+          <div class="metric-title">CPU Thread Blocking</div>
+        </div>
+        <div class="metric-cell">
+          <div class="metric-big-num">100%</div>
+          <div class="metric-title">Mobile Touch Responsive</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5: CONVERSION & CONTACT -->
+    <section class="section-wrap" id="contact">
+      <div class="cta-banner" id="demo">
+        <span class="badge-pill" style="margin-bottom:20px;">
+          <span>✦ READY FOR DEPLOYMENT</span>
+        </span>
+        <h2>Elevate your brand with award-winning 3D motion.</h2>
+        <p>Restrained, intelligent, and conversion-focused. Designed to captivate visitors in the first three seconds while keeping content and navigation in effortless focus.</p>
+        
+        <div style="display:flex;justify-content:center;gap:16px;flex-wrap:wrap;">
+          <button type="button" class="btn btn-primary" onclick="alert('Executive consultation requested. A representative will contact you shortly.')">
+            Request Enterprise Proposal →
+          </button>
+          <a href="#hero" class="btn btn-secondary">
+            Return to Top ⟳
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Site Footer -->
+    <footer class="site-footer" role="contentinfo">
+      <div class="footer-inner">
+        <div>
+          <strong style="color:#ffffff;font-size:1rem;">AETHER DYNAMICS</strong>
+          <p style="font-size:0.8rem;margin-top:4px;">Universal 3D Motion System for Modern Business Websites.</p>
+        </div>
+        
+        <ul class="footer-nav">
+          <li><a href="#architecture">Architecture</a></li>
+          <li><a href="#capabilities">System Design</a></li>
+          <li><a href="#industries">Industries</a></li>
+          <li><a href="the-hedgehog-cafe.html" target="_blank">View Cafe Demo ↗</a></li>
+        </ul>
+
+        <div style="font-size:0.78rem;">
+          © 2026 Aether Dynamics. All rights reserved. Built with WebGL & Three.js.
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- FLOATING BRAND & THEME SWITCHER DOCK (Interactive Controller) -->
+  <aside class="theme-controller-dock" aria-label="Brand Theme Controller">
+    <span class="dock-label">Brand Aesthetic:</span>
+    <div class="dock-swatches">
+      <button type="button" class="dock-swatch-btn active" data-theme="ai" data-tooltip="Tech & AI (Cyan/Indigo)" style="background:#38bdf8;"></button>
+      <button type="button" class="dock-swatch-btn" data-theme="fintech" data-tooltip="FinTech (Champagne Gold)" style="background:#e5b967;"></button>
+      <button type="button" class="dock-swatch-btn" data-theme="biotech" data-tooltip="BioTech (Clinical Teal)" style="background:#2dd4bf;"></button>
+      <button type="button" class="dock-swatch-btn" data-theme="consulting" data-tooltip="Enterprise (Cobalt)" style="background:#60a5fa;"></button>
+      <button type="button" class="dock-swatch-btn" data-theme="creative" data-tooltip="Creative Agency (Terracotta)" style="background:#fb923c;"></button>
+    </div>
+  </aside>
+
+  <!-- Three.js (Local with resilient CDN Fallback) -->
+  <script src="three.min.js"></script>
+  <script>
+    if (typeof THREE === 'undefined') {
+      document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"><\/script>');
+    }
+  </script>
+
+  <!-- Lenis Smooth Scroll Library -->
+  <script src="lenis.min.js"></script>
+
+  <!-- ==========================================================================
+       MAIN 3D ENGINE & SCENE ARCHITECTURE (WebGL 2.0 / Three.js)
+       ========================================================================== -->
+  <script>
+    (function () {
+      'use strict';
+
+      // 1. Theme Configuration Mapping
+      const THEMES = {
+        ai: {
+          name: 'Artificial Intelligence & SaaS',
+          desc: 'A high-precision obsidian aesthetic accented with luminous cyan and electric indigo reflections. Embodies continuous neural computation, algorithmic clarity, and deep data flow.',
+          accentColor: 0x38bdf8,
+          coreColor: 0x818cf8,
+          rimColor: 0x06b6d4,
+          glassColor: 0xffffff,
+          roughness: 0.14,
+          metalness: 0.85,
+          transmission: 0.92,
+          simMat: 'Frosted Glass & Titanium',
+          simLight: '6,200K Neutral Studio',
+          simSpec: 'Electric Cyan (#38bdf8)',
+          simRough: '0.14 PBR',
+          simSpeed: '0.0025 rad/sec',
+          features: [
+            'Automated parallel decision topology',
+            'Sub-15ms spatial latency verification',
+            'Enterprise SOC-2 Type II cryptographic telemetry'
+          ]
+        },
+        fintech: {
+          name: 'FinTech & Global Capital',
+          desc: 'Refined deep charcoal and champagne brass surfaces with polished mirror reflections. Signifies financial resilience, institutional security, and continuous liquidity flow.',
+          accentColor: 0xe5b967,
+          coreColor: 0xf3d79b,
+          rimColor: 0xffe29f,
+          glassColor: 0xfffaed,
+          roughness: 0.08,
+          metalness: 0.94,
+          transmission: 0.88,
+          simMat: 'Mirror Platinum & 18K Brass',
+          simLight: '4,800K Warm Architectural',
+          simSpec: 'Champagne Gold (#e5b967)',
+          simRough: '0.08 PBR',
+          simSpeed: '0.0018 rad/sec',
+          features: [
+            'Sub-millisecond global orderbook routing',
+            'Multi-custody sovereign cryptographic vaulting',
+            'Institutional liquidity stream indexing'
+          ]
+        },
+        biotech: {
+          name: 'HealthCare & BioTechnology',
+          desc: 'Pristine deep emerald and iridescent clinical teal surfaces with soft internal refraction. Inspires bio-cellular precision, trust, and regenerative breakthrough science.',
+          accentColor: 0x2dd4bf,
+          coreColor: 0x38bdf8,
+          rimColor: 0x14b8a6,
+          glassColor: 0xf0fdfa,
+          roughness: 0.18,
+          metalness: 0.65,
+          transmission: 0.96,
+          simMat: 'Iridescent Ceramic & Bio-Glass',
+          simLight: '5,500K Clinical Daylight',
+          simSpec: 'Crisp Teal (#2dd4bf)',
+          simRough: '0.18 PBR',
+          simSpeed: '0.0020 rad/sec',
+          features: [
+            'Genomic lattice topological mapping',
+            'Continuous molecular simulation clustering',
+            'HIPAA and FDA clinical-grade compliance'
+          ]
+        },
+        consulting: {
+          name: 'Enterprise Advisory & Strategy',
+          desc: 'Architectural midnight slate and platinum cobalt with structured geometric alignment. Communicates organizational clarity, board-level trust, and global governance.',
+          accentColor: 0x60a5fa,
+          coreColor: 0x93c5fd,
+          rimColor: 0x3b82f6,
+          glassColor: 0xf8fafc,
+          roughness: 0.22,
+          metalness: 0.78,
+          transmission: 0.85,
+          simMat: 'Anodized Platinum & Mineral Glass',
+          simLight: '5,800K Executive Studio',
+          simSpec: 'Cobalt Blue (#60a5fa)',
+          simRough: '0.22 PBR',
+          simSpeed: '0.0016 rad/sec',
+          features: [
+            'Enterprise digital transformation roadmap',
+            'Cross-continental organizational telemetry',
+            'C-suite executive scenario modeling'
+          ]
+        },
+        creative: {
+          name: 'Brand & Creative Agency',
+          desc: 'Warm terracotta and sunset amber metallic tones with sculptural soft shadow play. Represents artistic innovation, emotive connection, and bespoke digital craft.',
+          accentColor: 0xfb923c,
+          coreColor: 0xf43f5e,
+          rimColor: 0xf97316,
+          glassColor: 0xffedd5,
+          roughness: 0.16,
+          metalness: 0.82,
+          transmission: 0.90,
+          simMat: 'Brushed Copper & Champagne Resin',
+          simLight: '3,400K Warm Golden Studio',
+          simSpec: 'Terracotta (#fb923c)',
+          simRough: '0.16 PBR',
+          simSpeed: '0.0028 rad/sec',
+          features: [
+            'High-dimensional spatial storytelling',
+            'Generative brand identity orchestration',
+            'Award-winning sensory web interactions'
+          ]
+        }
+      };
+
+      let currentThemeKey = 'ai';
+
+      // 2. Scene, Camera, and WebGL Renderer Initialization
+      const container = document.getElementById('webgl-canvas-container');
+      const scene = new THREE.Scene();
+
+      const camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 0.1, 100);
+      camera.position.set(0, 0, 7.8);
+
+      const renderer = new THREE.WebGLRenderer({
+        antialias: true,
+        alpha: true,
+        powerPreference: 'high-performance'
+      });
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      if (renderer.outputEncoding !== undefined) {
+        renderer.outputEncoding = THREE.sRGBEncoding;
+      }
+      if (renderer.toneMapping !== undefined) {
+        renderer.toneMapping = THREE.ACESFilmicToneMapping;
+        renderer.toneMappingExposure = 1.15;
+      }
+      container.appendChild(renderer.domElement);
+
+      // 3. Studio Lighting System (Soft Key, Fill, Specular Rim, Dynamic Point)
+      const ambientLight = new THREE.AmbientLight(0xffffff, 0.55);
+      scene.add(ambientLight);
+
+      const keyLight = new THREE.DirectionalLight(0xffffff, 1.4);
+      keyLight.position.set(5, 6, 7);
+      scene.add(keyLight);
+
+      const fillLight = new THREE.DirectionalLight(0x94a3b8, 0.7);
+      fillLight.position.set(-6, -4, 4);
+      scene.add(fillLight);
+
+      const rimLight = new THREE.DirectionalLight(THEMES.ai.rimColor, 1.8);
+      rimLight.position.set(-3, 5, -5);
+      scene.add(rimLight);
+
+      // Interactive mouse follow light (casts responsive specular highlights)
+      const mouseLight = new THREE.PointLight(THEMES.ai.accentColor, 1.2, 14);
+      mouseLight.position.set(0, 0, 4);
+      scene.add(mouseLight);
+
+      // 4. Procedural Studio Environment Reflection Map
+      // Generates high-end studio HDR reflections with zero external file requests
+      function createStudioEnvMap() {
+        const size = 256;
+        const canvas = document.createElement('canvas');
+        canvas.width = size;
+        canvas.height = size;
+        const ctx = canvas.getContext('2d');
+
+        // Soft studio gradient
+        const grad = ctx.createRadialGradient(size * 0.5, size * 0.4, 10, size * 0.5, size * 0.5, size * 0.6);
+        grad.addColorStop(0, '#ffffff');
+        grad.addColorStop(0.3, '#cbd5e1');
+        grad.addColorStop(0.7, '#1e293b');
+        grad.addColorStop(1, '#090a0f');
+
+        ctx.fillStyle = grad;
+        ctx.fillRect(0, 0, size, size);
+
+        // Add soft light strip reflections
+        ctx.fillStyle = 'rgba(255,255,255,0.7)';
+        ctx.fillRect(size * 0.1, size * 0.2, size * 0.2, size * 0.6);
+        ctx.fillStyle = 'rgba(56,189,248,0.4)';
+        ctx.fillRect(size * 0.7, size * 0.3, size * 0.15, size * 0.4);
+
+        const texture = new THREE.CanvasTexture(canvas);
+        texture.mapping = THREE.EquirectangularReflectionMapping;
+        return texture;
+      }
+
+      const studioEnvMap = createStudioEnvMap();
+
+      // 5. Central 3D Object Group ("The Autonomous Topological Core")
+      const heroGroup = new THREE.Group();
+      scene.add(heroGroup);
+
+      // Primary Outer Form: Parametric Torus Knot (Sculptural Möbius Loop)
+      const knotGeometry = new THREE.TorusKnotGeometry(1.5, 0.36, 160, 40, 2, 3);
+      
+      const knotMaterial = new THREE.MeshPhysicalMaterial({
+        color: 0x1e2230,
+        roughness: THEMES.ai.roughness,
+        metalness: THEMES.ai.metalness,
+        clearcoat: 0.85,
+        clearcoatRoughness: 0.12,
+        reflectivity: 0.9,
+        envMap: studioEnvMap,
+        envMapIntensity: 1.4
+      });
+
+      const knotMesh = new THREE.Mesh(knotGeometry, knotMaterial);
+      heroGroup.add(knotMesh);
+
+      // Floating Translucent Orbital Rings (Inner and Outer Gyroscopes)
+      const ringGeomOuter = new THREE.TorusGeometry(2.35, 0.035, 24, 120);
+      const ringMaterialOuter = new THREE.MeshPhysicalMaterial({
+        color: THEMES.ai.accentColor,
+        roughness: 0.1,
+        metalness: 0.3,
+        transmission: 0.9,
+        transparent: true,
+        opacity: 0.8,
+        envMap: studioEnvMap,
+        envMapIntensity: 1.5
+      });
+      const ringMeshOuter = new THREE.Mesh(ringGeomOuter, ringMaterialOuter);
+      ringMeshOuter.rotation.x = Math.PI * 0.35;
+      heroGroup.add(ringMeshOuter);
+
+      const ringGeomInner = new THREE.TorusGeometry(2.05, 0.025, 24, 100);
+      const ringMaterialInner = new THREE.MeshPhysicalMaterial({
+        color: THEMES.ai.coreColor,
+        roughness: 0.15,
+        metalness: 0.85,
+        envMap: studioEnvMap,
+        envMapIntensity: 1.2
+      });
+      const ringMeshInner = new THREE.Mesh(ringGeomInner, ringMaterialInner);
+      ringMeshInner.rotation.y = Math.PI * 0.45;
+      heroGroup.add(ringMeshInner);
+
+      // Inner Luminous Core (Faceted Diamond Icosahedron)
+      const coreGeom = new THREE.IcosahedronGeometry(0.72, 1);
+      const coreMaterial = new THREE.MeshPhysicalMaterial({
+        color: 0xffffff,
+        emissive: THEMES.ai.accentColor,
+        emissiveIntensity: 0.45,
+        roughness: 0.08,
+        metalness: 0.9,
+        envMap: studioEnvMap,
+        envMapIntensity: 2.0
+      });
+      const coreMesh = new THREE.Mesh(coreGeom, coreMaterial);
+      heroGroup.add(coreMesh);
+
+      // Core Wireframe Aura
+      const wireGeom = new THREE.IcosahedronGeometry(0.85, 1);
+      const wireMaterial = new THREE.MeshBasicMaterial({
+        color: THEMES.ai.accentColor,
+        wireframe: true,
+        transparent: true,
+        opacity: 0.25
+      });
+      const wireMesh = new THREE.Mesh(wireGeom, wireMaterial);
+      heroGroup.add(wireMesh);
+
+      // Orbiting Satellite Nodes (Connected Enterprise Nodes)
+      const satellitesGroup = new THREE.Group();
+      heroGroup.add(satellitesGroup);
+
+      const satelliteGeom = new THREE.SphereGeometry(0.08, 16, 16);
+      const satelliteMat = new THREE.MeshStandardMaterial({
+        color: 0xffffff,
+        roughness: 0.1,
+        metalness: 0.9,
+        envMap: studioEnvMap
+      });
+
+      const satelliteNodes = [];
+      const NUM_SATELLITES = 4;
+      for (let i = 0; i < NUM_SATELLITES; i++) {
+        const satMesh = new THREE.Mesh(satelliteGeom, satelliteMat);
+        const orbitRadius = 2.45 + (i * 0.2);
+        const speed = 0.8 + (i * 0.3);
+        const phase = (i * Math.PI * 2) / NUM_SATELLITES;
+        satellitesGroup.add(satMesh);
+        satelliteNodes.push({ mesh: satMesh, radius: orbitRadius, speed, phase });
+      }
+
+      // 6. Ambient Micro-Particle Nebula (Floating Data Points)
+      const PARTICLE_COUNT = 700;
+      const particlePositions = new Float32Array(PARTICLE_COUNT * 3);
+      const particleScales = new Float32Array(PARTICLE_COUNT);
+
+      for (let i = 0; i < PARTICLE_COUNT; i++) {
+        // Distribute in a spherical cloud around the core
+        const u = Math.random();
+        const v = Math.random();
+        const theta = u * 2.0 * Math.PI;
+        const phi = Math.acos(2.0 * v - 1.0);
+        const r = Math.cbrt(Math.random()) * 5.5 + 1.8;
+
+        particlePositions[i * 3] = r * Math.sin(phi) * Math.cos(theta);
+        particlePositions[i * 3 + 1] = r * Math.sin(phi) * Math.sin(theta);
+        particlePositions[i * 3 + 2] = r * Math.cos(phi);
+
+        particleScales[i] = Math.random() * 0.04 + 0.015;
+      }
+
+      const particlesGeom = new THREE.BufferGeometry();
+      particlesGeom.setAttribute('position', new THREE.BufferAttribute(particlePositions, 3));
+
+      // Particle sprite canvas
+      const pCanvas = document.createElement('canvas');
+      pCanvas.width = 32;
+      pCanvas.height = 32;
+      const pCtx = pCanvas.getContext('2d');
+      const pGrad = pCtx.createRadialGradient(16, 16, 0, 16, 16, 16);
+      pGrad.addColorStop(0, 'rgba(255,255,255,1)');
+      pGrad.addColorStop(0.4, 'rgba(56,189,248,0.7)');
+      pGrad.addColorStop(1, 'rgba(56,189,248,0)');
+      pCtx.fillStyle = pGrad;
+      pCtx.fillRect(0, 0, 32, 32);
+
+      const pTexture = new THREE.CanvasTexture(pCanvas);
+
+      const particlesMat = new THREE.PointsMaterial({
+        size: 0.12,
+        map: pTexture,
+        transparent: true,
+        opacity: 0.65,
+        blending: THREE.AdditiveBlending,
+        depthWrite: false
+      });
+
+      const particleSystem = new THREE.Points(particlesGeom, particlesMat);
+      scene.add(particleSystem);
+
+      // 7. Motion Physics, Inertia & Mouse Follow State
+      let mouseX = 0;
+      let mouseY = 0;
+      let targetRotX = 0;
+      let targetRotY = 0;
+      let targetPosX = 0;
+      let targetPosY = 0;
+      let targetScale = 1.0;
+
+      let currentRotX = 0;
+      let currentRotY = 0;
+      let currentPosX = 0;
+      let currentPosY = 0;
+      let currentScale = 1.0;
+
+      const DAMPING = 0.045; // Smooth physical inertia
+      let clock = new THREE.Clock();
+
+      // Mouse move listener with normalized bounds
+      window.addEventListener('mousemove', function (e) {
+        const normX = (e.clientX / window.innerWidth) * 2 - 1;
+        const normY = -(e.clientY / window.innerHeight) * 2 + 1;
+
+        mouseX = normX;
+        mouseY = normY;
+
+        // Dynamic light follow
+        mouseLight.position.x = normX * 4;
+        mouseLight.position.y = normY * 3;
+      });
+
+      // 8. Scroll Choreography (Smooth multi-section spatial transforms)
+      let scrollProgress = 0;
+
+      function updateScrollChoreography() {
+        const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+        scrollProgress = maxScroll > 0 ? (window.scrollY / maxScroll) : 0;
+
+        // Default Desktop Positions across Scroll Timeline:
+        const isDesktop = window.innerWidth > 1024;
+
+        if (scrollProgress < 0.20) {
+          // SECTION 1: HERO (Center-Right Heroic Presence)
+          targetPosX = isDesktop ? 1.3 : 0;
+          targetPosY = isDesktop ? 0.1 : -0.3;
+          targetScale = isDesktop ? 1.05 : 0.85;
+          targetRotY = mouseX * 0.35 + (scrollProgress * 2);
+          targetRotX = mouseY * 0.25;
+        } else if (scrollProgress < 0.50) {
+          // SECTION 2: ARCHITECTURE (Glides Right, Angles Forward)
+          const p = (scrollProgress - 0.20) / 0.30;
+          targetPosX = isDesktop ? (1.3 + p * 0.9) : 0;
+          targetPosY = isDesktop ? -0.2 : 0;
+          targetScale = isDesktop ? (1.05 + p * 0.15) : 0.85;
+          targetRotY = 0.8 + (p * 1.5) + mouseX * 0.3;
+          targetRotX = 0.35 + (p * 0.4) + mouseY * 0.2;
+        } else if (scrollProgress < 0.75) {
+          // SECTION 3: UNIVERSAL INDUSTRIES (Swings to Left Side)
+          const p = (scrollProgress - 0.50) / 0.25;
+          targetPosX = isDesktop ? (-1.8 + (1 - p) * 1.0) : 0;
+          targetPosY = 0.1;
+          targetScale = isDesktop ? 1.15 : 0.8;
+          targetRotY = -1.2 + (p * 1.2) + mouseX * 0.3;
+          targetRotX = -0.25 + mouseY * 0.2;
+        } else if (scrollProgress < 0.90) {
+          // SECTION 4: BENCHMARKS & PERFORMANCE (Center High View)
+          targetPosX = 0;
+          targetPosY = 0.3;
+          targetScale = isDesktop ? 0.95 : 0.75;
+          targetRotY = scrollProgress * 4 + mouseX * 0.3;
+          targetRotX = 0.2 + mouseY * 0.2;
+        } else {
+          // SECTION 5: FINAL CTA (Monumental Center Presence)
+          targetPosX = 0;
+          targetPosY = -0.1;
+          targetScale = isDesktop ? 1.25 : 0.9;
+          targetRotY = mouseX * 0.4;
+          targetRotX = mouseY * 0.3;
+        }
+      }
+
+      window.addEventListener('scroll', updateScrollChoreography, { passive: true });
+
+      // 9. Interactive Morphing Geometric State Button
+      let geometricStateIndex = 0;
+      const GEOMETRIC_STATES = [
+        { name: 'Parametric Torus Knot', p: 2, q: 3, tubularRadius: 0.36 },
+        { name: 'Trefoil Triple Nexus', p: 3, q: 2, tubularRadius: 0.30 },
+        { name: 'Solar Pentagram Loop', p: 5, q: 2, tubularRadius: 0.26 },
+        { name: 'Crystalline Helix Ribbon', p: 3, q: 5, tubularRadius: 0.22 }
+      ];
+
+      function morphGeometricState() {
+        geometricStateIndex = (geometricStateIndex + 1) % GEOMETRIC_STATES.length;
+        const state = GEOMETRIC_STATES[geometricStateIndex];
+
+        // Animate geometry recreation with smooth vertex lerping
+        knotMesh.geometry.dispose();
+        knotMesh.geometry = new THREE.TorusKnotGeometry(1.5, state.tubularRadius, 160, 40, state.p, state.q);
+
+        // Update HUD
+        const hudStateEl = document.getElementById('hudStateName');
+        if (hudStateEl) {
+          hudStateEl.innerHTML = `<span class="hud-chip"></span> ${state.name}`;
+        }
+
+        // Brief energy pulse
+        coreMaterial.emissiveIntensity = 1.2;
+        setTimeout(() => {
+          coreMaterial.emissiveIntensity = 0.45;
+        }, 400);
+      }
+
+      const btnMorph = document.getElementById('btnMorphCore');
+      if (btnMorph) {
+        btnMorph.addEventListener('click', morphGeometricState);
+      }
+
+      // 10. Industry Theme Switching System
+      function applyTheme(themeKey, updateUI = true) {
+        if (!THEMES[themeKey]) return;
+        currentThemeKey = themeKey;
+        const t = THEMES[themeKey];
+
+        // Apply theme dataset to body
+        document.body.setAttribute('data-theme', themeKey);
+
+        // WebGL Material & Light Updates
+        knotMaterial.roughness = t.roughness;
+        knotMaterial.metalness = t.metalness;
+
+        ringMaterialOuter.color.setHex(t.accentColor);
+        ringMaterialInner.color.setHex(t.coreColor);
+        coreMaterial.emissive.setHex(t.accentColor);
+        wireMaterial.color.setHex(t.accentColor);
+        rimLight.color.setHex(t.rimColor);
+        mouseLight.color.setHex(t.accentColor);
+
+        // Update Dock Swatches UI
+        document.querySelectorAll('.dock-swatch-btn').forEach(btn => {
+          btn.classList.toggle('active', btn.dataset.theme === themeKey);
+        });
+
+        // Update Industry Showcase Content
+        if (updateUI) {
+          const titleEl = document.getElementById('industryTitle');
+          const descEl = document.getElementById('industryDesc');
+          const matEl = document.getElementById('simMat');
+          const lightEl = document.getElementById('simLight');
+          const specEl = document.getElementById('simSpec');
+          const roughEl = document.getElementById('simRough');
+          const speedEl = document.getElementById('simSpeed');
+          const featEl = document.getElementById('industryFeatures');
+
+          if (titleEl) titleEl.textContent = t.name;
+          if (descEl) descEl.textContent = t.desc;
+          if (matEl) matEl.textContent = t.simMat;
+          if (lightEl) lightEl.textContent = t.simLight;
+          if (specEl) specEl.textContent = t.simSpec;
+          if (roughEl) roughEl.textContent = t.simRough;
+          if (speedEl) speedEl.textContent = t.simSpeed;
+
+          if (featEl) {
+            featEl.innerHTML = t.features.map(f => `
+              <li>
+                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+                <span>${f}</span>
+              </li>
+            `).join('');
+          }
+
+          // Update tab buttons
+          document.querySelectorAll('.industry-tab-btn').forEach(tab => {
+            tab.classList.toggle('active', tab.dataset.industry === themeKey);
+          });
+        }
+      }
+
+      // Wire theme dock buttons
+      document.querySelectorAll('.dock-swatch-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          applyTheme(btn.dataset.theme);
+        });
+      });
+
+      // Wire industry showcase tabs
+      document.querySelectorAll('.industry-tab-btn').forEach(tab => {
+        tab.addEventListener('click', () => {
+          applyTheme(tab.dataset.industry);
+        });
+      });
+
+      // 11. Interactive Hover Reaction (Light up 3D elements on DOM hover)
+      const interactiveElements = document.querySelectorAll('.btn, .bento-card, .industry-showcase-box, .hud-meta-card');
+      interactiveElements.forEach(el => {
+        el.addEventListener('mouseenter', () => {
+          coreMaterial.emissiveIntensity = 0.85;
+          wireMaterial.opacity = 0.55;
+          mouseLight.intensity = 2.0;
+        });
+        el.addEventListener('mouseleave', () => {
+          coreMaterial.emissiveIntensity = 0.45;
+          wireMaterial.opacity = 0.25;
+          mouseLight.intensity = 1.2;
+        });
+      });
+
+      // 12. Main 60 FPS Render & Animation Loop
+      let frameCount = 0;
+      let lastFpsTime = performance.now();
+      const fpsDisplay = document.getElementById('fpsDisplay');
+
+      function animate() {
+        requestAnimationFrame(animate);
+
+        const elapsedTime = clock.getElapsedTime();
+
+        // FPS Counter Tracker
+        frameCount++;
+        const now = performance.now();
+        if (now - lastFpsTime >= 1000) {
+          const fps = Math.round((frameCount * 1000) / (now - lastFpsTime));
+          if (fpsDisplay) fpsDisplay.textContent = `${fps} FPS`;
+          frameCount = 0;
+          lastFpsTime = now;
+        }
+
+        // Apply physical spring damping to position, rotation, and scale
+        currentPosX += (targetPosX - currentPosX) * DAMPING;
+        currentPosY += (targetPosY - currentPosY) * DAMPING;
+        currentScale += (targetScale - currentScale) * DAMPING;
+
+        currentRotX += (targetRotX - currentRotX) * DAMPING;
+        currentRotY += (targetRotY - currentRotY) * DAMPING;
+
+        // Continuous Organic Floating Motion (Sine wave breathing)
+        const floatY = Math.sin(elapsedTime * 0.8) * 0.14;
+        const floatZ = Math.cos(elapsedTime * 0.6) * 0.08;
+
+        heroGroup.position.set(currentPosX, currentPosY + floatY, floatZ);
+        heroGroup.scale.set(currentScale, currentScale, currentScale);
+
+        // Multi-axis rotation with realistic inertia
+        knotMesh.rotation.y = elapsedTime * 0.18 + currentRotY;
+        knotMesh.rotation.x = elapsedTime * 0.12 + currentRotX;
+
+        // Counter-rotating gyroscopic rings
+        ringMeshOuter.rotation.z = -elapsedTime * 0.22;
+        ringMeshOuter.rotation.x = Math.PI * 0.35 + Math.sin(elapsedTime * 0.5) * 0.1;
+
+        ringMeshInner.rotation.x = elapsedTime * 0.28;
+        ringMeshInner.rotation.y = Math.PI * 0.45 + Math.cos(elapsedTime * 0.4) * 0.12;
+
+        // Core pulsing diamond
+        coreMesh.rotation.y = -elapsedTime * 0.35;
+        coreMesh.rotation.z = elapsedTime * 0.2;
+        wireMesh.rotation.y = coreMesh.rotation.y;
+        wireMesh.rotation.z = coreMesh.rotation.z;
+
+        // Animate orbiting satellites
+        satelliteNodes.forEach(node => {
+          const angle = elapsedTime * node.speed + node.phase;
+          node.mesh.position.x = Math.cos(angle) * node.radius;
+          node.mesh.position.y = Math.sin(angle * 0.7) * (node.radius * 0.6);
+          node.mesh.position.z = Math.sin(angle) * node.radius;
+        });
+
+        // Ambient Particle Nebula Swirl
+        particleSystem.rotation.y = elapsedTime * 0.025;
+        particleSystem.rotation.x = Math.sin(elapsedTime * 0.015) * 0.1;
+
+        renderer.render(scene, camera);
+      }
+
+      // Initial scroll layout calculation
+      updateScrollChoreography();
+      animate();
+
+      // 13. Viewport Resize Handler with Aspect Correction
+      window.addEventListener('resize', function () {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        updateScrollChoreography();
+      });
+
+      // 14. Initialize Lenis Smooth Momentum Scrolling
+      if (typeof Lenis !== 'undefined') {
+        const lenis = new Lenis({
+          duration: 1.2,
+          easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+          direction: 'vertical',
+          smooth: true,
+          smoothTouch: false
+        });
+
+        function raf(time) {
+          lenis.raf(time);
+          requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+      }
+
+    })();
+  </script>
+</body>
+</html>
