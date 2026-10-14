@@ -510,7 +510,7 @@
       position: relative;
     }
 
-    /* Animated Cafe Picture Showcase */
+    /* Animated Single Full-Frame Cafe Picture Showcase */
     .hero-visual-col {
       display: flex;
       justify-content: center;
@@ -518,37 +518,48 @@
       width: 100%;
       position: relative;
     }
+    .hero-ambient-glow {
+      position: absolute;
+      top: 15%;
+      right: 5%;
+      width: 520px;
+      height: 520px;
+      background: radial-gradient(circle, rgba(229, 57, 53, 0.16) 0%, rgba(212, 217, 222, 0.05) 45%, transparent 70%);
+      filter: blur(70px);
+      pointer-events: none;
+      z-index: 1;
+    }
     .hero-cafe-stage {
       position: relative;
       width: 100%;
-      max-width: 530px;
+      max-width: 540px;
       perspective: 1200px;
     }
     .hero-cafe-glow {
       position: absolute;
-      inset: -18px;
-      background: radial-gradient(circle at 50% 50%, rgba(229, 57, 53, 0.28) 0%, rgba(18, 19, 22, 0.45) 55%, transparent 75%);
-      filter: blur(35px);
+      inset: -22px;
+      background: radial-gradient(circle at 50% 50%, rgba(229, 57, 53, 0.35) 0%, rgba(212, 217, 222, 0.12) 42%, rgba(18, 19, 22, 0.5) 68%, transparent 78%);
+      filter: blur(42px);
       border-radius: 36px;
       z-index: 1;
       pointer-events: none;
-      animation: pulseCafeGlow 4s ease-in-out infinite alternate;
+      animation: pulseCafeGlow 4.5s ease-in-out infinite alternate;
     }
     @keyframes pulseCafeGlow {
-      0% { opacity: 0.55; transform: scale(0.96); }
-      100% { opacity: 0.95; transform: scale(1.04); }
+      0% { opacity: 0.5; transform: scale(0.96); filter: blur(36px); }
+      100% { opacity: 0.95; transform: scale(1.04); filter: blur(46px); }
     }
-    .hero-cafe-card {
+    .hero-cafe-card.full-frame {
       position: relative;
       z-index: 2;
       width: 100%;
-      height: 520px;
-      border-radius: 24px;
+      height: 560px;
+      border-radius: 26px;
       overflow: hidden;
-      border: 1px solid rgba(229, 57, 53, 0.35);
+      border: 1.5px solid rgba(229, 57, 53, 0.4);
       background: #0E0F12;
-      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.65), 0 0 25px rgba(229, 57, 53, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.15);
-      animation: floatCafeCard 5.5s ease-in-out infinite;
+      box-shadow: 0 28px 70px rgba(0, 0, 0, 0.75), 0 0 35px rgba(229, 57, 53, 0.24), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+      animation: floatCafeCard 6s ease-in-out infinite;
       transition: transform 0.25s ease-out, box-shadow 0.3s ease;
       transform-style: preserve-3d;
     }
@@ -557,40 +568,68 @@
         transform: translateY(0px) rotate(0deg);
       }
       50% {
-        transform: translateY(-10px) rotate(0.5deg);
+        transform: translateY(-9px) rotate(0.4deg);
       }
     }
-    .hero-cafe-card:hover {
-      box-shadow: 0 32px 75px rgba(0, 0, 0, 0.75), 0 0 35px rgba(229, 57, 53, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+    .hero-cafe-card.full-frame:hover {
+      box-shadow: 0 36px 85px rgba(0, 0, 0, 0.85), 0 0 45px rgba(229, 57, 53, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.3);
     }
-    .hero-cafe-slides-wrap {
+    .hero-cafe-img-container {
       position: absolute;
       inset: 0;
       width: 100%;
       height: 100%;
+      overflow: hidden;
     }
-    .hero-cafe-slide {
-      position: absolute;
-      inset: 0;
+    .hero-cafe-single-img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 6s cubic-bezier(0.16, 1, 0.3, 1);
+      object-position: center 38%;
       transform: scale(1.0);
+      animation: heroKenBurns 18s ease-in-out infinite alternate;
+      will-change: transform;
     }
-    .hero-cafe-slide.active {
-      opacity: 1;
-      visibility: visible;
-      transform: scale(1.06);
+    @keyframes heroKenBurns {
+      0% {
+        transform: scale(1.0) translate(0%, 0%);
+      }
+      50% {
+        transform: scale(1.08) translate(-1.2%, -1%);
+      }
+      100% {
+        transform: scale(1.04) translate(1%, 0.8%);
+      }
     }
-    .hero-cafe-overlay {
+    .hero-cafe-sheen {
       position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.3) 45%, rgba(0, 0, 0, 0.92) 100%);
+      top: 0;
+      left: -120%;
+      width: 60%;
+      height: 100%;
+      background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.1) 50%,
+        transparent 100%
+      );
+      transform: skewX(-25deg);
       z-index: 3;
       pointer-events: none;
+      animation: glassSheenSweep 9s ease-in-out infinite;
+    }
+    @keyframes glassSheenSweep {
+      0%, 65% {
+        left: -120%;
+        opacity: 0;
+      }
+      70% {
+        opacity: 1;
+      }
+      85%, 100% {
+        left: 180%;
+        opacity: 0;
+      }
     }
     .hero-cafe-top-bar {
       position: absolute;
@@ -601,7 +640,7 @@
       justify-content: space-between;
       align-items: center;
       z-index: 4;
-      pointer-events: auto;
+      pointer-events: none;
     }
     .hero-cafe-status-tag {
       display: inline-flex;
@@ -610,12 +649,13 @@
       background: rgba(14, 15, 18, 0.85);
       backdrop-filter: blur(12px);
       border: 1px solid rgba(229, 57, 53, 0.35);
-      padding: 5px 12px;
+      padding: 6px 13px;
       border-radius: var(--radius-pill);
       font-size: 0.75rem;
       font-weight: 700;
       color: #F1F3F5;
       letter-spacing: 0.04em;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
     }
     .hero-cafe-status-tag .live-dot {
       width: 8px;
@@ -633,64 +673,35 @@
       background: rgba(14, 15, 18, 0.85);
       backdrop-filter: blur(12px);
       border: 1px solid rgba(229, 57, 53, 0.35);
-      padding: 5px 12px;
+      padding: 6px 13px;
       border-radius: var(--radius-pill);
       font-size: 0.75rem;
       font-weight: 700;
       color: #E53935;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
     }
-    .hero-cafe-bottom-info {
+    .hero-cafe-bottom-badge {
       position: absolute;
-      bottom: 20px;
-      left: 20px;
-      right: 20px;
-      z-index: 4;
-      pointer-events: auto;
-    }
-    .hero-cafe-eyebrow {
-      font-size: 0.75rem;
-      color: #E53935;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      font-weight: 700;
-      margin-bottom: 4px;
-    }
-    .hero-cafe-heading {
-      font-family: var(--font-serif);
-      font-size: 1.45rem;
-      color: #F1F3F5;
-      font-weight: 700;
-      line-height: 1.2;
-      margin-bottom: 12px;
-    }
-    .hero-cafe-controls {
-      display: flex;
+      bottom: 18px;
+      left: 18px;
+      display: inline-flex;
       align-items: center;
       gap: 8px;
-      flex-wrap: wrap;
-    }
-    .hero-cafe-tab-btn {
-      background: rgba(14, 15, 18, 0.75);
-      border: 1px solid rgba(229, 57, 53, 0.25);
-      color: #D4D9DE;
-      padding: 5px 12px;
+      background: rgba(14, 15, 18, 0.85);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(212, 217, 222, 0.18);
+      padding: 7px 15px;
       border-radius: var(--radius-pill);
-      font-size: 0.72rem;
+      font-size: 0.76rem;
       font-weight: 600;
-      cursor: pointer;
-      backdrop-filter: blur(8px);
-      transition: all 0.2s ease;
-    }
-    .hero-cafe-tab-btn:hover {
-      background: rgba(229, 57, 53, 0.25);
       color: #F1F3F5;
-      border-color: #E53935;
+      box-shadow: 0 8px 22px rgba(0, 0, 0, 0.45);
+      z-index: 4;
+      pointer-events: none;
     }
-    .hero-cafe-tab-btn.active {
-      background: #E53935;
-      color: #0E0F12;
-      border-color: #E53935;
-      font-weight: 700;
+    .hero-cafe-bottom-badge .badge-dot {
+      color: #E53935;
+      font-size: 0.82rem;
     }
 
     /* Floating Micro-Pills Outside Card */
@@ -2793,39 +2804,41 @@
         </div>
       </div>
 
-      <!-- Animated Cafe Picture Showcase -->
+      <!-- Animated Single Full-Frame Cafe Picture Showcase -->
       <div class="hero-visual-col">
+        <div class="hero-ambient-glow" aria-hidden="true"></div>
         <div class="hero-cafe-stage" id="heroCafeStage">
           <div class="hero-cafe-glow"></div>
 
-          <!-- Main Interactive Animated Cafe Card -->
-          <div class="hero-cafe-card" id="heroCafeCard">
-            <div class="hero-cafe-slides-wrap" id="heroCafeSlides">
-              <img src="images/r6_caffe_wall.jpg" alt="R6 Caffe Interior & Official Wall Emblem - Model Town, Ludhiana (Google Maps)" class="hero-cafe-slide active" id="cafeSlide0" style="object-position: center 42%;">
-              <img src="images/r6_caffe_menu_table.jpg" alt="R6 Caffe Table Hospitality & Menu Card - Model Town, Ludhiana (Google Maps)" class="hero-cafe-slide" id="cafeSlide1" style="object-position: center 75%;">
-              <img src="images/environment_seating.webp" alt="R6 Caffe Garden Verandah Dining - Model Town, Ludhiana" class="hero-cafe-slide" id="cafeSlide2" style="object-position: center center;">
+          <!-- Main Interactive Animated Full-Frame Cafe Card -->
+          <div class="hero-cafe-card full-frame" id="heroCafeCard">
+            <!-- Glass Sheen Layer -->
+            <div class="hero-cafe-sheen" aria-hidden="true"></div>
+
+            <!-- Single Full-Frame Cafe Photograph with Continuous Ken Burns Animation -->
+            <div class="hero-cafe-img-container">
+              <img src="images/r6_caffe_wall.jpg" 
+                   alt="R6 Caffe Interior & Official Wall Emblem - Model Town, Ludhiana" 
+                   class="hero-cafe-single-img" 
+                   id="heroCafeSingleImg"
+                   loading="eager">
             </div>
 
-            <div class="hero-cafe-overlay"></div>
-
+            <!-- Minimal Refined Glass Badge (Top Bar) -->
             <div class="hero-cafe-top-bar">
               <div class="hero-cafe-status-tag">
                 <span class="live-dot"></span>
-                <span>OPEN NOW · 8 AM - 10:30 PM</span>
+                <span>OPEN NOW · 8 AM – 10:30 PM</span>
               </div>
               <div class="hero-cafe-score-tag">
                 <span>★ 4.9 (420+ Reviews)</span>
               </div>
             </div>
 
-            <div class="hero-cafe-bottom-info">
-              <div class="hero-cafe-eyebrow" id="heroSlideEyebrow">Google Maps Photo · Model Town</div>
-              <h3 class="hero-cafe-heading" id="heroSlideTitle">R6 Caffe Lounge &amp; Wall Emblem</h3>
-              <div class="hero-cafe-controls">
-                <button type="button" class="hero-cafe-tab-btn active" data-index="0">R6 Lounge</button>
-                <button type="button" class="hero-cafe-tab-btn" data-index="1">Table &amp; Menu</button>
-                <button type="button" class="hero-cafe-tab-btn" data-index="2">Garden Verandah</button>
-              </div>
+            <!-- Subtle Minimal Bottom Pill (Non-blocking, elegant glass pill) -->
+            <div class="hero-cafe-bottom-badge">
+              <span class="badge-dot">✦</span>
+              <span class="badge-text">R6 Caffe Lounge · Model Town, Ludhiana</span>
             </div>
           </div>
         </div>
@@ -5096,72 +5109,16 @@
       initMenuDeckStack();
 
       // =====================================================================
-      // ANIMATED CAFE PICTURE SHOWCASE INTERACTIVITY
+      // ANIMATED SINGLE FULL-FRAME CAFE PICTURE SHOWCASE INTERACTIVITY
       // =====================================================================
       function initHeroCafeShowcase() {
         const stage = document.getElementById('heroCafeStage');
         const card = document.getElementById('heroCafeCard');
-        const slides = document.querySelectorAll('.hero-cafe-slide');
-        const tabBtns = document.querySelectorAll('.hero-cafe-tab-btn');
-        const titleEl = document.getElementById('heroSlideTitle');
-        const eyebrowEl = document.getElementById('heroSlideEyebrow');
 
-        if (!slides.length) return;
-
-        const slideData = [
-          { eyebrow: 'Google Maps Photo · Model Town', title: 'R6 Caffe Lounge & Wall Emblem' },
-          { eyebrow: 'Table Hospitality · Dine-In', title: 'Chai, Brews & R6 Menu Card' },
-          { eyebrow: 'Open-Air Seating · Ambience', title: 'Lush Garden Lawn & Verandah' }
-        ];
-
-        let currentIndex = 0;
-        let slideTimer = null;
-
-        function setSlide(index) {
-          currentIndex = (index + slides.length) % slides.length;
-          slides.forEach((s, i) => {
-            if (i === currentIndex) {
-              s.classList.add('active');
-            } else {
-              s.classList.remove('active');
-            }
-          });
-          tabBtns.forEach((b, i) => {
-            if (i === currentIndex) {
-              b.classList.add('active');
-            } else {
-              b.classList.remove('active');
-            }
-          });
-          if (titleEl && slideData[currentIndex]) {
-            titleEl.textContent = slideData[currentIndex].title;
-          }
-          if (eyebrowEl && slideData[currentIndex]) {
-            eyebrowEl.textContent = slideData[currentIndex].eyebrow;
-          }
-        }
-
-        tabBtns.forEach(btn => {
-          btn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            clearInterval(slideTimer);
-            const idx = parseInt(btn.dataset.index, 10);
-            setSlide(idx);
-            startAutoSlide();
-          });
-        });
-
-        function startAutoSlide() {
-          clearInterval(slideTimer);
-          slideTimer = setInterval(() => {
-            setSlide(currentIndex + 1);
-          }, 4500);
-        }
-
-        startAutoSlide();
+        if (!stage || !card) return;
 
         // 3D Interactive Mouse Parallax Tilt
-        if (stage && card && window.matchMedia('(pointer: fine)').matches) {
+        if (window.matchMedia('(pointer: fine)').matches) {
           stage.addEventListener('mousemove', (e) => {
             const rect = stage.getBoundingClientRect();
             const x = (e.clientX - rect.left) / rect.width - 0.5;
