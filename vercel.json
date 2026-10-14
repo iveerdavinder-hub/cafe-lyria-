@@ -2,6 +2,9 @@
   "version": 2,
   "framework": null,
   "cleanUrls": true,
+  "github": {
+    "autoJobCancellation": false
+  },
   "rewrites": [
     { "source": "/3d", "destination": "/3d-experience.html" },
     { "source": "/motion", "destination": "/motion.html" },
