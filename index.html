@@ -1735,269 +1735,11 @@
       margin-bottom: 22px;
       flex-wrap: wrap;
     }
-    .orbital-wheel-stage.is-hidden,
     .gallery-vertical-stage.is-hidden,
     .gallery-grid.is-hidden {
       display: none !important;
     }
 
-    /* Unlumen Orbital Image Wheel Container */
-    .orbital-wheel-stage {
-      position: relative;
-      width: 100%;
-      max-width: 1100px;
-      margin: 10px auto 35px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      overflow: hidden;
-      user-select: none;
-      -webkit-user-select: none;
-      touch-action: pan-y;
-    }
-    .orbital-caption-wrap {
-      text-align: center;
-      max-width: 720px;
-      margin: 0 auto 20px;
-      padding: 0 16px;
-      transition: opacity 0.3s ease, transform 0.3s ease;
-    }
-    .orbital-caption-tag {
-      display: inline-block;
-      font-size: 0.72rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: #E53935;
-      margin-bottom: 6px;
-      background: rgba(229, 57, 53, 0.18);
-      border: 1px solid rgba(229, 57, 53, 0.35);
-      padding: 4px 14px;
-      border-radius: var(--radius-pill);
-    }
-    .orbital-caption-title {
-      font-family: var(--font-serif);
-      font-size: 1.85rem;
-      font-weight: 700;
-      color: #F1F3F5;
-      margin-bottom: 6px;
-      line-height: 1.25;
-      min-height: 2.3rem;
-      transition: all 0.3s cubic-bezier(0.2, 0.9, 0.25, 1);
-    }
-    .orbital-caption-subtitle {
-      font-size: 0.92rem;
-      color: #D4D9DE;
-      line-height: 1.5;
-      min-height: 2.7rem;
-      transition: all 0.3s cubic-bezier(0.2, 0.9, 0.25, 1);
-    }
-    .orbital-caption-hint {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      margin-top: 8px;
-      background: #0E0F12;
-      border: 1px solid #343A40;
-      padding: 5px 15px;
-      border-radius: var(--radius-pill);
-      font-size: 0.76rem;
-      color: #D4D9DE;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
-    }
-    .orbital-pulse {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: #E53935;
-      box-shadow: 0 0 8px #E53935;
-      animation: pulseGlow 1.8s infinite;
-    }
-    .orbital-wheel-viewport {
-      position: relative;
-      width: 100%;
-      height: 480px;
-      overflow: hidden;
-      cursor: grab;
-      perspective: 1200px;
-      mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 78%, rgba(0,0,0,0) 100%);
-      -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 78%, rgba(0,0,0,0) 100%);
-    }
-    .orbital-wheel-viewport.is-dragging {
-      cursor: grabbing;
-    }
-    .orbital-wheel-track {
-      position: absolute;
-      top: 0;
-      left: 50%;
-      width: 0;
-      height: 0;
-      transform-style: preserve-3d;
-      will-change: transform;
-    }
-    .orbital-card {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 250px;
-      height: 350px;
-      margin-left: -125px;
-      margin-top: 15px;
-      border-radius: 24px;
-      overflow: hidden;
-      background: #1F2226;
-      border: 1px solid #343A40;
-      box-shadow: 0 16px 45px rgba(0, 0, 0, 0.4);
-      cursor: pointer;
-      transform-origin: center center;
-      will-change: transform, filter, opacity, box-shadow;
-      transition: border-color 0.3s ease, box-shadow 0.3s ease;
-    }
-    .orbital-card.is-active {
-      border-color: #E53935;
-      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55), 0 0 20px rgba(229, 57, 53, 0.45);
-    }
-    .orbital-card-img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      transition: transform 0.6s var(--ease-smooth);
-    }
-    .orbital-card:hover .orbital-card-img {
-      transform: scale(1.06);
-    }
-    .orbital-card-badge {
-      position: absolute;
-      top: 14px;
-      left: 14px;
-      background: rgba(14, 15, 18, 0.92);
-      border: 1px solid rgba(52, 58, 64, 0.4);
-      padding: 4px 10px;
-      border-radius: var(--radius-pill);
-      font-size: 0.68rem;
-      font-weight: 700;
-      color: #E53935;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      backdrop-filter: blur(8px);
-      z-index: 2;
-    }
-    .orbital-card-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, rgba(14, 15, 18, 0.05) 0%, rgba(14, 15, 18, 0.92) 85%);
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      padding: 16px;
-      z-index: 2;
-    }
-    .orbital-card-title {
-      font-family: var(--font-serif);
-      font-size: 1.05rem;
-      font-weight: 700;
-      color: #F1F3F5;
-      line-height: 1.25;
-      margin-bottom: 4px;
-    }
-    .orbital-card-sub {
-      font-size: 0.74rem;
-      color: #D4D9DE;
-      line-height: 1.4;
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-    }
-    .orbital-card-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      align-self: flex-start;
-      margin-top: 8px;
-      background: #E53935;
-      border: 1px solid #E53935;
-      color: #0E0F12;
-      padding: 4px 11px;
-      border-radius: var(--radius-pill);
-      font-size: 0.7rem;
-      font-weight: 700;
-      transition: all 0.25s ease;
-    }
-    .orbital-card:hover .orbital-card-pill,
-    .orbital-card.is-active .orbital-card-pill {
-      background: #EF5350;
-      color: #0E0F12;
-      border-color: #EF5350;
-    }
-    .orbital-controls-row {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 16px;
-      margin-top: 14px;
-    }
-    .orbital-nav-btn {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: #0E0F12;
-      border: 1px solid #343A40;
-      color: #F1F3F5;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: all 0.2s;
-      font-size: 1.3rem;
-      line-height: 1;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
-    }
-    .orbital-nav-btn:hover {
-      background: #E53935;
-      color: #0E0F12;
-      border-color: #E53935;
-      transform: scale(1.08);
-    }
-    .orbital-indicators {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .orbital-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: rgba(52, 58, 64, 0.4);
-      border: none;
-      padding: 0;
-      cursor: pointer;
-      transition: all 0.3s var(--ease-smooth);
-    }
-    .orbital-dot.active {
-      width: 24px;
-      border-radius: 4px;
-      background: #E53935;
-      box-shadow: 0 0 10px rgba(229, 57, 53, 0.6);
-    }
-    @media (max-width: 680px) {
-      .orbital-wheel-viewport {
-        height: 380px;
-      }
-      .orbital-card {
-        width: 195px;
-        height: 275px;
-        margin-left: -97px;
-        margin-top: 10px;
-      }
-      .orbital-caption-title {
-        font-size: 1.35rem;
-      }
-      .orbital-caption-subtitle {
-        font-size: 0.82rem;
-      }
-    }
 
     .gallery-vertical-stage {
       position: relative;
@@ -3311,17 +3053,14 @@
         <p class="section-desc">Authentic glimpses of our cozy cafe booths, handcrafted specialty coffees, loaded snacks, and welcoming spaces in Model Town, Ludhiana.</p>
       </div>
 
-      <!-- View Format Switcher: Unlumen Orbital Wheel vs Vertical Stack Deck vs Full Grid -->
+      <!-- View Format Switcher: Full Photo Grid vs Vertical Stack Deck -->
       <div class="gallery-view-switch-row">
         <div class="view-toggle-pill" role="tablist" aria-label="Cafe Moments View Format">
-          <button type="button" class="view-toggle-btn active" id="galleryToggleWheel" data-view="wheel" role="tab" aria-selected="true">
-            <span>🎡</span> Orbital Wheel
+          <button type="button" class="view-toggle-btn active" id="galleryToggleGrid" data-view="grid" role="tab" aria-selected="true">
+            <span>▦</span> Full Photo Grid
           </button>
           <button type="button" class="view-toggle-btn" id="galleryToggleDeck" data-view="deck" role="tab" aria-selected="false">
             <span>🎴</span> Vertical Stack Deck
-          </button>
-          <button type="button" class="view-toggle-btn" id="galleryToggleGrid" data-view="grid" role="tab" aria-selected="false">
-            <span>▦</span> Full Photo Grid
           </button>
         </div>
       </div>
@@ -3329,132 +3068,8 @@
       <!-- Category Filter Pills -->
       <div class="gallery-filter-wrap">
         <button type="button" class="gallery-filter-btn active" data-filter="all">All Photos</button>
-        <button type="button" class="gallery-filter-btn" data-filter="coffee">Coffee & Sips</button>
-        <button type="button" class="gallery-filter-btn" data-filter="spaces">Cafe Spaces & Facade</button>
-      </div>
-
-      <!-- UNLUMEN UI ORBITAL IMAGE WHEEL COMPONENT -->
-      <div class="orbital-wheel-stage" id="orbitalWheelStage">
-        <!-- Active Caption & Subtitle Header -->
-        <div class="orbital-caption-wrap" id="orbitalCaptionWrap">
-          <span class="orbital-caption-tag" id="orbitalCaptionTag">Moment 01 · Specialty Brews</span>
-          <h3 class="orbital-caption-title" id="orbitalCaptionTitle">Signature Cold Coffee with Ice Cream</h3>
-          <p class="orbital-caption-subtitle" id="orbitalCaptionSubtitle">Chilled espresso blended with creamy milk and crowned with a scoop of vanilla ice cream.</p>
-          <div class="orbital-caption-hint">
-            <span class="orbital-pulse"></span>
-            <span>Drag or scroll to rotate wheel · Click active card to inspect high-res</span>
-          </div>
-        </div>
-
-        <!-- The Orbital Wheel Carousel Arc -->
-        <div class="orbital-wheel-viewport" id="orbitalWheelViewport">
-          <div class="orbital-wheel-track" id="orbitalWheelTrack">
-            <!-- Orbital Card 1 -->
-            <div class="orbital-card" data-category="coffee" data-img="images/coffee.webp" data-tag="Moment 01 · Specialty Brews" data-title="Signature Cold Coffee with Ice Cream" data-desc="Rich Belgian cocoa steamed with creamy milk, chocolate crema, and dark cocoa shavings." tabindex="0">
-              <span class="orbital-card-badge">Warm Classics</span>
-              <img src="images/coffee.webp" alt="Signature Cold Coffee with Ice Cream" class="orbital-card-img" loading="lazy">
-              <div class="orbital-card-overlay">
-                <h4 class="orbital-card-title">Signature Cold Coffee with Ice Cream</h4>
-                <p class="orbital-card-sub">Rich Belgian cocoa steamed with chocolate crema</p>
-                <div class="orbital-card-pill">
-                  <span>View High-Res</span>
-                  <span>🔍</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Orbital Card 2 -->
-            <div class="orbital-card" data-category="coffee" data-img="images/hedgehog_lasagna_gratin.jpg" data-tag="Moment 02 · Oven Specialties" data-title="Artisan Thin Crust Pizza & Penne" data-desc="Slow-baked sheet pasta layered with rich herb pomodoro, vegetables, and bubbly mozzarella gratin." tabindex="0">
-              <span class="orbital-card-badge">Gourmet Food</span>
-              <img src="images/hedgehog_lasagna_gratin.jpg" alt="Artisan Thin Crust Pizza & Penne" class="orbital-card-img" loading="lazy">
-              <div class="orbital-card-overlay">
-                <h4 class="orbital-card-title">Creamy Penne Alfredo &amp; Garden Pizza</h4>
-                <p class="orbital-card-sub">Slow-baked sheet pasta &amp; melted mozzarella</p>
-                <div class="orbital-card-pill">
-                  <span>View High-Res</span>
-                  <span>🔍</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Orbital Card 3 -->
-            <div class="orbital-card" data-category="coffee" data-img="images/environment_freddo.webp" data-tag="Moment 03 · Refreshing Sips" data-title="Classic Choco Frappe" data-desc="Crushed garden mint, sweet strawberry purée, aromatic betel paan essence, and sparkling soda." tabindex="0">
-              <span class="orbital-card-badge">Signature Cooler</span>
-              <img src="images/environment_freddo.webp" alt="Classic Choco Frappe" class="orbital-card-img" loading="lazy">
-              <div class="orbital-card-overlay">
-                <h4 class="orbital-card-title">Classic Choco Frappe</h4>
-                <p class="orbital-card-sub">Crushed garden mint, strawberry purée &amp; paan essence</p>
-                <div class="orbital-card-pill">
-                  <span>View High-Res</span>
-                  <span>🔍</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Orbital Card 4 -->
-            <div class="orbital-card" data-category="spaces" data-img="images/r6_caffe_wall.jpg" data-tag="Moment 04 · Authentic Ambience" data-title="R6 Caffe Interior & Wall Emblem" data-desc="Warm outdoor string lights, garden greenery, and welcoming entrance at Model Town, Ludhiana." tabindex="0">
-              <span class="orbital-card-badge">Garden Spaces</span>
-              <img src="images/r6_caffe_wall.jpg" alt="R6 Caffe Interior & Wall Emblem" class="orbital-card-img" loading="lazy" style="object-position:center 40%;">
-              <div class="orbital-card-overlay">
-                <h4 class="orbital-card-title">R6 Caffe Interior &amp; Wall Emblem</h4>
-                <p class="orbital-card-sub">Warm outdoor string lights &amp; garden entrance</p>
-                <div class="orbital-card-pill">
-                  <span>View High-Res</span>
-                  <span>🔍</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Orbital Card 5 -->
-            <div class="orbital-card" data-category="spaces" data-img="images/environment_seating.webp" data-tag="Moment 05 · Open-Air Greenery" data-title="Lush Lawn & Verandah Tables" data-desc="Open-air garden dining surrounded by natural foliage, comfortable chairs, and fresh air in Model Town." tabindex="0">
-              <span class="orbital-card-badge">Garden Spaces</span>
-              <img src="images/environment_seating.webp" alt="Lush Lawn & Verandah Tables" class="orbital-card-img" loading="lazy">
-              <div class="orbital-card-overlay">
-                <h4 class="orbital-card-title">Lush Lawn &amp; Verandah Tables</h4>
-                <p class="orbital-card-sub">Open-air garden dining surrounded by greenery</p>
-                <div class="orbital-card-pill">
-                  <span>View High-Res</span>
-                  <span>🔍</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Orbital Card 6 -->
-            <div class="orbital-card" data-category="spaces" data-img="images/hedgehog_hall_seating.jpg" data-tag="Moment 06 · Celebrations" data-title="Cozy Booths & Group Study Table" data-desc="Spacious celebration tables perfect for birthday parties, family dinners, and group gatherings in Ludhiana." tabindex="0">
-              <span class="orbital-card-badge">Celebration Spaces</span>
-              <img src="images/hedgehog_hall_seating.jpg" alt="Cozy Booths & Group Study Table" class="orbital-card-img" loading="lazy">
-              <div class="orbital-card-overlay">
-                <h4 class="orbital-card-title">Family &amp; Birthday Dining Hall</h4>
-                <p class="orbital-card-sub">Spacious celebration tables for family &amp; birthday parties</p>
-                <div class="orbital-card-pill">
-                  <span>View High-Res</span>
-                  <span>🔍</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Orbital Card 7 -->
-            <div class="orbital-card" data-category="spaces" data-img="images/hedgehog_counter_bakery.jpg" data-tag="Moment 07 · Artisan Counter" data-title="Artisan Counter & Bakery Bar" data-desc="Freshly brewed lattes, espresso bar, freshly prepared drinks, and daily handcrafted treats." tabindex="0">
-              <span class="orbital-card-badge">Bar Counter</span>
-              <img src="images/hedgehog_counter_bakery.jpg" alt="Artisan Counter & Bakery Bar" class="orbital-card-img" loading="lazy">
-              <div class="orbital-card-overlay">
-                <h4 class="orbital-card-title">Artisan Counter &amp; Bakery Bar</h4>
-                <p class="orbital-card-sub">Freshly brewed lattes, espresso bar &amp; treats</p>
-                <div class="orbital-card-pill">
-                  <span>View High-Res</span>
-                  <span>🔍</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Orbital Controls Row -->
-        <div class="orbital-controls-row">
-          <button type="button" class="orbital-nav-btn" id="btnOrbitalPrev" title="Rotate Left" aria-label="Rotate Left">‹</button>
-          <div class="orbital-indicators" id="orbitalIndicators"></div>
-          <button type="button" class="orbital-nav-btn" id="btnOrbitalNext" title="Rotate Right" aria-label="Rotate Right">›</button>
-        </div>
+        <button type="button" class="gallery-filter-btn" data-filter="coffee">Coffee &amp; Sips</button>
+        <button type="button" class="gallery-filter-btn" data-filter="spaces">Cafe Spaces &amp; Facade</button>
       </div>
 
       <!-- Unlumen Team-Stack Component in Vertical Direction -->
@@ -3627,7 +3242,7 @@
       </div>
 
       <!-- Photo Grid -->
-      <div class="gallery-grid is-hidden" id="galleryGrid">
+      <div class="gallery-grid" id="galleryGrid">
 
         <!-- Item 1: Signature Cold Coffee with Ice Cream -->
         <div class="gallery-card" data-category="coffee" data-img="images/cold_coffee.jpg" data-title="Signature Cold Coffee with Ice Cream" data-desc="Chilled double espresso blended with creamy milk and crowned with rich vanilla ice cream.">
@@ -5178,294 +4793,6 @@
       });
 
       // =====================================================================
-      // UNLUMEN UI ORBITAL IMAGE WHEEL COMPONENT: CAFE MOMENTS
-      // =====================================================================
-      function initOrbitalImageWheel() {
-        const stage = document.getElementById('orbitalWheelStage');
-        const viewport = document.getElementById('orbitalWheelViewport');
-        const track = document.getElementById('orbitalWheelTrack');
-        const captionTag = document.getElementById('orbitalCaptionTag');
-        const captionTitle = document.getElementById('orbitalCaptionTitle');
-        const captionSub = document.getElementById('orbitalCaptionSubtitle');
-        const indicators = document.getElementById('orbitalIndicators');
-        const btnPrev = document.getElementById('btnOrbitalPrev');
-        const btnNext = document.getElementById('btnOrbitalNext');
-        const lightboxModal = document.getElementById('lightboxModal');
-        const lightboxImg = document.getElementById('lightboxImg');
-        const lightboxTitle = document.getElementById('lightboxTitle');
-        const lightboxDesc = document.getElementById('lightboxDesc');
-
-        if (!stage || !viewport || !track) return;
-
-        let cards = Array.from(track.querySelectorAll('.orbital-card'));
-        let currentFilter = 'all';
-        let currentAngle = 0;
-        let targetAngle = 0;
-        let isDragging = false;
-        let dragStartX = 0;
-        let dragStartAngle = 0;
-        let activeIndex = 0;
-
-        function getVisibleCards() {
-          return cards.filter(card => {
-            if (currentFilter === 'all') return true;
-            return card.dataset.category === currentFilter;
-          });
-        }
-
-        function getParams() {
-          const isMobile = window.innerWidth <= 680;
-          return {
-            radius: isMobile ? 520 : 820,
-            angleStep: isMobile ? 0.36 : 0.28,
-            isMobile
-          };
-        }
-
-        function createIndicators() {
-          if (!indicators) return;
-          indicators.innerHTML = '';
-          const visible = getVisibleCards();
-          visible.forEach((_, idx) => {
-            const dot = document.createElement('button');
-            dot.type = 'button';
-            dot.className = 'orbital-dot' + (idx === activeIndex ? ' active' : '');
-            dot.title = `Go to moment ${idx + 1}`;
-            dot.setAttribute('aria-label', `Go to moment ${idx + 1}`);
-            dot.addEventListener('click', () => {
-              const { angleStep } = getParams();
-              targetAngle = -idx * angleStep;
-            });
-            indicators.appendChild(dot);
-          });
-        }
-
-        function updateCaptions(activeCard) {
-          if (!activeCard) return;
-          if (captionTag) captionTag.textContent = activeCard.dataset.tag || 'Cafe Moment';
-          if (captionTitle) captionTitle.textContent = activeCard.dataset.title || '';
-          if (captionSub) captionSub.textContent = activeCard.dataset.desc || '';
-
-          if (indicators) {
-            const dots = indicators.querySelectorAll('.orbital-dot');
-            dots.forEach((d, i) => {
-              if (i === activeIndex) d.classList.add('active');
-              else d.classList.remove('active');
-            });
-          }
-        }
-
-        function renderWheel() {
-          const visible = getVisibleCards();
-          const total = visible.length;
-          if (total === 0) {
-            requestAnimationFrame(renderWheel);
-            return;
-          }
-
-          const { radius, angleStep } = getParams();
-
-          cards.forEach(c => {
-            if (!visible.includes(c)) {
-              c.style.display = 'none';
-            } else {
-              c.style.display = 'block';
-            }
-          });
-
-          // Smooth spring lerp toward targetAngle
-          const diff = targetAngle - currentAngle;
-          currentAngle += diff * 0.12;
-
-          let closestIdx = 0;
-          let minAngularDist = Infinity;
-
-          visible.forEach((card, idx) => {
-            const cardAngle = currentAngle + idx * angleStep;
-            const absAngle = Math.abs(cardAngle);
-
-            if (absAngle < minAngularDist) {
-              minAngularDist = absAngle;
-              closestIdx = idx;
-            }
-
-            // Orbital arc position geometry: X = R*sin(theta), Y = R*(1-cos(theta))
-            const x = radius * Math.sin(cardAngle);
-            const y = radius * (1 - Math.cos(cardAngle));
-            const deg = cardAngle * (180 / Math.PI);
-
-            const distRatio = Math.min(1, absAngle / 1.15);
-
-            // GSAP focus enhancements
-            const scale = 1.08 - distRatio * 0.28;
-            const blur = Math.min(6, distRatio * 7.5);
-            const brightness = Math.max(0.35, 1.15 - distRatio * 0.7);
-            const saturation = Math.max(50, 105 - distRatio * 55);
-            const opacity = Math.max(0.12, 1 - distRatio * 0.82);
-            const zIndex = Math.round(50 - distRatio * 35);
-
-            card.style.transform = `translate3d(${x}px, ${y}px, 0) rotate(${deg}deg) scale(${scale})`;
-            card.style.filter = `blur(${blur}px) brightness(${brightness}) saturate(${saturation}%)`;
-            card.style.opacity = opacity.toString();
-            card.style.zIndex = zIndex.toString();
-
-            if (absAngle < 0.14) {
-              card.classList.add('is-active');
-            } else {
-              card.classList.remove('is-active');
-            }
-          });
-
-          if (closestIdx !== activeIndex) {
-            activeIndex = closestIdx;
-            updateCaptions(visible[activeIndex]);
-          }
-
-          requestAnimationFrame(renderWheel);
-        }
-
-        // Mouse drag handlers
-        viewport.addEventListener('mousedown', (e) => {
-          isDragging = true;
-          viewport.classList.add('is-dragging');
-          dragStartX = e.clientX;
-          dragStartAngle = targetAngle;
-        });
-
-        window.addEventListener('mousemove', (e) => {
-          if (!isDragging) return;
-          const deltaX = e.clientX - dragStartX;
-          const { angleStep } = getParams();
-          targetAngle = dragStartAngle + (deltaX * 0.0035);
-          const visible = getVisibleCards();
-          const maxLeft = 0.5 * angleStep;
-          const maxRight = -(visible.length - 0.5) * angleStep;
-          if (targetAngle > maxLeft) targetAngle = maxLeft;
-          if (targetAngle < maxRight) targetAngle = maxRight;
-        });
-
-        window.addEventListener('mouseup', () => {
-          if (!isDragging) return;
-          isDragging = false;
-          viewport.classList.remove('is-dragging');
-          const { angleStep } = getParams();
-          const nearest = Math.round(-targetAngle / angleStep);
-          const visible = getVisibleCards();
-          const clamped = Math.max(0, Math.min(visible.length - 1, nearest));
-          targetAngle = -clamped * angleStep;
-        });
-
-        // Touch handlers for mobile
-        viewport.addEventListener('touchstart', (e) => {
-          if (e.touches && e.touches.length > 0) {
-            isDragging = true;
-            dragStartX = e.touches[0].clientX;
-            dragStartAngle = targetAngle;
-          }
-        }, { passive: true });
-
-        window.addEventListener('touchmove', (e) => {
-          if (!isDragging || !e.touches || e.touches.length === 0) return;
-          const deltaX = e.touches[0].clientX - dragStartX;
-          const { angleStep } = getParams();
-          targetAngle = dragStartAngle + (deltaX * 0.004);
-          const visible = getVisibleCards();
-          const maxLeft = 0.5 * angleStep;
-          const maxRight = -(visible.length - 0.5) * angleStep;
-          if (targetAngle > maxLeft) targetAngle = maxLeft;
-          if (targetAngle < maxRight) targetAngle = maxRight;
-        }, { passive: true });
-
-        window.addEventListener('touchend', () => {
-          if (!isDragging) return;
-          isDragging = false;
-          const { angleStep } = getParams();
-          const nearest = Math.round(-targetAngle / angleStep);
-          const visible = getVisibleCards();
-          const clamped = Math.max(0, Math.min(visible.length - 1, nearest));
-          targetAngle = -clamped * angleStep;
-        });
-
-        // Wheel rotation
-        viewport.addEventListener('wheel', (e) => {
-          e.preventDefault();
-          const { angleStep } = getParams();
-          const delta = Math.sign(e.deltaY);
-          const visible = getVisibleCards();
-          let nextIndex = activeIndex + delta;
-          if (nextIndex < 0) nextIndex = 0;
-          if (nextIndex >= visible.length) nextIndex = visible.length - 1;
-          targetAngle = -nextIndex * angleStep;
-        }, { passive: false });
-
-        if (btnPrev) {
-          btnPrev.addEventListener('click', () => {
-            const { angleStep } = getParams();
-            const visible = getVisibleCards();
-            let nextIndex = activeIndex - 1;
-            if (nextIndex < 0) nextIndex = visible.length - 1;
-            targetAngle = -nextIndex * angleStep;
-          });
-        }
-
-        if (btnNext) {
-          btnNext.addEventListener('click', () => {
-            const { angleStep } = getParams();
-            const visible = getVisibleCards();
-            let nextIndex = activeIndex + 1;
-            if (nextIndex >= visible.length) nextIndex = 0;
-            targetAngle = -nextIndex * angleStep;
-          });
-        }
-
-        cards.forEach(card => {
-          card.addEventListener('click', () => {
-            const visible = getVisibleCards();
-            const cardIdx = visible.indexOf(card);
-            if (cardIdx === -1) return;
-
-            const { angleStep } = getParams();
-
-            if (cardIdx === activeIndex) {
-              if (lightboxModal && lightboxImg) {
-                lightboxImg.src = card.dataset.img || '';
-                if (lightboxTitle) lightboxTitle.textContent = card.dataset.title || '';
-                if (lightboxDesc) lightboxDesc.textContent = card.dataset.desc || '';
-                lightboxModal.classList.add('open');
-              }
-            } else {
-              targetAngle = -cardIdx * angleStep;
-            }
-          });
-        });
-
-        window.filterOrbitalByCategory = function(category) {
-          currentFilter = category;
-          activeIndex = 0;
-          targetAngle = 0;
-          currentAngle = 0;
-          createIndicators();
-          const visible = getVisibleCards();
-          if (visible.length > 0) {
-            updateCaptions(visible[0]);
-          }
-        };
-
-        window.addEventListener('resize', () => {
-          const { angleStep } = getParams();
-          targetAngle = -activeIndex * angleStep;
-        });
-
-        createIndicators();
-        const visible = getVisibleCards();
-        if (visible.length > 0) {
-          updateCaptions(visible[0]);
-        }
-
-        requestAnimationFrame(renderWheel);
-      }
-
-      // =====================================================================
       // UNLUMEN UI TEAM-STACK COMPONENT (VERTICAL DIRECTION): CAFE MOMENTS
       // =====================================================================
       function initGalleryVerticalStack() {
@@ -5728,34 +5055,25 @@
       }
 
       // =====================================================================
-      // 3-WAY VIEW SWITCHER: ORBITAL WHEEL vs VERTICAL STACK vs FULL GRID
+      // VIEW SWITCHER: FULL PHOTO GRID vs VERTICAL STACK DECK
       // =====================================================================
       function setGalleryView(mode) {
-        const wheelStage = document.getElementById('orbitalWheelStage');
         const verticalStage = document.getElementById('galleryVerticalStage');
         const grid = document.getElementById('galleryGrid');
-        const toggleWheel = document.getElementById('galleryToggleWheel');
         const toggleDeck = document.getElementById('galleryToggleDeck');
         const toggleGrid = document.getElementById('galleryToggleGrid');
 
-        if (wheelStage) wheelStage.classList.add('is-hidden');
         if (verticalStage) verticalStage.classList.add('is-hidden');
         if (grid) grid.classList.add('is-hidden');
 
-        [toggleWheel, toggleDeck, toggleGrid].forEach(btn => {
+        [toggleDeck, toggleGrid].forEach(btn => {
           if (btn) {
             btn.classList.remove('active');
             btn.setAttribute('aria-selected', 'false');
           }
         });
 
-        if (mode === 'wheel') {
-          if (wheelStage) wheelStage.classList.remove('is-hidden');
-          if (toggleWheel) {
-            toggleWheel.classList.add('active');
-            toggleWheel.setAttribute('aria-selected', 'true');
-          }
-        } else if (mode === 'deck') {
+        if (mode === 'deck') {
           if (verticalStage) verticalStage.classList.remove('is-hidden');
           if (toggleDeck) {
             toggleDeck.classList.add('active');
@@ -5773,16 +5091,13 @@
         }
       }
 
-      const toggleWheel = document.getElementById('galleryToggleWheel');
       const toggleDeck = document.getElementById('galleryToggleDeck');
       const toggleGrid = document.getElementById('galleryToggleGrid');
 
-      if (toggleWheel) toggleWheel.addEventListener('click', () => setGalleryView('wheel'));
       if (toggleDeck) toggleDeck.addEventListener('click', () => setGalleryView('deck'));
       if (toggleGrid) toggleGrid.addEventListener('click', () => setGalleryView('grid'));
 
-      // Initialize Unlumen components in Cafe Moments
-      initOrbitalImageWheel();
+      // Initialize Unlumen vertical stack in Cafe Moments
       initGalleryVerticalStack();
 
       // Categorized Gallery Filtering Interactivity (synchronized across Wheel, Deck, and Grid)
@@ -5801,10 +5116,7 @@
             }
           });
 
-          // Update Unlumen orbital image wheel
-          if (typeof window.filterOrbitalByCategory === 'function') {
-            window.filterOrbitalByCategory(filter);
-          }
+
 
           // Update Unlumen vertical team-stack deck
           if (typeof window.filterGalleryByCategory === 'function') {
