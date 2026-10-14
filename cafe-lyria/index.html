@@ -2148,90 +2148,66 @@
       }
     }
 
-    /* ==========================================================================
+        /* ==========================================================================
        SECTION 8: LOCATION & CONTACT (Model Town, Ludhiana)
        ========================================================================== */
+    #location.section-wrap {
+      padding: 48px 5vw 42px;
+    }
     .location-box {
-      background: #2A4535;
+      background: #1C3224;
       border: 1px solid #445E4E;
-      border-radius: var(--radius-xl);
-      padding: 50px 4vw;
+      border-radius: 20px;
+      padding: 26px 32px;
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1.18fr 0.82fr;
       align-items: center;
-      gap: 48px;
-      box-shadow: 0 20px 50px rgba(10, 18, 13, 0.4);
+      gap: 28px;
+      box-shadow: 0 16px 40px rgba(10, 18, 13, 0.35);
     }
     .location-address {
-      font-size: 1.25rem;
+      font-size: 0.98rem;
       color: #F8F5EE;
-      font-family: var(--font-serif);
-      margin-bottom: 12px;
+      margin-bottom: 14px;
       line-height: 1.5;
     }
-    .location-details {
-      color: #E6DFD1;
-      font-size: 0.95rem;
-      margin-bottom: 28px;
+    .location-meta-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 12px;
+      margin-bottom: 16px;
     }
-    .location-phone {
+    .location-chip {
       display: inline-flex;
       align-items: center;
-      gap: 10px;
-      font-size: 1.2rem;
-      font-weight: 700;
+      gap: 6px;
+      background: rgba(19, 34, 25, 0.72);
+      border: 1px solid rgba(216, 204, 163, 0.22);
+      padding: 5px 11px;
+      border-radius: 7px;
+      font-size: 0.82rem;
+      color: #E6DFD1;
+    }
+    .location-chip a {
       color: #D8CCA3;
       text-decoration: none;
-      margin-bottom: 32px;
+      font-weight: 600;
     }
-    .location-phone:hover {
-      color: #EBE2C5;
+    .location-chip a:hover {
       text-decoration: underline;
     }
-
-    /* Stylized Interactive Google Map Card */
-    .mini-map-card {
-      background: #132219;
-      border: 1px solid #445E4E;
-      border-radius: 24px;
-      height: 380px;
-      position: relative;
+    .map-placeholder {
+      height: 200px;
+      border-radius: 14px;
       overflow: hidden;
-      box-shadow: 0 16px 40px rgba(10, 18, 13, 0.4);
-      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      border: 1px solid rgba(216, 204, 163, 0.22);
+      box-shadow: 0 8px 24px rgba(10, 18, 13, 0.35);
     }
-    .mini-map-card:hover {
-      border-color: #D8CCA3;
-      box-shadow: 0 20px 48px rgba(10, 18, 13, 0.55);
-    }
-    .mini-map-card iframe {
+    .map-placeholder iframe {
       width: 100%;
       height: 100%;
       border: 0;
-      border-radius: inherit;
       display: block;
-    }
-    .map-direct-link {
-      position: absolute;
-      bottom: 14px;
-      right: 14px;
-      background: rgba(19, 34, 25, 0.92);
-      border: 1px solid #D8CCA3;
-      color: #F8F5EE;
-      font-size: 0.78rem;
-      font-weight: 700;
-      padding: 7px 14px;
-      border-radius: var(--radius-pill);
-      text-decoration: none;
-      backdrop-filter: blur(8px);
-      box-shadow: 0 4px 15px rgba(10, 18, 13, 0.35);
-      transition: all 0.25s ease;
-      z-index: 5;
-    }
-    .map-direct-link:hover {
-      background: #D8CCA3;
-      color: #132219;
-      box-shadow: 0 6px 20px rgba(10, 18, 13, 0.45);
     }
 
     /* ==========================================================================
@@ -2634,6 +2610,9 @@
       .hero-title { font-size: 2.6rem; }
       .hero-section { padding-top: 110px; padding-bottom: 50px; }
       .section-wrap { padding: 75px 5vw; }
+      #location.section-wrap { padding: 32px 5vw 28px; }
+      .location-box { grid-template-columns: 1fr; padding: 20px 18px; gap: 18px; }
+      .map-placeholder { height: 180px; }
       .hero-meta-row { gap: 14px; }
       .hero-meta-sep { display: none; }
     }
@@ -3722,48 +3701,42 @@
     <!-- SECTION 8: LOCATION & CONTACT -->
     <section class="section-wrap" id="location">
       <div class="location-box">
-        <div>
-          <span class="section-eyebrow">Visit</span>
-          <h2 class="section-heading" style="text-align:left;">Come Find Us.</h2>
+        <div class="location-info-side">
+          <span class="section-eyebrow" style="margin-bottom:4px;font-size:0.75rem;">Visit Us</span>
+          <h2 class="section-heading" style="text-align:left;font-size:1.65rem;margin-bottom:10px;line-height:1.2;">Come Find Us.</h2>
+          
           <a href="https://maps.app.goo.gl/UTFoVMvuShDn8SYJ6" target="_blank" rel="noopener" class="location-address" style="display:block;text-decoration:none;" title="Open R6 Caffe on Google Maps">
-            R6 Caffe<br>
-            510-R, Model Town Road<br>
-            Near Guru Nanak Girls College, Pritam Nagar<br>
-            Model Town, Ludhiana, Punjab 141002 ↗<br>
-            <span style="display:inline-block;margin-top:6px;font-size:0.85rem;color:#D8CCA3;background:rgba(216,204,163,0.12);padding:3px 10px;border-radius:6px;border:1px solid rgba(216,204,163,0.3);">
-              📍 Plus Code: VRQR+62 Ludhiana, Punjab
-            </span>
+            <span style="color:#D8CCA3;font-weight:600;">R6 Caffe</span> · 510-R, Model Town Road, Near GNGC College, Model Town, Ludhiana ↗
           </a>
-          <div class="hours-list">
-            <div class="hours-row">
-              <span>Monday – Sunday:</span>
-              <span>8:00 AM – 10:30 PM (Daily)</span>
-            </div>
-            <div class="hours-row">
-              <span>Direct Phone:</span>
-              <a href="tel:+918847572934" style="color:var(--gold);text-decoration:none;font-weight:600;">+91 88475 72934</a>
-            </div>
-            <div class="hours-row">
-              <span>WhatsApp Inquiries:</span>
-              <a href="https://wa.me/918847572934?text=Hi%20R6%20Caffe,%20I%20would%20like%20to%20inquire%20about%20a%20table%20reservation%20/%20order" target="_blank" rel="noopener" style="color:#25D366;text-decoration:none;font-weight:600;">+91 88475 72934 ↗</a>
-            </div>
-            <div class="hours-row">
-              <span>Service Options:</span>
-              <span>Dine-in · Takeaway · No-contact Delivery</span>
-            </div>
+
+          <div class="location-meta-grid">
+            <span class="location-chip">
+              <span>🕒</span> 8:00 AM – 10:30 PM (Daily)
+            </span>
+            <span class="location-chip">
+              <span>📞</span> <a href="tel:+918847572934">+91 88475 72934</a>
+            </span>
+            <span class="location-chip">
+              <span>💬</span> <a href="https://wa.me/918847572934?text=Hi%20R6%20Caffe,%20I%20would%20like%20to%20inquire%20about%20a%20table%20reservation%20/%20order" target="_blank" rel="noopener" style="color:#25D366;">WhatsApp ↗</a>
+            </span>
+            <span class="location-chip">
+              <span>🚗</span> Free Parking
+            </span>
           </div>
-          <div style="margin-top:20px;">
-            <a href="https://maps.app.goo.gl/UTFoVMvuShDn8SYJ6" target="_blank" rel="noopener" class="btn btn-outline" style="display:inline-flex;align-items:center;gap:8px;font-size:0.85rem;padding:9px 18px;">
+
+          <div>
+            <a href="https://maps.app.goo.gl/UTFoVMvuShDn8SYJ6" target="_blank" rel="noopener" class="btn btn-outline" style="display:inline-flex;align-items:center;gap:6px;font-size:0.8rem;padding:7px 15px;">
               📍 Open Google Maps Directions ↗
             </a>
           </div>
         </div>
+
         <div class="map-placeholder">
           <iframe 
             src="https://maps.google.com/maps?q=30.8880153,75.8400975&hl=en&z=17&output=embed"
             width="100%" 
             height="100%" 
-            style="border:0;border-radius:var(--radius-card);display:block;min-height:300px;" 
+            style="border:0;display:block;" 
             allowfullscreen="" 
             loading="lazy" 
             referrerpolicy="no-referrer-when-downgrade"
