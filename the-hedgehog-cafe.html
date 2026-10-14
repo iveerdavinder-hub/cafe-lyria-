@@ -400,16 +400,278 @@
        SECTION 1: HERO VIEWPORT (3D Character & Environment Experience)
        ========================================================================== */
     .hero-section {
-      min-height: 100vh;
-      display: flex;
+      min-height: 100dvh;
+      display: grid;
+      grid-template-columns: 1.12fr 0.88fr;
       align-items: center;
+      gap: 52px;
       padding: 130px 5vw 60px;
+      max-width: 1400px;
+      margin: 0 auto;
       position: relative;
       z-index: 10;
+    }
+    @media (max-width: 1024px) {
+      .hero-section {
+        grid-template-columns: 1fr;
+        gap: 44px;
+        padding-top: 115px;
+      }
     }
     .hero-content {
       max-width: 660px;
       position: relative;
+    }
+
+    /* Animated Cafe Picture Showcase */
+    .hero-visual-col {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      position: relative;
+    }
+    .hero-cafe-stage {
+      position: relative;
+      width: 100%;
+      max-width: 530px;
+      perspective: 1200px;
+    }
+    .hero-cafe-glow {
+      position: absolute;
+      inset: -18px;
+      background: radial-gradient(circle at 50% 50%, rgba(216, 204, 163, 0.28) 0%, rgba(26, 47, 35, 0.45) 55%, transparent 75%);
+      filter: blur(35px);
+      border-radius: 36px;
+      z-index: 1;
+      pointer-events: none;
+      animation: pulseCafeGlow 4s ease-in-out infinite alternate;
+    }
+    @keyframes pulseCafeGlow {
+      0% { opacity: 0.55; transform: scale(0.96); }
+      100% { opacity: 0.95; transform: scale(1.04); }
+    }
+    .hero-cafe-card {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      height: 480px;
+      border-radius: 24px;
+      overflow: hidden;
+      border: 1px solid rgba(216, 204, 163, 0.35);
+      background: #132219;
+      box-shadow: 0 25px 60px rgba(10, 18, 13, 0.65), 0 0 25px rgba(216, 204, 163, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+      animation: floatCafeCard 5.5s ease-in-out infinite;
+      transition: transform 0.25s ease-out, box-shadow 0.3s ease;
+      transform-style: preserve-3d;
+    }
+    @keyframes floatCafeCard {
+      0%, 100% {
+        transform: translateY(0px) rotate(0deg);
+      }
+      50% {
+        transform: translateY(-10px) rotate(0.5deg);
+      }
+    }
+    .hero-cafe-card:hover {
+      box-shadow: 0 32px 75px rgba(10, 18, 13, 0.75), 0 0 35px rgba(216, 204, 163, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+    }
+    .hero-cafe-slides-wrap {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+    .hero-cafe-slide {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 6s cubic-bezier(0.16, 1, 0.3, 1);
+      transform: scale(1.0);
+    }
+    .hero-cafe-slide.active {
+      opacity: 1;
+      visibility: visible;
+      transform: scale(1.06);
+    }
+    .hero-cafe-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(10, 18, 13, 0.2) 0%, rgba(10, 18, 13, 0.3) 45%, rgba(10, 18, 13, 0.92) 100%);
+      z-index: 3;
+      pointer-events: none;
+    }
+    .hero-cafe-top-bar {
+      position: absolute;
+      top: 18px;
+      left: 18px;
+      right: 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 4;
+      pointer-events: auto;
+    }
+    .hero-cafe-status-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: rgba(19, 34, 25, 0.85);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(216, 204, 163, 0.35);
+      padding: 5px 12px;
+      border-radius: var(--radius-pill);
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #F8F5EE;
+      letter-spacing: 0.04em;
+    }
+    .hero-cafe-status-tag .live-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #84cc16;
+      box-shadow: 0 0 10px #84cc16;
+      animation: pulseDot 2s infinite;
+    }
+    @keyframes pulseDot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.85); }
+    }
+    .hero-cafe-score-tag {
+      background: rgba(19, 34, 25, 0.85);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(216, 204, 163, 0.35);
+      padding: 5px 12px;
+      border-radius: var(--radius-pill);
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #D8CCA3;
+    }
+    .hero-cafe-bottom-info {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      right: 20px;
+      z-index: 4;
+      pointer-events: auto;
+    }
+    .hero-cafe-eyebrow {
+      font-size: 0.75rem;
+      color: #D8CCA3;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .hero-cafe-heading {
+      font-family: var(--font-serif);
+      font-size: 1.45rem;
+      color: #F8F5EE;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+    .hero-cafe-controls {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .hero-cafe-tab-btn {
+      background: rgba(19, 34, 25, 0.75);
+      border: 1px solid rgba(216, 204, 163, 0.25);
+      color: #E6DFD1;
+      padding: 5px 12px;
+      border-radius: var(--radius-pill);
+      font-size: 0.72rem;
+      font-weight: 600;
+      cursor: pointer;
+      backdrop-filter: blur(8px);
+      transition: all 0.2s ease;
+    }
+    .hero-cafe-tab-btn:hover {
+      background: rgba(216, 204, 163, 0.25);
+      color: #F8F5EE;
+      border-color: #D8CCA3;
+    }
+    .hero-cafe-tab-btn.active {
+      background: #D8CCA3;
+      color: #132219;
+      border-color: #D8CCA3;
+      font-weight: 700;
+    }
+
+    /* Floating Micro-Pills Outside Card */
+    .hero-float-pill {
+      position: absolute;
+      z-index: 5;
+      background: rgba(19, 34, 25, 0.92);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(216, 204, 163, 0.35);
+      box-shadow: 0 12px 30px rgba(10, 18, 13, 0.45);
+      border-radius: 16px;
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      pointer-events: none;
+    }
+    .hero-float-pill.pill-top {
+      top: -20px;
+      right: -25px;
+      animation: floatPillTop 4.2s ease-in-out infinite alternate;
+    }
+    .hero-float-pill.pill-bottom {
+      bottom: -18px;
+      left: -25px;
+      animation: floatPillBottom 4.8s ease-in-out infinite alternate-reverse;
+    }
+    @keyframes floatPillTop {
+      0% { transform: translateY(0px) rotate(0deg); }
+      100% { transform: translateY(-8px) rotate(-1deg); }
+    }
+    @keyframes floatPillBottom {
+      0% { transform: translateY(0px) rotate(0deg); }
+      100% { transform: translateY(8px) rotate(1.2deg); }
+    }
+    .pill-icon {
+      font-size: 1.3rem;
+      flex-shrink: 0;
+    }
+    .pill-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.25;
+    }
+    .pill-text strong {
+      font-size: 0.8rem;
+      color: #F8F5EE;
+      font-weight: 700;
+    }
+    .pill-text small {
+      font-size: 0.7rem;
+      color: #D8CCA3;
+    }
+
+    @media (max-width: 640px) {
+      .hero-cafe-card {
+        height: 380px;
+      }
+      .hero-float-pill.pill-top {
+        right: 0;
+        top: -12px;
+        padding: 8px 12px;
+      }
+      .hero-float-pill.pill-bottom {
+        left: 0;
+        bottom: -12px;
+        padding: 8px 12px;
+      }
     }
     .hero-badge {
       display: inline-flex;
@@ -2463,6 +2725,62 @@
           </div>
         </div>
       </div>
+
+      <!-- Animated Cafe Picture Showcase -->
+      <div class="hero-visual-col">
+        <div class="hero-cafe-stage" id="heroCafeStage">
+          <div class="hero-cafe-glow"></div>
+
+          <!-- Floating Pill Top -->
+          <div class="hero-float-pill pill-top">
+            <span class="pill-icon">✨</span>
+            <div class="pill-text">
+              <strong>Model Town Ludhiana</strong>
+              <small>Near GNGC College · 510-R</small>
+            </div>
+          </div>
+
+          <!-- Main Interactive Animated Cafe Card -->
+          <div class="hero-cafe-card" id="heroCafeCard">
+            <div class="hero-cafe-slides-wrap" id="heroCafeSlides">
+              <img src="images/hedgehog_storefront.jpg" alt="R6 Caffe Model Town Front Facade & Warm Evening Glow" class="hero-cafe-slide active" id="cafeSlide0">
+              <img src="images/environment_seating.webp" alt="R6 Caffe Lush Garden Lawn & Verandah Seating" class="hero-cafe-slide" id="cafeSlide1">
+              <img src="images/environment_lounge.webp" alt="R6 Caffe Cozy Indoor Lounge & Study Tables" class="hero-cafe-slide" id="cafeSlide2">
+            </div>
+
+            <div class="hero-cafe-overlay"></div>
+
+            <div class="hero-cafe-top-bar">
+              <div class="hero-cafe-status-tag">
+                <span class="live-dot"></span>
+                <span>OPEN NOW · 8 AM - 10:30 PM</span>
+              </div>
+              <div class="hero-cafe-score-tag">
+                <span>★ 4.9 (420+ Reviews)</span>
+              </div>
+            </div>
+
+            <div class="hero-cafe-bottom-info">
+              <div class="hero-cafe-eyebrow" id="heroSlideEyebrow">Evening Atmosphere</div>
+              <h3 class="hero-cafe-heading" id="heroSlideTitle">Model Town Facade &amp; Warm Glow</h3>
+              <div class="hero-cafe-controls">
+                <button type="button" class="hero-cafe-tab-btn active" data-index="0">Front Glow</button>
+                <button type="button" class="hero-cafe-tab-btn" data-index="1">Garden Lawn</button>
+                <button type="button" class="hero-cafe-tab-btn" data-index="2">Indoor Lounge</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Floating Pill Bottom -->
+          <div class="hero-float-pill pill-bottom">
+            <span class="pill-icon">🌿</span>
+            <div class="pill-text">
+              <strong>Garden Lawn &amp; Verandah</strong>
+              <small>Open-Air Green Seating</small>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- SECTION 2: THE CAFÉ EXPERIENCE -->
@@ -3985,9 +4303,9 @@
         <div>
           <div class="policy-section-title">
             <span>📚</span>
-            <span>1. Library & Book Etiquette</span>
+            <span>1. Café & Garden Etiquette</span>
           </div>
-          <p>Our library collection is freely accessible for all patrons. Please handle books with gentle care, avoid dog-earing pages, and return books to the shelves before departing.</p>
+          <p>Our garden seating and lounge areas are welcoming spaces for everyone. Please treat our plants, outdoor furniture, and fellow patrons with courtesy, and enjoy your time at R6 Caffe.</p>
         </div>
 
         <div>
@@ -4215,243 +4533,10 @@
       mouseFillLight.position.set(0, 0, 4);
       scene.add(mouseFillLight);
 
-      // --- PROCEDURAL CAFE ENVIRONMENT ---
+      // --- ATMOSPHERIC PARTICLES & AMBIENT FIELD ---
       const cafeSceneGroup = new THREE.Group();
       scene.add(cafeSceneGroup);
 
-      // 1. Walnut Cafe Table
-      const tableGroup = new THREE.Group();
-      tableGroup.position.set(0.4, -1.2, 0);
-      cafeSceneGroup.add(tableGroup);
-
-      const tableTopGeom = new THREE.CylinderGeometry(3.6, 3.6, 0.18, 48);
-      const tableMat = new THREE.MeshStandardMaterial({
-        color: 0x2e1f16,
-        roughness: 0.35,
-        metalness: 0.1
-      });
-      const tableTop = new THREE.Mesh(tableTopGeom, tableMat);
-      tableGroup.add(tableTop);
-
-      // 2. Stylized 3D Hedgehog Character
-      const hedgehogGroup = new THREE.Group();
-      hedgehogGroup.position.set(0.5, -0.65, 0.5);
-      hedgehogGroup.scale.set(1.1, 1.1, 1.1);
-      cafeSceneGroup.add(hedgehogGroup);
-
-      // Body (Golden Tan Chubby Teardrop)
-      const bodyGeom = new THREE.SphereGeometry(0.72, 32, 28);
-      bodyGeom.scale(1.0, 0.88, 1.2);
-      const bodyMat = new THREE.MeshStandardMaterial({
-        color: 0xd9b38c,
-        roughness: 0.55,
-        metalness: 0.05
-      });
-      const bodyMesh = new THREE.Mesh(bodyGeom, bodyMat);
-      hedgehogGroup.add(bodyMesh);
-
-      // Belly Soft Patch
-      const bellyGeom = new THREE.SphereGeometry(0.58, 24, 20);
-      bellyGeom.scale(0.85, 0.72, 1.05);
-      const bellyMat = new THREE.MeshStandardMaterial({
-        color: 0xf5deb3,
-        roughness: 0.7
-      });
-      const bellyMesh = new THREE.Mesh(bellyGeom, bellyMat);
-      bellyMesh.position.set(0, -0.06, 0.28);
-      hedgehogGroup.add(bellyMesh);
-
-      // Head Group (Rotates to track user cursor)
-      const headGroup = new THREE.Group();
-      headGroup.position.set(0, 0.18, 0.75);
-      hedgehogGroup.add(headGroup);
-
-      // Snout
-      const snoutGeom = new THREE.ConeGeometry(0.38, 0.65, 24);
-      snoutGeom.rotateX(Math.PI * 0.5);
-      const snoutMat = new THREE.MeshStandardMaterial({
-        color: 0xd9b38c,
-        roughness: 0.5
-      });
-      const snoutMesh = new THREE.Mesh(snoutGeom, snoutMat);
-      snoutMesh.position.set(0, 0, 0.25);
-      headGroup.add(snoutMesh);
-
-      // Glossy Button Nose
-      const noseGeom = new THREE.SphereGeometry(0.08, 16, 16);
-      const noseMat = new THREE.MeshStandardMaterial({
-        color: 0x1a120e,
-        roughness: 0.15,
-        metalness: 0.4
-      });
-      const noseMesh = new THREE.Mesh(noseGeom, noseMat);
-      noseMesh.position.set(0, 0.04, 0.58);
-      headGroup.add(noseMesh);
-
-      // Expressive Eyes with Specular Sparkle
-      const eyeGeom = new THREE.SphereGeometry(0.065, 16, 16);
-      const eyeMat = new THREE.MeshStandardMaterial({
-        color: 0x080605,
-        roughness: 0.05,
-        metalness: 0.8
-      });
-      
-      const leftEye = new THREE.Mesh(eyeGeom, eyeMat);
-      leftEye.position.set(-0.19, 0.12, 0.32);
-      headGroup.add(leftEye);
-
-      const rightEye = new THREE.Mesh(eyeGeom, eyeMat);
-      rightEye.position.set(0.19, 0.12, 0.32);
-      headGroup.add(rightEye);
-
-      // Little Rounded Ears
-      const earGeom = new THREE.SphereGeometry(0.12, 16, 16);
-      earGeom.scale(0.8, 1.2, 0.4);
-      const earMat = new THREE.MeshStandardMaterial({
-        color: 0xc49a6c,
-        roughness: 0.6
-      });
-      
-      const leftEar = new THREE.Mesh(earGeom, earMat);
-      leftEar.position.set(-0.28, 0.24, 0.05);
-      leftEar.rotation.z = -0.3;
-      headGroup.add(leftEar);
-
-      const rightEar = new THREE.Mesh(earGeom, earMat);
-      rightEar.position.set(0.28, 0.24, 0.05);
-      rightEar.rotation.z = 0.3;
-      headGroup.add(rightEar);
-
-      // Stylized Fur Quills Coat (Clustered Spines)
-      const quillConeGeom = new THREE.ConeGeometry(0.06, 0.32, 8);
-      quillConeGeom.rotateX(-Math.PI * 0.5);
-      const quillMat = new THREE.MeshStandardMaterial({
-        color: 0x3d2719,
-        roughness: 0.4
-      });
-
-      const NUM_QUILLS = 160;
-      const quillsGroup = new THREE.Group();
-      hedgehogGroup.add(quillsGroup);
-
-      for (let i = 0; i < NUM_QUILLS; i++) {
-        const u = Math.random();
-        const v = Math.random() * 0.75 + 0.1;
-        const theta = u * Math.PI * 1.5 - Math.PI * 0.75;
-        const phi = Math.acos(2 * v - 1);
-
-        const r = 0.72;
-        const x = r * Math.sin(phi) * Math.sin(theta);
-        const y = r * Math.cos(phi) * 0.85 + 0.1;
-        const z = -r * Math.sin(phi) * Math.cos(theta) * 0.95;
-
-        if (z < 0.25) { // Only place quills on the back and crest
-          const quill = new THREE.Mesh(quillConeGeom, quillMat);
-          quill.position.set(x, y, z);
-          quill.lookAt(x * 1.8, y * 1.8, z * 1.8);
-          quillsGroup.add(quill);
-        }
-      }
-
-      // Little Paws Resting on Table
-      const pawGeom = new THREE.SphereGeometry(0.1, 16, 16);
-      pawGeom.scale(1.2, 0.6, 1.4);
-      const leftPaw = new THREE.Mesh(pawGeom, bodyMat);
-      leftPaw.position.set(-0.35, -0.42, 0.72);
-      hedgehogGroup.add(leftPaw);
-
-      const rightPaw = new THREE.Mesh(pawGeom, bodyMat);
-      rightPaw.position.set(0.35, -0.42, 0.72);
-      hedgehogGroup.add(rightPaw);
-
-      // 3. Ceramic Coffee Cup beside the hedgehog
-      const cupGroup = new THREE.Group();
-      cupGroup.position.set(-0.75, -0.65, 0.85);
-      cafeSceneGroup.add(cupGroup);
-
-      const cupGeom = new THREE.CylinderGeometry(0.3, 0.22, 0.44, 32);
-      const cupMat = new THREE.MeshStandardMaterial({
-        color: 0xf4eee4,
-        roughness: 0.2,
-        metalness: 0.1
-      });
-      const cupMesh = new THREE.Mesh(cupGeom, cupMat);
-      cupGroup.add(cupMesh);
-
-      // Coffee Liquid inside cup
-      const coffeeGeom = new THREE.CylinderGeometry(0.28, 0.28, 0.02, 32);
-      const coffeeMat = new THREE.MeshStandardMaterial({
-        color: 0x3d2110,
-        roughness: 0.1
-      });
-      const coffeeMesh = new THREE.Mesh(coffeeGeom, coffeeMat);
-      coffeeMesh.position.y = 0.18;
-      cupGroup.add(coffeeMesh);
-
-      // Saucer underneath
-      const saucerGeom = new THREE.CylinderGeometry(0.48, 0.48, 0.04, 32);
-      const saucerMesh = new THREE.Mesh(saucerGeom, cupMat);
-      saucerMesh.position.y = -0.21;
-      cupGroup.add(saucerMesh);
-
-      // 4. Procedural Rising Steam Particles
-      const STEAM_COUNT = 45;
-      const steamParticles = [];
-      const steamGroup = new THREE.Group();
-      steamGroup.position.set(-0.75, -0.42, 0.85);
-      cafeSceneGroup.add(steamGroup);
-
-      const steamGeom = new THREE.SphereGeometry(0.04, 8, 8);
-      const steamMat = new THREE.MeshBasicMaterial({
-        color: 0xffffff,
-        transparent: true,
-        opacity: 0.25
-      });
-
-      for (let i = 0; i < STEAM_COUNT; i++) {
-        const p = new THREE.Mesh(steamGeom, steamMat.clone());
-        p.position.set(
-          (Math.random() - 0.5) * 0.12,
-          Math.random() * 0.8,
-          (Math.random() - 0.5) * 0.12
-        );
-        p.userData = {
-          speedY: 0.004 + Math.random() * 0.005,
-          driftX: (Math.random() - 0.5) * 0.002,
-          initY: p.position.y
-        };
-        steamGroup.add(p);
-        steamParticles.push(p);
-      }
-
-      // 5. Swaying Ceiling Pendant Lamp
-      const lampGroup = new THREE.Group();
-      lampGroup.position.set(0.6, 2.8, 1.2);
-      cafeSceneGroup.add(lampGroup);
-
-      const lampCordGeom = new THREE.CylinderGeometry(0.015, 0.015, 1.8, 12);
-      const lampCordMat = new THREE.MeshBasicMaterial({ color: 0x1f1915 });
-      const lampCord = new THREE.Mesh(lampCordGeom, lampCordMat);
-      lampCord.position.y = 0.9;
-      lampGroup.add(lampCord);
-
-      const lampShadeGeom = new THREE.ConeGeometry(0.42, 0.32, 24, 1, true);
-      const lampShadeMat = new THREE.MeshStandardMaterial({
-        color: 0x3d2719,
-        roughness: 0.3,
-        metalness: 0.7
-      });
-      const lampShade = new THREE.Mesh(lampShadeGeom, lampShadeMat);
-      lampShade.position.y = 0;
-      lampGroup.add(lampShade);
-
-      const lampBulbGeom = new THREE.SphereGeometry(0.1, 16, 16);
-      const lampBulbMat = new THREE.MeshBasicMaterial({ color: 0xffe29f });
-      const lampBulb = new THREE.Mesh(lampBulbGeom, lampBulbMat);
-      lampBulb.position.y = -0.05;
-      lampGroup.add(lampBulb);
-
-      // 6. Background Bookshelf & Floating Dust Particles
       const DUST_COUNT = 220;
       const dustGeom = new THREE.BufferGeometry();
       const dustPositions = new Float32Array(DUST_COUNT * 3);
@@ -4473,32 +4558,7 @@
       const dustSystem = new THREE.Points(dustGeom, dustMat);
       scene.add(dustSystem);
 
-      // Bookshelf in background
-      const shelfGroup = new THREE.Group();
-      shelfGroup.position.set(-2.2, 0.4, -2.4);
-      cafeSceneGroup.add(shelfGroup);
 
-      const bookColors = [0x8b3a2b, 0x2b4c59, 0x47593c, 0xc97545, 0x5a4233];
-      for (let s = 0; s < 3; s++) {
-        // Shelf board
-        const boardGeom = new THREE.BoxGeometry(4.2, 0.06, 0.6);
-        const boardMat = new THREE.MeshStandardMaterial({ color: 0x231a14, roughness: 0.5 });
-        const board = new THREE.Mesh(boardGeom, boardMat);
-        board.position.y = s * 0.9 - 0.8;
-        shelfGroup.add(board);
-
-        // Row of books
-        for (let b = 0; b < 12; b++) {
-          const bookHeight = 0.45 + (Math.random() * 0.2);
-          const bookWidth = 0.08 + (Math.random() * 0.04);
-          const bookGeom = new THREE.BoxGeometry(bookWidth, bookHeight, 0.35);
-          const colorPick = bookColors[Math.floor(Math.random() * bookColors.length)];
-          const bookMat = new THREE.MeshStandardMaterial({ color: colorPick, roughness: 0.6 });
-          const bookMesh = new THREE.Mesh(bookGeom, bookMat);
-          bookMesh.position.set(-1.8 + (b * 0.3), board.position.y + bookHeight * 0.5 + 0.03, 0);
-          shelfGroup.add(bookMesh);
-        }
-      }
 
       // ==========================================================================
       // ANIMATION & INTERACTION LOOP
@@ -4559,32 +4619,12 @@
           container.style.visibility = scrollFade <= 0.005 ? 'hidden' : 'visible';
         }
 
-        // 2. Head rotation easing
-        headGroup.rotation.y += (targetHeadRotY - headGroup.rotation.y) * 0.06;
-        headGroup.rotation.x += (targetHeadRotX - headGroup.rotation.x) * 0.06;
-
-        // Subtle breathing motion for hedgehog body
-        const breathe = Math.sin(elapsed * 2.2) * 0.015;
-        hedgehogGroup.position.y = -0.65 + breathe;
-
-        // 3. Steam particle rise & fade
-        steamParticles.forEach(p => {
-          p.position.y += p.userData.speedY;
-          p.position.x += p.userData.driftX + Math.sin(elapsed * 3 + p.position.y) * 0.001;
-          const progress = (p.position.y - 0.18) / 0.8;
-          p.material.opacity = Math.max(0, 0.25 * (1 - progress));
-          p.scale.setScalar(1 + progress * 1.8);
-
-          if (p.position.y > 0.95) {
-            p.position.y = 0.18;
-            p.material.opacity = 0.25;
-          }
-        });
-
-        // 4. Pendant Lamp subtle sway
-        const swayAngle = Math.sin(elapsed * 1.4) * 0.045;
-        lampGroup.rotation.z = swayAngle;
-        pendantLight.position.x = 0.6 + Math.sin(swayAngle) * 0.5;
+        // 2. Pendant Lamp subtle sway
+        if (typeof lampGroup !== 'undefined' && lampGroup) {
+          const swayAngle = Math.sin(elapsed * 1.4) * 0.045;
+          lampGroup.rotation.z = swayAngle;
+          pendantLight.position.x = 0.6 + Math.sin(swayAngle) * 0.5;
+        }
 
         // 5. Dust particle slow drift
         const positions = dustGeom.attributes.position.array;
@@ -5188,6 +5228,87 @@
 
       // Initialize the Team Stack Deck immediately
       initMenuDeckStack();
+
+      // =====================================================================
+      // ANIMATED CAFE PICTURE SHOWCASE INTERACTIVITY
+      // =====================================================================
+      function initHeroCafeShowcase() {
+        const stage = document.getElementById('heroCafeStage');
+        const card = document.getElementById('heroCafeCard');
+        const slides = document.querySelectorAll('.hero-cafe-slide');
+        const tabBtns = document.querySelectorAll('.hero-cafe-tab-btn');
+        const titleEl = document.getElementById('heroSlideTitle');
+        const eyebrowEl = document.getElementById('heroSlideEyebrow');
+
+        if (!slides.length) return;
+
+        const slideData = [
+          { eyebrow: 'Evening Atmosphere', title: 'Model Town Facade & Warm Glow' },
+          { eyebrow: 'Open-Air Seating', title: 'Lush Garden Lawn & Verandah' },
+          { eyebrow: 'Cozy Interior', title: 'Comfortable Dining & Study Lounge' }
+        ];
+
+        let currentIndex = 0;
+        let slideTimer = null;
+
+        function setSlide(index) {
+          currentIndex = (index + slides.length) % slides.length;
+          slides.forEach((s, i) => {
+            if (i === currentIndex) {
+              s.classList.add('active');
+            } else {
+              s.classList.remove('active');
+            }
+          });
+          tabBtns.forEach((b, i) => {
+            if (i === currentIndex) {
+              b.classList.add('active');
+            } else {
+              b.classList.remove('active');
+            }
+          });
+          if (titleEl && slideData[currentIndex]) {
+            titleEl.textContent = slideData[currentIndex].title;
+          }
+          if (eyebrowEl && slideData[currentIndex]) {
+            eyebrowEl.textContent = slideData[currentIndex].eyebrow;
+          }
+        }
+
+        tabBtns.forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            clearInterval(slideTimer);
+            const idx = parseInt(btn.dataset.index, 10);
+            setSlide(idx);
+            startAutoSlide();
+          });
+        });
+
+        function startAutoSlide() {
+          clearInterval(slideTimer);
+          slideTimer = setInterval(() => {
+            setSlide(currentIndex + 1);
+          }, 4500);
+        }
+
+        startAutoSlide();
+
+        // 3D Interactive Mouse Parallax Tilt
+        if (stage && card && window.matchMedia('(pointer: fine)').matches) {
+          stage.addEventListener('mousemove', (e) => {
+            const rect = stage.getBoundingClientRect();
+            const x = (e.clientX - rect.left) / rect.width - 0.5;
+            const y = (e.clientY - rect.top) / rect.height - 0.5;
+            card.style.transform = `rotateY(${x * 12}deg) rotateX(${-y * 12}deg) scale3d(1.02, 1.02, 1.02)`;
+          });
+          stage.addEventListener('mouseleave', () => {
+            card.style.transform = '';
+          });
+        }
+      }
+      initHeroCafeShowcase();
+
 
       // Menu Category Filters
       document.querySelectorAll('.menu-filter-btn').forEach(btn => {
@@ -6092,7 +6213,7 @@
               </div>
               <div style="font-size:0.84rem;color:#E6DFD1;line-height:1.4;">
                 Guest: <strong style="color:#F8F5EE;">${escapeHtml(r.name)}</strong> · ${escapeHtml(r.guests)}<br>
-                Date & Time: ${escapeHtml(r.date)} at ${escapeHtml(r.time)} (${escapeHtml(r.seating || 'Library Bookshelf')})
+                Date & Time: ${escapeHtml(r.date)} at ${escapeHtml(r.time)} (${escapeHtml(r.seating || 'Garden Verandah')})
               </div>
             </div>
           `;
