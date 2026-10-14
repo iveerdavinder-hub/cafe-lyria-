@@ -14,26 +14,26 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
   <style>
     :root{
-      --ink:#141210;
-      --bg:#1a1715;
-      --panel:#221e1a;
-      --card:#2a2520;
-      --card-hover:#312c26;
-      --line:rgba(255,255,255,0.09);
-      --cream:#f7f1e7;
-      --muted:#9e958b;
-      --accent:#c97545;
-      --accent2:#e3a469;
-      --green:#2e8b57;
-      --green-bg:rgba(46,139,87,0.18);
-      --amber:#d97736;
-      --amber-bg:rgba(217,119,54,0.18);
+      --ink:#132219;
+      --bg:#1A2F23;
+      --panel:#233B2D;
+      --card:#2A4535;
+      --card-hover:#32523F;
+      --line:rgba(216,204,163,0.16);
+      --cream:#F8F5EE;
+      --muted:#B5C4B8;
+      --accent:#D8CCA3;
+      --accent2:#EBE2C5;
+      --green:#34d399;
+      --green-bg:rgba(46,139,87,0.22);
+      --amber:#D8CCA3;
+      --amber-bg:rgba(216,204,163,0.18);
       --blue:#4a8fe7;
       --blue-bg:rgba(74,143,231,0.18);
       --red:#d64545;
       --red-bg:rgba(214,69,69,0.18);
       --radius:16px;
-      --shadow:0 18px 45px rgba(0,0,0,0.35);
+      --shadow:0 18px 45px rgba(10,18,13,0.45);
     }
     *{box-sizing:border-box}
     body{
@@ -65,9 +65,9 @@
     .brand-logo{font:700 1.35rem "Playfair Display";letter-spacing:.02em;color:#fff}
     .brand-logo em{font-style:normal;color:var(--accent2)}
     .badge-admin{
-      background:rgba(201,117,69,0.2);
+      background:rgba(216,204,163,0.2);
       color:var(--accent2);
-      border:1px solid rgba(201,117,69,0.35);
+      border:1px solid rgba(216,204,163,0.35);
       font-size:.72rem;
       font-weight:700;
       text-transform:uppercase;
@@ -225,7 +225,7 @@
 
     /* Offline Alert Banner in Admin */
     .offline-banner{
-      background:linear-gradient(90deg, rgba(235,87,87,0.18), rgba(201,117,69,0.15));
+      background:linear-gradient(90deg, rgba(235,87,87,0.18), rgba(216,204,163,0.15));
       border:1px solid rgba(235,87,87,0.45);
       border-radius:18px;
       padding:16px 22px;
@@ -276,8 +276,8 @@
       cursor:pointer;
       transition:.25s ease;
     }
-    .btn.primary{background:var(--accent);color:#fff}
-    .btn.primary:hover{background:#dc824f;transform:translateY(-1px);box-shadow:0 6px 18px rgba(201,117,69,0.3)}
+    .btn.primary{background:var(--accent);color:var(--ink);font-weight:700}
+    .btn.primary:hover{background:var(--accent2);transform:translateY(-1px);box-shadow:0 6px 18px rgba(216,204,163,0.3)}
     .btn.ghost{background:rgba(255,255,255,0.06);color:var(--cream);border:1px solid var(--line)}
     .btn.ghost:hover{background:rgba(255,255,255,0.12);border-color:rgba(255,255,255,0.2)}
     .btn.sm{padding:7px 13px;font-size:.78rem}
@@ -329,7 +329,7 @@
     }
     .metric-card:hover{
       transform:translateY(-2px);
-      border-color:rgba(201,117,69,0.35);
+      border-color:rgba(216,204,163,0.35);
       box-shadow:var(--shadow);
     }
     .metric-card::after{
@@ -464,7 +464,7 @@
       font-weight:700;
       color:var(--accent2);
       font-size:.86rem;
-      background:rgba(201,117,69,0.12);
+      background:rgba(216,204,163,0.12);
       padding:4px 8px;
       border-radius:6px;
       display:inline-block;
@@ -509,7 +509,7 @@
     .status-select.Seated{background-color:var(--blue-bg);color:#70b0ff;border:1px solid rgba(112,176,255,0.3)}
     .status-select.Completed{background-color:rgba(255,255,255,0.08);color:#dcd5cb;border:1px solid rgba(255,255,255,0.18)}
     .status-select.Cancelled{background-color:var(--red-bg);color:#ff7878;border:1px solid rgba(255,120,120,0.3)}
-    .status-select.Preparing{background-color:rgba(217,119,54,0.22);color:#f59e0b;border:1px solid rgba(245,158,11,0.35)}
+    .status-select.Preparing{background-color:rgba(216,204,163,0.22);color:#f59e0b;border:1px solid rgba(245,158,11,0.35)}
     .status-select.Served{background-color:var(--green-bg);color:#3ddc84;border:1px solid rgba(61,220,132,0.3)}
 
     .order-items-badge{
@@ -532,12 +532,12 @@
     }
     .order-table-tag{
       font-weight:700;
-      color:#e3a469;
-      background:rgba(227,164,105,0.14);
+      color:#D8CCA3;
+      background:rgba(216,204,163,0.14);
       padding:4px 10px;
       border-radius:999px;
       font-size:0.82rem;
-      border:1px solid rgba(227,164,105,0.28);
+      border:1px solid rgba(216,204,163,0.28);
       display:inline-flex;
       align-items:center;
       gap:4px;
@@ -707,7 +707,7 @@
     }
     .m-field input:focus,.m-field select:focus,.m-field textarea:focus{
       border-color:var(--accent);
-      box-shadow:0 0 0 3px rgba(201,117,69,0.2);
+      box-shadow:0 0 0 3px rgba(216,204,163,0.2);
     }
     .m-field input[type="date"]{color-scheme:dark}
     .modal-foot{
@@ -747,7 +747,7 @@
       bottom:28px;
       right:28px;
       background:var(--ink);
-      border:1px solid rgba(201,117,69,0.4);
+      border:1px solid rgba(216,204,163,0.4);
       color:#fff;
       padding:14px 20px;
       border-radius:12px;
@@ -815,12 +815,12 @@
       width: 64px;
       height: 64px;
       border-radius: 20px;
-      background: linear-gradient(135deg, rgba(201,117,69,0.25), rgba(201,117,69,0.08));
-      border: 1px solid rgba(201,117,69,0.45);
+      background: linear-gradient(135deg, rgba(216,204,163,0.25), rgba(216,204,163,0.08));
+      border: 1px solid rgba(216,204,163,0.45);
       color: var(--accent2);
       display: grid;
       place-items: center;
-      box-shadow: 0 10px 25px rgba(201,117,69,0.25);
+      box-shadow: 0 10px 25px rgba(216,204,163,0.25);
     }
     .lock-brand{
       font: 700 1.6rem "Playfair Display";
@@ -835,8 +835,8 @@
       letter-spacing: .12em;
       text-transform: uppercase;
       color: var(--accent2);
-      background: rgba(201,117,69,0.15);
-      border: 1px solid rgba(201,117,69,0.3);
+      background: rgba(216,204,163,0.15);
+      border: 1px solid rgba(216,204,163,0.3);
       padding: 4px 12px;
       border-radius: 999px;
       margin-bottom: 18px;
@@ -878,7 +878,7 @@
     .lock-input-group input:focus{
       border-color: var(--accent);
       background: rgba(255, 255, 255, 0.08);
-      box-shadow: 0 0 0 3px rgba(201,117,69,0.25);
+      box-shadow: 0 0 0 3px rgba(216,204,163,0.25);
     }
     .btn-toggle-eye{
       position: absolute;
@@ -919,15 +919,15 @@
       background: var(--accent);
       color: #fff;
       border-radius: 14px;
-      box-shadow: 0 10px 25px rgba(201,117,69,0.35);
+      box-shadow: 0 10px 25px rgba(216,204,163,0.35);
       transition: all .25s ease;
       cursor: pointer;
       border: 0;
     }
     .btn-unlock:hover{
-      background: #d5804e;
+      background: #D8CCA3;
       transform: translateY(-2px);
-      box-shadow: 0 14px 30px rgba(201,117,69,0.45);
+      box-shadow: 0 14px 30px rgba(216,204,163,0.45);
     }
     .lock-footer-info{
       margin-top: 24px;
@@ -995,7 +995,7 @@
           <small>🔑 Default Owner Passcode: <strong>1660</strong> or <strong>1270</strong></small>
         </div>
         <div style="margin-top:8px">
-          <button type="button" id="btnLockChangePasscode" style="background:rgba(214,155,97,0.12);border:1px solid rgba(214,155,97,0.3);color:var(--accent2);padding:6px 14px;border-radius:999px;cursor:pointer;font-size:0.82rem;font-weight:600;display:inline-flex;align-items:center;gap:6px;transition:.2s">
+          <button type="button" id="btnLockChangePasscode" style="background:rgba(216,204,163,0.12);border:1px solid rgba(216,204,163,0.3);color:var(--accent2);padding:6px 14px;border-radius:999px;cursor:pointer;font-size:0.82rem;font-weight:600;display:inline-flex;align-items:center;gap:6px;transition:.2s">
             <span>🔑</span> Change Password
           </button>
         </div>
@@ -1060,7 +1060,7 @@
       <button type="button" class="btn ghost sm" id="btnOpenChangePasscode" title="Change Owner Password" style="color:var(--cream);border-color:rgba(255,255,255,0.22)">
         <span>🔑</span> Change Password
       </button>
-      <button type="button" class="btn ghost sm" id="btnLogoutAdmin" title="Lock Owner Portal" style="color:#d69b61;border-color:rgba(214,155,97,0.3)">
+      <button type="button" class="btn ghost sm" id="btnLogoutAdmin" title="Lock Owner Portal" style="color:#D8CCA3;border-color:rgba(216,204,163,0.3)">
         <span>🔒</span> Lock Portal
       </button>
     </div>
@@ -1236,7 +1236,7 @@
           <div class="metric-value" id="metricOrdersServed">0</div>
           <div class="metric-sub">Delivered to guest tables</div>
         </div>
-        <div class="metric-card m-total" style="border-top-color:#e3a469">
+        <div class="metric-card m-total" style="border-top-color:#D8CCA3">
           <div class="metric-label">Total Order Revenue</div>
           <div class="metric-value" id="metricOrdersRevenue">₹0</div>
           <div class="metric-sub">Gross food & drinks billing</div>
@@ -1518,7 +1518,7 @@
         <!-- Table & Guest Header -->
         <div style="background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px">
           <div>
-            <div style="font-size:1.1rem;font-weight:700;color:#e3a469" id="kotTableDisplay">Table 4 · Central Library</div>
+            <div style="font-size:1.1rem;font-weight:700;color:#D8CCA3" id="kotTableDisplay">Table 4 · Central Library</div>
             <div style="font-size:0.85rem;color:var(--muted);margin-top:2px" id="kotGuestDisplay">Guest: Aman (Dine-in)</div>
           </div>
           <div style="text-align:right">
@@ -1536,7 +1536,7 @@
         </div>
 
         <!-- Special Instructions -->
-        <div id="kotNotesWrap" style="background:rgba(217,119,54,0.1);border:1px solid rgba(217,119,54,0.25);border-radius:12px;padding:12px 14px">
+        <div id="kotNotesWrap" style="background:rgba(216,204,163,0.1);border:1px solid rgba(216,204,163,0.25);border-radius:12px;padding:12px 14px">
           <small style="display:block;color:var(--accent2);font-weight:700;text-transform:uppercase;font-size:0.72rem;letter-spacing:.06em">Special Kitchen Instructions</small>
           <div id="kotNotesDisplay" style="font-size:0.86rem;color:var(--cream);margin-top:2px">None</div>
         </div>
@@ -1544,7 +1544,7 @@
         <!-- Total Breakdown -->
         <div style="background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px;display:flex;justify-content:space-between;align-items:center">
           <span style="font-size:0.9rem;color:var(--muted)">Total to Collect at Table</span>
-          <strong style="font-size:1.3rem;color:#e3a469" id="kotTotalDisplay">₹0</strong>
+          <strong style="font-size:1.3rem;color:#D8CCA3" id="kotTotalDisplay">₹0</strong>
         </div>
       </div>
 
@@ -3127,7 +3127,7 @@
               </span>
             </td>
             <td>
-              <strong style="color:#e3a469;font-size:0.96rem">₹${order.total || 0}</strong>
+              <strong style="color:#D8CCA3;font-size:0.96rem">₹${order.total || 0}</strong>
             </td>
             <td>
               <span class="date-badge">${timeFormatted}</span>
